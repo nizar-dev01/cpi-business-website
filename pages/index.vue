@@ -1,8 +1,5 @@
 <template>
-	<section
-		id="section-hero"
-		v-if="0"
-	>
+	<section id="section-hero">
 		<div class="layout-box">
 			<h1 class="hero-title">cpi business</h1>
 			<h3 class="hero-subtitle">
@@ -30,8 +27,9 @@
 		</div>
 	</section>
 	<client-only>
-		<sphere-canvas />
+		<index-sphere-canvas />
 	</client-only>
+	<index-about-brief />
 </template>
 <script setup>
 	onMounted(() => {
@@ -42,6 +40,9 @@
 		// 	duration: 0.5
 		// })
 	})
+	// onBeforeMount(() => {
+	// 	window.scrollTo(0, 0)
+	// })
 	const sentenceList = "Value-driven Ideas / Impactful Experiences / Focused Strategies".split("")
 </script>
 <style lang="scss">

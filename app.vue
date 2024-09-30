@@ -4,10 +4,20 @@
 	</nuxt-layout>
 </template>
 <script setup>
-	import LocomotiveScroll from 'locomotive-scroll';
-	if (import.meta.client) {
+	import Lenis from 'lenis'
 
-		const locomotiveScroll = new LocomotiveScroll();
+	if (import.meta.client) {
+		const lenis = new Lenis()
+
+		// lenis.on('scroll', (e) => {
+		// 	console.log(e)
+		// })
+
+		function raf (time) {
+			lenis.raf(time)
+			requestAnimationFrame(raf)
+		}
+		requestAnimationFrame(raf)
 	}
 </script>
 <style lang="scss">

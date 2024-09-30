@@ -61,8 +61,8 @@ export class SpheresArt {
 		camera.position.z = 20
 		camera.position.y = 3
 
-		const orbit = new OrbitControls(camera, this.canvas)
-		orbit.update()
+		// const orbit = new OrbitControls(camera, this.canvas)
+		// orbit.update()
 
 		return { scene, camera }
 	}
