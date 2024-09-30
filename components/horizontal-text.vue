@@ -13,7 +13,7 @@
 	const rollingText = ref(null)
 	onMounted(() => {
 		const {
-			// $Observer: Observer,
+			$Observer: Observer,
 			$gsap: gsap,
 			$ScrollTrigger: ScrollTrigger
 		} = useNuxtApp()
@@ -45,6 +45,36 @@
 			}
 		});
 
+		Observer.create({
+			onChangeY (self) {
+				let factor = 2.5
+				let operator = 2.5
+
+				if (self.deltaY < 0) {
+					factor *= -1;
+				}
+
+				gsap.timeline({
+					defaults: {
+						ease: "none",
+					}
+				})
+					.to(
+						roll_tl,
+						{
+							timeScale: factor * operator,
+							duration: 0.2
+						}
+					).to(
+						roll_tl,
+						{
+							timeScale: factor / operator,
+							duration: 1
+						}
+					)
+			}
+		});
+
 		// helper function that clones the targets, places them next to the original, then animates the xPercent in a loop to make it appear to roll across the screen in a seamless loop.
 		function roll (targets, vars, reverse) {
 			const tl = gsap.timeline({
@@ -58,6 +88,7 @@
 			vars = vars || {};
 			vars.ease || (vars.ease = "none");
 
+			// Manage the cloning of the child elements (For keeping the track filled with content)
 			gsap.utils.toArray(targets).forEach(el => {
 				let clone1 = el.cloneNode(true);
 				let clone2 = el.cloneNode(true);
@@ -96,6 +127,11 @@
 	})
 </script>
 <style lang="scss" scoped>
+	.rollingText-track {
+		overflow: hidden;
+		position: relative;
+	}
+
 	.wrapperRollingText {
 		white-space: nowrap;
 	}

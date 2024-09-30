@@ -19,6 +19,8 @@
 		font-size: 10vw;
 		font-weight: 500;
 		color: $text-color;
+		font-family: 'Metropolis';
+		display: inline-block;
 
 		span {
 			margin: 0 100px;

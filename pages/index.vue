@@ -26,10 +26,10 @@
 			</div>
 		</div>
 	</section>
+	<index-about-brief />
 	<client-only>
 		<index-sphere-canvas />
 	</client-only>
-	<index-about-brief />
 </template>
 <script setup>
 	onMounted(() => {
