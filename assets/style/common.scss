@@ -1,0 +1,49 @@
+@import url(./fonts/setup.scss);
+
+@mixin xxl {
+	@media (max-width: $xxl) {
+		@content;
+	}
+}
+
+@mixin xl {
+	@media (max-width: $xl) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (max-width: $lg) {
+		@content;
+	}
+}
+
+@mixin xmd {
+	@media (max-width: $xmd) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (max-width: $md) {
+		@content;
+	}
+}
+
+@mixin sm {
+	@media (max-width: $sm) {
+		@content;
+	}
+}
+
+@mixin xs {
+	@media (max-width: $xs) {
+		@content;
+	}
+}
+
+@mixin break($max-width) {
+	@media (max-width: $max-width) {
+		@content;
+	}
+}

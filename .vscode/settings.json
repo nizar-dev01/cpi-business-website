@@ -1,0 +1,14 @@
+{
+	"files.trimTrailingWhitespace": false,
+	"window.zoomLevel": 1,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.tabSize": 4,
+	"editor.formatOnPaste": false,
+	"editor.renderWhitespace": "selection",
+	"html.format.wrapAttributes": "force-expand-multiline",
+	"workbench.iconTheme": "vscode-icons",
+	"javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+	"workbench.colorTheme": "Default Dark Modern",
+}

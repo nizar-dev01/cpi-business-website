@@ -1,0 +1,104 @@
+// Satoshi
+@font-face {
+	font-family: 'Satoshi';
+	src:
+		url('./satoshi/Satoshi-Variable.woff2') format('woff2'),
+		url('./satoshi/Satoshi-Variable.woff') format('woff'),
+		url('./satoshi/Satoshi-Variable.ttf') format('truetype');
+	font-weight: 300 900;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Satoshi';
+	src:
+		url('./satoshi/Satoshi-VariableItalic.woff2') format('woff2'),
+		url('./satoshi/Satoshi-VariableItalic.woff') format('woff'),
+		url('./satoshi/Satoshi-VariableItalic.ttf') format('truetype');
+	font-weight: 300 900;
+	font-display: swap;
+	font-style: italic;
+}
+
+// Newyork
+@font-face {
+	font-family: 'Newyork';
+	src:
+		url('./newyork/NewYork.ttf'),
+		url('./newyork/NewYorkItalic.ttf');
+	font-display: swap;
+}
+
+// Metropolis
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-Thin.otf'),
+		url('./metropolis/Metropolis-ThinItalic.otf');
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-ExtraLight.otf'),
+		url('./metropolis/Metropolis-ExtraLightItalic.otf');
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src: url('./metropolis/Metropolis-Light.otf'),
+		url('./metropolis/Metropolis-LightItalic.otf');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-Regular.otf'),
+		url('./metropolis/Metropolis-RegularItalic.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-Medium.otf'),
+		url('./metropolis/Metropolis-MediumItalic.otf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-SemiBold.otf'),
+		url('./metropolis/Metropolis-SemiBoldItalic.otf');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-Bold.otf'),
+		url('./metropolis/Metropolis-BoldItalic.otf');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-ExtraBold.otf'),
+		url('./metropolis/Metropolis-ExtraBoldItalic.otf');
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: 'Metropolis';
+	src:
+		url('./metropolis/Metropolis-Black.otf'),
+		url('./metropolis/Metropolis-BlackItalic.otf');
+	font-weight: 900;
+}
