@@ -26,10 +26,10 @@
 			</div>
 		</div>
 	</section>
-	<index-about-brief />
-	<client-only>
+	<client-only v-if="0">
 		<index-sphere-canvas />
 	</client-only>
+	<index-about-brief />
 </template>
 <script setup>
 	onMounted(() => {
@@ -56,7 +56,8 @@
 
 	// /Common
 	section#section-hero {
-		min-height: 100vh;
+		// min-height: 100vh;
+		padding-bottom: 200px;
 		border-top: 1px solid transparent;
 	}
 
