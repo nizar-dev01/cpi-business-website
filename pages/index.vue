@@ -32,7 +32,6 @@
 	<index-about-brief
 		data-start="70%"
 		data-prevent-reverse-snap="true"
-		:ref="setSnapRef"
 	/>
 	<section
 		class="demo-snap red"
@@ -55,45 +54,78 @@
 			$ScrollTrigger: ScrollTrigger,
 			$gsap: gsap,
 			// $Observer: Observer,
-			$lenis: lenis
+			$lenis: lenis,
+			$createLenisSnap: createLenisSnap
 		} = useNuxtApp()
 
-		const scrollToSnap = (element, reverse = false) => {
-			if (
-				!reverse && element || // is forward
-				reverse && element && !element?.dataset?.preventReverseSnap // is reverse and snapping is allowed
-			) {
-				const snap_to = +(element.getBoundingClientRect().y + scrollY).toFixed(2)
-				// lenis.stop()
-				console.log("Scrolling to : ", snap_to)
-				lenis.
-					scrollTo(snap_to)
-				// lenis.start()
-				console.log("Done scrolling to : ", snap_to)
-			} else {
-				console.log("Oops", element, reverse)
-			}
-		}
+		const snap = createLenisSnap({
+			type: 'proximity',
+			velocityThreshold: 1,
+			lerp: 0.05
+		})
 
-		snapElements.value.forEach(el => {
-			const start = (el?.dataset?.start || "bottom")
-			const scrollConfig = {
-				lerp: 0.1
-			}
-			new ScrollTrigger({
-				trigger: el,
-				start: `top ${start}`,
-				end: "bottom top",
-				// end: "+=100%",
-				markers: true,
-				onEnter (e) {
-					scrollToSnap(e.trigger)
-				},
-				onEnterBack (e) {
-					scrollToSnap(e.trigger, true)
-				},
+		const _ = []
+
+		snapElements.value.forEach(sec => {
+			const boundingRect = sec.getBoundingClientRect()
+			const clientY = scrollY + boundingRect.y
+			snap.add(clientY)
+
+			_.push({
+				clientY,
+				sec
 			})
 		})
+		console.log(_)
+
+		// debugger
+
+		// const scrollConfig = {
+		// 	lerp: 0.1,
+		// 	duration: 1
+		// }
+		// const scrollToSnap = (element, reverse = false) => {
+		// 	if (
+		// 		!reverse && element || // is forward
+		// 		reverse && element && !element?.dataset?.preventReverseSnap // is reverse and snapping is allowed
+		// 	) {
+		// 		const snap_to = +(element.getBoundingClientRect().y + scrollY).toFixed(2)
+		// 		// lenis.stop()
+		// 		console.log("Scrolling to : ", snap_to)
+		// 		lenis.
+		// 			scrollTo(snap_to, scrollConfig)
+		// 		// lenis.start()
+		// 		console.log("Done scrolling to : ", snap_to, scrollConfig)
+		// 		setTimeout(() => {
+		// 			if (window.scrollY != snap_to) {
+		// 				console.log("Need to scroll again!")
+		// 				lenis.
+		// 					scrollTo(snap_to, scrollConfig)
+		// 			} else {
+		// 				console.log("It is done!")
+		// 			}
+		// 		}, scrollConfig.duration * 1.5)
+		// 	} else {
+		// 		console.log("Oops", element, reverse)
+		// 	}
+		// }
+
+		// snapElements.value.forEach(el => {
+		// 	const start = (el?.dataset?.start || "95%")
+		// 	new ScrollTrigger.create({
+		// 		trigger: el,
+		// 		start: `top ${start}`,
+		// 		end: "bottom top",
+		// 		// end: "+=100%",
+		// 		markers: true,
+		// 		onEnter (e) {
+		// 			scrollToSnap(e.trigger)
+		// 		},
+		// 		onEnterBack (e) {
+		// 			scrollToSnap(e.trigger, true)
+		// 		},
+		// 	})
+		// })
 	})
 	const sentenceList = "Value-driven Ideas / Impactful Experiences / Focused Strategies".split("")
 </script>

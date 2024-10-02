@@ -4,13 +4,18 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { Observer } from 'gsap/all'
 
 import Lenis from 'lenis'
+import Snap from 'lenis/snap'
 
 export default defineNuxtPlugin((nuxtApp) => {
 
 	// <Setup Lenis>
 	const lenis = new Lenis({
-		lerp: 0.05
+		lerp: 0.1
 	})
+
+	function createLenisSnap (config = {}) {
+		return new Snap(lenis, config)
+	}
 
 	lenis.on('scroll', ScrollTrigger.update)
 
@@ -34,7 +39,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 			gsap,
 			Observer,
 			ScrollTrigger,
-			lenis
+			lenis,
+			createLenisSnap
 		},
 	}
 })
