@@ -1,6 +1,6 @@
 <template>
 	<section id="about-brief">
-		<horizontal-text duration="50">
+		<horizontal-text duration="100">
 			<div class="h-slide-text">
 				<span>EVENTS</span> <span class="center-dot"></span>
 				<span>CONTENT</span> <span class="center-dot"></span>
@@ -136,8 +136,8 @@
 	}
 
 	.h-slide-text {
-		font-size: 10vw;
-		font-weight: 500;
+		font-size: 551px;
+		font-weight: 600;
 		color: $text-color;
 		font-family: 'Metropolis';
 		display: inline-block;

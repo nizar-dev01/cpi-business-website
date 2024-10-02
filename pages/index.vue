@@ -29,23 +29,92 @@
 	<client-only v-if="0">
 		<index-sphere-canvas />
 	</client-only>
-	<index-about-brief />
+	<index-about-brief
+		data-start="70%"
+		data-prevent-reverse-snap="true"
+		:ref="setSnapRef"
+	/>
+	<section
+		class="demo-snap red"
+		:ref="setSnapRef"
+	></section>
+	<section
+		class="demo-snap blue"
+		:ref="setSnapRef"
+	></section>
+	<section
+		class="demo-snap yellow"
+		:ref="setSnapRef"
+	></section>
 </template>
 <script setup>
+	const snapElements = ref([])
+	const setSnapRef = el => snapElements.value.push(el.$el || el)
 	onMounted(() => {
-		// const { $gsap: gsap, $Draggable: Draggable } = useNuxtApp();
-		// gsap.from('.subtitle-letter.text-block', {
-		// 	y: 20,
-		// 	stagger: 1,
-		// 	duration: 0.5
-		// })
+		const {
+			$ScrollTrigger: ScrollTrigger,
+			$gsap: gsap,
+			// $Observer: Observer,
+			$lenis: lenis
+		} = useNuxtApp()
+
+		const scrollToSnap = (element, reverse = false) => {
+			if (
+				!reverse && element || // is forward
+				reverse && element && !element?.dataset?.preventReverseSnap // is reverse and snapping is allowed
+			) {
+				const snap_to = +(element.getBoundingClientRect().y + scrollY).toFixed(2)
+				// lenis.stop()
+				console.log("Scrolling to : ", snap_to)
+				lenis.
+					scrollTo(snap_to)
+				// lenis.start()
+				console.log("Done scrolling to : ", snap_to)
+			} else {
+				console.log("Oops", element, reverse)
+			}
+		}
+
+		snapElements.value.forEach(el => {
+			const start = (el?.dataset?.start || "bottom")
+			const scrollConfig = {
+				lerp: 0.1
+			}
+			new ScrollTrigger({
+				trigger: el,
+				start: `top ${start}`,
+				end: "bottom top",
+				// end: "+=100%",
+				markers: true,
+				onEnter (e) {
+					scrollToSnap(e.trigger)
+				},
+				onEnterBack (e) {
+					scrollToSnap(e.trigger, true)
+				},
+			})
+		})
 	})
-	// onBeforeMount(() => {
-	// 	window.scrollTo(0, 0)
-	// })
 	const sentenceList = "Value-driven Ideas / Impactful Experiences / Focused Strategies".split("")
 </script>
 <style lang="scss">
+
+	.demo-snap {
+		height: 100vh;
+		// margin-bottom: 10px;
+
+		&.red {
+			background: #ce5454;
+		}
+
+		&.blue {
+			background: #2c5bd3
+		}
+
+		&.yellow {
+			background: #e3e366;
+		}
+	}
 
 	// Common
 	.layout-box {

@@ -1,27 +1,75 @@
 <template>
-	<nuxt-layout>
-		<nuxt-page></nuxt-page>
-	</nuxt-layout>
+	<div>
+		<div
+			class="loader flex-center"
+			ref="loaderContainer"
+			v-if="showWelcome"
+		>
+			<h1
+				class="welcome-title"
+				ref="welcomeTitle"
+			>WELCOME</h1>
+		</div>
+		<nuxt-layout>
+			<nuxt-page></nuxt-page>
+		</nuxt-layout>
+	</div>
 </template>
 <script setup>
-	import Lenis from 'lenis'
+	const showWelcome = ref(true)
+	const loaderContainer = ref(null)
+	const welcomeTitle = ref(null)
+	onMounted(() => {
+		const {
+			$gsap: gsap,
+			$lenis: lenis
+		} = useNuxtApp()
 
-	if (import.meta.client) {
-		const lenis = new Lenis()
-
-		// lenis.on('scroll', (e) => {
-		// 	console.log(e)
+		// lenis.scrollTo(0, {
+		// 	lerp: 1
 		// })
 
-		function raf (time) {
-			lenis.raf(time)
-			requestAnimationFrame(raf)
-		}
-		requestAnimationFrame(raf)
-	}
+		gsap.to(window, {
+			scrollTo: {
+				y: 0,
+				autoKill: true
+			},
+			duration: 0
+		})
+
+		setTimeout(() => {
+			gsap.to(loaderContainer.value, {
+				opacity: 0,
+				duration: 1.5,
+				onComplete () {
+					showWelcome.value = false
+				}
+			})
+		}, 1000)
+	})
 </script>
 <style lang="scss">
 	@import url(./assets/style/common.scss);
+	@import 'lenis/dist/lenis.css';
+
+	.loader {
+		height: 100vh;
+		width: 100vw;
+		position: fixed;
+		z-index: 100;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: black;
+
+		.welcome-title {
+			color: white;
+			text-align: center;
+			margin: 0;
+			font-size: 100px;
+		}
+	}
 
 	html,
 	body {
@@ -32,6 +80,7 @@
 		color: white;
 		// To Be Removed
 		overflow-x: hidden;
+		// scroll-behavior: smooth;
 	}
 
 	.strip-list {

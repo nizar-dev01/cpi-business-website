@@ -1,24 +1,40 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { Draggable } from 'gsap/Draggable'
 import { Observer } from 'gsap/all'
 
+import Lenis from 'lenis'
+
 export default defineNuxtPlugin((nuxtApp) => {
-	if (process.client) {
-		gsap.registerPlugin(
-			ScrollTrigger,
-			ScrollToPlugin,
-			Draggable,
-			Observer
-		)
-	}
+
+	// <Setup Lenis>
+	const lenis = new Lenis({
+		lerp: 0.05
+	})
+
+	lenis.on('scroll', ScrollTrigger.update)
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000)
+	})
+
+	gsap.ticker.lagSmoothing(0)
+	// </Setup Lenis>
+
+	// <Register Plugins>
+	gsap.registerPlugin(
+		ScrollTrigger,
+		ScrollToPlugin,
+		Observer
+	)
+	// </Register Plugins>
 
 	return {
 		provide: {
 			gsap,
 			Observer,
-			ScrollTrigger
+			ScrollTrigger,
+			lenis
 		},
 	}
 })

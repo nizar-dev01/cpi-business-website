@@ -45,35 +45,35 @@
 			}
 		});
 
-		Observer.create({
-			onChangeY (self) {
-				let factor = 2.5
-				let operator = 2.5
+		// Observer.create({
+		// 	onChangeY (self) {
+		// 		let factor = 2.5
+		// 		let operator = 2.5
 
-				if (self.deltaY < 0) {
-					factor *= -1;
-				}
+		// 		if (self.deltaY < 0) {
+		// 			factor *= -1;
+		// 		}
 
-				gsap.timeline({
-					defaults: {
-						ease: "none",
-					}
-				})
-					.to(
-						roll_tl,
-						{
-							timeScale: factor * operator,
-							duration: 0.2
-						}
-					).to(
-						roll_tl,
-						{
-							timeScale: factor / operator,
-							duration: 1
-						}
-					)
-			}
-		});
+		// 		gsap.timeline({
+		// 			defaults: {
+		// 				ease: "none",
+		// 			}
+		// 		})
+		// 			.to(
+		// 				roll_tl,
+		// 				{
+		// 					timeScale: factor * operator,
+		// 					duration: 0.2
+		// 				}
+		// 			).to(
+		// 				roll_tl,
+		// 				{
+		// 					timeScale: factor / operator,
+		// 					duration: 1
+		// 				}
+		// 			)
+		// 	}
+		// });
 
 		// helper function that clones the targets, places them next to the original, then animates the xPercent in a loop to make it appear to roll across the screen in a seamless loop.
 		function roll (targets, vars, reverse) {
