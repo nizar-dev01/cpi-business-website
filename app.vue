@@ -16,7 +16,7 @@
 	</div>
 </template>
 <script setup>
-	const showWelcome = ref(true)
+	const showWelcome = ref(false)
 	const loaderContainer = ref(null)
 	const welcomeTitle = ref(null)
 	onMounted(() => {
@@ -25,13 +25,12 @@
 			$lenis: lenis
 		} = useNuxtApp()
 
-		// gsap.to(window, {
-		// 	scrollTo: {
-		// 		y: 0,
-		// 		autoKill: true
-		// 	},
-		// 	duration: 0
-		// })
+		gsap.to(window, {
+			scrollTo: {
+				y: 0,
+				duration: 0
+			}
+		})
 
 		setTimeout(() => {
 			gsap.to(loaderContainer.value, {
@@ -45,58 +44,5 @@
 	})
 </script>
 <style lang="scss">
-	@import url(./assets/style/common.scss);
-	@import 'lenis/dist/lenis.css';
-
-	.loader {
-		height: 100vh;
-		width: 100vw;
-		position: fixed;
-		z-index: 100;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background: black;
-
-		.welcome-title {
-			color: white;
-			text-align: center;
-			margin: 0;
-			font-size: 100px;
-		}
-	}
-
-	html,
-	body {
-		margin: 0;
-		padding: 0;
-		background: #1B1B1B;
-		font-family: 'Satoshi';
-		color: white;
-		// To Be Removed
-		overflow-x: hidden;
-		// scroll-behavior: smooth;
-	}
-
-	.strip-list {
-		list-style: none;
-		padding: 0;
-
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
-	}
-
-	.flex-center {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.flex-col {
-		display: flex;
-		flex-direction: column;
-	}
+	@import url(./assets/style/index.scss);
 </style>

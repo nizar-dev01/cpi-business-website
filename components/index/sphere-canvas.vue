@@ -8,8 +8,10 @@
 		const _sa = new SpheresArt(canvas)
 	})
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	#sphereArtCanvas {
 		display: block;
+		height: 100vh;
+		width: 100vw;
 	}
 </style>

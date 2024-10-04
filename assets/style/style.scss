@@ -1,0 +1,148 @@
+.loader {
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: black;
+
+	.welcome-title {
+		color: white;
+		text-align: center;
+		margin: 0;
+		font-size: 100px;
+	}
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #1B1B1B;
+	font-family: 'Satoshi';
+	color: white;
+	// To Be Removed
+	overflow-x: hidden;
+	// scroll-behavior: smooth;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.strip-list {
+	list-style: none;
+	padding: 0;
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.layout-box {
+	width: 97%;
+	max-width: 1569px;
+	margin: 0 auto;
+	position: relative;
+}
+
+
+
+.btn-sq {
+	width: auto;
+	height: 61px;
+	border: none;
+	border-radius: 5px;
+	background: #3D3D3D;
+	font-size: 20px;
+	color: white;
+	font-family: 'Metropolis';
+	font-weight: 400;
+	margin: 0 18px;
+	cursor: pointer;
+	padding: 0 25px;
+
+	&.blue {
+		background: #054BF9;
+	}
+
+	&.rounded {
+		border-radius: 30px;
+
+		&.showcase-action-bt {
+			width: 245px;
+		}
+	}
+
+	.bt-text {
+		margin-right: 13px;
+	}
+}
+
+.btn-sq.btn-hero-action {
+	width: 338px;
+}
+
+.text-block {
+	display: inline-block;
+}
+
+// Horizontal Text Slider
+$text-color: black;
+$text-color-white: white;
+$dot-radius: 2vw;
+
+.h-slide-text {
+	&.white {
+		color: $text-color-white;
+
+		span.center-dot::after {
+			background: $text-color-white;
+		}
+	}
+
+	user-select: none;
+	font-size: 551px;
+	font-weight: 600;
+	color: $text-color;
+	font-family: 'Metropolis';
+	display: inline-block;
+
+
+	span {
+		margin: 0 100px;
+		line-height: 100px;
+
+		&.center-dot {
+			position: relative;
+
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				height: $dot-radius;
+				width: $dot-radius;
+				background: $text-color;
+				border-radius: 45%;
+			}
+		}
+	}
+}

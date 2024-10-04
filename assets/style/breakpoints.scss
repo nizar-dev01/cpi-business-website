@@ -1,4 +1,10 @@
-@import url(./fonts/setup.scss);
+$xxl: 1280px;
+$xl: 1150px;
+$lg: 1024px;
+$xmd: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 450px;
 
 @mixin xxl {
 	@media (max-width: $xxl) {

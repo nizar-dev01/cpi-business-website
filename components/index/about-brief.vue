@@ -69,9 +69,8 @@
 	</section>
 </template>
 <script setup>
-
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	h4.about-h4 {
 		font-size: 93px;
 		font-weight: 400;
@@ -117,62 +116,10 @@
 		margin: 276px 0 190px 0;
 	}
 
-
-
-
-
-
-
-
-
-	$text-color: black;
-	$text-color-white: white;
-	$dot-radius: 2vw;
-
 	#about-brief {
 		background: white;
 		min-height: 100vh;
 		padding-top: 200px;
 		color: black;
-	}
-
-	.h-slide-text {
-		&.white {
-			color: $text-color-white;
-
-			span.center-dot::after {
-				background: $text-color-white;
-			}
-		}
-
-		user-select: none;
-		font-size: 551px;
-		font-weight: 600;
-		color: $text-color;
-		font-family: 'Metropolis';
-		display: inline-block;
-
-
-		span {
-			margin: 0 100px;
-			line-height: 100px;
-
-			&.center-dot {
-				position: relative;
-
-				&::after {
-					content: '';
-					display: block;
-					position: absolute;
-					left: 50%;
-					top: 50%;
-					transform: translate(-50%, -50%);
-					height: $dot-radius;
-					width: $dot-radius;
-					background: $text-color;
-					border-radius: 45%;
-				}
-			}
-		}
 	}
 </style>

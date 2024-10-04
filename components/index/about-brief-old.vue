@@ -142,7 +142,7 @@
 		});
 	})
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	.text-slider {
 		// display: flex;
 		font-size: 150px;
