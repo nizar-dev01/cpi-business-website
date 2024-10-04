@@ -8,17 +8,36 @@ import Lenis from 'lenis'
 export default defineNuxtPlugin((nuxtApp) => {
 
 	// <Setup Lenis>
-	const lenis = new Lenis({
+	class CustomLenis {
+		constructor(config = {}) {
+			this.config = config
+			this.listeners = []
+			this.init()
+		}
+
+
+		init (config = this.config) {
+			this.instance = new Lenis(config)
+
+			this.instance.on('scroll', ScrollTrigger.update)
+
+			const lenis = this.instance
+			this.listenLenisRAF = (time) => lenis.raf(time * 1000)
+
+			gsap.ticker.add(this.listenLenisRAF)
+
+			gsap.ticker.lagSmoothing(0)
+		}
+
+		destroy () {
+			this.instance.destroy()
+			gsap.ticker.remove(this.listenLenisRAF)
+		}
+	}
+
+	const lenis = new CustomLenis({
 		lerp: 0.05
 	})
-
-	lenis.on('scroll', ScrollTrigger.update)
-
-	gsap.ticker.add((time) => {
-		lenis.raf(time * 1000)
-	})
-
-	gsap.ticker.lagSmoothing(0)
 	// </Setup Lenis>
 
 	// <Register Plugins>

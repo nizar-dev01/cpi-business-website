@@ -126,6 +126,7 @@
 
 
 	$text-color: black;
+	$text-color-white: white;
 	$dot-radius: 2vw;
 
 	#about-brief {
@@ -136,11 +137,21 @@
 	}
 
 	.h-slide-text {
+		&.white {
+			color: $text-color-white;
+
+			span.center-dot::after {
+				background: $text-color-white;
+			}
+		}
+
+		user-select: none;
 		font-size: 551px;
 		font-weight: 600;
 		color: $text-color;
 		font-family: 'Metropolis';
 		display: inline-block;
+
 
 		span {
 			margin: 0 100px;

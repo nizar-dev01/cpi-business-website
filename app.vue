@@ -25,17 +25,13 @@
 			$lenis: lenis
 		} = useNuxtApp()
 
-		// lenis.scrollTo(0, {
-		// 	lerp: 1
+		// gsap.to(window, {
+		// 	scrollTo: {
+		// 		y: 0,
+		// 		autoKill: true
+		// 	},
+		// 	duration: 0
 		// })
-
-		gsap.to(window, {
-			scrollTo: {
-				y: 0,
-				autoKill: true
-			},
-			duration: 0
-		})
 
 		setTimeout(() => {
 			gsap.to(loaderContainer.value, {
