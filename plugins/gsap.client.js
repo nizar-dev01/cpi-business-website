@@ -15,7 +15,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 			this.init()
 		}
 
-
 		init (config = this.config) {
 			this.instance = new Lenis(config)
 

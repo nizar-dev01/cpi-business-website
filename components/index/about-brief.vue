@@ -68,8 +68,6 @@
 		</div>
 	</section>
 </template>
-<script setup>
-</script>
 <style lang="scss" scoped>
 	h4.about-h4 {
 		font-size: 93px;

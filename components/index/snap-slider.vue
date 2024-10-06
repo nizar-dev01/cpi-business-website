@@ -4,94 +4,246 @@
 		ref="snapWrapper"
 	>
 		<div
-			class="snap-element red"
-			:ref="setSnapRef"
+			:class="['snap-element', colors[i]]"
+			v-for="(item, i) in snapSectionsData"
+			ref="snapDataElements"
 		>
-			<h1>One</h1>
+			<h1>{{ i }}</h1>
 		</div>
-		<div
-			class="snap-element blue subsequent"
-			:ref="setSnapRef"
-		>
-			<h1>Two</h1>
-		</div>
-		<div
-			class="snap-element pink subsequent"
-			:ref="setSnapRef"
-		>
-			<h1>Three</h1>
-		</div>
-		<div
-			class="snap-element yellow subsequent"
-			:ref="setSnapRef"
-		>
-			<h1>Four</h1>
-		</div>
-		<div
-			class="snap-element purple subsequent"
-			:ref="setSnapRef"
-		>
-			<h1>Five</h1>
-		</div>
-		<div
-			class="snap-element lime subsequent"
-			:ref="setSnapRef"
-		>
-			<h1>Six</h1>
+		<div class="progress-bars-section">
+			<div class="progress-bars-container">
+				<div
+					class="pb-progress-holder"
+					v-for="(item, i) in snapSectionsData"
+				>
+					<div
+						class="pb-progress-line"
+						ref="snapProgressElements"
+					></div>
+				</div>
+			</div>
 		</div>
 	</section>
 </template>
 <script setup>
-	const snapWrapper = ref()
-	const snapElements = ref([])
-	const setSnapRef = el => snapElements.value.push(el.$el || el)
+	const snapSectionsData = [
+		{
 
+		},
+		{
+
+		},
+		{
+
+		},
+		{
+
+		},
+		{
+
+		},
+		{
+
+		},
+	]
+
+	// Components needed for the animation
+	const snapWrapper = ref()
+	const snapDataElements = ref()
+	const snapProgressElements = ref()
 
 	onMounted(() => {
+		// Initial Setup
 		const {
-			$ScrollTrigger: ScrollTrigger,
-			$gsap: gsap,
-			$Observer: Observer,
+			$ScrollTrigger,
+			$gsap,
+			$Observer,
 			$lenis
 		} = useNuxtApp()
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: snapWrapper.value,
-				start: "top top",
-				pin: true,
-				scrub: 1,
-				// onEnter () {
-				// 	console.log("Destroying lenis")
-				// 	$lenis.instance.stop()
-				// 	console.log("Lenis is destroyed")
-				// },
-				// onEnterBack () {
-				// 	console.log("Destroying lenis")
-				// 	$lenis.instance.stop()
-				// 	console.log("Lenis is destroyed")
-				// },
-				// onLeave () {
-				// 	console.log("Initiating Lenis")
-				// 	$lenis.instance.start()
-				// },
-				// onLeaveBack () {
-				// 	console.log("Initiating Lenis")
-				// 	$lenis.instance.start()
-				// }
-			}
+		// Global Animation Variables
+		let current_index = 0
+		let is_animating = false
+
+		// Set the z-index and y-position of the first element, for when the UI is first loaded. It will otherwise be shown in the default stacking context, namely the last item on the top
+		const first_element = snapDataElements.value[current_index]
+
+		$gsap.set(first_element, {
+			zIndex: 1,
+			y: 0
+		})
+		// Set the progress of the first item. (It is static, as the item would already be visible in the view)
+		const first_progress = snapProgressElements.value[current_index]
+
+		$gsap.set(first_progress, {
+			width: "100%"
 		})
 
-		snapElements.value.forEach((el, i) => {
-			tl
-				.addLabel(`hop-${i}`)
-				.to((el), {
-					left: 0
+		// Function that decides whether a movement (scroll/wheel/etc) should be considered as the exit of the animation
+		const exitAnimationLock = (isFromUp, index = current_index) => {
+			if (is_animating) return
+			const loopEnd = snapSectionsData.length - 1
+
+			// Whether it's time to exit at either ends
+			const exitAtTail = index === loopEnd && isFromUp
+			const exitAtHead = index === 0 && !isFromUp
+
+			// If it's exit-time
+			const timeToExit = exitAtHead || exitAtTail
+			if (timeToExit) {
+				// Re-enable lenis
+				$lenis.instance.start()
+			}
+		}
+
+		// Function that controls the navigation between slides
+		const navigateSection = (direction) => {
+			// Return if the animation is actively running
+			if (is_animating) return
+
+			const new_index = current_index + direction
+
+			// Re Enable scrolling when the slides reach the end or beginning in reverse navigation
+			if (new_index < 0 || new_index >= snapSectionsData.length) {
+				return $lenis.instance.start()
+			} else {
+				// Proceed to animate the slider
+				const tl = $gsap.timeline({
+					defaults: {
+						duration: 1,
+						ease: "power1.inOut",
+					}
 				})
+
+				// Select the main slide-box elements
+				const currentElement = snapDataElements.value[current_index]
+				const newElement = snapDataElements.value[new_index]
+
+				// Select the progress bar elements
+				const currentProgress = snapProgressElements.value[current_index]
+				const newProgress = snapProgressElements.value[new_index]
+
+				is_animating = true
+
+				// Variables for the slide animation
+				const newElementYStart = 100 * direction
+				const currentElementYEnd = newElementYStart * -1
+
+				// Variables for the progress animation
+				const isFromUp = direction === 1
+				const endProgressWidth = isFromUp ? "100%" : "0%"
+
+				// #######################################
+				// The Animation Timeline
+				// #######################################
+				const startLabel = "snapSliderAnimationStartPoint"
+
+				// Set the z-index of the currently visible element for stacking items properly
+				// This lable is used to start the animations at the same time in the beginning
+				tl.set(currentElement, {
+					zIndex: 1
+				})
+					// Set the initial position of the incoming element
+					.set(
+						newElement, {
+						zIndex: 2,
+						yPercent: newElementYStart
+					})
+					// Add a label to indicate the starting time for the coming animations
+					.add(startLabel)
+					// Remove the current element from the viewport
+					.to(currentElement, {
+						yPercent: currentElementYEnd
+					}, startLabel)
+					// Bring the new element to the viewport
+					.to(newElement, {
+						yPercent: 0,
+						onComplete () {
+							is_animating = false
+						},
+					}, startLabel)
+					// Increase/Decrease progressbar width
+					.to(isFromUp ? newProgress : currentProgress, {
+						width: endProgressWidth
+					}, startLabel)
+
+				// Update the current index, as the elements are re-positioned in the animation
+				current_index = new_index
+			}
+		}
+
+		let _observer
+		const createObserver = () => {
+			return $Observer.create({
+				target: window, // can be any element (selector text is fine)
+				type: "wheel,touch", // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
+				onUp () {
+					navigateSection(- 1)
+					exitAnimationLock(false, current_index)
+				},
+				onDown () {
+					navigateSection(1)
+					exitAnimationLock(true, current_index)
+				},
+			});
+		}
+
+		// Create the scroll trigger to activate the animations when the component gets to the viewport
+
+		// To call on enter - forward and backward
+		const enterGate = () => {
+			$lenis.instance.stop()
+
+			// Initiate the Observer scroll events
+			if (!_observer) {
+				_observer = createObserver()
+			} else if (!_observer.isEnabled) {
+				_observer.enable()
+			}
+		}
+
+		// To call on exit - forward and backward
+		const exitGate = () => {
+			if (_observer) {
+				_observer.disable()
+			}
+			// When the page loads, if the view is down in the bottom, it may have set a few variables
+			$lenis.instance.start()
+			is_animating = false
+		}
+
+		// Create the actual trigger
+		$ScrollTrigger.create({
+			trigger: snapWrapper.value,
+			start: "top top",
+			pin: true,
+			onEnter () {
+				enterGate()
+			},
+			onEnterBack () {
+				enterGate()
+			},
+			onLeave () {
+				exitGate()
+				current_index = snapSectionsData.length - 1
+			},
+			onLeaveBack () {
+				exitGate()
+				current_index = 0
+			}
 		})
 	})
+
+	const colors = [
+		'red',
+		'blue',
+		'pink',
+		'yellow',
+		'purple',
+		'lime',
+	]
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 
 	.snap-wrapper {
 		height: 100vh;
@@ -106,6 +258,13 @@
 		justify-content: center;
 		align-items: center;
 		margin-bottom: 200px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		z-index: 0;
 
 		h1 {
 			font-size: 100px;
@@ -113,14 +272,6 @@
 			text-align: center;
 			margin: 0;
 			text-transform: uppercase;
-		}
-
-		// margin-bottom: 10px;
-		&.subsequent {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 100%;
 		}
 
 		&.red {
@@ -147,5 +298,45 @@
 		&.lime {
 			background: #b1e366;
 		}
+	}
+
+
+	// Progress
+
+
+	.progress-bars-section {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		padding-bottom: 50px;
+		z-index: 2;
+		overflow: hidden;
+	}
+
+	.progress-bars-container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		margin: 0 -13px;
+		padding: 0 100px;
+	}
+
+	.pb-progress-holder {
+		height: 5px;
+		box-sizing: border-box;
+		border-radius: 2px;
+		background: #ffffff33;
+		overflow: hidden;
+		flex: 1;
+		margin: 0 13px;
+	}
+
+	.pb-progress-line {
+		height: 100%;
+		width: 0%;
+		box-sizing: border-box;
+		background: white;
 	}
 </style>
