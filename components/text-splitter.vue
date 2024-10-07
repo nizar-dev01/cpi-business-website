@@ -43,8 +43,7 @@
 			$gsap
 		} = useNuxtApp()
 
-		if (props['scrollReveal']) {
-			console.log("RRRRR")
+		if (props.scrollReveal) {
 			const _characters = childSpans.value
 			$gsap.set(_characters, {
 				y: 50,
@@ -65,8 +64,6 @@
 				opacity: 1,
 				stagger: 0.01
 			})
-		} else {
-			console.log(props)
 		}
 	})
 

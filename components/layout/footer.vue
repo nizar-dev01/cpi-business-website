@@ -2,11 +2,16 @@
 	<footer class="layout-footer">
 		<div class="layout-box">
 			<h2 class="footer-text-title">
-				Talk to us, or ask us anything.
+				<text-splitter
+					text="Talk to us, or ask us anything."
+					:scroll-reveal="true"
+				/>
 			</h2>
 			<h3 class="footer-text-content">
-				Our adventures have led us to expand into satellite offices across South-East Asia, but we are proud to
-				be home-grown and call the UAE our home.
+				<text-splitter
+					text="Our adventures have led us to expand into satellite offices across South-East Asia, but we are proud to be home-grown and call the UAE our home."
+					:scroll-reveal="true"
+				/>
 			</h3>
 			<div class="footer-call-to-actions">
 				<button class="btn-sq btn-hero-action">

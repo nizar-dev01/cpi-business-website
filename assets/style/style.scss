@@ -127,24 +127,3 @@ $dot-radius: 2vw;
 		}
 	}
 }
-
-
-// Loader @ App.vue
-.loader {
-	height: 100vh;
-	width: 100vw;
-	position: fixed;
-	z-index: 100;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background: black;
-
-	.welcome-title {
-		color: white;
-		text-align: center;
-		margin: 0;
-		font-size: 100px;
-	}
-}
