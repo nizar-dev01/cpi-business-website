@@ -1,8 +1,8 @@
 <template>
 	<section id="section-hero">
 		<div class="layout-box">
-			<h1 class="hero-title">cpi business</h1>
-			<h3 class="hero-subtitle">
+			<h1 class="hero-title hero-reveal-top">cpi business</h1>
+			<h3 class="hero-subtitle hero-reveal-top">
 				<span
 					class="subtitle-letter text-block"
 					v-for="letter in sentenceList"
@@ -10,7 +10,7 @@
 					{{ letter }}
 				</span>
 			</h3>
-			<div class="hero-call-to-actions">
+			<div class="hero-call-to-actions hero-reveal-top">
 				<button class="btn-sq btn-hero-action">
 					<span class="bt-text">
 						Our Work
@@ -30,6 +30,33 @@
 
 <script setup>
 	const sentenceList = "Value-driven Ideas / Impactful Experiences / Focused Strategies".split("")
+
+	onMounted(() => {
+		const {
+			$gsap
+		} = useNuxtApp()
+
+		const revealItems = $gsap.utils.toArray('.hero-reveal-top')
+		$gsap.set(
+			revealItems,
+			{
+				y: 150,
+				opacity: 0
+			}
+		)
+
+		const doRevealItems = () => {
+			$gsap.to(revealItems, {
+				y: 0,
+				duration: 1,
+				stagger: 0.3,
+				delay: 1,
+				opacity: 1
+			})
+		}
+
+		doRevealItems()
+	})
 </script>
 
 <style lang="scss" scoped>

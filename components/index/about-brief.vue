@@ -11,24 +11,27 @@
 		</horizontal-text>
 		<div class="layout-box">
 			<div class="flex-col">
-
 				<h4 class="about-h4">
-					We are an ambitious, optimistic
-					and creative bunch of people. <br>
-					We are here to help our clients
-					defy what is conventional, redefine
-					their experiences and deliver
-					unforgettable brand moments.
+					<text-splitter
+						text="We are an ambitious, optimistic and creative bunch of people."
+						:scroll-reveal="true"
+					/>
+					<br />
+					<text-splitter
+						text="We are here to help our clients defy what is conventional, redefine their experiences and deliver unforgettable brand moments."
+						:scroll-reveal="true"
+					/>
 				</h4>
 				<h4 class="origin-h4">
-					Since 2016, we have created
-					meaningful impact through our
-					physical, virtual & hybrid events,
-					activations and brand engagements.
+					<text-splitter
+						text="Since 2016, we have created meaningful impact through our physical, virtual & hybrid events, activations and brand engagements."
+						:scroll-reveal="true"
+					/>
 					<br><br>
-					We have proudly been a part of the
-					growth journey of the following
-					key clients:
+					<text-splitter
+						text="We have proudly been a part of the growth journey of the following key clients:"
+						:scroll-reveal="true"
+					/>
 				</h4>
 
 				<!-- Brands -->
@@ -60,9 +63,20 @@
 				<!-- /Brands -->
 
 				<h4 class="impact-h4">
-					We unite brand, tech and <br>
-					experience to turnaround projects <br>
-					that drive impact to your key audiences.
+					<text-splitter
+						text="We unite brand, tech and"
+						:scroll-reveal="true"
+					/>
+					<br>
+					<text-splitter
+						text="experience to turnaround projects "
+						:scroll-reveal="true"
+					/>
+					<br>
+					<text-splitter
+						text="that drive impact to your key audiences."
+						:scroll-reveal="true"
+					/>
 				</h4>
 			</div>
 		</div>
