@@ -50,7 +50,7 @@
 				y: 0,
 				duration: 1,
 				stagger: 0.3,
-				delay: 1,
+				delay: 3.2,
 				opacity: 1
 			})
 		}

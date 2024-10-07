@@ -78,7 +78,7 @@
 				startLabel
 			).set(welcomeTitle.value[2], // CPI
 				{
-					y: '-100%'
+					y: '-100%',
 				})
 
 			.add(middleLabel)
