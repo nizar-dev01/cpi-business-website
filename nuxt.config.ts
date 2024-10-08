@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 			preprocessorOptions: {
 				scss: {
 					api: 'modern', // This gets rid of the "legacy JS API is deprecated" warning
-					// additionalData: `@import "@/assets/style/common.scss";`,
+					additionalData: `@import "@/assets/style/breakpoints.scss";`,
 				},
 			},
 		},

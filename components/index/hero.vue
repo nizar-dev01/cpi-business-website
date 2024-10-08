@@ -3,12 +3,7 @@
 		<div class="layout-box">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
-				<span
-					class="subtitle-letter text-block"
-					v-for="letter in sentenceList"
-				>
-					{{ letter }}
-				</span>
+				Value-driven Ideas / Impactful Experiences / Focused Strategies
 			</h3>
 			<div class="hero-call-to-actions hero-reveal-top">
 				<button class="btn-sq btn-hero-action">
@@ -29,9 +24,12 @@
 </template>
 
 <script setup>
-	const sentenceList = "Value-driven Ideas / Impactful Experiences / Focused Strategies".split("")
+	import split from 'spltjs'
 
 	onMounted(() => {
+		split({
+			target: '.split-target'
+		})
 		const {
 			$gsap
 		} = useNuxtApp()
@@ -61,7 +59,6 @@
 
 <style lang="scss" scoped>
 	section#section-hero {
-		// min-height: 100vh;
 		padding-bottom: 200px;
 		border-top: 1px solid transparent;
 	}
@@ -75,6 +72,19 @@
 		margin: 197px 0 0;
 		line-height: 198.1px;
 
+		@include lg {
+			font-size: 140px;
+		}
+
+		@include xmd {
+			font-size: 120px;
+			margin-top: 100px;
+		}
+
+		@include md {
+			font-size: 80px;
+			line-height: 90px;
+		}
 	}
 
 	.hero-subtitle {
@@ -85,10 +95,36 @@
 		text-align: center;
 		color: white;
 		margin: 50px 0 84px;
+
+		@include lg {
+			font-size: 40px;
+			margin-top: 10px;
+			line-height: 60px;
+		}
+
+		@include xmd {
+			font-size: 38px;
+			margin-top: 0;
+		}
+
+		@include md {
+			font-size: 30px;
+			max-width: 80%;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			line-height: 45px;
+		}
 	}
 
 	.hero-call-to-actions {
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
+		margin: -10px;
+
+		.btn-hero-action {
+			margin: 10px
+		}
 	}
 </style>

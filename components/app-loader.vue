@@ -2,6 +2,7 @@
 	<div
 		class="loader flex-center"
 		ref="loaderContainer"
+		v-if="showWelcome"
 	>
 		<div class="loader-content-box">
 			<div class="text-slide-container">
@@ -140,6 +141,14 @@
 			margin: 0;
 			font-size: 100px;
 			line-height: $loader-text-height;
+
+			@include md {
+				font-size: 70px;
+			}
+
+			@include xs {
+				font-size: 50px;
+			}
 
 			&.cpi {
 				font-family: 'Newyork';

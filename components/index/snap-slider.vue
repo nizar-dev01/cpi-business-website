@@ -230,7 +230,11 @@
 			onLeaveBack () {
 				exitGate()
 				current_index = 0
-			}
+			},
+			animation: $gsap.to(snapWrapper.value, {
+				y: 0,
+				scrub: 1
+			})
 		})
 	})
 
