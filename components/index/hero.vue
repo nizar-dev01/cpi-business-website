@@ -24,12 +24,8 @@
 </template>
 
 <script setup>
-	import split from 'spltjs'
 
 	onMounted(() => {
-		split({
-			target: '.split-target'
-		})
 		const {
 			$gsap
 		} = useNuxtApp()
@@ -70,7 +66,7 @@
 		color: white;
 		text-align: center;
 		margin: 197px 0 0;
-		line-height: 198.1px;
+		line-height: 198px;
 
 		@include lg {
 			font-size: 140px;

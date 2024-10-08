@@ -61,7 +61,6 @@
 		})
 		const startLabel = "animation-start"
 		const middleLabel = "animation-middle"
-		console.log(welcomeTitle.value[1])
 		// Change this to enable actual loading
 		tl.add(startLabel)
 			.to(welcomeTitle.value[0], // WE
