@@ -5,9 +5,6 @@ body {
 	background: #1B1B1B;
 	font-family: 'Satoshi';
 	color: white;
-	// To Be Removed
-	overflow-x: hidden;
-	// scroll-behavior: smooth;
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -35,13 +32,30 @@ body {
 	flex-direction: column;
 }
 
+// * {
+// 	outline: 1px solid yellow;
+// }
+
 .layout-box {
 	width: 95%;
 	max-width: 1569px;
 	margin: 0 auto;
 	position: relative;
+	// outline: 1px solid red;
 }
 
+#nuxt-devtools-container {
+	outline: none !important;
+
+	div,
+	span {
+		outline: none !important;
+	}
+}
+
+.noverflow {
+	overflow: hidden;
+}
 
 .btn-sq {
 	width: auto;

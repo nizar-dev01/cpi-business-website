@@ -9,7 +9,7 @@
 				<span>EXPERIENCES</span> <span class="center-dot"></span>
 			</div>
 		</horizontal-text>
-		<div class="layout-box">
+		<div class="layout-box noverflow">
 			<div class="flex-col">
 				<h4 class="about-h4">
 					<text-splitter
@@ -37,27 +37,27 @@
 				<!-- Brands -->
 				<div class="brands-container">
 					<div class="brands-row">
-						<icon-brand-abu-dhabi></icon-brand-abu-dhabi>
+						<icon-brand-abu-dhabi class="brands-item-icon"></icon-brand-abu-dhabi>
 
-						<icon-brand-etisalt></icon-brand-etisalt>
+						<icon-brand-etisalt class="brands-item-icon"></icon-brand-etisalt>
 
-						<icon-brand-hub71></icon-brand-hub71>
+						<icon-brand-hub71 class="brands-item-icon"></icon-brand-hub71>
 
-						<icon-brand-adgm></icon-brand-adgm>
+						<icon-brand-adgm class="brands-item-icon"></icon-brand-adgm>
 
-						<icon-brand-savi></icon-brand-savi>
-					</div>
-					<div class="brands-row">
+						<icon-brand-savi class="brands-item-icon"></icon-brand-savi>
+						<!-- </div>
+					<div class="brands-row"> -->
 
-						<icon-brand-justice></icon-brand-justice>
+						<icon-brand-justice class="brands-item-icon"></icon-brand-justice>
 
-						<icon-brand-aerofarm></icon-brand-aerofarm>
+						<icon-brand-aerofarm class="brands-item-icon"></icon-brand-aerofarm>
 
-						<icon-brand-central-bank></icon-brand-central-bank>
+						<icon-brand-central-bank class="brands-item-icon"></icon-brand-central-bank>
 
-						<icon-brand-adq></icon-brand-adq>
+						<icon-brand-adq class="brands-item-icon"></icon-brand-adq>
 
-						<icon-brand-miral></icon-brand-miral>
+						<icon-brand-miral class="brands-item-icon"></icon-brand-miral>
 					</div>
 				</div>
 				<!-- /Brands -->
@@ -92,6 +92,36 @@
 		font-family: 'Satoshi';
 		line-height: 113px;
 		text-align: left;
+
+		@include break(1425px) {
+			font-size: 58px;
+			font-weight: 500;
+			line-height: 80px;
+		}
+
+		@include xxl {
+			font-size: 53px;
+			line-height: 73px;
+		}
+
+		@include lg {
+			margin-left: 0;
+		}
+
+		@include md {
+			font-size: 45px;
+			line-height: 62px;
+		}
+
+		@include break(690px) {
+			font-size: 40px;
+			line-height: 57px;
+		}
+
+		@include sm {
+			font-size: 38px;
+			line-height: 53px;
+		}
 	}
 
 	h4.origin-h4 {
@@ -103,6 +133,20 @@
 		line-height: 71.55px;
 		text-align: left;
 		margin: 210px 0 210px auto;
+
+		@include xxl {
+			font-size: 35px;
+			line-height: 50px;
+		}
+
+		@include lg {
+			margin: 130px 0 180px;
+		}
+
+		@include sm {
+			font-size: 30px;
+			line-height: 45px;
+		}
 	}
 
 	.brands-container {
@@ -115,8 +159,36 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		flex-wrap: nowrap;
-		padding: 32px 0;
+		flex-wrap: wrap;
+		// padding: 32px 0;
+		margin: -40px -15px;
+
+		@include md {
+			flex-wrap: wrap;
+		}
+	}
+
+	.brands-item-icon {
+		padding: 40px 15px;
+		width: calc(20% - 30px);
+		height: 100%;
+		max-height: 85px;
+		max-width: 235px;
+
+		@include xxl {
+			max-width: 170px;
+		}
+
+		@include md {
+			max-width: 130px;
+		}
+
+		@include sm {
+			max-width: unset;
+			width: 100%;
+			max-height: 50px;
+			margin: 10px auto;
+		}
 	}
 
 	h4.impact-h4 {
@@ -126,6 +198,23 @@
 		line-height: 71.55px;
 		text-align: center;
 		margin: 276px 0 190px 0;
+
+		@include xmd {
+			font-size: 45px;
+			line-height: 62px;
+			margin-top: 180px;
+		}
+
+		@include md {
+			font-size: 32px;
+			line-height: 52px;
+		}
+
+		@include sm {
+			font-size: 28px;
+			line-height: 45px;
+			margin: 170px 5px;
+		}
 	}
 
 	#about-brief {

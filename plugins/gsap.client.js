@@ -15,7 +15,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 			this.init()
 		}
 
-		init (config = this.config) {
+		init (config) {
 			this.instance = new Lenis(config)
 
 			this.instance.on('scroll', ScrollTrigger.update)
@@ -35,7 +35,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 	}
 
 	const lenis = new CustomLenis({
-		lerp: 0.05
+		wrapper: '.layout-content'
 	})
 	// </Setup Lenis>
 

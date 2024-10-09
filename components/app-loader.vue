@@ -140,6 +140,7 @@
 			margin: 0;
 			font-size: 100px;
 			line-height: $loader-text-height;
+			font-weight: 400;
 
 			@include md {
 				font-size: 70px;
@@ -149,9 +150,9 @@
 				font-size: 50px;
 			}
 
-			&.cpi {
-				font-family: 'Newyork';
-			}
+			// &.cpi {
+			// 	font-family: 'Newyork';
+			// }
 		}
 
 		.loader-content-box,

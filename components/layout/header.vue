@@ -80,7 +80,6 @@
 </script>
 <style lang="scss">
 	.layout-header {
-		// padding-top: 130px;
 		padding-top: 30px;
 	}
 
@@ -100,6 +99,9 @@
 		justify-content: space-between;
 	}
 
+	$li-height: 80px;
+	$li-count: 6;
+
 	.header-nav-ul {
 		display: flex;
 		justify-content: space-between;
@@ -110,19 +112,19 @@
 			right: 0;
 			top: 100%;
 			flex-direction: column;
-			background: #1c1c1c;
-			transition: max-height 1s ease-in-out;
-			max-height: 0;
-			overflow: hidden;
-			height: auto;
-			z-index: 1;
+			background: #1B1B1B;
+			transition: opacity 0.4s ease-in-out, height 0.5s ease-in-out;
 			border-radius: 10px;
+			box-shadow: 0 20px 30px -10px #000;
 			overflow: hidden;
-			box-shadow: 0 10px 20px -10px #000;
+			height: 0px;
+			opacity: 0;
+			z-index: 1;
 		}
 
 		&.toggle-header-nav {
-			max-height: 50vh;
+			height: calc($li-height * $li-count);
+			opacity: 1;
 		}
 	}
 
@@ -143,11 +145,12 @@
 
 		@include xl {
 			margin: 0;
-			height: 50px;
-			line-height: 50px;
+			height: $li-height;
+			line-height: $li-height;
 			z-index: 2;
 			padding: 0 20px;
 			border-bottom: 1px solid #ffffff09;
+			box-sizing: border-box;
 		}
 	}
 
@@ -194,22 +197,22 @@
 			}
 
 			&::before {
-				bottom: 100%;
+				top: 0%;
 			}
 
 			&::after {
-				top: 100%;
+				bottom: 0%;
 			}
 
 			&.toggle {
 				&::before {
-					bottom: 50%;
-					transform: translate(0, 50%) rotateZ(45deg);
+					top: 50%;
+					transform: translate(0, -50%) rotateZ(45deg);
 				}
 
 				&::after {
-					top: 50%;
-					transform: translate(0, -50%) rotateZ(-45deg);
+					bottom: 50%;
+					transform: translate(0, 50%) rotateZ(-45deg);
 				}
 			}
 

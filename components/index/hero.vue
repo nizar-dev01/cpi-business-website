@@ -1,6 +1,6 @@
 <template>
 	<section id="section-hero">
-		<div class="layout-box">
+		<div class="layout-box noverflow">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
 				Value-driven Ideas / Impactful Experiences / Focused Strategies

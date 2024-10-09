@@ -11,12 +11,16 @@
 		</horizontal-text>
 		<div class="layout-box">
 			<div class="showcase-container">
-				<div class="showcase-row">
+				<div
+					class="showcase-row"
+					ref="showcaseRow"
+				>
 					<div
 						v-for="(event, i) in showcaseEvents"
-						:class="['showcase-col', event.class || '']"
+						class="showcase-col"
+						ref="showcaseItems"
 					>
-						<div :class="['showcase-item', event.class]">
+						<div class="showcase-item">
 							<img
 								:src="`${event.image}?rand=${Math.random()}`"
 								:alt="event.alt || `Event Image ${i}`"
@@ -38,40 +42,35 @@
 	</section>
 </template>
 <script setup>
+	const showcaseRow = ref()
+	const showcaseItems = ref()
+
 	onMounted(() => {
 		const {
 			$gsap: gsap,
 		} = useNuxtApp()
 
-		const showcaseItemsLeft = gsap.utils.toArray('.appear-left');
-		const showcaseItemsRight = gsap.utils.toArray('.appear-right');
+		const items = showcaseItems.value
+		const row = showcaseRow.value
 
+			gsap.set(items, {
+			y: 100,
+			opacity: 0
+		})
 
-		[
-			{
-				target: showcaseItemsLeft,
-				x: -100
-			},
-			{
-				target: showcaseItemsRight,
-				x: 100
-			}
-		].forEach(config => {
-			config.target.forEach(item => {
-				gsap.from(item, {
-					x: config.x,
-					opacity: 0,
-					duration: 0.8,
-					scrollTrigger: {
-						trigger: item,
-						start: "top 90%",
-						duration: 1,
-						// end: "top 40%",
-						// scrub: 1,
-						// once: true,
-						// markers: true,
-					}
-				})
+		const divFactor = Math.round(row.clientWidth / items[0].clientWidth)
+
+		items.forEach((item, i) => {
+			gsap.to(item, {
+				y: 0,
+				opacity: 1,
+				duration: 0.8,
+				stagger: 0.1,
+				delay: (i % items.length) % divFactor * 0.1,
+				scrollTrigger: {
+					trigger: item,
+					start: "top 80%",
+				}
 			})
 		})
 	})
@@ -145,9 +144,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.events-showcase {
-		padding-top: 150px;
-	}
+	// .events-showcase {
+	// 	padding-top: 150px;
+	// }
 
 	.showcase-container {
 		overflow: hidden;
@@ -165,6 +164,8 @@
 		padding: 9px;
 		box-sizing: border-box;
 		width: 25%;
+		min-width: 350px;
+		flex-grow: 1;
 	}
 
 	.showcase-item {

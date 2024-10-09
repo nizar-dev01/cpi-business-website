@@ -1,6 +1,6 @@
 <template>
 	<footer class="layout-footer">
-		<div class="layout-box">
+		<div class="layout-box noverflow">
 			<h2 class="footer-text-title">
 				<text-splitter
 					text="Talk to us, or ask us anything."
