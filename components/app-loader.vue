@@ -4,7 +4,10 @@
 		ref="loaderContainer"
 		v-if="showWelcome"
 	>
-		<div class="loader-content-box">
+		<div
+			class="loader-content-box"
+			ref="loaderContentBox"
+		>
 			<div class="text-slide-container">
 				<h1
 					class="welcome-title"
@@ -40,6 +43,7 @@
 	const welcomeTitle = ref([])
 	const setWelcomeTitleRef = el => welcomeTitle.value.push(el)
 
+	const loaderContentBox = ref()
 	const loaderContainer = ref()
 	const progressLine = ref()
 
@@ -54,13 +58,14 @@
 
 		const tl = $gsap.timeline({
 			defaults: {
-				duration: 1.5,
+				duration: 1,
 				delay: 1,
 				ease: "power1.inOut",
 			}
 		})
 		const startLabel = "animation-start"
 		const middleLabel = "animation-middle"
+		const endLabel = "animation-end"
 		// Change this to enable actual loading
 		tl.add(startLabel)
 			.to(welcomeTitle.value[0], // WE
@@ -96,16 +101,21 @@
 					duration: 0.3,
 					delay: 0
 				}, middleLabel)
-			.to(progressLine.value, {
-				width: '50%',
-				duration: 0.3 * 2,
-			}, startLabel)
+			// .to(progressLine.value, {
+			// 	width: '50%',
+			// 	duration: 0.3 * 2,
+			// }, startLabel)
 			.to(progressLine.value, {
 				width: '100%',
-				duration: 0.3 * 2,
+				duration: 0.8,
 				delay: 0
-			}, middleLabel)
+			})
+			.add(endLabel)
 			// Finally hide the entire thing
+			.to(loaderContentBox.value, {
+				y: -100,
+				delay: 0,
+			}, endLabel)
 			.to(loaderContainer.value,
 				{
 					opacity: 0,
@@ -113,7 +123,7 @@
 					onComplete () {
 						showWelcome.value = false
 					}
-				})
+				}, endLabel)
 
 		setTimeout(() => {
 			isLayoutReady.value = true

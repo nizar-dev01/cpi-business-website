@@ -26,6 +26,44 @@
 								:alt="event.alt || `Event Image ${i}`"
 								class="showcase-img"
 							>
+							<div class="si-hover-display">
+								<div class="actions-container">
+									<div class="ac-left">
+										<h3 class="ac-title">
+											e& Business Pitch
+										</h3>
+										<div class="ac-tags">
+											<div class="ac-tag act-one">
+												<div class="act-icon">
+													<icon-en-brand></icon-en-brand>
+												</div>
+												<div class="act-text">
+													e\& enterprises
+												</div>
+											</div>
+											<div class="ac-tag act-two">
+												<div class="act-icon">
+													<icon-user-head class="act-icon-icon" />
+												</div>
+												<div class="act-text">
+													850 Participants
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="ac-right">
+										<icon-round-arrow-button class="acr-view-button" />
+										<span class="acr-view-text">
+											View
+										</span>
+									</div>
+								</div>
+								<div class="text-container">
+									<p class="tc-text">
+										Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, consequuntur.
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -53,7 +91,7 @@
 		const items = showcaseItems.value
 		const row = showcaseRow.value
 
-			gsap.set(items, {
+		gsap.set(items, {
 			y: 100,
 			opacity: 0
 		})
@@ -168,16 +206,144 @@
 		flex-grow: 1;
 	}
 
+	$hover-duration: .5s;
+
 	.showcase-item {
 		height: 567px;
 		width: 100%;
 		border-radius: 9px;
 		overflow: hidden;
+		position: relative;
+		cursor: pointer;
 
 		img.showcase-img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			z-index: 0;
+		}
+
+		.si-hover-display {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			display: block;
+			z-index: 1;
+			background-color: #00000063;
+			backdrop-filter: blur(5px);
+			opacity: 0;
+			transition: opacity $hover-duration ease;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+
+		&:hover .si-hover-display {
+			opacity: 1;
+
+			.actions-container,
+			.text-container {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		.actions-container {
+			background: #ffffff26;
+			border-radius: 10px;
+			box-sizing: border-box;
+			flex-grow: 0;
+			margin-right: auto;
+
+			transition: all $hover-duration ease-in-out;
+			transform: translateY(40px);
+			opacity: 0;
+
+			display: flex;
+
+			.ac-left {
+				padding: 20px;
+			}
+
+			.ac-right {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 70px;
+				font-size: 16px;
+				font-weight: 600;
+				border-left: 1px solid #00000033;
+				margin-left: auto;
+				flex-shrink: 0;
+			}
+
+			.acr-view-button {
+				height: 35px;
+				width: 35px;
+				margin-bottom: 10px;
+			}
+		}
+
+		.ac-title {
+			font-size: 16px;
+			margin: 0 0 20px;
+		}
+
+		.ac-tags {
+			display: flex;
+			flex-wrap: wrap;
+			margin: -5px;
+
+			.ac-tag {
+				background: rgba(0, 0, 0, 0.216);
+				height: 25px;
+				line-height: 25px;
+				padding: 0 5px;
+				border-radius: 13px;
+				font-size: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-weight: 500;
+				margin: 5px;
+			}
+
+			.act-icon {
+				height: 15px;
+				width: 15px;
+				border-radius: 50%;
+				margin-right: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				.act-icon-icon {
+					height: 70%;
+					width: 70%;
+				}
+			}
+
+			.act-text {
+				white-space: nowrap;
+			}
+		}
+
+		.text-container {
+			transform: translateY(60px);
+			opacity: 0;
+			transition: all $hover-duration ease-in-out;
+		}
+
+		.tc-text {
+			font-size: 16px;
+			line-height: 30px;
 		}
 	}
 

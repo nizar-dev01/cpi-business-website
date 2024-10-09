@@ -29,8 +29,12 @@
 			</div>
 			<div class="footer-footer">
 				<div class="email flex-center">
-					support@cipbusiness.com
-					<icon-copy class="footer-icon-copy" />
+					{{ emailText }}
+					<icon-copy
+						class="footer-icon-copy"
+						:class="{ 'has-copied': hasCopied }"
+						@click.prevent="copyEmail"
+					/>
 				</div>
 				<ul class="strip-list social-links">
 					<li v-for="sl in [
@@ -60,6 +64,17 @@
 	</footer>
 </template>
 <script setup>
+	const emailText = ref("support@cipbusiness.com")
+	const hasCopied = ref(false)
+	const copyEmail = () => {
+		navigator.clipboard.writeText(emailText.value);
+		hasCopied.value = true
+
+		const _delay = 0.2
+		setTimeout(() => {
+			hasCopied.value = false
+		}, _delay * 1000)
+	}
 </script>
 <style lang="scss">
 	.layout-footer {
@@ -103,6 +118,17 @@
 
 		.footer-icon-copy {
 			margin-left: 15px;
+			// cursor: copy;
+			cursor: pointer;
+			transition: transform 0.1s ease;
+
+			&.has-copied {
+				cursor: none;
+			}
+
+			&:active {
+				transform: scale(1.2);
+			}
 		}
 
 		.social-links {

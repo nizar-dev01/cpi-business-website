@@ -9,6 +9,7 @@
 					src="@/assets/images/logo.png"
 					alt="Logo Image"
 					class="logo-img"
+					ref="fallInLogo"
 				/>
 			</nuxt-link>
 			<ul
@@ -18,6 +19,7 @@
 				<li
 					v-for="link in headerLinks"
 					class="header-nav-li"
+					ref="fallInElements"
 				>
 					<nuxt-link
 						:to="link.to"
@@ -72,11 +74,47 @@
 		}
 	]
 
+	const fallInElements = ref()
+
+	const fallInLogo = ref()
+
 	const toggleMenuVisibility = ref(false)
 
 	const toggleNavMenu = () => {
 		toggleMenuVisibility.value = !toggleMenuVisibility.value
 	}
+
+	onMounted(() => {
+		const {
+			$gsap
+		} = useNuxtApp()
+
+		$gsap.set(fallInElements.value, {
+			y: -40,
+			opacity: 0
+		})
+
+		$gsap.set(fallInLogo.value, {
+			opacity: 0,
+			y: -40
+		})
+
+		$gsap.to(fallInElements.value, {
+			y: 0,
+			opacity: 1,
+			duration: 0.4,
+			stagger: 0.08,
+			delay: 3.7
+		})
+		// logo
+		$gsap.to(fallInLogo.value, {
+			y: 0,
+			opacity: 1,
+			duration: 0.4,
+			// stagger: 0.08,
+			delay: 3.7
+		})
+	})
 </script>
 <style lang="scss">
 	.layout-header {

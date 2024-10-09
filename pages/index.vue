@@ -15,5 +15,6 @@
 		<index-about-brief />
 		<index-snap-slider />
 		<index-events-showcase />
+		<library-showcase />
 	</client-only>
 </template>
