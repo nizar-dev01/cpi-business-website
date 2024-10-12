@@ -25,9 +25,7 @@
 						:to="link.to"
 						class="header-nav-a"
 					>
-						<span class="header-nav-text">
-							{{ link.text }}
-						</span>
+						<text-roll :text="link.text" />
 						<icon-arrow-down-circle
 							class="header-nav-icon"
 							v-if="link.icon"
@@ -198,7 +196,12 @@
 		font-weight: 500;
 		text-transform: uppercase;
 		display: flex;
-		align-items: center
+		align-items: center;
+		line-height: 25px;
+
+		@include xl {
+			line-height: inherit;
+		}
 	}
 
 	.header-nav-icon {
@@ -208,6 +211,7 @@
 	.nav-toggler {
 		display: none;
 		cursor: pointer;
+		padding: 0;
 
 		@include xl {
 			display: block;

@@ -25,5 +25,14 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	modules: ['@pinia/nuxt']
+	vue: {
+		compilerOptions: {
+			isCustomElement: (tag) => {
+				return tag === 'spline-viewer';
+			}
+		}
+	},
+	modules: [
+		'@pinia/nuxt'
+	]
 })

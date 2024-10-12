@@ -3,20 +3,27 @@
 		<div class="layout-box noverflow">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
-				Value-driven Ideas / Impactful Experiences / Focused Strategies
+				We are solution architects with multi-discipline capabilities including content creation, event design,
+				production & execution, media services and digital platforms.
 			</h3>
 			<div class="hero-call-to-actions hero-reveal-top">
 				<button class="btn-sq btn-hero-action">
 					<span class="bt-text">
 						Our Work
 					</span>
-					<icon-arrow-up></icon-arrow-up>
+					<icon-arrow-up
+						height="10"
+						width="10"
+					></icon-arrow-up>
 				</button>
 				<button class="btn-sq blue btn-hero-action">
 					<span class="bt-text">
 						Our Capabilities
 					</span>
-					<icon-arrow-up></icon-arrow-up>
+					<icon-arrow-up
+						height="10"
+						width="10"
+					></icon-arrow-up>
 				</button>
 			</div>
 		</div>
@@ -55,18 +62,18 @@
 
 <style lang="scss" scoped>
 	section#section-hero {
-		padding-bottom: 200px;
+		// padding-bottom: 200px;
 		border-top: 1px solid transparent;
 	}
 
 	h1.hero-title {
 		font-family: 'Newyork';
-		font-weight: 674;
-		font-size: 166px;
+		font-weight: 400;
+		font-size: 104px;
 		color: white;
 		text-align: center;
-		margin: 197px 0 0;
-		line-height: 198px;
+		margin: 100px 0 0;
+		line-height: 130px;
 
 		@include lg {
 			font-size: 140px;
@@ -85,23 +92,24 @@
 
 	.hero-subtitle {
 		font-family: Satoshi;
-		font-size: 53px;
+		font-size: 33px;
 		font-weight: 400;
-		line-height: 71.55px;
+		line-height: 48px;
 		text-align: center;
 		color: white;
-		margin: 50px 0 84px;
+		margin: 30px auto 44px;
+		max-width: 976px;
 
-		@include lg {
-			font-size: 40px;
-			margin-top: 10px;
-			line-height: 60px;
-		}
+		// @include lg {
+		// 	font-size: 40px;
+		// 	margin-top: 10px;
+		// 	line-height: 60px;
+		// }
 
-		@include xmd {
-			font-size: 38px;
-			margin-top: 0;
-		}
+		// @include xmd {
+		// 	font-size: 38px;
+		// 	margin-top: 0;
+		// }
 
 		@include md {
 			font-size: 30px;

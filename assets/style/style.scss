@@ -2,7 +2,8 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	background: #1B1B1B;
+	// background: #1B1B1B;
+	background: #1e1e1e;
 	font-family: 'Satoshi';
 	color: white;
 
@@ -59,17 +60,17 @@ body {
 
 .btn-sq {
 	width: auto;
-	height: 61px;
+	height: 48px;
 	border: none;
 	border-radius: 5px;
 	background: #3D3D3D;
-	font-size: 20px;
+	font-size: 16px;
 	color: white;
 	font-family: 'Metropolis';
 	font-weight: 400;
 	margin: 0 18px;
 	cursor: pointer;
-	padding: 0 25px;
+	padding: 0 20px;
 
 	&.blue {
 		background: #054BF9;
@@ -89,7 +90,7 @@ body {
 }
 
 .btn-sq.btn-hero-action {
-	width: 338px;
+	width: 250px;
 }
 
 .text-block {
@@ -111,7 +112,7 @@ $dot-radius: 2vw;
 	}
 
 	user-select: none;
-	font-size: 551px;
+	font-size: 257px;
 	font-weight: 600;
 	color: $text-color;
 	font-family: 'Metropolis';
@@ -139,4 +140,8 @@ $dot-radius: 2vw;
 			}
 		}
 	}
+}
+
+.w-100 {
+	width: 100%;
 }

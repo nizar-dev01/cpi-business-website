@@ -22,10 +22,10 @@
 					>
 						<div class="showcase-item">
 							<img
-								:src="`${event.image}?rand=${Math.random()}`"
+								:src="event.image"
 								:alt="event.alt || `Event Image ${i}`"
 								class="showcase-img"
-							>
+							/>
 							<div class="si-hover-display">
 								<div class="actions-container">
 									<div class="ac-left">
@@ -80,115 +80,149 @@
 	</section>
 </template>
 <script setup>
+
 	const showcaseRow = ref()
 	const showcaseItems = ref()
 
 	onMounted(() => {
 		const {
-			$gsap: gsap,
+			$gsap: gsap
 		} = useNuxtApp()
 
 		const items = showcaseItems.value
 		const row = showcaseRow.value
 
-		gsap.set(items, {
-			y: 100,
-			opacity: 0
-		})
+		// $ScrollTrigger.refresh()
 
-		const divFactor = Math.round(row.clientWidth / items[0].clientWidth)
+
+		const rowWidth = row.clientWidth
+		const firstElementWidth = items[0].clientWidth
+		const finalElemetWidth = items[items.length - 1].clientWidth
+
+		console.log({ finalElemetWidth, firstElementWidth, rowWidth })
+		if (firstElementWidth !== finalElemetWidth) {
+			const element = items[items.length - 1]
+			element.classList.add("hidden")
+		}
+		const divFactor = Math.round(rowWidth / firstElementWidth)
+
+
+		const _yfall = 200
 
 		items.forEach((item, i) => {
+			const delay = (i % items.length) % divFactor * 0.1
+			const _config = {
+				duration: 0.5,
+				delay
+			}
 			gsap.to(item, {
-				y: 0,
-				opacity: 1,
-				duration: 0.8,
-				stagger: 0.1,
-				delay: (i % items.length) % divFactor * 0.1,
 				scrollTrigger: {
+					// markers: true,
 					trigger: item,
-					start: "top 80%",
-				}
+					start: "top bottom",
+					end: "bottom top",
+					onEnter ({ trigger }) {
+						gsap.fromTo(trigger, {
+							y: _yfall
+						}, {
+							..._config,
+							y: 0,
+							opacity: 1,
+						})
+					},
+					onLeave ({ trigger }) {
+						gsap.to(trigger, {
+							..._config,
+							y: -_yfall,
+							opacity: 0
+						})
+					},
+					onEnterBack ({ trigger }) {
+						gsap.to(trigger, {
+							..._config,
+							y: 0,
+							opacity: 1
+						})
+					},
+					onLeaveBack ({ trigger }) {
+						gsap.to(trigger, {
+							..._config,
+							y: _yfall,
+							opacity: 0
+						})
+					},
+				},
 			})
 		})
+
+		// gsap.set(items, {
+		// 	opacity: 0,
+		// 	y: _yfall
+		// })
 	})
+
+	const basePath = window.location.href.split('//')[1].includes('/cpi-public/') ? "/cpi-public/" : "/"
 
 	const showcaseEvents = [
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/1.jpg'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/2.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/3.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/4.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/5.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/6.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/7.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/8.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/9.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/10.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/11.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/12.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/13.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-left"
+			image: basePath + 'img/portfolios/14.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/15.png'
 		},
 		{
-			image: "https://picsum.photos/536/354",
-			class: "appear-right"
+			image: basePath + 'img/portfolios/1.jpg'
 		},
 	]
 </script>
 
 <style lang="scss" scoped>
-	// .events-showcase {
-	// 	padding-top: 150px;
-	// }
+	.events-showcase {
+		// padding-top: 150px;
+	}
 
 	.showcase-container {
 		overflow: hidden;
-		margin-top: 100px;
+		padding-top: 100px;
 	}
 
 	.showcase-row {
@@ -204,6 +238,10 @@
 		width: 25%;
 		min-width: 350px;
 		flex-grow: 1;
+
+		&.hidden {
+			display: none;
+		}
 	}
 
 	$hover-duration: .5s;
@@ -233,7 +271,7 @@
 			bottom: 0;
 			display: block;
 			z-index: 1;
-			background-color: #00000063;
+			background-color: #000000a8;
 			backdrop-filter: blur(5px);
 			opacity: 0;
 			transition: opacity $hover-duration ease;
@@ -349,5 +387,9 @@
 
 	.showcase-action-row {
 		margin: 60px 0 200px;
+	}
+
+	.acr-view-text {
+		font-size: 13px;
 	}
 </style>

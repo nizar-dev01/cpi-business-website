@@ -16,7 +16,6 @@
 						text="We are an ambitious, optimistic and creative bunch of people."
 						:scroll-reveal="true"
 					/>
-					<br />
 					<text-splitter
 						text="We are here to help our clients defy what is conventional, redefine their experiences and deliver unforgettable brand moments."
 						:scroll-reveal="true"
@@ -84,20 +83,19 @@
 </template>
 <style lang="scss" scoped>
 	h4.about-h4 {
-		font-size: 93px;
+		font-size: 58px;
+		line-height: 80px;
 		font-weight: 400;
-		max-width: 1412px;
+		max-width: 1000px;
 		width: 97%;
 		margin: 120px auto 0 auto;
 		font-family: 'Satoshi';
-		line-height: 113px;
 		text-align: left;
 
-		@include break(1425px) {
-			font-size: 58px;
-			font-weight: 500;
-			line-height: 80px;
-		}
+		// @include break(1425px) {
+		// 	font-size: 58px;
+		// 	font-weight: 500;
+		// }
 
 		@include xxl {
 			font-size: 53px;
@@ -126,11 +124,11 @@
 
 	h4.origin-h4 {
 		width: 97%;
-		max-width: 843px;
+		max-width: 700px;
 		font-family: Satoshi;
-		font-size: 53px;
+		font-size: 35px;
 		font-weight: 400;
-		line-height: 71.55px;
+		line-height: 60px;
 		text-align: left;
 		margin: 210px 0 210px auto;
 
@@ -197,7 +195,8 @@
 		font-weight: 700;
 		line-height: 71.55px;
 		text-align: center;
-		margin: 276px 0 190px 0;
+		// margin: 276px 0 190px 0;
+		margin: 276px 0 0 0;
 
 		@include xmd {
 			font-size: 45px;
@@ -220,7 +219,7 @@
 	#about-brief {
 		background: white;
 		min-height: 100vh;
-		padding-top: 200px;
+		// padding-top: 200px;
 		color: black;
 	}
 </style>
