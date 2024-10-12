@@ -12,6 +12,14 @@ body {
 	}
 }
 
+* {
+	box-sizing: border-box;
+}
+
+svg {
+	box-sizing: unset;
+}
+
 .strip-list {
 	list-style: none;
 	padding: 0;

@@ -49,6 +49,9 @@
 
 	const isLayoutReady = ref(false)
 
+
+	const appStore = useAppStore()
+
 	onMounted(() => {
 		const {
 			$gsap
@@ -122,6 +125,7 @@
 					delay: 0,
 					onComplete () {
 						showWelcome.value = false
+						appStore.initiate()
 					}
 				}, endLabel)
 

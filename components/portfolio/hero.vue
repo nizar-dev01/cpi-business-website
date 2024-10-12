@@ -1,0 +1,112 @@
+<template>
+	<section id="portfolio-hero">
+		<div class="layout-box">
+			<h1 class="page-title pgt-portfolio">
+				Work
+			</h1>
+
+			<div class="tags-container">
+				<div class="tags-row">
+					<div
+						class="tags-col"
+						v-for="tag in tags"
+					>
+						<div
+							class="tag"
+							:class="{ selected: tag.selected }"
+							@click="tag.selected = !tag.selected"
+						>
+							{{ tag.text }}
+						</div>
+					</div>
+					<div class="tags-col">
+
+						<div class="tag">
+							<icon-reset-round />
+							Reset
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</template>
+<script setup>
+	const tags = ref([
+		{
+			text: 'Show all',
+			selected: false,
+		},
+		{
+			text: 'Event Management',
+			selected: false,
+		},
+		{
+			text: 'Design & Branding',
+			selected: false,
+		},
+		{
+			text: 'Consultancy Services',
+			selected: false,
+		},
+		{
+			text: 'Content Creation',
+			selected: false,
+		},
+		{
+			text: 'Digital Solution',
+			selected: false,
+		},
+		{
+			text: 'Bespoke Solutions',
+			selected: false,
+		}
+	])
+</script>
+<style lang="scss">
+	.pgt-portfolio {
+		font-size: 81px;
+		margin: 80px 0 50px;
+	}
+
+	.tags-container {
+		width: 100%;
+		max-width: 800px;
+		overflow: hidden;
+	}
+
+	.tags-row {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -10px;
+	}
+
+	.tags-col {
+		margin: 10px;
+	}
+
+	.tag {
+		line-height: 35px;
+		padding: 0 15px;
+		transition: all 0.3s ease-in-out;
+		background: rgba(255, 255, 255, 0.1);
+		color: white;
+		border-radius: 18px;
+		display: inline-block;
+		cursor: pointer;
+		user-select: none;
+
+		&.selected {
+			color: #0F0F0F;
+			background: white;
+
+			&:hover {
+				background: #ffffffa1;
+			}
+		}
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.05);
+		}
+	}
+</style>

@@ -1,5 +1,5 @@
 <template>
-	<section id="section-hero">
+	<section id="index-section-hero">
 		<div class="layout-box noverflow">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
@@ -31,6 +31,11 @@
 </template>
 
 <script setup>
+	const appStore = useAppStore()
+
+	const revealDelay = computed(() => {
+		return appStore.hasInitiated ? 0 : 3.2
+	})
 
 	onMounted(() => {
 		const {
@@ -51,7 +56,7 @@
 				y: 0,
 				duration: 1,
 				stagger: 0.3,
-				delay: 3.2,
+				delay: revealDelay.value,
 				opacity: 1
 			})
 		}
@@ -61,7 +66,7 @@
 </script>
 
 <style lang="scss" scoped>
-	section#section-hero {
+	section#index-section-hero {
 		// padding-bottom: 200px;
 		border-top: 1px solid transparent;
 	}

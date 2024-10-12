@@ -1,5 +1,8 @@
 <template>
-	<footer class="layout-footer">
+	<footer
+		class="layout-footer"
+		@mousemove="shineLight"
+	>
 		<div class="layout-box noverflow">
 			<h2 class="footer-text-title">
 				<!-- <text-splitter
@@ -10,7 +13,6 @@
 			</h2>
 			<h3
 				class="footer-text-content"
-				@mousemove="shineLight"
 				ref="shiningText"
 			>
 				<!-- <text-splitter

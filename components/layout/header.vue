@@ -46,28 +46,28 @@
 <script setup>
 	const headerLinks = [
 		{
-			to: "/",
+			to: "/about",
 			text: "About"
 		},
 		{
-			to: "/",
+			to: "/services",
 			text: "Services",
 			icon: true
 		},
 		{
-			to: "/",
+			to: "/portfolio",
 			text: "Our Portfolio"
 		},
 		{
-			to: "/",
+			to: "/blog",
 			text: "Blog"
 		},
 		{
-			to: "/",
+			to: "/contact",
 			text: "Contact Us"
 		},
 		{
-			to: "/",
+			to: "/careers",
 			text: "Careers"
 		}
 	]

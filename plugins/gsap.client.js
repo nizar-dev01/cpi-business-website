@@ -5,6 +5,8 @@ import { Observer } from 'gsap/all'
 
 import Lenis from 'lenis'
 
+window.scrollTo(0, 0)
+
 export default defineNuxtPlugin((nuxtApp) => {
 
 	// <Setup Lenis>

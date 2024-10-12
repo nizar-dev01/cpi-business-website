@@ -1,14 +1,5 @@
 <template>
 	<section class="events-showcase">
-		<horizontal-text duration="100">
-			<div class="h-slide-text white">
-				<span>EVENTS</span> <span class="center-dot"></span>
-				<span>CONTENT</span> <span class="center-dot"></span>
-				<span>DIGITAL</span> <span class="center-dot"></span>
-				<span>MEDIA</span> <span class="center-dot"></span>
-				<span>EXPERIENCES</span> <span class="center-dot"></span>
-			</div>
-		</horizontal-text>
 		<div class="layout-box">
 			<div class="showcase-container">
 				<div
@@ -68,7 +59,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="flex-center showcase-action-row">
+			<div
+				class="flex-center showcase-action-row"
+				v-if="props.showViewMore"
+			>
 				<button class="btn-sq rounded showcase-action-bt">
 					<span class="bt-text">
 						View More
@@ -80,6 +74,7 @@
 	</section>
 </template>
 <script setup>
+	const props = defineProps(['showViewMore'])
 
 	const showcaseRow = ref()
 	const showcaseItems = ref()
