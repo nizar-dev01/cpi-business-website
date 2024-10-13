@@ -24,18 +24,18 @@
 			</h3>
 			<div class="w-100 noverflow">
 				<div class="footer-call-to-actions">
-					<button class="btn-sq btn-hero-action">
-						<span class="bt-text">
-							Our Work
-						</span>
-						<icon-arrow-up></icon-arrow-up>
-					</button>
-					<button class="btn-sq blue btn-hero-action">
-						<span class="bt-text">
-							Our Capabilities
-						</span>
-						<icon-arrow-up></icon-arrow-up>
-					</button>
+
+					<button-sq
+						text="Our Work"
+						class="wide"
+						@mousemove.prevent.stop
+					/>
+
+					<button-sq
+						text="Our Capabilities"
+						class="wide blue"
+						@mousemove.prevent.stop
+					/>
 				</div>
 			</div>
 			<div class="footer-footer">
@@ -132,10 +132,6 @@
 
 	.footer-call-to-actions {
 		margin: 0 -10px 89px;
-
-		.btn-hero-action {
-			margin: 10px;
-		}
 	}
 
 	.footer-footer {

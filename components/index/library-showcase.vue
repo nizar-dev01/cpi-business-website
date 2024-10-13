@@ -14,12 +14,10 @@
 					</div>
 					<library-list :static-items-count="3" />
 					<div class="flex-center showcase-action-row">
-						<button class="btn-sq rounded showcase-action-bt">
-							<span class="bt-text">
-								Read More
-							</span>
-							<icon-arrow-up></icon-arrow-up>
-						</button>
+						<button-sq
+							text="Read More"
+							class="rounded showcase-action-bt"
+						/>
 					</div>
 				</div>
 			</div>

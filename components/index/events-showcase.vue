@@ -63,12 +63,10 @@
 				class="flex-center showcase-action-row"
 				v-if="props.showViewMore"
 			>
-				<button class="btn-sq rounded showcase-action-bt">
-					<span class="bt-text">
-						View More
-					</span>
-					<icon-arrow-up></icon-arrow-up>
-				</button>
+				<button-sq
+					text="View More"
+					class="rounded showcase-action-bt"
+				/>
 			</div>
 		</div>
 	</section>
@@ -94,7 +92,6 @@
 		const firstElementWidth = items[0].clientWidth
 		const finalElemetWidth = items[items.length - 1].clientWidth
 
-		console.log({ finalElemetWidth, firstElementWidth, rowWidth })
 		if (firstElementWidth !== finalElemetWidth) {
 			const element = items[items.length - 1]
 			element.classList.add("hidden")
@@ -233,6 +230,8 @@
 		width: 25%;
 		min-width: 350px;
 		flex-grow: 1;
+
+		opacity: 0;
 
 		&.hidden {
 			display: none;

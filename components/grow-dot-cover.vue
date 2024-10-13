@@ -42,7 +42,7 @@
 				scrub: 1,
 				trigger: _container,
 				start: "top top",
-				markers: true
+				// markers: true
 			}
 		})
 	})

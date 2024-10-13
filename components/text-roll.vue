@@ -11,7 +11,7 @@
 <script setup>
 	const props = defineProps(['text'])
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	.trc-wrapper {
 		overflow: hidden;
 		position: relative;

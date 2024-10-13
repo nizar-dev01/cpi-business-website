@@ -7,24 +7,14 @@
 				production & execution, media services and digital platforms.
 			</h3>
 			<div class="hero-call-to-actions hero-reveal-top">
-				<button class="btn-sq btn-hero-action">
-					<span class="bt-text">
-						Our Work
-					</span>
-					<icon-arrow-up
-						height="10"
-						width="10"
-					></icon-arrow-up>
-				</button>
-				<button class="btn-sq blue btn-hero-action">
-					<span class="bt-text">
-						Our Capabilities
-					</span>
-					<icon-arrow-up
-						height="10"
-						width="10"
-					></icon-arrow-up>
-				</button>
+				<button-sq
+					text="Our Work"
+					class="btn-hero-action wide"
+				/>
+				<button-sq
+					text="Our Capabilities"
+					class="btn-hero-action blue wide"
+				/>
 			</div>
 		</div>
 	</section>
@@ -36,6 +26,10 @@
 	const revealDelay = computed(() => {
 		return appStore.hasInitiated ? 0 : 3.2
 	})
+
+	const ccccc = () => {
+		console.log("HHHHHH")
+	}
 
 	onMounted(() => {
 		const {

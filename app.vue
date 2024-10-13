@@ -1,8 +1,10 @@
 <template>
-	<app-loader />
-	<nuxt-layout>
-		<nuxt-page></nuxt-page>
-	</nuxt-layout>
+	<client-only>
+		<app-loader />
+		<nuxt-layout>
+			<nuxt-page></nuxt-page>
+		</nuxt-layout>
+	</client-only>
 </template>
 <script setup>
 
