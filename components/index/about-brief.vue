@@ -155,5 +155,6 @@
 		min-height: 100vh;
 		// padding-top: 200px;
 		color: black;
+		padding-bottom: 200px;
 	}
 </style>

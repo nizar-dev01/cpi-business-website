@@ -1,52 +1,204 @@
 <template>
 	<section
-		class="snap-wrapper"
-		ref="snapWrapper"
+		id="snap-slider-wrapper-section"
+		ref="snapSliderWrapper"
 	>
+		<!-- Slides -->
 		<div class="snap-content-section">
-
+			<!-- 1 - Slide -->
 			<div
-				v-for="(config, i) in snapSectionConfig"
-				:class="['snap-element', config.currentStateClass]"
-				ref="snapElements"
+				class="snap-element active"
+				id="snap-slider-slide-1"
 			>
-				<div :class="['se-ui-container', colors[i % 2]]">
-					<h1>{{ i }}</h1>
+				<div class="se-ui-container">
+					<div class="se-bg-container">
+						<img
+							src="@/assets/images/snap/slide_1/bg.jpg"
+							alt="Background Image"
+							class="slide-img layer-1"
+						/>
+						<!-- Moving Cards -->
+						<div class="cards-container-3d layer-2">
+							<div class="cards-cage">
+								<img
+									src="@/assets/images/snap/slide_1/card_1.png"
+									alt="Card 1"
+									class="rotate-card rtc-1"
+									id="slide-1-rotate-card-1"
+								/>
+								<img
+									src="@/assets/images/snap/slide_1/card_2.png"
+									alt="Card 2"
+									class="rotate-card rtc-2"
+									id="slide-1-rotate-card-2"
+								/>
+								<img
+									src="@/assets/images/snap/slide_1/card_3.png"
+									alt="Card 3"
+									class="rotate-card rtc-3"
+									id="slide-1-rotate-card-3"
+								/>
+							</div>
+						</div>
+						<!-- Moving Cards -->
+						<img
+							src="@/assets/images/snap/slide_1/fg_block.png"
+							alt="Background Image"
+							class="slide-img layer-3"
+						/>
+					</div>
 				</div>
 			</div>
+			<!-- /1 - Slide -->
+
+			<!-- 2 - Slide -->
+			<div
+				class="snap-element"
+				id="snap-slider-slide-2"
+			>
+				<div class="se-ui-container">
+					<h1 ref="secondSlideText"> 2 </h1>
+				</div>
+			</div>
+			<!-- /2 - Slide -->
+
+			<!-- 3 - Slide -->
+			<div
+				class="snap-element"
+				id="snap-slider-slide-3"
+			>
+				<div class="se-ui-container">
+					<h1> 1 </h1>
+				</div>
+			</div>
+			<!-- /3 - Slide -->
+
+			<!-- 4 - Slide -->
+			<div
+				class="snap-element"
+				id="snap-slider-slide-4"
+			>
+				<div class="se-ui-container">
+					<h1> 1 </h1>
+				</div>
+			</div>
+			<!-- /4 - Slide -->
+
+			<!-- 5 - Slide -->
+			<div
+				class="snap-element"
+				id="snap-slider-slide-5"
+			>
+				<div class="se-ui-container">
+					<h1> 1 </h1>
+				</div>
+			</div>
+			<!-- /5 - Slide -->
+
+			<!-- 6 - Slide -->
+			<div
+				class="snap-element"
+				id="snap-slider-slide-6"
+			>
+				<div class="se-ui-container">
+					<h1> 1 </h1>
+				</div>
+			</div>
+			<!-- /6 - Slide -->
 		</div>
+		<!-- /Slides -->
+
+		<!-- Progress -->
 		<div class="progress-bars-section">
 			<div class="progress-bars-container">
-				<div
-					class="pb-progress-holder"
-					v-for="i in snapSectionsCount"
-				>
+				<!-- 1 - Progress -->
+				<div class="pb-progress-holder">
 					<div
 						class="pb-progress-line"
-						ref="snapProgressElements"
+						id="snap-slider-slide-progress-1"
 					></div>
 				</div>
+				<!-- / 1 - Progress -->
+
+				<!-- 2 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-2"
+					></div>
+				</div>
+				<!-- / 2 - Progress -->
+
+				<!-- 3 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-3"
+					></div>
+				</div>
+				<!-- / 3 - Progress -->
+
+				<!-- 4 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-4"
+					></div>
+				</div>
+				<!-- / 4 - Progress -->
+
+				<!-- 5 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-5"
+					></div>
+				</div>
+				<!-- / 5 - Progress -->
+
+				<!-- 6 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-6"
+					></div>
+				</div>
+				<!-- / 6 - Progress -->
 			</div>
 		</div>
+		<!-- /Progress -->
 	</section>
 </template>
 <script setup>
-	const snapSectionsCount = 6
-	// Components needed for the animation
-	const snapWrapper = ref()
-	const snapElements = ref()
-	const snapProgressElements = ref()
-
-	const _states = ['active', 'coming', 'past']
-
-	const snapSectionConfig = ref([
+	const config_pairs = [
 		{
-			currentStateClass: _states[0]
+			slide: '#snap-slider-slide-1',
+			progress: '#snap-slider-slide-progress-1'
 		},
 		{
-			currentStateClass: _states[1]
+			slide: '#snap-slider-slide-2',
+			progress: '#snap-slider-slide-progress-2'
+		},
+		{
+			slide: '#snap-slider-slide-3',
+			progress: '#snap-slider-slide-progress-3'
+		},
+		{
+			slide: '#snap-slider-slide-4',
+			progress: '#snap-slider-slide-progress-4'
+		},
+		{
+			slide: '#snap-slider-slide-5',
+			progress: '#snap-slider-slide-progress-5'
+		},
+		{
+			slide: '#snap-slider-slide-6',
+			progress: '#snap-slider-slide-progress-6'
 		}
-	])
+	]
+
+	const snapSliderWrapper = ref()
+	const secondSlideText = ref()
 
 	onMounted(() => {
 		// Initial Setup
@@ -57,56 +209,346 @@
 			$lenis
 		} = useNuxtApp()
 
-		// const _snaps = snapElements.value.map(el => ({
-		// 	parent: el,
-		// 	target: el.querySelector('.se-ui-container')
-		// }))
+		const first = config_pairs[0]
+		const second = config_pairs[1]
 
-		const _snaps = snapElements.value
-		const _prog = snapProgressElements.value
-
-		const _config = [
-			{
-				target: snapWrapper.value,
+		const tl = $gsap.timeline({
+			defaults: {
+				duration: 2
+			},
+			scrollTrigger: {
+				trigger: snapSliderWrapper.value,
+				start: 'top top',
+				// end: 'bottom top',
+				end: '+=16000',
+				scrub: true,
 				pin: true,
-				anticipatePin: 1,
-				// end: '+=8000',
-				animation: (() => {
-					const tl = $gsap.timeline()
-					tl
-						.add('first-start')
-						.to(
-							_prog[0],
-							{
-								width: '100%'
-							}
-						)
-					return tl
-				})()
+				pinSpacing: true,
+				anticipatePin: 1
 			}
-		]
-
-		_config.forEach((c, i) => {
-			$ScrollTrigger.create({
-				trigger: c.target,
-				pin: c.pin,
-				anticipatePin: 1,
-				start: c.start || "top top",
-				end: c.end,
-				scrub: 1,
-				animation: c.animation,
-				fastScrollEnd: true,
-				onLeave: c.onLeave || null,
-				onEnterBack: c.onEnterBack || null
-			})
 		})
-	})
 
-	const colors = [
-		'grey',
-		'dark'
-	]
+		// First Slide
+		const h1_2 = secondSlideText.value
+
+		const label = {
+			1: {
+				start: 'slide-1-start',
+				end: 'slide-1-end',
+			},
+			2: {
+				start: 'slide-2-start',
+				end: 'slide-2-end',
+			},
+			3: {
+				start: 'slide-3-start',
+				end: 'slide-3-end',
+			},
+			4: {
+				start: 'slide-4-start',
+				end: 'slide-4-end',
+			},
+			5: {
+				start: 'slide-5-start',
+				end: 'slide-5-end',
+			},
+			6: {
+				start: 'slide-6-start',
+				end: 'slide-6-end',
+			},
+		}
+
+		// Animation
+		tl.
+			add(label[1].start)
+			// Slide Animations
+
+			// Card 1
+			.to('#slide-1-rotate-card-1', {
+				rotateX: -307,
+				rotateY: -50,
+				y: -450,
+				// duration: 20
+			}, label[1].start)
+
+			// Card 2
+			.to('#slide-1-rotate-card-2', {
+				rotateX: 207,
+				rotateY: 80,
+				y: -350,
+				x: -100
+				// duration: 20
+			}, label[1].start)
+
+			// Card 3
+			.to('#slide-1-rotate-card-3', {
+				rotateX: -307,
+				rotateY: -50,
+				y: -350,
+				// duration: 20
+			}, label[1].start)
+			// Progress
+			.to(
+				first.progress,
+				{
+					width: '100%',
+					// duration: 20
+				},
+				label[1].start
+			)
+
+			// Transition
+
+			.add(() => {
+				const is_going_back = tl.scrollTrigger.direction === -1
+				if (is_going_back) {
+					// Backwards
+					document.querySelector(first.slide).classList.remove('past')
+					document.querySelector(second.slide).classList.remove('active')
+					document.querySelector(first.slide).classList.add('active')
+				} else {
+					// Forwards
+					document.querySelector(first.slide).classList.remove('active')
+					document.querySelector(first.slide).classList.add('past')
+					document.querySelector(second.slide).classList.add('active')
+				}
+			})
+
+			// Second Slide
+			.add(label[2].start)
+			.to(
+				h1_2,
+				{
+					scale: 0.5,
+					duration: 1
+				},
+				label[2].start
+			)
+			.to(
+				h1_2,
+				{
+					x: 300,
+					duration: 3
+				}
+			)
+			.to(
+				h1_2,
+				{
+					y: -100,
+					duration: 1
+				}
+			)
+
+			// Progress
+			.to(
+				second.progress,
+				{
+					width: '100%',
+					duration: 6
+				},
+				label[2].start
+			)
+
+			// Transition
+
+			.add((a, b, c, d) => {
+				console.log({
+					a, b, c, d
+				})
+			})
+
+	})
 </script>
+
+<style lang="scss">
+	#snap-slider-wrapper-section {
+		position: relative;
+	}
+
+	.snap-content-section {
+		position: relative;
+		height: 100svh;
+		z-index: 1;
+	}
+
+	.snap-element {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		transform: translateY(100%);
+		transition: all 0.5s ease-in-out;
+
+		&.active {
+			transform: translateY(0);
+		}
+
+		&.past {
+			opacity: 0;
+			transform: translateY(-100%)
+		}
+
+		.se-ui-container {
+			height: 100svh;
+			width: 100svw;
+			position: relative;
+
+			.se-bg-container {
+				position: relative;
+				height: 100%;
+				width: 100%;
+
+				// 3D
+				.cards-container-3d {
+					transform-style: preserve-3d;
+					perspective: 1000px;
+					perspective-origin: bottom;
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+
+					// flex
+					display: flex;
+					justify-content: center;
+					align-items: flex-end;
+
+					.cards-cage {
+						width: 300px;
+						height: 180px;
+						position: relative;
+
+						.rotate-card {
+							display: block;
+							position: absolute;
+							left: 0;
+							right: 0;
+							top: 0;
+							bottom: 0;
+							height: 100%;
+							width: 100%;
+							margin: 0;
+
+							object-fit: cover;
+
+							&.rtc-1 {
+								transform: translate(-200px, 0)
+							}
+
+							&.rtc-2 {
+								transform: translate(0, 0);
+							}
+
+							&.rtc-3 {
+								transform: translate(200px, 0);
+							}
+						}
+					}
+				}
+
+
+				.layer-1 {
+					z-index: 1;
+				}
+
+				.layer-2 {
+					z-index: 2;
+				}
+
+				.layer-3 {
+					z-index: 3;
+					opacity: 1;
+				}
+
+				.slide-img {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+
+					&.mv-card {
+						left: 50%;
+						bottom: 0;
+						height: 200px;
+						width: 300px;
+
+						&.mvc-1 {
+							// transform:
+							// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
+						}
+
+						&.mvc-2 {
+							// transform:
+							// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
+						}
+
+						&.mvc-3 {
+							// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
+						}
+					}
+				}
+			}
+
+			h1 {
+				font-size: 45vw;
+				color: #ffffff24;
+				text-align: center;
+				margin: 0;
+				line-height: calc(100vh - 115px);
+				text-transform: uppercase;
+				font-weight: 900;
+				text-align: center;
+			}
+		}
+
+		z-index: 0;
+	}
+
+
+	// Progress
+
+	.progress-bars-section {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 30px;
+		width: 100%;
+		padding-bottom: 80px;
+		z-index: 2;
+		overflow: hidden;
+	}
+
+	.progress-bars-container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		margin: 0 -13px;
+		padding: 0 100px;
+	}
+
+	.pb-progress-holder {
+		height: 5px;
+		box-sizing: border-box;
+		border-radius: 2px;
+		background: #ffffff33;
+		overflow: hidden;
+		flex: 1;
+		margin: 0 13px;
+	}
+
+	.pb-progress-line {
+		height: 100%;
+		width: 0%;
+		box-sizing: border-box;
+		background: white;
+	}
+</style>
 
 <!-- Old script
 <script setup>
@@ -307,99 +749,3 @@
 	]
 </script>
 /Old script -->
-
-<style lang="scss">
-
-	.snap-content-section {
-		position: relative;
-		height: 100svh;
-		z-index: 1;
-	}
-
-	.snap-element {
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		position: absolute;
-		top: 0;
-		left: 0;
-
-		transform: translateY(100%);
-		transition: all 0.5s ease-in-out;
-
-		&.active {
-			transform: translateY(0);
-		}
-
-		&.past {
-			opacity: 0;
-		}
-
-		.se-ui-container {
-			height: 100svh;
-			position: sticky;
-			top: 0;
-
-			&.grey {
-				background: #838383;
-			}
-
-			&.dark {
-				background: #3d3d3d;
-			}
-
-
-			h1 {
-				font-size: 45vw;
-				color: #ffffff24;
-				text-align: center;
-				margin: 0;
-				line-height: calc(100vh - 115px);
-				text-transform: uppercase;
-				font-weight: 900;
-				text-align: center;
-			}
-		}
-
-		z-index: 0;
-	}
-
-
-	// Progress
-
-	.progress-bars-section {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 30px;
-		width: 100%;
-		padding-bottom: 80px;
-		z-index: 2;
-		overflow: hidden;
-	}
-
-	.progress-bars-container {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: nowrap;
-		margin: 0 -13px;
-		padding: 0 100px;
-	}
-
-	.pb-progress-holder {
-		height: 5px;
-		box-sizing: border-box;
-		border-radius: 2px;
-		background: #ffffff33;
-		overflow: hidden;
-		flex: 1;
-		margin: 0 13px;
-	}
-
-	.pb-progress-line {
-		height: 100%;
-		width: 0%;
-		box-sizing: border-box;
-		background: white;
-	}
-</style>

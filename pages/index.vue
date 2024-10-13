@@ -1,11 +1,20 @@
 <template>
 	<index-hero />
-	<index-spheres-old uid="fwd" />
+	<index-spheres-old
+		uid="fwd"
+		start="top 90%"
+		end="bottom top+=10%"
+		:pin="false"
+		:pin-for-finish="true"
+	/>
 	<index-about-brief />
-	<!-- <index-snap-slider /> -->
+	<index-snap-slider />
 	<index-spheres-old
 		direction="reverse"
 		uid="bwd"
+		start="top top"
+		end="bottom center"
+		:pin="true"
 	/>
 	<horizontal-text duration="100">
 		<div class="h-slide-text white">

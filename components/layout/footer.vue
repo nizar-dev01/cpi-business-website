@@ -33,7 +33,8 @@
 
 					<button-sq
 						text="Our Capabilities"
-						class="wide blue"
+						class="wide"
+						:blue="true"
 						@mousemove.prevent.stop
 					/>
 				</div>

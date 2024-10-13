@@ -23,7 +23,7 @@
 					class="welcome-title cpi"
 					:ref="setWelcomeTitleRef"
 				>
-					CPI
+					CPI BUSINESS
 				</h1>
 			</div>
 

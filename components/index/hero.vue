@@ -13,7 +13,8 @@
 				/>
 				<button-sq
 					text="Our Capabilities"
-					class="btn-hero-action blue wide"
+					class="btn-hero-action wide"
+					:blue="true"
 				/>
 			</div>
 		</div>
@@ -26,10 +27,6 @@
 	const revealDelay = computed(() => {
 		return appStore.hasInitiated ? 0 : 3.2
 	})
-
-	const ccccc = () => {
-		console.log("HHHHHH")
-	}
 
 	onMounted(() => {
 		const {
@@ -61,7 +58,7 @@
 
 <style lang="scss" scoped>
 	section#index-section-hero {
-		// padding-bottom: 200px;
+		padding-bottom: 30px;
 		border-top: 1px solid transparent;
 	}
 

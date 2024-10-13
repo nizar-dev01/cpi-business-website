@@ -1,6 +1,7 @@
 <template>
 	<button
 		class="btn-sq"
+		:class="[{ blue: props.blue }]"
 		v-bind="$attrs"
 	>
 		<span class="roll-wrapper">
@@ -14,10 +15,10 @@
 				></icon-arrow-up>
 			</span>
 			<span class="roll-content t2 flex-center">
-
 				<icon-arrow-up
 					height="16"
 					width="16"
+					:color="props.blue ? 'white' : 'black'"
 				></icon-arrow-up>
 			</span>
 		</span>
@@ -27,7 +28,6 @@
 	const props = defineProps(['text', 'blue'])
 </script>
 <style lang="scss" scoped>
-
 	.btn-sq {
 		width: auto;
 		line-height: 48px;
@@ -41,9 +41,10 @@
 		margin: 0 18px;
 		cursor: pointer;
 		padding: 0 20px;
-		transition: transform 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
 
-		&.blue {
+		&.blue,
+		&.blue:hover {
 			background: #054BF9;
 		}
 
@@ -63,17 +64,19 @@
 			margin-right: 13px;
 		}
 
-
 		&:hover {
 			transform: scale(1.01);
+			background: white;
 
 			.roll-content {
 				&.t1 {
 					transform: translate(0, -100%);
+					opacity: 0;
 				}
 
 				&.t2 {
 					transform: translate(0, 0);
+					opacity: 1;
 				}
 			}
 		}
@@ -92,14 +95,16 @@
 		display: inherit;
 		height: 100%;
 		width: 100%;
+		opacity: 1;
 
-		transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out, opacity 0.3s ease;
 
 		&.t2 {
 			position: absolute;
 			left: 0;
 			top: 0;
 			transform: translate(0, 100%);
+			opacity: 0;
 
 			display: flex;
 			justify-content: center;
