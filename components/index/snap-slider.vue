@@ -11,42 +11,53 @@
 				id="snap-slider-slide-1"
 			>
 				<div class="se-ui-container">
-					<div class="se-bg-container">
-						<img
-							src="@/assets/images/snap/slide_1/bg.jpg"
-							alt="Background Image"
-							class="slide-img layer-1"
-						/>
-						<!-- Moving Cards -->
-						<div class="cards-container-3d layer-2">
-							<div class="cards-cage">
-								<img
-									src="@/assets/images/snap/slide_1/card_1.png"
-									alt="Card 1"
-									class="rotate-card rtc-1"
-									id="slide-1-rotate-card-1"
-								/>
-								<img
-									src="@/assets/images/snap/slide_1/card_2.png"
-									alt="Card 2"
-									class="rotate-card rtc-2"
-									id="slide-1-rotate-card-2"
-								/>
-								<img
-									src="@/assets/images/snap/slide_1/card_3.png"
-									alt="Card 3"
-									class="rotate-card rtc-3"
-									id="slide-1-rotate-card-3"
-								/>
-							</div>
+					<img
+						src="@/assets/images/snap/bg.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- Moving Cards -->
+					<div class="cards-container-3d layer-2">
+						<div class="cards-cage">
+							<img
+								src="@/assets/images/snap/slide_1/card_1.png"
+								alt="Card 1"
+								class="rotate-card rtc-1"
+								id="slide-1-rotate-card-1"
+							/>
+							<img
+								src="@/assets/images/snap/slide_1/card_2.png"
+								alt="Card 2"
+								class="rotate-card rtc-2"
+								id="slide-1-rotate-card-2"
+							/>
+							<img
+								src="@/assets/images/snap/slide_1/card_3.png"
+								alt="Card 3"
+								class="rotate-card rtc-3"
+								id="slide-1-rotate-card-3"
+							/>
 						</div>
-						<!-- Moving Cards -->
-						<img
-							src="@/assets/images/snap/slide_1/fg_block.png"
-							alt="Background Image"
-							class="slide-img layer-3"
-						/>
 					</div>
+					<!-- / Moving Cards -->
+					<img
+						src="@/assets/images/snap/slide_1/fg_block.png"
+						alt="Background Image"
+						class="slide-img layer-3"
+					/>
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text duration="100">
+							<div class="h-slide-text white">
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
 				</div>
 			</div>
 			<!-- /1 - Slide -->
@@ -57,7 +68,52 @@
 				id="snap-slider-slide-2"
 			>
 				<div class="se-ui-container">
-					<h1 ref="secondSlideText"> 2 </h1>
+					<!-- Background -->
+					<img
+						src="@/assets/images/snap/bg.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- /Background -->
+
+					<!-- Animation Objects -->
+					<div class="se-ui-plx-sky-container layer-2">
+						<img
+							src="@/assets/images/snap/slide_2/cloud.png"
+							class="sl2-img-cloud"
+							alt="Clouds"
+						>
+						<img
+							src="@/assets/images/snap/slide_2/gate.png"
+							class="sl2-center-main"
+							alt="Gate"
+						>
+						<img
+							src="@/assets/images/snap/slide_2/nail.png"
+							class="sl2-img-nail"
+							alt="Nail"
+						>
+						<img
+							src="@/assets/images/snap/slide_2/rock.png"
+							class="sl2-img-rock"
+							alt="Rock"
+						>
+					</div>
+					<!-- /Animation Objects -->
+
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text duration="100">
+							<div class="h-slide-text white">
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
 				</div>
 			</div>
 			<!-- /2 - Slide -->
@@ -68,7 +124,24 @@
 				id="snap-slider-slide-3"
 			>
 				<div class="se-ui-container">
-					<h1> 1 </h1>
+					<img
+						src="@/assets/images/snap/slide_3/static.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text duration="100">
+							<div class="h-slide-text white">
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
 				</div>
 			</div>
 			<!-- /3 - Slide -->
@@ -79,7 +152,24 @@
 				id="snap-slider-slide-4"
 			>
 				<div class="se-ui-container">
-					<h1> 1 </h1>
+					<img
+						src="@/assets/images/snap/slide_4/static.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text duration="100">
+							<div class="h-slide-text white">
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
 				</div>
 			</div>
 			<!-- /4 - Slide -->
@@ -90,21 +180,47 @@
 				id="snap-slider-slide-5"
 			>
 				<div class="se-ui-container">
-					<h1> 1 </h1>
+					<!-- Background -->
+					<img
+						src="@/assets/images/snap/bg.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- /Background -->
+
+
+
+					<!-- Animation Objects -->
+					<div class="se-ui-plx-sky-container layer-2">
+						<img
+							src="@/assets/images/snap/slide_5/typewriter.png"
+							class="sl2-center-main typewriter"
+							alt="Typewriter"
+						>
+						<img
+							src="@/assets/images/snap/slide_2/rock.png"
+							class="sl2-img-rock"
+							alt="Rock"
+						>
+					</div>
+					<!-- /Animation Objects -->
+
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text duration="100">
+							<div class="h-slide-text white">
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
 				</div>
 			</div>
 			<!-- /5 - Slide -->
-
-			<!-- 6 - Slide -->
-			<div
-				class="snap-element"
-				id="snap-slider-slide-6"
-			>
-				<div class="se-ui-container">
-					<h1> 1 </h1>
-				</div>
-			</div>
-			<!-- /6 - Slide -->
 		</div>
 		<!-- /Slides -->
 
@@ -155,15 +271,6 @@
 					></div>
 				</div>
 				<!-- / 5 - Progress -->
-
-				<!-- 6 - Progress -->
-				<div class="pb-progress-holder">
-					<div
-						class="pb-progress-line"
-						id="snap-slider-slide-progress-6"
-					></div>
-				</div>
-				<!-- / 6 - Progress -->
 			</div>
 		</div>
 		<!-- /Progress -->
@@ -190,10 +297,6 @@
 		{
 			slide: '#snap-slider-slide-5',
 			progress: '#snap-slider-slide-progress-5'
-		},
-		{
-			slide: '#snap-slider-slide-6',
-			progress: '#snap-slider-slide-progress-6'
 		}
 	]
 
@@ -211,6 +314,10 @@
 
 		const first = config_pairs[0]
 		const second = config_pairs[1]
+		const third = config_pairs[2]
+		const fourth = config_pairs[3]
+		const fifth = config_pairs[4]
+
 
 		const tl = $gsap.timeline({
 			defaults: {
@@ -228,8 +335,28 @@
 			}
 		})
 
-		// First Slide
-		const h1_2 = secondSlideText.value
+		const runSlideTransition = (s1, s2) => {
+			const is_going_back = tl.scrollTrigger.direction === -1
+			const slide_1 = document.querySelector(s1)
+			const slide_2 = document.querySelector(s2)
+			if (is_going_back) {
+				// Backwards
+				slide_1
+					.classList.remove('past')
+				slide_2
+					.classList.remove('active')
+				slide_1
+					.classList.add('active')
+			} else {
+				// Forwards
+				slide_1
+					.classList.remove('active')
+				slide_1
+					.classList.add('past')
+				slide_2
+					.classList.add('active')
+			}
+		}
 
 		const label = {
 			1: {
@@ -251,15 +378,13 @@
 			5: {
 				start: 'slide-5-start',
 				end: 'slide-5-end',
-			},
-			6: {
-				start: 'slide-6-start',
-				end: 'slide-6-end',
-			},
+			}
 		}
 
 		// Animation
 		tl.
+
+			// First Slide
 			add(label[1].start)
 			// Slide Animations
 
@@ -296,71 +421,95 @@
 				},
 				label[1].start
 			)
-
 			// Transition
-
 			.add(() => {
-				const is_going_back = tl.scrollTrigger.direction === -1
-				if (is_going_back) {
-					// Backwards
-					document.querySelector(first.slide).classList.remove('past')
-					document.querySelector(second.slide).classList.remove('active')
-					document.querySelector(first.slide).classList.add('active')
-				} else {
-					// Forwards
-					document.querySelector(first.slide).classList.remove('active')
-					document.querySelector(first.slide).classList.add('past')
-					document.querySelector(second.slide).classList.add('active')
-				}
+				const { slide: slide_1 } = first
+				const { slide: slide_2 } = second
+				runSlideTransition(
+					slide_1,
+					slide_2
+				)
 			})
 
 			// Second Slide
 			.add(label[2].start)
-			.to(
-				h1_2,
-				{
-					scale: 0.5,
-					duration: 1
-				},
-				label[2].start
-			)
-			.to(
-				h1_2,
-				{
-					x: 300,
-					duration: 3
-				}
-			)
-			.to(
-				h1_2,
-				{
-					y: -100,
-					duration: 1
-				}
-			)
 
 			// Progress
 			.to(
 				second.progress,
 				{
 					width: '100%',
-					duration: 6
 				},
 				label[2].start
 			)
-
 			// Transition
-
-			.add((a, b, c, d) => {
-				console.log({
-					a, b, c, d
-				})
+			.add(() => {
+				const { slide: slide_1 } = second
+				const { slide: slide_2 } = third
+				runSlideTransition(
+					slide_1,
+					slide_2
+				)
 			})
+
+			// Third Slide
+			.add(label[3].start)
+
+			// Progress
+			.to(
+				third.progress,
+				{
+					width: '100%',
+				},
+				label[3].start
+			)
+			// Transition
+			.add(() => {
+				const { slide: slide_1 } = third
+				const { slide: slide_2 } = fourth
+				runSlideTransition(
+					slide_1,
+					slide_2
+				)
+			})
+
+			// Fourth Slide
+			.add(label[4].start)
+
+			// Progress
+			.to(
+				fourth.progress,
+				{
+					width: '100%',
+				},
+				label[4].start
+			)
+			// Transition
+			.add(() => {
+				const { slide: slide_1 } = fourth
+				const { slide: slide_2 } = fifth
+				runSlideTransition(
+					slide_1,
+					slide_2
+				)
+			})
+
+			// Fifth Slide
+			.add(label[5].start)
+
+			// Progress
+			.to(
+				fifth.progress,
+				{
+					width: '100%',
+				},
+				label[5].start
+			)
 
 	})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	#snap-slider-wrapper-section {
 		position: relative;
 	}
@@ -396,101 +545,182 @@
 			width: 100svw;
 			position: relative;
 
-			.se-bg-container {
-				position: relative;
-				height: 100%;
-				width: 100%;
+			// 3D in the first slide
+			.cards-container-3d {
+				transform-style: preserve-3d;
+				perspective: 1000px;
+				perspective-origin: bottom;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
 
-				// 3D
-				.cards-container-3d {
-					transform-style: preserve-3d;
-					perspective: 1000px;
-					perspective-origin: bottom;
-					position: absolute;
-					left: 0;
-					right: 0;
-					top: 0;
-					bottom: 0;
+				// flex
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
 
-					// flex
-					display: flex;
-					justify-content: center;
-					align-items: flex-end;
+				.cards-cage {
+					width: 300px;
+					height: 180px;
+					position: relative;
 
-					.cards-cage {
-						width: 300px;
-						height: 180px;
-						position: relative;
+					.rotate-card {
+						display: block;
+						position: absolute;
+						left: 0;
+						right: 0;
+						top: 0;
+						bottom: 0;
+						height: 100%;
+						width: 100%;
+						margin: 0;
 
-						.rotate-card {
-							display: block;
-							position: absolute;
-							left: 0;
-							right: 0;
-							top: 0;
-							bottom: 0;
-							height: 100%;
-							width: 100%;
-							margin: 0;
+						object-fit: cover;
 
-							object-fit: cover;
+						&.rtc-1 {
+							transform: translate(-200px, 0)
+						}
 
-							&.rtc-1 {
-								transform: translate(-200px, 0)
-							}
+						&.rtc-2 {
+							transform: translate(0, 0);
+						}
 
-							&.rtc-2 {
-								transform: translate(0, 0);
-							}
-
-							&.rtc-3 {
-								transform: translate(200px, 0);
-							}
+						&.rtc-3 {
+							transform: translate(200px, 0);
 						}
 					}
 				}
+			}
+
+			.seui-sliding-text-container {
+				position: absolute;
+				bottom: 120px;
+				left: 0;
+				right: 0;
+				color: white;
+				transition: all 0.5s ease-in-out;
 
 
-				.layer-1 {
-					z-index: 1;
+				&:hover {
+					transform: scale(1.05);
+					transform-origin: center;
+
+					span {
+						color: rgba(255, 255, 255, 0.1);
+						// backdrop-filter: blur(5px);
+					}
+
+					span.center-dot::after {
+						background: rgba(255, 255, 255, 0.1);
+						border: 2px solid white;
+					}
 				}
 
-				.layer-2 {
-					z-index: 2;
-				}
-
-				.layer-3 {
-					z-index: 3;
+				.h-slide-text {
+					font-size: 200px;
 					opacity: 1;
-				}
 
-				.slide-img {
+					span {
+						-webkit-text-stroke: 2px white;
+						transition: all 0.5s ease-in-out;
+
+						&::after {
+							transition: all 0.5s ease-in-out;
+						}
+					}
+				}
+			}
+
+			// Slide 2
+			.se-ui-plx-sky-container {
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				height: 100%;
+				width: 100%;
+
+				img {
 					position: absolute;
 					left: 0;
-					bottom: 0;
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
+					// top: 0;
 
-					&.mv-card {
-						left: 50%;
+					&.sl2-img-cloud {
+						// opacity: 0;
+					}
+
+					&.sl2-center-main {
+						height: 85vh;
+						top: unset;
 						bottom: 0;
-						height: 200px;
-						width: 300px;
+						left: 50%;
+						transform: translate(-50%, 0);
 
-						&.mvc-1 {
-							// transform:
-							// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
+						&.typewriter {
+							bottom: 15vh;
+							height: 60vh;
 						}
+					}
 
-						&.mvc-2 {
-							// transform:
-							// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
-						}
+					&.sl2-img-nail {
+						opacity: 0;
+					}
 
-						&.mvc-3 {
-							// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
-						}
+					&.sl2-img-rock {
+						height: 30vh;
+						top: unset;
+						bottom: -7vh;
+						left: 50%;
+						transform: translate(-50%, 0) rotateZ(-3deg);
+					}
+				}
+			}
+
+
+			.layer-1 {
+				z-index: 1;
+			}
+
+			.layer-2 {
+				z-index: 2;
+			}
+
+			.layer-3 {
+				z-index: 3;
+			}
+
+			.layer-4 {
+				z-index: 4;
+			}
+
+			.slide-img {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+
+				&.mv-card {
+					left: 50%;
+					bottom: 0;
+					height: 200px;
+					width: 300px;
+
+					&.mvc-1 {
+						// transform:
+						// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
+					}
+
+					&.mvc-2 {
+						// transform:
+						// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
+					}
+
+					&.mvc-3 {
+						// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
 					}
 				}
 			}
@@ -549,203 +779,3 @@
 		background: white;
 	}
 </style>
-
-<!-- Old script
-<script setup>
-	// Components needed for the animation
-	// const snapWrapper = ref()
-	// const snapElements = ref()
-	// const snapProgressElements = ref()
-
-	// onMounted(() => {
-	// 	// Initial Setup
-	// 	const {
-	// 		$ScrollTrigger,
-	// 		$gsap,
-	// 		$Observer,
-	// 		$lenis
-	// 	} = useNuxtApp()
-
-	// 	// Global Animation Variables
-	// 	let current_index = 0
-	// 	let is_animating = false
-
-	// 	// Set the z-index and y-position of the first element, for when the UI is first loaded. It will otherwise be shown in the default stacking context, namely the last item on the top
-	// 	const first_element = snapElements.value[current_index]
-
-	// 	$gsap.set(first_element, {
-	// 		zIndex: 1,
-	// 		y: 0
-	// 	})
-	// 	// Set the progress of the first item. (It is static, as the item would already be visible in the view)
-	// 	const first_progress = snapProgressElements.value[current_index]
-
-	// 	$gsap.set(first_progress, {
-	// 		width: "100%"
-	// 	})
-
-	// 	// Function that decides whether a movement (scroll/wheel/etc) should be considered as the exit of the animation
-	// 	const exitAnimationLock = (isFromUp, index = current_index) => {
-	// 		if (is_animating) return
-	// 		const loopEnd = snapSectionsData.length - 1
-
-	// 		// Whether it's time to exit at either ends
-	// 		const exitAtTail = index === loopEnd && isFromUp
-	// 		const exitAtHead = index === 0 && !isFromUp
-
-	// 		// If it's exit-time
-	// 		const timeToExit = exitAtHead || exitAtTail
-	// 		if (timeToExit) {
-	// 			// Re-enable lenis
-	// 			// $lenis.instance.start()
-	// 		}
-	// 	}
-
-	// 	// Function that controls the navigation between slides
-	// 	const navigateSection = (direction) => {
-	// 		// Return if the animation is actively running
-	// 		if (is_animating) return
-
-	// 		const new_index = current_index + direction
-
-	// 		// Re Enable scrolling when the slides reach the end or beginning in reverse navigation
-	// 		if (new_index < 0 || new_index >= snapSectionsData.length) {
-	// 			// return $lenis.instance.start()
-	// 		} else {
-	// 			// Proceed to animate the slider
-	// 			const tl = $gsap.timeline({
-	// 				defaults: {
-	// 					duration: 1,
-	// 					ease: "power1.inOut",
-	// 				}
-	// 			})
-
-	// 			// Select the main slide-box elements
-	// 			const currentElement = snapElements.value[current_index]
-	// 			const newElement = snapElements.value[new_index]
-
-	// 			// Select the progress bar elements
-	// 			const currentProgress = snapProgressElements.value[current_index]
-	// 			const newProgress = snapProgressElements.value[new_index]
-
-	// 			is_animating = true
-
-	// 			// Variables for the slide animation
-	// 			const newElementYStart = 100 * direction
-	// 			const currentElementYEnd = newElementYStart * -1
-
-	// 			// Variables for the progress animation
-	// 			const isFromUp = direction === 1
-	// 			const endProgressWidth = isFromUp ? "100%" : "0%"
-
-	// 			// #######################################
-	// 			// The Animation Timeline
-	// 			// #######################################
-	// 			const startLabel = "snapSliderAnimationStartPoint"
-
-	// 			// Set the z-index of the currently visible element for stacking items properly
-	// 			// This lable is used to start the animations at the same time in the beginning
-	// 			tl.set(currentElement, {
-	// 				zIndex: 1
-	// 			})
-	// 				// Set the initial position of the incoming element
-	// 				.set(
-	// 					newElement, {
-	// 					zIndex: 2,
-	// 					yPercent: newElementYStart
-	// 				})
-	// 				// Add a label to indicate the starting time for the coming animations
-	// 				.add(startLabel)
-	// 				// Remove the current element from the viewport
-	// 				.to(currentElement, {
-	// 					yPercent: currentElementYEnd
-	// 				}, startLabel)
-	// 				// Bring the new element to the viewport
-	// 				.to(newElement, {
-	// 					yPercent: 0,
-	// 					onComplete () {
-	// 						is_animating = false
-	// 					},
-	// 				}, startLabel)
-	// 				// Increase/Decrease progressbar width
-	// 				.to(isFromUp ? newProgress : currentProgress, {
-	// 					width: endProgressWidth
-	// 				}, startLabel)
-
-	// 			// Update the current index, as the elements are re-positioned in the animation
-	// 			current_index = new_index
-	// 		}
-	// 	}
-
-	// 	let _observer
-	// 	const createObserver = () => {
-	// 		return $Observer.create({
-	// 			target: window, // can be any element (selector text is fine)
-	// 			type: "wheel,touch", // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
-	// 			onUp () {
-	// 				navigateSection(- 1)
-	// 				exitAnimationLock(false, current_index)
-	// 			},
-	// 			onDown () {
-	// 				navigateSection(1)
-	// 				exitAnimationLock(true, current_index)
-	// 			},
-	// 		});
-	// 	}
-
-	// 	// Create the scroll trigger to activate the animations when the component gets to the viewport
-
-	// 	// To call on enter - forward and backward
-	// 	const enterGate = () => {
-	// 		// $lenis.instance.stop()
-
-	// 		// Initiate the Observer scroll events
-	// 		if (!_observer) {
-	// 			_observer = createObserver()
-	// 		} else if (!_observer.isEnabled) {
-	// 			_observer.enable()
-	// 		}
-	// 	}
-
-	// 	// To call on exit - forward and backward
-	// 	const exitGate = () => {
-	// 		if (_observer) {
-	// 			_observer.disable()
-	// 		}
-	// 		// When the page loads, if the view is down in the bottom, it may have set a few variables
-	// 		// $lenis.instance.start()
-	// 		is_animating = false
-	// 	}
-
-	// 	// Create the actual trigger
-	// 	// $ScrollTrigger.create({
-	// 	// 	trigger: snapWrapper.value,
-	// 	// 	start: "top top",
-	// 	// 	pin: true,
-	// 	// 	onEnter () {
-	// 	// 		enterGate()
-	// 	// 	},
-	// 	// 	onEnterBack () {
-	// 	// 		enterGate()
-	// 	// 	},
-	// 	// 	onLeave () {
-	// 	// 		exitGate()
-	// 	// 		current_index = snapSectionsData.length - 1
-	// 	// 	},
-	// 	// 	onLeaveBack () {
-	// 	// 		exitGate()
-	// 	// 		current_index = 0
-	// 	// 	},
-	// 	// 	animation: $gsap.to(snapWrapper.value, {
-	// 	// 		y: 0,
-	// 	// 		scrub: 1
-	// 	// 	})
-	// 	// })
-	// })
-
-	const colors = [
-		'grey',
-		'dark'
-	]
-</script>
-/Old script -->
