@@ -13,7 +13,7 @@
 		direction="reverse"
 		uid="bwd"
 		start="top top"
-		end="bottom center"
+		end="+=3000"
 		:pin="true"
 	/>
 	<horizontal-text duration="100">

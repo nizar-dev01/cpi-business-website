@@ -22,19 +22,19 @@
 							<img
 								src="@/assets/images/snap/slide_1/card_1.png"
 								alt="Card 1"
-								class="rotate-card rtc-1"
+								class="rotate-card rtc-1 abs-full"
 								id="slide-1-rotate-card-1"
 							/>
 							<img
 								src="@/assets/images/snap/slide_1/card_2.png"
 								alt="Card 2"
-								class="rotate-card rtc-2"
+								class="rotate-card rtc-2 abs-full"
 								id="slide-1-rotate-card-2"
 							/>
 							<img
 								src="@/assets/images/snap/slide_1/card_3.png"
 								alt="Card 3"
-								class="rotate-card rtc-3"
+								class="rotate-card rtc-3 abs-full"
 								id="slide-1-rotate-card-3"
 							/>
 						</div>
@@ -64,7 +64,7 @@
 
 			<!-- 2 - Slide -->
 			<div
-				class="snap-element"
+				class="snap-element abs-full"
 				id="snap-slider-slide-2"
 			>
 				<div class="se-ui-container">
@@ -81,11 +81,13 @@
 						<img
 							src="@/assets/images/snap/slide_2/cloud.png"
 							class="sl2-img-cloud"
+							id="slide-2-cloud"
 							alt="Clouds"
 						>
 						<img
 							src="@/assets/images/snap/slide_2/gate.png"
 							class="sl2-center-main"
+							id="slide-2-gate"
 							alt="Gate"
 						>
 						<img
@@ -96,6 +98,7 @@
 						<img
 							src="@/assets/images/snap/slide_2/rock.png"
 							class="sl2-img-rock"
+							id="slide-2-rock"
 							alt="Rock"
 						>
 					</div>
@@ -120,15 +123,31 @@
 
 			<!-- 3 - Slide -->
 			<div
-				class="snap-element"
+				class="snap-element abs-full"
 				id="snap-slider-slide-3"
 			>
 				<div class="se-ui-container">
 					<img
-						src="@/assets/images/snap/slide_3/static.jpg"
+						src="@/assets/images/snap/bg.jpg"
 						alt="Background Image"
 						class="slide-img layer-1"
 					/>
+					<div
+						class="se-ui-glitch-container layer-2"
+						id="slide-3-objects-holder"
+					>
+						<img
+							src="@/assets/images/snap/slide_3/static.jpg"
+							alt="Screen"
+							class="sl3-img abs-full screen"
+						/>
+						<div class="sl3-img abs-full glitch-layer"></div>
+						<img
+							src="@/assets/images/snap/slide_3/frame.png"
+							alt="Monitor Frame"
+							class="sl3-img abs-full monitor"
+						/>
+					</div>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text duration="100">
@@ -148,7 +167,7 @@
 
 			<!-- 4 - Slide -->
 			<div
-				class="snap-element"
+				class="snap-element abs-full"
 				id="snap-slider-slide-4"
 			>
 				<div class="se-ui-container">
@@ -176,7 +195,7 @@
 
 			<!-- 5 - Slide -->
 			<div
-				class="snap-element"
+				class="snap-element abs-full"
 				id="snap-slider-slide-5"
 			>
 				<div class="se-ui-container">
@@ -192,14 +211,18 @@
 
 					<!-- Animation Objects -->
 					<div class="se-ui-plx-sky-container layer-2">
-						<img
-							src="@/assets/images/snap/slide_5/typewriter.png"
-							class="sl2-center-main typewriter"
-							alt="Typewriter"
-						>
+						<div class="typewriter-container abs-full">
+							<img
+								src="@/assets/images/snap/slide_5/typewriter.png"
+								class="sl2-center-main typewriter"
+								id="slide-5-typewriter"
+								alt="Typewriter"
+							>
+						</div>
 						<img
 							src="@/assets/images/snap/slide_2/rock.png"
 							class="sl2-img-rock"
+							id="slide-5-rock"
 							alt="Rock"
 						>
 					</div>
@@ -303,6 +326,8 @@
 	const snapSliderWrapper = ref()
 	const secondSlideText = ref()
 
+	let tl;
+
 	onMounted(() => {
 		// Initial Setup
 		const {
@@ -318,8 +343,7 @@
 		const fourth = config_pairs[3]
 		const fifth = config_pairs[4]
 
-
-		const tl = $gsap.timeline({
+		tl = $gsap.timeline({
 			defaults: {
 				duration: 2
 			},
@@ -327,8 +351,8 @@
 				trigger: snapSliderWrapper.value,
 				start: 'top top',
 				// end: 'bottom top',
-				end: '+=16000',
-				scrub: true,
+				end: '+=25000',
+				scrub: 2,
 				pin: true,
 				pinSpacing: true,
 				anticipatePin: 1
@@ -381,6 +405,21 @@
 			}
 		}
 
+		// Set static values
+		tl
+			.set('#slide-2-gate', {
+				x: '-50%'
+			})
+			.set('#slide-2-rock', {
+				x: '-50%'
+			})
+			.set('#slide-5-typewriter', {
+				x: '-50%'
+			})
+			.set('#slide-5-rock', {
+				x: '-50%'
+			})
+
 		// Animation
 		tl.
 
@@ -390,34 +429,34 @@
 
 			// Card 1
 			.to('#slide-1-rotate-card-1', {
-				rotateX: -307,
-				rotateY: -50,
-				y: -450,
-				// duration: 20
+				rotateX: 360 * 1.1,
+				rotateY: -10,
+				rotateZ: -2,
+				y: '-93vh',
+				x: 200,
 			}, label[1].start)
 
 			// Card 2
 			.to('#slide-1-rotate-card-2', {
-				rotateX: 207,
-				rotateY: 80,
-				y: -350,
-				x: -100
-				// duration: 20
+				rotateX: 360 * 0.95,
+				rotateY: -15,
+				rotateZ: -1,
+				y: '-55vh',
+				x: -100,
 			}, label[1].start)
 
 			// Card 3
 			.to('#slide-1-rotate-card-3', {
-				rotateX: -307,
-				rotateY: -50,
-				y: -350,
-				// duration: 20
+				rotateX: 360 * 0.92,
+				rotateY: 360 * 0.01,
+				rotateZ: 50,
+				y: '-40vh',
 			}, label[1].start)
 			// Progress
 			.to(
 				first.progress,
 				{
 					width: '100%',
-					// duration: 20
 				},
 				label[1].start
 			)
@@ -433,6 +472,24 @@
 
 			// Second Slide
 			.add(label[2].start)
+
+			// Cloud
+			.to('#slide-2-cloud', {
+				left: '30%'
+			}, label[2].start)
+			// /Cloud
+			// Gate
+			.to('#slide-2-gate', {
+				scale: 1.3
+			}, label[2].start)
+			.to('#slide-2-rock', {
+				scale: 1.3
+			}, label[2].start)
+			// /Gate
+
+			.to('#slide-2-cloud', {
+				x: '25vw'
+			}, label[2].start)
 
 			// Progress
 			.to(
@@ -454,6 +511,11 @@
 
 			// Third Slide
 			.add(label[3].start)
+
+			.to('#slide-3-objects-holder', {
+				scale: 1.3,
+				y: '20%'
+			}, label[3].start)
 
 			// Progress
 			.to(
@@ -497,6 +559,23 @@
 			// Fifth Slide
 			.add(label[5].start)
 
+			// Animations
+			.to(
+				'#slide-5-typewriter',
+				{
+					z: 999,
+					y: '15vh'
+				},
+				label[5].start
+			)
+			.to(
+				'#slide-5-rock',
+				{
+					y: '150%'
+				},
+				label[5].start
+			)
+
 			// Progress
 			.to(
 				fifth.progress,
@@ -507,11 +586,28 @@
 			)
 
 	})
+
+	onBeforeUnmount(() => {
+		if (tl) {
+			tl.kill()
+		}
+	})
 </script>
 
 <style lang="scss" scoped>
 	#snap-slider-wrapper-section {
 		position: relative;
+	}
+
+
+	.abs-full {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
 	}
 
 	.snap-content-section {
@@ -521,13 +617,6 @@
 	}
 
 	.snap-element {
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		position: absolute;
-		top: 0;
-		left: 0;
-
 		transform: translateY(100%);
 		transition: all 0.5s ease-in-out;
 
@@ -547,9 +636,6 @@
 
 			// 3D in the first slide
 			.cards-container-3d {
-				transform-style: preserve-3d;
-				perspective: 1000px;
-				perspective-origin: bottom;
 				position: absolute;
 				left: 0;
 				right: 0;
@@ -557,38 +643,41 @@
 				bottom: 0;
 
 				// flex
-				display: flex;
-				justify-content: center;
-				align-items: flex-end;
+				// display: flex;
+				// justify-content: center;
+				// align-items: flex-end;
 
 				.cards-cage {
-					width: 300px;
-					height: 180px;
+
+					position: absolute;
+					left: 50%;
+					top: 100%;
+					transform: translate(-50%, -50%);
+
+					width: 400px;
+					height: 280px;
 					position: relative;
+					perspective-origin: top;
+					perspective: 2000px;
+					transform-style: preserve-3d;
 
 					.rotate-card {
 						display: block;
-						position: absolute;
-						left: 0;
-						right: 0;
-						top: 0;
-						bottom: 0;
-						height: 100%;
-						width: 100%;
 						margin: 0;
+						backface-visibility: visible;
 
 						object-fit: cover;
 
 						&.rtc-1 {
-							transform: translate(-200px, 0)
+							transform: translate3d(100px, 0, -200px)
 						}
 
 						&.rtc-2 {
-							transform: translate(0, 0);
+							transform: translate3d(-100px, 300px, 0);
 						}
 
 						&.rtc-3 {
-							transform: translate(200px, 0);
+							transform: translate3d(250px, 500px, -400px)
 						}
 					}
 				}
@@ -648,7 +737,8 @@
 					// top: 0;
 
 					&.sl2-img-cloud {
-						// opacity: 0;
+						height: 60vh;
+						top: 10vh;
 					}
 
 					&.sl2-center-main {
@@ -678,6 +768,41 @@
 				}
 			}
 
+			// Slide 3
+			.se-ui-glitch-container {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+
+				overflow: hidden;
+
+				.sl3-img {
+					object-fit: cover;
+
+					&.screen {
+						transform: scale(1.01)
+					}
+				}
+
+				.glitch-layer {
+					background-image: url(@/assets/images/snap/slide_3/glitch.webp);
+					background-size: 700px;
+					opacity: 0.4;
+					mix-blend-mode: color;
+				}
+			}
+
+			// Slide 4
+
+			.typewriter-container {
+				transform-style: preserve-3d;
+				transform-origin: center;
+				perspective: 1000px;
+				overflow: hidden;
+			}
+
 
 			.layer-1 {
 				z-index: 1;
@@ -702,6 +827,7 @@
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+				display: block;
 
 				&.mv-card {
 					left: 50%;

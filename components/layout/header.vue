@@ -4,6 +4,7 @@
 			<nuxt-link
 				to="/"
 				class="logo-link"
+				@click.stop="toggleSubMenu(false)"
 			>
 				<img
 					src="@/assets/images/logo.png"
@@ -19,16 +20,24 @@
 				<li
 					v-for="link in headerLinks"
 					class="header-nav-li"
+					:class="{ 'submenu-parent': !!link.sub_menu }"
 					ref="fallInElements"
 				>
 					<nuxt-link
 						:to="link.to"
 						class="header-nav-a"
+						@mouseenter="() => {
+							if (!!link.sub_menu) {
+								toggleSubMenu(true, link)
+							} else if (isSubmenuActive) {
+								toggleSubMenu(false)
+							}
+						}"
 					>
 						<text-roll :text="link.text" />
 						<icon-arrow-down-circle
 							class="header-nav-icon"
-							v-if="link.icon"
+							v-if="!!link.sub_menu"
 						/>
 					</nuxt-link>
 				</li>
@@ -42,8 +51,72 @@
 			</button>
 		</div>
 	</header>
+	<div
+		class="submenu-container"
+		:class="{ active: isSubmenuActive }"
+	>
+		<div
+			class="submenu-box"
+			ref="submenuBox"
+		>
+			<div class="smb-spacer"></div>
+			<div class="layout-box">
+				<div class="sm-container">
+					<div class="sm-row">
+						<div class="sm-col title">
+							<div class="sm-item">
+								<h2
+									class="submenu-title"
+									ref="submenuServicesHeader"
+								>
+									Our Services
+								</h2>
+							</div>
+						</div>
+						<div class="sm-col list">
+							<div class="sm-item">
+								<ul class="sm-list strip-list">
+									<li
+										v-for="(item, i) in submenuItems"
+										@mouseenter="activateSubmenuItem(i)"
+										class="smli"
+										:class="{ active: item.is_active }"
+										ref="submenuElements"
+									>
+										{{ item.text }}
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="sm-col display">
+							<div
+								class="sm-item"
+								ref="submenuImageBox"
+							>
+								<img
+									v-for="item in submenuItems"
+									:src="item.image"
+									:alt="item.text"
+									class="smimg"
+									:class="{ active: item.is_active }"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="submenu-bg"
+			@mouseenter="toggleSubMenu(false)"
+		></div>
+	</div>
 </template>
 <script setup>
+	const {
+		$gsap
+	} = useNuxtApp()
+
 	const headerLinks = [
 		{
 			to: "/about",
@@ -52,7 +125,7 @@
 		{
 			to: "/services",
 			text: "Services",
-			icon: true
+			sub_menu: []
 		},
 		{
 			to: "/portfolio",
@@ -82,10 +155,66 @@
 		toggleMenuVisibility.value = !toggleMenuVisibility.value
 	}
 
+	const submenuItems = ref([
+		{
+			is_active: true,
+			image: "img/services/bespoke.png",
+			text: 'IP Creation & Strategic Thinking'
+		},
+		{
+			is_active: false,
+			image: "img/services/events.png",
+			text: 'Event Production'
+		},
+		{
+			is_active: false,
+			image: "img/services/consultancy.png",
+			text: 'Concept Development & Management'
+		},
+		{
+			is_active: false,
+			image: "img/services/content.png",
+			text: 'Content Creation'
+		},
+		{
+			is_active: false,
+			image: "img/services/design.png",
+			text: 'Design & Branding'
+		},
+		{
+			is_active: false,
+			image: "img/services/digital.png",
+			text: 'Digital Solutions'
+		}
+	])
+	const isSubmenuActive = ref(false)
+
+	let toggle_menu_tl;
+	const submenuBoxHeight = ref(0)
+	const activateSubmenuItem = (index) => {
+		submenuItems.value.forEach((item, i) => {
+			if (i === index) {
+				item.is_active = true
+			} else {
+				item.is_active = false
+			}
+		})
+	}
+	const toggleSubMenu = (value) => {
+		isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
+		if (isSubmenuActive.value) {
+			toggle_menu_tl.play()
+		} else {
+			toggle_menu_tl.reverse()
+		}
+	}
+
+	const submenuBox = ref()
+	const submenuElements = ref()
+	const submenuServicesHeader = ref()
+	const submenuImageBox = ref()
+
 	onMounted(() => {
-		const {
-			$gsap
-		} = useNuxtApp()
 
 		$gsap.set(fallInElements.value, {
 			y: -40,
@@ -112,11 +241,66 @@
 			// stagger: 0.08,
 			delay: 3.7
 		})
+
+		// Toggle Menu
+
+		const _smels = submenuElements.value
+		const _smh = submenuServicesHeader.value
+		const _smb = submenuBox.value
+		const _smib = submenuImageBox.value
+
+		toggle_menu_tl = $gsap.timeline({
+			paused: true,
+			defaults: {
+				duration: 0.5
+			}
+		})
+		const _smbh = _smb.clientHeight
+		submenuBoxHeight.value = _smbh
+
+		const label_s = "begin"
+		toggle_menu_tl
+			.add(label_s)
+			.to(_smb, {
+				height: _smbh
+			}, label_s)
+			.to(_smels, {
+				y: 0,
+				stagger: 0.03
+			}, label_s)
+			.to(_smh, {
+				y: 0
+			}, label_s)
+			.to(_smib, {
+				y: 0
+			}, label_s)
+
+		$gsap.set(
+			_smb,
+			{
+				height: 0
+			}
+		)
+
+		$gsap.set(_smels, {
+			y: 100
+		})
+
+		$gsap.set(_smh, {
+			y: 100
+		})
+
+		$gsap.set(_smib, {
+			y: 100
+		})
+
 	})
 </script>
 <style lang="scss">
 	.layout-header {
 		padding-top: 30px;
+		position: relative;
+		z-index: 2;
 	}
 
 	.logo-link {
@@ -260,4 +444,140 @@
 
 		}
 	}
+
+	.submenu-container {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		z-index: 1;
+		pointer-events: none;
+
+		.submenu-bg {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			background: #0000007b;
+			z-index: 1;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.5s ease-in-out;
+		}
+
+		.submenu-box {
+			background: #141414;
+			z-index: 2;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 10px 30px -10px black;
+
+			.smb-spacer {
+				padding: 100px 0 0;
+				margin-bottom: 55px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+			}
+		}
+
+		&.active {
+			pointer-events: all;
+
+			.submenu-bg {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	.sm-container {
+		width: 100%;
+		overflow: hidden;
+
+		.sm-row {
+			margin: 0 -10px;
+			display: flex;
+
+			.sm-col {
+				margin: 0 10px;
+
+				.sm-item {
+					position: relative;
+					height: 100%;
+					width: 100%;
+				}
+
+				&.title {
+					width: 20%;
+				}
+
+				&.list {
+					width: 40%;
+				}
+
+				&.display {
+					width: 40%;
+
+					.smimg {
+						position: absolute;
+						bottom: 0;
+						left: 50%;
+						transform: translate(-50%, 0);
+						width: 100%;
+						height: auto;
+						max-height: 100%;
+						object-fit: contain;
+						opacity: 0;
+						transition: all 0.5s ease-in-out;
+
+						&.active {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+
+		.sm-list {
+			margin: 0;
+			padding-bottom: 45px;
+
+			.smli {
+				margin: 0 0 15px;
+				font-size: 30px;
+				font-weight: 700;
+				cursor: pointer;
+				user-select: none;
+				transition: opacity 0.4s ease-in-out;
+				line-height: 45px;
+				max-width: 430px;
+
+				&.active {
+					opacity: 1;
+				}
+			}
+
+			&:hover {
+				.smli {
+					opacity: 0.2;
+
+					&.active {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		h2.submenu-title {
+			font-family: 'Newyork';
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 19.88px;
+			letter-spacing: 0.05em;
+			text-align: left;
+			margin: 0;
+		}
+	}
+
 </style>

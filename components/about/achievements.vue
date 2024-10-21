@@ -10,11 +10,16 @@
 				<div class="num-row">
 					<div
 						class="num-col"
-						v-for="num in numbers"
+						v-for="(num, i) in numbers"
 					>
 						<div class="num-item">
 							<h3 class="num-number">
-								{{ num.number }}
+								<span class="achievement-stat-number-text">
+									{{ num.number }}
+								</span>
+								<span>
+									{{ num.symbol }}
+								</span>
 							</h3>
 							<h4 class="num-title">
 								{{ num.title }}
@@ -94,7 +99,8 @@
 			title: "Years"
 		},
 		{
-			number: "45+",
+			number: "45",
+			symbol: "+",
 			title: "Clients"
 		},
 		{
@@ -102,6 +108,35 @@
 			title: "Events"
 		},
 	]
+
+	onMounted(() => {
+		const {
+			$gsap
+		} = useNuxtApp()
+
+		const _stats = $gsap.utils.toArray('.achievement-stat-number-text')
+		_stats.forEach((stat_element) => {
+			$gsap.from(stat_element, {
+				textContent: "0",
+				modifiers: {
+					textContent: value => formatNumber(value, 0)
+				},
+				scrollTrigger: {
+					trigger: stat_element,
+					start: "top bottom",
+					once: false,
+					duration: 5,
+					delay: 0.5,
+					toggleActions: "restart none none none"
+				}
+			})
+		})
+	})
+
+	function formatNumber (value, decimals) {
+		let s = (+value).toLocaleString('en-US').split(".");
+		return decimals ? s[0] + "." + ((s[1] || "") + "00000000").substr(0, decimals) : s[0];
+	}
 </script>
 <style lang="scss">
 	section#about-achievements {
