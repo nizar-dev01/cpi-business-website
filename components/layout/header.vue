@@ -114,7 +114,8 @@
 </template>
 <script setup>
 	const {
-		$gsap
+		$gsap,
+		$lenis
 	} = useNuxtApp()
 
 	const headerLinks = [
@@ -204,8 +205,10 @@
 		isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
 		if (isSubmenuActive.value) {
 			toggle_menu_tl.play()
+			$lenis.instance.stop()
 		} else {
 			toggle_menu_tl.reverse()
+			$lenis.instance.start()
 		}
 	}
 
