@@ -29,6 +29,7 @@
 						text="Our Work"
 						class="wide"
 						@mousemove.prevent.stop
+						@click.prevent="$router.push('/portfolio')"
 					/>
 
 					<button-sq
@@ -36,6 +37,7 @@
 						class="wide"
 						:blue="true"
 						@mousemove.prevent.stop
+						@click.prevent="$router.push('/services')"
 					/>
 				</div>
 			</div>
@@ -98,7 +100,7 @@
 <style lang="scss">
 	.layout-footer {
 		background: black;
-		border-radius: 40px 40px 0 0;
+		// border-radius: 40px 40px 0 0;
 		padding: 110px 0 0;
 	}
 

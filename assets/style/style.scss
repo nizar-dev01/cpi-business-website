@@ -118,3 +118,13 @@ $dot-radius: 2vw;
 .w-100 {
 	width: 100%;
 }
+
+.clearfix {
+
+	&::after,
+	&::before {
+		content: '';
+		display: inline-block;
+		content: ''
+	}
+}

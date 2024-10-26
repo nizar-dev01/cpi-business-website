@@ -25,7 +25,11 @@
 		'container-class',
 		'character-class',
 		'word-class',
-		'scroll-reveal'
+		'scroll-reveal',
+		'stagger',
+		'start',
+		'end',
+		'duration'
 	])
 
 	const chars = ref(props.text.split(" ").map(el => el.split("")))
@@ -51,23 +55,24 @@
 		if (props.scrollReveal) {
 			const _characters = characterSpans.value
 			$gsap.set(_characters, {
-				y: 50,
+				y: 300,
 				opacity: 0
 			})
 
 			$gsap.to(_characters, {
 				scrollTrigger: {
 					trigger: parentSpan.value,
-					start: "top 90%",
-					end: "top 40%",
+					start: props.start || "top bottom",
+					end: props.end || "top top",
+					toggleActions: props.toggleActions || "play none none reverse",
 					// scrub: 1,
 					// once: true,
 					// markers: true,
 				},
-				duration: 0.4,
+				duration: props.duration || 0.5,
 				y: 0,
 				opacity: 1,
-				stagger: 0.01
+				stagger: props.stagger === undefined ? 0.01 : props.stagger
 			})
 		}
 	})

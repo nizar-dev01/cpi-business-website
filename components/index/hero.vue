@@ -1,6 +1,6 @@
 <template>
 	<section id="index-section-hero">
-		<div class="layout-box noverflow">
+		<div class="layout-box">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
 				We are solution architects with multi-discipline capabilities including content creation, event design,
@@ -10,11 +10,13 @@
 				<button-sq
 					text="Our Work"
 					class="btn-hero-action wide"
+					@click.prevent="$router.push('/portfolio')"
 				/>
 				<button-sq
 					text="Our Capabilities"
 					class="btn-hero-action wide"
 					:blue="true"
+					@click.prevent="$router.push('/services')"
 				/>
 			</div>
 		</div>

@@ -9,27 +9,35 @@
 				<span>EXPERIENCES</span> <span class="center-dot"></span>
 			</div>
 		</horizontal-text>
-		<div class="layout-box noverflow">
+		<div class="layout-box">
 			<div class="flex-col">
 				<h4 class="about-h4">
 					<text-splitter
 						text="We are an ambitious, optimistic and creative bunch of people."
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 					<text-splitter
 						text="We are here to help our clients defy what is conventional, redefine their experiences and deliver unforgettable brand moments."
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 				</h4>
 				<h4 class="origin-h4">
 					<text-splitter
 						text="Since 2016, we have created meaningful impact through our physical, virtual & hybrid events, activations and brand engagements."
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 					<br><br>
 					<text-splitter
 						text="We have proudly been a part of the growth journey of the following key clients:"
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 				</h4>
 
@@ -41,16 +49,22 @@
 					<text-splitter
 						text="We unite brand, tech and"
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 					<br>
 					<text-splitter
 						text="experience to turnaround projects "
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 					<br>
 					<text-splitter
 						text="that drive impact to your key audiences."
 						:scroll-reveal="true"
+						:stagger="false"
+						:duration="1"
 					/>
 				</h4>
 			</div>

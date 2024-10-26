@@ -52,7 +52,7 @@
 					pin: props.pin !== undefined ? props.pin : true,
 					start: props.start || "top top",
 					end: props.end || "bottom top",
-					scrub: 2,
+					scrub: true,
 					markers: props.stmarkers || false,
 					pinSpacing: true,
 					ease: 'none',
@@ -117,7 +117,7 @@
 			// path: "https://lottie.host/cb2010f5-8be1-45b8-a33c-b18f3dccd8e1/GpMOdzAqTg.json",
 			path: basePath + "/animation_entry/Ball_Seq 2.json",
 			speed: "slow",
-			scrub: 2, // seconds it takes for the playhead to "catch up",
+			scrub: true, // seconds it takes for the playhead to "catch up",
 			direction: props.direction || null
 			// you can also add ANY ScrollTrigger values here too, like trigger, start, end, onEnter, onLeave, onUpdate, etc. See https://greensock.com/docs/v3/Plugins/ScrollTrigger
 			// you can pass in a "timeline" that has existing animations in it, and LottieScrollTrigger will play that alongside the Lottie animation

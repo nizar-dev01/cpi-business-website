@@ -1,3 +1,3 @@
-@import 'lenis/dist/lenis.css';
-@import url(./fonts/setup.scss);
-@import url(./style.scss);
+@use 'lenis/dist/lenis.css';
+@use './fonts/setup.scss';
+@use './style.scss';

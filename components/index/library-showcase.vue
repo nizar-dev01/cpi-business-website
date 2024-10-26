@@ -17,6 +17,7 @@
 						<button-sq
 							text="Read More"
 							class="rounded showcase-action-bt"
+							@click.prevent="$router.push('/blog')"
 						/>
 					</div>
 				</div>

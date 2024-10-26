@@ -22,5 +22,4 @@
 			stroke="white"
 		/>
 	</svg>
-
 </template>

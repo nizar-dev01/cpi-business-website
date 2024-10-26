@@ -1,6 +1,6 @@
 <template>
 	<section class="events-showcase">
-		<div class="layout-box">
+		<div class="layout-box clearfix">
 			<div class="showcase-container">
 				<div
 					class="showcase-row"
@@ -66,6 +66,7 @@
 				<button-sq
 					text="View More"
 					class="rounded showcase-action-bt"
+					@click.prevent="$router.push('/portfolio')"
 				/>
 			</div>
 		</div>
@@ -146,11 +147,6 @@
 				},
 			})
 		})
-
-		// gsap.set(items, {
-		// 	opacity: 0,
-		// 	y: _yfall
-		// })
 	})
 
 	const basePath = window.location.href.split('//')[1].includes('/cpi-public/') ? "/cpi-public/" : "/"
@@ -208,9 +204,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.events-showcase {
-		// padding-top: 150px;
-	}
+	// .events-showcase {
+	// 	// padding-top: 150px;
+	// }
 
 	.showcase-container {
 		overflow: hidden;

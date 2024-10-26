@@ -1,10 +1,16 @@
 <template>
-	<header class="layout-header">
+	<header
+		class="layout-header"
+		ref="headerElement"
+	>
 		<div class="layout-box header-box">
 			<nuxt-link
 				to="/"
 				class="logo-link"
-				@click.stop="toggleSubMenu(false)"
+				@click.stop="() => {
+					toggleSubMenu(false)
+					toggleNavMenu(false)
+				}"
 			>
 				<img
 					src="@/assets/images/logo.png"
@@ -33,6 +39,11 @@
 								toggleSubMenu(false)
 							}
 						}"
+						@click="() => {
+							if (isSubmenuActive) {
+								toggleSubMenu(false)
+							}
+						}"
 					>
 						<text-roll :text="link.text" />
 						<icon-arrow-down-circle
@@ -45,7 +56,7 @@
 			<button
 				class="nav-toggler"
 				:class="{ 'toggle': toggleMenuVisibility }"
-				@click.prevent="toggleNavMenu"
+				@click.prevent="toggleNavMenu()"
 			>
 				MENU
 			</button>
@@ -140,10 +151,10 @@
 			to: "/contact",
 			text: "Contact Us"
 		},
-		{
-			to: "/careers",
-			text: "Careers"
-		}
+		// {
+		// 	to: "/careers",
+		// 	text: "Careers"
+		// }
 	]
 
 	const fallInElements = ref()
@@ -152,8 +163,10 @@
 
 	const toggleMenuVisibility = ref(false)
 
-	const toggleNavMenu = () => {
-		toggleMenuVisibility.value = !toggleMenuVisibility.value
+	const toggleNavMenu = (value) => {
+		toggleMenuVisibility.value = (value !== undefined)
+			? value : !toggleMenuVisibility.value
+		console.log(value)
 	}
 
 	const submenuItems = ref([
@@ -202,6 +215,7 @@
 		})
 	}
 	const toggleSubMenu = (value) => {
+		if (window.innerWidth < 1151) return
 		isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
 		if (isSubmenuActive.value) {
 			toggle_menu_tl.play()
@@ -217,7 +231,11 @@
 	const submenuServicesHeader = ref()
 	const submenuImageBox = ref()
 
+	const headerElement = ref()
+	const headerHeight = ref(0)
+
 	onMounted(() => {
+		headerHeight.value = headerElement.value.getBoundingClientRect().height
 
 		$gsap.set(fallInElements.value, {
 			y: -40,
@@ -298,18 +316,26 @@
 		})
 
 	})
+
+	defineExpose({
+		headerHeight
+	})
 </script>
 <style lang="scss">
 	.layout-header {
 		padding-top: 30px;
-		position: relative;
-		z-index: 2;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		z-index: 10;
 	}
 
 	.logo-link {
 		height: 48px;
 		width: auto;
 		display: inline-block;
+		position: relative;
 
 		img.logo-img {
 			height: 100%;
@@ -405,7 +431,7 @@
 			background: none;
 			border: none;
 			color: transparent;
-			height: 10px;
+			height: 30px;
 			width: 30px;
 			position: relative;
 			margin: auto 0;
@@ -426,11 +452,13 @@
 			}
 
 			&::before {
-				top: 0%;
+				top: 50%;
+				transform: translate(0, -5px);
 			}
 
 			&::after {
-				bottom: 0%;
+				bottom: 50%;
+				transform: translate(0, 5px);
 			}
 
 			&.toggle {
@@ -454,7 +482,7 @@
 		right: 0;
 		bottom: 0;
 		top: 0;
-		z-index: 1;
+		z-index: 9;
 		pointer-events: none;
 
 		.submenu-bg {

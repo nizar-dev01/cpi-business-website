@@ -1,8 +1,13 @@
 import glsl from 'vite-plugin-glsl'
 
 export default defineNuxtConfig({
-	compatibilityDate: '2024-04-03',
+	compatibilityDate: '2024-10-24',
+
 	devtools: { enabled: true },
+
+	app: {
+		pageTransition: { name: 'page', mode: 'out-in' }
+	},
 
 	css: [
 		'@fortawesome/fontawesome-svg-core/styles.css'
@@ -20,11 +25,12 @@ export default defineNuxtConfig({
 			preprocessorOptions: {
 				scss: {
 					api: 'modern', // This gets rid of the "legacy JS API is deprecated" warning
-					additionalData: `@import "@/assets/style/breakpoints.scss";`,
+					additionalData: `@use "./assets/style/breakpoints.scss" as *;`,
 				},
 			},
 		},
 	},
+
 	vue: {
 		compilerOptions: {
 			isCustomElement: (tag) => {
@@ -32,12 +38,14 @@ export default defineNuxtConfig({
 			}
 		}
 	},
+
 	nitro: {
 		prerender: {
 			crawlLinks: true,
 			failOnError: false,
 		},
 	},
+
 	modules: [
 		'@pinia/nuxt'
 	]

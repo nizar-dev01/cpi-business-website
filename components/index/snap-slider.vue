@@ -648,7 +648,6 @@
 				// align-items: flex-end;
 
 				.cards-cage {
-
 					position: absolute;
 					left: 50%;
 					top: 100%;
@@ -658,7 +657,7 @@
 					height: 280px;
 					position: relative;
 					perspective-origin: top;
-					perspective: 2000px;
+					perspective: 1700px;
 					transform-style: preserve-3d;
 
 					.rotate-card {
@@ -763,7 +762,7 @@
 						top: unset;
 						bottom: -7vh;
 						left: 50%;
-						transform: translate(-50%, 0) rotateZ(-3deg);
+						// transform: translate(-50%, 0) rotateZ(-3deg);
 					}
 				}
 			}
