@@ -136,17 +136,31 @@
 						class="se-ui-glitch-container layer-2"
 						id="slide-3-objects-holder"
 					>
-						<img
+						<!-- <img
 							src="@/assets/images/snap/slide_3/static.jpg"
 							alt="Screen"
 							class="sl3-img abs-full screen"
-						/>
-						<div class="sl3-img abs-full glitch-layer"></div>
-						<img
-							src="@/assets/images/snap/slide_3/frame.png"
-							alt="Monitor Frame"
-							class="sl3-img abs-full monitor"
-						/>
+						/> -->
+						<div class="tv-set-box">
+							<div class="tv-box">
+								<img
+									src="@/assets/images/snap/screen.png"
+									alt="Surface Image"
+									class="sl3-tv-screen"
+								/>
+								<div class="glitch-layer"></div>
+								<img
+									src="@/assets/images/snap/Tv_only.png"
+									alt="Monitor Frame"
+									class="sl3-tv-frame"
+								/>
+							</div>
+							<img
+								src="@/assets/images/snap/tvstand.png"
+								alt="Surface Image"
+								class="tvstand"
+							/>
+						</div>
 					</div>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
@@ -172,9 +186,23 @@
 			>
 				<div class="se-ui-container">
 					<img
-						src="@/assets/images/snap/slide_4/static.jpg"
+						src="@/assets/images/snap/bg.jpg"
 						alt="Background Image"
 						class="slide-img layer-1"
+					/>
+					<!-- Floating Banner -->
+					<img
+						src="@/assets/images/snap/slide_4/banner.png"
+						alt="Floating Banner"
+						class="sl4-banner layer-2"
+						id="slide-4-banner"
+					>
+					<!-- / Floating Banner -->
+					<img
+						src="@/assets/images/snap/slide_1/fg_block.png"
+						alt="Background Image"
+						class="slide-img layer-3"
+						id="slide-4-wall"
 					/>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
@@ -408,16 +436,21 @@
 		// Set static values
 		tl
 			.set('#slide-2-gate', {
-				x: '-50%'
+				xPercent: -50
 			})
 			.set('#slide-2-rock', {
-				x: '-50%'
+				xPercent: -50
 			})
 			.set('#slide-5-typewriter', {
-				x: '-50%'
+				xPercent: -50
 			})
 			.set('#slide-5-rock', {
-				x: '-50%'
+				xPercent: -50
+			}).
+			set('#slide-4-banner', {
+				xPercent: -50,
+				yPercent: -40,
+				scale: 0.6
 			})
 
 		// Animation
@@ -537,6 +570,13 @@
 
 			// Fourth Slide
 			.add(label[4].start)
+			.to('#slide-4-banner', {
+				yPercent: 0,
+				scale: 1
+			}, label[4].start)
+			.to('#slide-4-wall', {
+				yPercent: 10
+			}, label[4].start)
 
 			// Progress
 			.to(
@@ -563,15 +603,17 @@
 			.to(
 				'#slide-5-typewriter',
 				{
-					z: 999,
-					y: '15vh'
+					z: 888,
+					y: '15vh',
+					delay: 0.5
 				},
 				label[5].start
 			)
 			.to(
 				'#slide-5-rock',
 				{
-					y: '150%'
+					yPercent: 150,
+					delay: 0.5
 				},
 				label[5].start
 			)
@@ -618,7 +660,8 @@
 
 	.snap-element {
 		transform: translateY(100%);
-		transition: all 0.5s ease-in-out;
+		transition: all 0.7s cubic-bezier(0.75, 0.03, 0.36, 1);
+		overflow: hidden;
 
 		&.active {
 			transform: translateY(0);
@@ -626,7 +669,9 @@
 
 		&.past {
 			opacity: 0;
-			transform: translateY(-100%)
+			transform: translateY(-20%) scale(1.1);
+			border-radius: 50px;
+			overflow: hidden;
 		}
 
 		.se-ui-container {
@@ -745,7 +790,7 @@
 						top: unset;
 						bottom: 0;
 						left: 50%;
-						transform: translate(-50%, 0);
+						// transform: translate(-50%, 0);
 
 						&.typewriter {
 							bottom: 15vh;
@@ -774,7 +819,6 @@
 				right: 0;
 				top: 0;
 				bottom: 0;
-
 				overflow: hidden;
 
 				.sl3-img {
@@ -785,16 +829,68 @@
 					}
 				}
 
+				.tv-set-box {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+
+					position: absolute;
+					left: 0;
+					right: 0;
+					bottom: 0;
+
+					img.tvstand {
+						width: 100%;
+						height: auto;
+					}
+				}
+
+				.tv-box {
+					height: 60vh;
+					width: 60vh;
+					overflow: hidden;
+					position: relative;
+					transform: translate(0, 10px);
+
+					.sl3-tv-frame {
+						height: 100%;
+						width: 100%;
+						position: relative;
+					}
+
+					.sl3-tv-screen {
+						position: absolute;
+						left: 7%;
+						top: 5%;
+						object-fit: cover;
+						width: 88%;
+						height: 69%;
+					}
+				}
+
 				.glitch-layer {
 					background-image: url(@/assets/images/snap/slide_3/glitch.webp);
 					background-size: 700px;
 					opacity: 0.4;
 					mix-blend-mode: color;
+
+					position: absolute;
+					left: 20px;
+					right: 20px;
+					top: 20px;
+					bottom: 20px;
 				}
 			}
 
 			// Slide 4
+			.sl4-banner {
+				position: absolute;
+				left: 50%;
+				top: 0;
+				height: 80vh;
+			}
 
+			// Side 5
 			.typewriter-container {
 				transform-style: preserve-3d;
 				transform-origin: center;
@@ -834,19 +930,19 @@
 					height: 200px;
 					width: 300px;
 
-					&.mvc-1 {
-						// transform:
-						// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
-					}
+					// &.mvc-1 {
+					// 	// transform:
+					// 	// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
+					// }
 
-					&.mvc-2 {
-						// transform:
-						// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
-					}
+					// &.mvc-2 {
+					// 	// transform:
+					// 	// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
+					// }
 
-					&.mvc-3 {
-						// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
-					}
+					// &.mvc-3 {
+					// 	// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
+					// }
 				}
 			}
 
