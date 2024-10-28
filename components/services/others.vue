@@ -39,32 +39,32 @@
 	const services = ref([
 		{
 			is_active: false,
-			image: "img/services/events.png",
+			image: "/img/services/events.png",
 			text: 'Event Management'
 		},
 		{
 			is_active: false,
-			image: "img/services/content.png",
+			image: "/img/services/content.png",
 			text: 'Content Creation'
 		},
 		{
 			is_active: false,
-			image: "img/services/design.png",
+			image: "/img/services/design.png",
 			text: 'Design & Branding'
 		},
 		{
 			is_active: false,
-			image: "img/services/digital.png",
+			image: "/img/services/digital.png",
 			text: 'Digital Solutions'
 		},
 		{
 			is_active: false,
-			image: "img/services/consultancy.png",
+			image: "/img/services/consultancy.png",
 			text: 'Consultancy Services'
 		},
 		{
 			is_active: true,
-			image: "img/services/bespoke.png",
+			image: "/img/services/bespoke.png",
 			text: 'Bespoke Solutions'
 		}
 	])

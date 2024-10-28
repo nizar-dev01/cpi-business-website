@@ -5,18 +5,15 @@
 			v-for="item in items"
 			:class="{ active: item.currentHeight !== 0 }"
 		>
-			<div class="title-box">
-				<h3
-					class="item-title"
-					@click="toggleItem(item)"
-				>
+			<div
+				class="title-box"
+				@mouseenter="toggleItem(item)"
+			>
+				<h3 class="item-title">
 					{{ item.title }}
 				</h3>
 
-				<div
-					class="toggler-box"
-					@click="toggleItem(item)"
-				>
+				<div class="toggler-box">
 					<icon-arrow-down-circle class="accordion-toggle-icon down" />
 					<icon-arrow-up-circle-white class="accordion-toggle-icon up" />
 				</div>

@@ -60,6 +60,7 @@
 
 <style lang="scss" scoped>
 	section#index-section-hero {
+		padding-top: 12vh;
 		padding-bottom: 30px;
 		border-top: 1px solid transparent;
 	}

@@ -1,19 +1,24 @@
 <template>
 	<div class="rollingText-track">
+		<slot name="subtitle"></slot>
 		<div
 			class="rollingText"
 			ref="rollingText"
+			@mouseenter="setCursorStateNav"
+			@mouseleave="setCursorStateDefault"
 		>
 			<slot></slot>
 		</div>
 	</div>
 </template>
 <script setup>
-	const props = defineProps(['duration'])
+	const props = defineProps(['duration', 'showNavCursor'])
 	const rollingText = ref(null)
+
+	const appStore = useAppStore()
+
 	onMounted(() => {
 		const {
-			$Observer: Observer,
 			$gsap: gsap,
 			$ScrollTrigger: ScrollTrigger
 		} = useNuxtApp()
@@ -100,6 +105,17 @@
 			ScrollTrigger.refresh()
 		}, 0)
 	})
+
+	const setCursorStateNav = () => {
+		if (props.showNavCursor) {
+			appStore.setCursorState("nav")
+		}
+	}
+	const setCursorStateDefault = () => {
+		if (props.showNavCursor) {
+			appStore.setCursorState()
+		}
+	}
 </script>
 <style lang="scss" scoped>
 	.rollingText-track {

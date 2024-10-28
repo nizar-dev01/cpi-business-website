@@ -47,6 +47,7 @@
 
 <style lang="scss" scoped>
 	#about-section-hero {
+		padding-top: 12vh;
 		min-height: 100vh
 	}
 

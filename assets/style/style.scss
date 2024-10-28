@@ -85,16 +85,16 @@ $dot-radius: 2vw;
 	}
 
 	user-select: none;
-	font-size: 257px;
+	font-size: 14vw;
+	line-height: 14vw;
 	font-weight: 600;
 	color: $text-color;
 	font-family: 'Metropolis';
-	display: inline-block;
+	display: flex;
 
 
 	span {
-		margin: 0 100px;
-		line-height: 100px;
+		margin: 0 2vw;
 
 		&.center-dot {
 			position: relative;

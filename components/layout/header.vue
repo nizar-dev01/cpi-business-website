@@ -93,6 +93,7 @@
 										class="smli"
 										:class="{ active: item.is_active }"
 										ref="submenuElements"
+										@click="goToService(item)"
 									>
 										{{ item.text }}
 									</li>
@@ -172,32 +173,38 @@
 	const submenuItems = ref([
 		{
 			is_active: true,
-			image: "img/services/bespoke.png",
+			uid: "ip-creation",
+			image: "/img/services/bespoke.png",
 			text: 'IP Creation & Strategic Thinking'
 		},
 		{
 			is_active: false,
-			image: "img/services/events.png",
+			uid: "event-production",
+			image: "/img/services/events.png",
 			text: 'Event Production'
 		},
 		{
 			is_active: false,
-			image: "img/services/consultancy.png",
+			uid: "concept-development",
+			image: "/img/services/consultancy.png",
 			text: 'Concept Development & Management'
 		},
 		{
 			is_active: false,
-			image: "img/services/content.png",
+			uid: "content-creation",
+			image: "/img/services/content.png",
 			text: 'Content Creation'
 		},
 		{
 			is_active: false,
-			image: "img/services/design.png",
+			uid: "design-n-branding",
+			image: "/img/services/design.png",
 			text: 'Design & Branding'
 		},
 		{
 			is_active: false,
-			image: "img/services/digital.png",
+			uid: "digital-solutions",
+			image: "/img/services/digital.png",
 			text: 'Digital Solutions'
 		}
 	])
@@ -224,6 +231,12 @@
 			toggle_menu_tl.reverse()
 			$lenis.instance.start()
 		}
+	}
+
+	const router = useRouter()
+	const goToService = (service) => {
+		router.push('/services/' + service.uid)
+		toggleSubMenu(false)
 	}
 
 	const submenuBox = ref()

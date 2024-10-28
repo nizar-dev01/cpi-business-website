@@ -47,7 +47,17 @@
 					/>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
-						<horizontal-text duration="100">
+						<horizontal-text
+							duration="100"
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[0].subtitle }}
+									</h2>
+								</div>
+							</template>
 							<div class="h-slide-text white">
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -106,7 +116,17 @@
 
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
-						<horizontal-text duration="100">
+						<horizontal-text
+							duration="100"
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[1].subtitle }}
+									</h2>
+								</div>
+							</template>
 							<div class="h-slide-text white">
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -164,7 +184,17 @@
 					</div>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
-						<horizontal-text duration="100">
+						<horizontal-text
+							duration="100"
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[2].subtitle }}
+									</h2>
+								</div>
+							</template>
 							<div class="h-slide-text white">
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -206,7 +236,17 @@
 					/>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
-						<horizontal-text duration="100">
+						<horizontal-text
+							duration="100"
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[3].subtitle }}
+									</h2>
+								</div>
+							</template>
 							<div class="h-slide-text white">
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -258,7 +298,17 @@
 
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
-						<horizontal-text duration="100">
+						<horizontal-text
+							duration="100"
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[4].subtitle }}
+									</h2>
+								</div>
+							</template>
 							<div class="h-slide-text white">
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -349,6 +399,25 @@
 			slide: '#snap-slider-slide-5',
 			progress: '#snap-slider-slide-progress-5'
 		}
+	]
+	// slidingText[3].subtitle 
+
+	const slidingText = [
+		{
+			subtitle: "Design & Branding",
+		},
+		{
+			subtitle: "Bespoke Solutions",
+		},
+		{
+			subtitle: "Consultancy Services",
+		},
+		{
+			subtitle: "Event Management",
+		},
+		{
+			subtitle: "Content Creation",
+		},
 	]
 
 	const snapSliderWrapper = ref()
@@ -449,7 +518,7 @@
 			}).
 			set('#slide-4-banner', {
 				xPercent: -50,
-				yPercent: -40,
+				yPercent: -30,
 				scale: 0.6
 			})
 
@@ -698,8 +767,8 @@
 					top: 100%;
 					transform: translate(-50%, -50%);
 
-					width: 400px;
-					height: 280px;
+					width: 20vw;
+					height: 12vw;
 					position: relative;
 					perspective-origin: top;
 					perspective: 1700px;
@@ -729,7 +798,7 @@
 
 			.seui-sliding-text-container {
 				position: absolute;
-				bottom: 120px;
+				bottom: 70px;
 				left: 0;
 				right: 0;
 				color: white;
@@ -737,23 +806,34 @@
 
 
 				&:hover {
-					transform: scale(1.05);
 					transform-origin: center;
 
 					span {
-						color: rgba(255, 255, 255, 0.1);
+						color: rgba(255, 255, 255, 0.01);
 						// backdrop-filter: blur(5px);
 					}
 
 					span.center-dot::after {
-						background: rgba(255, 255, 255, 0.1);
+						background: rgba(255, 255, 255, 0.01);
 						border: 2px solid white;
 					}
 				}
 
+				.hs-subtitle {
+					font-size: 5vh;
+					font-weight: 400;
+					margin: 0 0 2vh;
+				}
+
 				.h-slide-text {
-					font-size: 200px;
 					opacity: 1;
+					transition: 1s all ease;
+					transform-origin: center;
+
+					&:hover {
+
+						transform: scale(1.05);
+					}
 
 					span {
 						-webkit-text-stroke: 2px white;
@@ -847,7 +927,7 @@
 
 				.tv-box {
 					height: 60vh;
-					width: 60vh;
+					width: 55vh;
 					overflow: hidden;
 					position: relative;
 					transform: translate(0, 10px);
@@ -968,9 +1048,9 @@
 		position: absolute;
 		left: 0;
 		right: 0;
-		bottom: 30px;
+		bottom: 0;
 		width: 100%;
-		padding-bottom: 80px;
+		padding-bottom: 50px;
 		z-index: 2;
 		overflow: hidden;
 	}
@@ -984,7 +1064,7 @@
 	}
 
 	.pb-progress-holder {
-		height: 5px;
+		height: 2px;
 		box-sizing: border-box;
 		border-radius: 2px;
 		background: #ffffff33;

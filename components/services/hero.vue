@@ -1,11 +1,19 @@
 <template>
 	<section id="services-hero-section">
-		<img
-			src="@/assets/images/team.jpeg"
-			alt="Hero Image"
-			class="services-hero-img"
-			id="services-hero-img"
-		/>
+		<div class="services-banner-img-container">
+			<img
+				src="@/assets/images/snap/bg.jpg"
+				alt="Background Image"
+				class="sbic-bg"
+			/>
+			<img
+				:src="current_page_target.image"
+				alt="Hero Image"
+				class="sbic-fg"
+				id="services-hero-img"
+			/>
+
+		</div>
 		<div class="shr-text-slider">
 			<div class="layout-box">
 				<h2 class="hs-subtitle">
@@ -26,6 +34,38 @@
 	</section>
 </template>
 <script setup>
+	const available_services = [
+		{
+			uid: "ip-creation",
+			image: "/img/services/bespoke.png"
+		},
+		{
+			uid: "event-production",
+			image: "/img/services/events.png"
+		},
+		{
+			uid: "concept-development",
+			image: "/img/services/consultancy.png"
+		},
+		{
+			uid: "content-creation",
+			image: "/img/services/content.png"
+		},
+		{
+			uid: "design-n-branding",
+			image: "/img/services/design.png"
+		},
+		{
+			uid: "digital-solutions",
+			image: "/img/services/digital.png"
+		}
+	]
+	const route = useRoute()
+
+	const current_page_target = ref(
+		available_services.find(el => el.uid === route.params.service) ||
+		available_services[0]
+	)
 
 	onMounted(() => {
 		const {
@@ -33,7 +73,7 @@
 		} = useNuxtApp()
 
 		gsap.to('#services-hero-section', {
-			y: '35%',
+			y: '20%',
 			ease: 'none',
 			scrollTrigger: {
 				trigger: "#services-hero-section",
@@ -47,8 +87,35 @@
 <style lang="scss" scoped>
 	#services-hero-section {
 		position: relative;
-		height: 120svh;
+		height: 100svh;
 		z-index: 1;
+	}
+
+	.services-banner-img-container {
+		height: 100%;
+		width: 100%;
+		position: relative;
+
+		.sbic-bg {
+			display: block;
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+		}
+
+		.sbic-fg {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			height: 90vh;
+			width: auto;
+			transform: translate(-50%, 0);
+		}
 	}
 
 	.services-hero-img {
@@ -60,7 +127,7 @@
 
 	.shr-text-slider {
 		position: absolute;
-		bottom: 30svh;
+		bottom: 5svh;
 		left: 0;
 		right: 0;
 		width: 100%;
