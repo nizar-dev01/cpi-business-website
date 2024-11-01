@@ -7,7 +7,15 @@
 		<div class="snap-content-section">
 			<!-- 1 - Slide -->
 			<div
-				class="snap-element active"
+				class="snap-element"
+				:class="[
+					{
+						active: _config_pairs[0].is_active
+					},
+					{
+						past: _config_pairs[0].is_past
+					}
+				]"
 				id="snap-slider-slide-1"
 			>
 				<div class="se-ui-container">
@@ -58,7 +66,10 @@
 									</h2>
 								</div>
 							</template>
-							<div class="h-slide-text white">
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('design-n-branding', 0)"
+							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
 								<span>DIGITAL</span> <span class="center-dot"></span>
@@ -76,6 +87,14 @@
 			<div
 				class="snap-element abs-full"
 				id="snap-slider-slide-2"
+				:class="[
+					{
+						active: _config_pairs[1].is_active
+					},
+					{
+						past: _config_pairs[1].is_past
+					}
+				]"
 			>
 				<div class="se-ui-container">
 					<!-- Background -->
@@ -127,7 +146,10 @@
 									</h2>
 								</div>
 							</template>
-							<div class="h-slide-text white">
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('ip-creation', 1)"
+							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
 								<span>DIGITAL</span> <span class="center-dot"></span>
@@ -145,6 +167,14 @@
 			<div
 				class="snap-element abs-full"
 				id="snap-slider-slide-3"
+				:class="[
+					{
+						active: _config_pairs[2].is_active
+					},
+					{
+						past: _config_pairs[2].is_past
+					}
+				]"
 			>
 				<div class="se-ui-container">
 					<img
@@ -195,7 +225,10 @@
 									</h2>
 								</div>
 							</template>
-							<div class="h-slide-text white">
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('concept-development', 2)"
+							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
 								<span>DIGITAL</span> <span class="center-dot"></span>
@@ -213,6 +246,14 @@
 			<div
 				class="snap-element abs-full"
 				id="snap-slider-slide-4"
+				:class="[
+					{
+						active: _config_pairs[3].is_active
+					},
+					{
+						past: _config_pairs[3].is_past
+					}
+				]"
 			>
 				<div class="se-ui-container">
 					<img
@@ -247,7 +288,10 @@
 									</h2>
 								</div>
 							</template>
-							<div class="h-slide-text white">
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('event-production', 3)"
+							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
 								<span>DIGITAL</span> <span class="center-dot"></span>
@@ -265,6 +309,14 @@
 			<div
 				class="snap-element abs-full"
 				id="snap-slider-slide-5"
+				:class="[
+					{
+						active: _config_pairs[4].is_active
+					},
+					{
+						past: _config_pairs[4].is_past
+					}
+				]"
 			>
 				<div class="se-ui-container">
 					<!-- Background -->
@@ -274,8 +326,6 @@
 						class="slide-img layer-1"
 					/>
 					<!-- /Background -->
-
-
 
 					<!-- Animation Objects -->
 					<div class="se-ui-plx-sky-container layer-2">
@@ -309,7 +359,10 @@
 									</h2>
 								</div>
 							</template>
-							<div class="h-slide-text white">
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('content-creation', 4)"
+							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
 								<span>DIGITAL</span> <span class="center-dot"></span>
@@ -378,28 +431,38 @@
 	</section>
 </template>
 <script setup>
-	const config_pairs = [
+	const config_pairs = ref([
 		{
 			slide: '#snap-slider-slide-1',
-			progress: '#snap-slider-slide-progress-1'
+			progress: '#snap-slider-slide-progress-1',
+			is_active: true,
+			is_past: false
 		},
 		{
 			slide: '#snap-slider-slide-2',
-			progress: '#snap-slider-slide-progress-2'
+			progress: '#snap-slider-slide-progress-2',
+			is_active: false,
+			is_past: false
 		},
 		{
 			slide: '#snap-slider-slide-3',
-			progress: '#snap-slider-slide-progress-3'
+			progress: '#snap-slider-slide-progress-3',
+			is_active: false,
+			is_past: false
 		},
 		{
 			slide: '#snap-slider-slide-4',
-			progress: '#snap-slider-slide-progress-4'
+			progress: '#snap-slider-slide-progress-4',
+			is_active: false,
+			is_past: false
 		},
 		{
 			slide: '#snap-slider-slide-5',
-			progress: '#snap-slider-slide-progress-5'
+			progress: '#snap-slider-slide-progress-5',
+			is_active: false,
+			is_past: false
 		}
-	]
+	])
 	// slidingText[3].subtitle 
 
 	const slidingText = [
@@ -420,11 +483,30 @@
 		},
 	]
 
+	const router = useRouter()
+	const appStore = useAppStore()
+	const goToDetail = (to) => {
+		const active_slide = _config_pairs.find(el => el.is_active === true)
+		appStore.setActiveSliderIndex(_config_pairs.indexOf(active_slide))
+		// appStore.setPageScrollPosition('home', window.scrollY)
+		router.push("/services/" + to)
+	}
+
 	const snapSliderWrapper = ref()
-	const secondSlideText = ref()
+
+	// Set the previous sliders as past when the user is coming back from the detail page
+	const si = appStore.activeSliderIndex
+	const _config_pairs = config_pairs.value
+	for (let i = 0; i < si; i++) {
+		_config_pairs[i].is_active = false
+		_config_pairs[i].is_past = true
+	}
+	_config_pairs[si].is_past = false
+	_config_pairs[si].is_active = true
+	// Reset the slide index @ the store
+	appStore.setActiveSliderIndex(0)
 
 	let tl;
-
 	onMounted(() => {
 		// Initial Setup
 		const {
@@ -434,11 +516,11 @@
 			$lenis
 		} = useNuxtApp()
 
-		const first = config_pairs[0]
-		const second = config_pairs[1]
-		const third = config_pairs[2]
-		const fourth = config_pairs[3]
-		const fifth = config_pairs[4]
+		const first = _config_pairs[0]
+		const second = _config_pairs[1]
+		const third = _config_pairs[2]
+		const fourth = _config_pairs[3]
+		const fifth = _config_pairs[4]
 
 		tl = $gsap.timeline({
 			defaults: {
@@ -447,7 +529,6 @@
 			scrollTrigger: {
 				trigger: snapSliderWrapper.value,
 				start: 'top top',
-				// end: 'bottom top',
 				end: '+=25000',
 				scrub: 2,
 				pin: true,
@@ -458,24 +539,16 @@
 
 		const runSlideTransition = (s1, s2) => {
 			const is_going_back = tl.scrollTrigger.direction === -1
-			const slide_1 = document.querySelector(s1)
-			const slide_2 = document.querySelector(s2)
 			if (is_going_back) {
 				// Backwards
-				slide_1
-					.classList.remove('past')
-				slide_2
-					.classList.remove('active')
-				slide_1
-					.classList.add('active')
+				s1.is_past = false
+				s2.is_active = false
+				s1.is_active = true
 			} else {
 				// Forwards
-				slide_1
-					.classList.remove('active')
-				slide_1
-					.classList.add('past')
-				slide_2
-					.classList.add('active')
+				s1.is_active = false
+				s1.is_past = true
+				s2.is_active = true
 			}
 		}
 
@@ -564,11 +637,9 @@
 			)
 			// Transition
 			.add(() => {
-				const { slide: slide_1 } = first
-				const { slide: slide_2 } = second
 				runSlideTransition(
-					slide_1,
-					slide_2
+					first,
+					second
 				)
 			})
 
@@ -603,11 +674,9 @@
 			)
 			// Transition
 			.add(() => {
-				const { slide: slide_1 } = second
-				const { slide: slide_2 } = third
 				runSlideTransition(
-					slide_1,
-					slide_2
+					second,
+					third
 				)
 			})
 
@@ -629,11 +698,9 @@
 			)
 			// Transition
 			.add(() => {
-				const { slide: slide_1 } = third
-				const { slide: slide_2 } = fourth
 				runSlideTransition(
-					slide_1,
-					slide_2
+					third,
+					fourth
 				)
 			})
 
@@ -657,11 +724,9 @@
 			)
 			// Transition
 			.add(() => {
-				const { slide: slide_1 } = fourth
-				const { slide: slide_2 } = fifth
 				runSlideTransition(
-					slide_1,
-					slide_2
+					fourth,
+					fifth
 				)
 			})
 
@@ -820,7 +885,7 @@
 				}
 
 				.hs-subtitle {
-					font-size: 5vh;
+					font-size: 4.5vh;
 					font-weight: 400;
 					margin: 0 0 2vh;
 				}

@@ -39,25 +39,44 @@
 
 			<!-- We Offer Text -->
 			<h2 class="we-offer-text">
-				We offer a diverse range of capabilities,
-				from content creation to event design,
-				and everything in between
+				<text-splitter
+					text="We offer a diverse range of capabilities, from content creation to event design, and everything in between"
+					:expose="true"
+					ref="splitter"
+				/>
 			</h2>
 			<!-- /We Offer Text -->
 		</div>
 	</section>
 </template>
-<script>
-	export default {
-
-	}
+<script setup>
+	const splitter = ref()
+	onMounted(() => {
+		const {
+			$gsap
+		} = useNuxtApp()
+		const { characters, container } = splitter.value.elements
+		$gsap.to(characters, {
+			color: 'white',
+			stagger: 0.1,
+			// duration: 0.001,
+			scrollTrigger: {
+				trigger: container,
+				start: "center center",
+				end: "+=2000",
+				scrub: true,
+				pin: true,
+				anticipatePin: 1
+			}
+		})
+	})
 </script>
 <style lang="scss" scoped>
 	#services-details-section {
 		z-index: 2;
 		position: relative;
 		border-top: 1px solid rgba(255, 255, 255, 0.189);
-		padding: 60px 0;
+		padding: 60px 0 0;
 
 		&::before {
 			content: '';
@@ -113,6 +132,7 @@
 		line-height: 113px;
 		text-align: center;
 		font-weight: 400;
-		margin: 240px 0 0;
+		margin: 40vh 0 40vh;
+		color: rgba(255, 255, 255, 0.15);
 	}
 </style>

@@ -16,5 +16,6 @@
 <style lang="scss">
 	section#blog-hero-section {
 		margin: 100px 0;
+		padding-top: 100px;
 	}
 </style>

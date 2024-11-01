@@ -9,7 +9,7 @@
 </template>
 
 <style lang="scss" scoped>
-	.layout-content {
-		min-height: 100vh;
-	}
+	// .layout-content {
+	// 	min-height: 100vh;
+	// }
 </style>

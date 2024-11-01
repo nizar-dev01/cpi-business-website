@@ -1,5 +1,5 @@
 <template>
-	<section id="portfolio-hero">
+	<section id="portfolio-hero-section">
 		<div class="layout-box">
 			<h1 class="page-title pgt-portfolio">
 				Work
@@ -28,6 +28,7 @@
 					</div>
 				</div>
 			</div>
+			<hr class="portfolio-header-divider" />
 		</div>
 	</section>
 </template>
@@ -64,6 +65,16 @@
 	])
 </script>
 <style lang="scss">
+	#portfolio-hero-section {
+		padding-top: 150px;
+	}
+
+	.portfolio-header-divider {
+		border-top: 0;
+		border-bottom: 1px solid #363636;
+		margin-top: 100px;
+	}
+
 	.pgt-portfolio {
 		font-size: 81px;
 		margin: 80px 0 50px;

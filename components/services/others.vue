@@ -8,10 +8,14 @@
 				Other Services
 			</h2>
 			<div class="svc-container">
-				<div class="svc-row">
+				<div
+					class="svc-row"
+					v-if="props.services"
+				>
 					<div
-						v-for="service in services"
+						v-for="service in props.services"
 						class="svc-col"
+						:class="{ hidden: service.uid === currentPage.uid }"
 					>
 						<div
 							class="svc-item"
@@ -36,45 +40,13 @@
 	</section>
 </template>
 <script setup>
-	const services = ref([
-		{
-			is_active: false,
-			image: "/img/services/events.png",
-			text: 'Event Management'
-		},
-		{
-			is_active: false,
-			image: "/img/services/content.png",
-			text: 'Content Creation'
-		},
-		{
-			is_active: false,
-			image: "/img/services/design.png",
-			text: 'Design & Branding'
-		},
-		{
-			is_active: false,
-			image: "/img/services/digital.png",
-			text: 'Digital Solutions'
-		},
-		{
-			is_active: false,
-			image: "/img/services/consultancy.png",
-			text: 'Consultancy Services'
-		},
-		{
-			is_active: true,
-			image: "/img/services/bespoke.png",
-			text: 'Bespoke Solutions'
-		}
-	])
+	const props = defineProps(['services', 'currentPage'])
 
 	const svcItems = ref()
 
 	const _yDiff = 250
 
 	onMounted(() => {
-		console.log(svcItems.value)
 		const {
 			$gsap: gsap,
 			$ScrollTrigger: ScrollTrigger
@@ -141,6 +113,10 @@
 	.svc-col {
 		width: 50%;
 		padding: 17px;
+
+		&.hidden {
+			display: none;
+		}
 	}
 
 	.svc-item {

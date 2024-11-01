@@ -1,23 +1,29 @@
 <template>
 	<section id="services-hero-section">
-		<div class="services-banner-img-container">
+		<div
+			class="services-banner-img-container"
+			v-if="props.currentPage"
+		>
 			<img
 				src="@/assets/images/snap/bg.jpg"
 				alt="Background Image"
 				class="sbic-bg"
 			/>
 			<img
-				:src="current_page_target.image"
+				:src="props.currentPage.image"
 				alt="Hero Image"
 				class="sbic-fg"
 				id="services-hero-img"
 			/>
 
 		</div>
-		<div class="shr-text-slider">
+		<div
+			class="shr-text-slider"
+			v-if="props.currentPage"
+		>
 			<div class="layout-box">
 				<h2 class="hs-subtitle">
-					Services
+					{{ props.currentPage.text }}
 				</h2>
 			</div>
 			<horizontal-text duration="100">
@@ -34,39 +40,7 @@
 	</section>
 </template>
 <script setup>
-	const available_services = [
-		{
-			uid: "ip-creation",
-			image: "/img/services/bespoke.png"
-		},
-		{
-			uid: "event-production",
-			image: "/img/services/events.png"
-		},
-		{
-			uid: "concept-development",
-			image: "/img/services/consultancy.png"
-		},
-		{
-			uid: "content-creation",
-			image: "/img/services/content.png"
-		},
-		{
-			uid: "design-n-branding",
-			image: "/img/services/design.png"
-		},
-		{
-			uid: "digital-solutions",
-			image: "/img/services/digital.png"
-		}
-	]
-	const route = useRoute()
-
-	const current_page_target = ref(
-		available_services.find(el => el.uid === route.params.service) ||
-		available_services[0]
-	)
-
+	const props = defineProps(['currentPage'])
 	onMounted(() => {
 		const {
 			$gsap: gsap
@@ -116,6 +90,12 @@
 			width: auto;
 			transform: translate(-50%, 0);
 		}
+	}
+
+	.hs-subtitle {
+		font-size: 2vw;
+		max-width: 18vw;
+		font-weight: 400;
 	}
 
 	.services-hero-img {

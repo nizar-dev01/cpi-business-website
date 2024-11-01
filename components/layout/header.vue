@@ -12,12 +12,13 @@
 					toggleNavMenu(false)
 				}"
 			>
-				<img
+				<!-- <img
 					src="@/assets/images/logo.png"
 					alt="Logo Image"
 					class="logo-img"
 					ref="fallInLogo"
-				/>
+				/> -->
+				<icon-logo class="logo-img"></icon-logo>
 			</nuxt-link>
 			<ul
 				class="header-nav-ul strip-list"
@@ -152,10 +153,10 @@
 			to: "/contact",
 			text: "Contact Us"
 		},
-		// {
-		// 	to: "/careers",
-		// 	text: "Careers"
-		// }
+		{
+			to: "/careers",
+			text: "Careers"
+		}
 	]
 
 	const fallInElements = ref()
@@ -174,37 +175,37 @@
 		{
 			is_active: true,
 			uid: "ip-creation",
-			image: "/img/services/bespoke.png",
+			image: "/cpi-public/img/services/bespoke.png",
 			text: 'IP Creation & Strategic Thinking'
 		},
 		{
 			is_active: false,
 			uid: "event-production",
-			image: "/img/services/events.png",
+			image: "/cpi-public/img/services/events.png",
 			text: 'Event Production'
 		},
 		{
 			is_active: false,
 			uid: "concept-development",
-			image: "/img/services/consultancy.png",
+			image: "/cpi-public/img/services/consultancy.png",
 			text: 'Concept Development & Management'
 		},
 		{
 			is_active: false,
 			uid: "content-creation",
-			image: "/img/services/content.png",
+			image: "/cpi-public/img/services/content.png",
 			text: 'Content Creation'
 		},
 		{
 			is_active: false,
 			uid: "design-n-branding",
-			image: "/img/services/design.png",
+			image: "/cpi-public/img/services/design.png",
 			text: 'Design & Branding'
 		},
 		{
 			is_active: false,
 			uid: "digital-solutions",
-			image: "/img/services/digital.png",
+			image: "/cpi-public/img/services/digital.png",
 			text: 'Digital Solutions'
 		}
 	])
@@ -337,7 +338,7 @@
 <style lang="scss">
 	.layout-header {
 		padding-top: 30px;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		right: 0;
 		top: 0;
@@ -350,7 +351,7 @@
 		display: inline-block;
 		position: relative;
 
-		img.logo-img {
+		.logo-img {
 			height: 100%;
 			width: auto;
 		}
@@ -490,7 +491,7 @@
 	}
 
 	.submenu-container {
-		position: absolute;
+		position: fixed;
 		left: 0;
 		right: 0;
 		bottom: 0;

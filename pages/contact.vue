@@ -1,6 +1,6 @@
 <template>
 	<section id="contact-main-section">
-		<div class="layout-box">
+		<div class="layout-box layer-2">
 			<div class="container">
 				<div class="row">
 					<div class="col cf-col">
@@ -10,7 +10,7 @@
 			</div>
 		</div>
 
-		<div class="bimg-box">
+		<div class="bimg-box layer-1">
 			<div class="bimg-col">
 				<img
 					src="@/assets/images/contact-img.png"
@@ -26,6 +26,14 @@
 	})
 </script>
 <style lang="scss" scoped>
+	.layer-1 {
+		z-index: 1;
+	}
+
+	.layer-2 {
+		z-index: 2;
+	}
+
 	.bimg-box {
 		position: absolute;
 		right: 0;

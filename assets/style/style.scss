@@ -124,7 +124,11 @@ $dot-radius: 2vw;
 	&::after,
 	&::before {
 		content: '';
-		display: inline-block;
+		display: table;
 		content: ''
 	}
+}
+
+.bg-black {
+	background: black;
 }

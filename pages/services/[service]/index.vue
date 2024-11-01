@@ -1,9 +1,12 @@
 <template>
 	<main id="services-page">
-		<services-hero />
+		<services-hero :current-page="currentPage" />
 		<services-details />
 		<index-events-showcase :show-view-more="true" />
-		<services-others />
+		<services-others
+			:services="services"
+			:current-page="currentPage"
+		/>
 		<services-library-showcase />
 	</main>
 </template>
@@ -14,6 +17,55 @@
 			layout: "plain"
 		}
 	})
+
+	const appStore = useAppStore()
+
+	onBeforeRouteLeave((to, from) => {
+		if (to.name !== "index") {
+			appStore.setPageScrollPosition('index', 0)
+			appStore.setActiveSliderIndex(0)
+		}
+	})
+
+	const services = [
+		{
+			uid: "ip-creation",
+			image: "/cpi-public/img/services/bespoke.png",
+			text: 'IP Creation & Strategic Thinking'
+		},
+		{
+			uid: "event-production",
+			image: "/cpi-public/img/services/events.png",
+			text: 'Event Production'
+		},
+		{
+			uid: "concept-development",
+			image: "/cpi-public/img/services/consultancy.png",
+			text: 'Concept Development & Management'
+		},
+		{
+			uid: "content-creation",
+			image: "/cpi-public/img/services/content.png",
+			text: 'Content Creation'
+		},
+		{
+			uid: "design-n-branding",
+			image: "/cpi-public/img/services/design.png",
+			text: 'Design & Branding'
+		},
+		{
+			uid: "digital-solutions",
+			image: "/cpi-public/img/services/digital.png",
+			text: 'Digital Solutions'
+		}
+	]
+
+	const route = useRoute()
+
+	const currentPage = ref(
+		services.find(el => el.uid === route.params.service) ||
+		services[0]
+	)
 
 	definePageMeta({
 		pageLayout: "plain"

@@ -21,7 +21,6 @@
 			opacity: 0
 		})
 		const br = el.getBoundingClientRect()
-		console.log("Before Enter", br)
 	}
 	const onAnimationEnter = el => {
 		gsap.to(el, {

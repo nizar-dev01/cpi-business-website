@@ -5,8 +5,8 @@
 				<div class="showcase-container">
 					<div class="flex-center">
 						<h4 class="library-showcase-title">
-							Ideas that are <br>
-							keeping us inspired <br>
+							<span class="lean">Ideas that are<br>
+								keeping us inspired</span><br>
 							<span class="lst-highlight">
 								Explore Our Ideas
 							</span>
@@ -43,6 +43,10 @@
 			line-height: 73px;
 			text-align: center;
 			margin: 0 0 100px;
+
+			.lean {
+				font-weight: 400;
+			}
 
 			.lst-highlight {
 				font-family: 'Newyork';

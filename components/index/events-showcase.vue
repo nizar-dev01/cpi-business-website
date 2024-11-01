@@ -310,12 +310,21 @@
 				border-left: 1px solid #00000033;
 				margin-left: auto;
 				flex-shrink: 0;
+				transition: transform 0.2s ease;
+
+				&:hover {
+					transform: scale(1.1);
+				}
 			}
 
 			.acr-view-button {
 				height: 35px;
 				width: 35px;
 				margin-bottom: 10px;
+			}
+
+			&:hover {
+				background: rgba(0, 0, 0, 0.55);
 			}
 		}
 

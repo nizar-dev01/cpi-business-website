@@ -4,16 +4,13 @@
 			class="library-col"
 			v-for="li in props.staticItemsCount"
 		>
-			<div class="library-item">
-				<img
-					:src="`https://picsum.photos/536/354?rand=${Math.random()}`"
-					alt=""
-					class="sli-image"
-				/>
-				<h3 class="sli-title">
-					Rapid Prototyping in Event Visualisation
-				</h3>
-			</div>
+			<blog-card
+				tag="Blog Subject"
+				title="Rapid Prototyping in Event Visualisation"
+				:image="`https://picsum.photos/536/354?rand=${Math.random()}`"
+				author="John Doe"
+				duration="2 Min"
+			/>
 		</div>
 	</div>
 </template>
@@ -22,18 +19,18 @@
 		'staticItemsCount'
 	])
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
+	$rowspace: 5px;
 
 	.library-row {
 		display: flex;
 		flex-wrap: wrap;
 		// justify-content: center;
-		margin: 0 -15px;
+		margin: -$rowspace;
 	}
 
 	.library-col {
-		padding: 0 15px;
+		padding: $rowspace;
 		box-sizing: border-box;
 		width: 33.333%;
 		// flex-grow: 1;
@@ -46,25 +43,5 @@
 				margin-bottom: 0;
 			}
 		}
-	}
-
-	.library-item {
-		width: 100%;
-		margin: 0 auto;
-	}
-
-	.sli-image {
-		width: 100%;
-		object-fit: cover;
-		border-radius: 15px;
-		display: block;
-		height: 350px;
-		margin-bottom: 30px;
-	}
-
-	.sli-title {
-		font-size: 23px;
-		font-weight: 500;
-		line-height: 38px;
 	}
 </style>
