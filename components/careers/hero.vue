@@ -2,7 +2,7 @@
 	<section id="careers-hero-section">
 		<div class="background-layer">
 			<img
-				src="@/assets/images/astro-6.jpg"
+				src="@/assets/images/astro.png"
 				alt="Image of an astronaut floating in space"
 				class="crh-bg-img"
 				ref="heroBgImg"
@@ -115,6 +115,8 @@
 			text-align: center;
 			font-family: 'Newyork';
 			margin-top: 50vh;
+			text-transform: uppercase;
+			line-height: 8vw;
 		}
 	}
 

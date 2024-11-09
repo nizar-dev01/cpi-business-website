@@ -15,11 +15,16 @@
 		/>
 		<path
 			d="M11.0001 6.00006L11.1768 15.1631"
-			stroke="white"
+			:stroke="color"
 		/>
 		<path
 			d="M16.0547 11.0132L11.0351 16.0328L6.04383 11.0416"
-			stroke="white"
+			:stroke="color"
 		/>
 	</svg>
 </template>
+
+<script setup>
+	const appStore = storeToRefs(useAppStore())
+	const color = computed(() => appStore.pageTheme.value)
+</script>

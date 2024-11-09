@@ -2,6 +2,8 @@
 	<footer
 		class="layout-footer"
 		@mousemove="shineLight"
+		:style="`--color-theme: ${color}`"
+		:class="{ yellow: color_theme === 'yellow' }"
 	>
 		<div class="layout-box noverflow">
 			<h2 class="footer-text-title">
@@ -30,6 +32,7 @@
 						class="wide"
 						@mousemove.prevent.stop
 						@click.prevent="$router.push('/portfolio')"
+						:class="{ yellow: color_theme === 'yellow' }"
 					/>
 
 					<button-sq
@@ -38,10 +41,14 @@
 						:blue="true"
 						@mousemove.prevent.stop
 						@click.prevent="$router.push('/services')"
+						:class="{ yellow: color_theme === 'yellow' }"
 					/>
 				</div>
 			</div>
-			<div class="footer-footer">
+			<div
+				class="footer-footer"
+				:style="`--color-theme: ${color}`"
+			>
 				<div class="email flex-center">
 					{{ emailText }}
 					<icon-copy
@@ -96,8 +103,17 @@
 		shiningText.value.style.backgroundPosition = bp
 		// console.log(bp)
 	}
+
+	// Color Theme
+	const appStore = storeToRefs(useAppStore())
+	const color = computed(() => appStore.pageTheme.value)
+	const color_theme = computed(() => appStore.pageThemeSelector.value)
 </script>
 <style lang="scss">
+	// footer {
+	// 	color: var(--color-theme);
+	// }
+
 	.layout-footer {
 		background: black;
 		// border-radius: 40px 40px 0 0;
@@ -112,6 +128,15 @@
 		margin: 0 0 30px;
 	}
 
+	// footer.yellow {
+	// 	.footer-text-content {
+	// 		color: $yellow;
+	// 		// pointer-events: none;
+	// 		background-image: none;
+	// 	}
+
+	// }
+
 	.footer-text-content {
 		font-size: 47px;
 		line-height: 62px;
@@ -120,7 +145,11 @@
 		max-width: 1000px;
 		color: rgba(255, 255, 255, 0.15);
 		background-clip: text;
-		background-image: radial-gradient(circle closest-side at 50% 50%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 60%, rgba(255, 255, 255, 0.4) 80%, transparent 100%);
+		background-image: radial-gradient(circle closest-side at 50% 50%,
+				rgb(255, 255, 255) 50%,
+				rgb(255, 255, 255) 60%,
+				rgba(255, 255, 255, 0.4) 80%,
+				transparent 100%);
 		backdrop-filter: blur(10px);
 		background-repeat: no-repeat;
 		background-size: 450px 450px;
@@ -142,6 +171,7 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
+		// border-top: 1px solid var(--color-theme);
 		border-top: 1px solid white;
 		height: 90px;
 		overflow: hidden;

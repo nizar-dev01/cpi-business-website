@@ -1,13 +1,17 @@
 <template>
-	<div class="library-row">
+	<div
+		class="library-row"
+		v-if="blogs"
+	>
 		<div
 			class="library-col"
-			v-for="li in props.staticItemsCount"
+			v-for="blog in blogs"
 		>
 			<blog-card
 				tag="Blog Subject"
 				title="Rapid Prototyping in Event Visualisation"
-				:image="`https://picsum.photos/536/354?rand=${Math.random()}`"
+				:image="blog.image"
+				:slug="blog.slug"
 				author="John Doe"
 				duration="2 Min"
 			/>
@@ -18,6 +22,14 @@
 	const props = defineProps([
 		'staticItemsCount'
 	])
+	const dataStore = useDataStore()
+	const _blogs = dataStore.blogs
+	let blogs;
+	if (props.staticItemsCount) {
+		blogs = _blogs.slice(0, props.staticItemsCount)
+	} else {
+		blogs = _blogs
+	}
 </script>
 <style lang="scss" scoped>
 	$rowspace: 5px;

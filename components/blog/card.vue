@@ -1,5 +1,8 @@
 <template>
-	<div class="blog-card-container">
+	<router-link
+		:to="`/blog/${props.slug}`"
+		class="blog-card-container"
+	>
 		<div class="bgc-img-box">
 			<img
 				:src="props.image"
@@ -33,10 +36,10 @@
 				{{ props.duration }}
 			</div>
 		</div>
-	</div>
+	</router-link>
 </template>
 <script setup>
-	const props = defineProps(['tag', 'title', 'image', 'author', 'duration'])
+	const props = defineProps(['tag', 'title', 'image', 'author', 'duration', 'slug'])
 </script>
 <style lang="scss" scoped>
 	.blog-card-container {
@@ -46,6 +49,9 @@
 		overflow: hidden;
 		cursor: pointer;
 		position: relative;
+		color: inherit;
+		text-decoration: none;
+		display: block;
 
 		&:hover {
 			.bgc-img {
@@ -99,28 +105,5 @@
 		position: absolute;
 		bottom: 20px;
 		left: 25px;
-	}
-
-	.tiny-tag {
-		display: flex;
-
-		background: rgba(255, 255, 255, 0.15);
-		padding: 3px 10px;
-		border-radius: 20px;
-		font-size: 12px;
-		line-height: 20px;
-
-		&.author {
-			margin-right: 10px;
-		}
-
-		.tag-author-img {
-			height: 20px;
-			width: 20px;
-			border-radius: 50%;
-			object-fit: cover;
-			margin-right: 10px;
-			display: block;
-		}
 	}
 </style>

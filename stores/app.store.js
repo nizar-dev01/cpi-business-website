@@ -12,7 +12,8 @@ export const useAppStore = defineStore('app', {
 				y: 0
 			}
 		},
-		activeSliderIndex: 0
+		activeSliderIndex: 0,
+		pageThemeSelector: null
 	}),
 	actions: {
 		initiate (v) {
@@ -29,6 +30,12 @@ export const useAppStore = defineStore('app', {
 		},
 		setActiveSliderIndex (index) {
 			this.activeSliderIndex = index
+		},
+		setPageThemeSelector (selector) {
+			this.pageThemeSelector = selector
 		}
 	},
+	getters: {
+		pageTheme: s => s.pageThemeSelector === 'yellow' ? '#FFB400' : 'white'
+	}
 })

@@ -5,11 +5,21 @@
 	>
 		<careers-hero />
 		<careers-openings />
+		<careers-team />
 	</main>
 </template>
 <script setup>
 	useHead({
 		title: "CPI Business | Careers"
+	})
+
+	const appStore = useAppStore()
+	onBeforeMount(() => {
+		appStore.setPageThemeSelector("yellow")
+	})
+
+	onBeforeRouteLeave(() => {
+		appStore.setPageThemeSelector(null)
 	})
 </script>
 
@@ -25,6 +35,10 @@
 		margin: 20vh auto;
 		border: none;
 		border-bottom: 1px solid #ffffffd2;
+
+		&.dim {
+			opacity: 0.2;
+		}
 	}
 
 

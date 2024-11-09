@@ -75,10 +75,16 @@
 	</svg>
 </template>
 <script setup>
-	const color = ref({
-		cpi: "white",
-		business: "white",
-		shape: "white"
+	const appStore = storeToRefs(useAppStore())
+
+	const color = computed(() => {
+		const c = appStore.pageTheme.value
+		return {
+			cpi: c,
+			business: c,
+			shape: c
+		}
+
 	})
 </script>
 

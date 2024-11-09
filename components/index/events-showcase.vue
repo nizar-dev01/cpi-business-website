@@ -11,7 +11,10 @@
 						class="showcase-col"
 						ref="showcaseItems"
 					>
-						<div class="showcase-item">
+						<router-link
+							:to="'/portfolio/' + event.slug"
+							class="showcase-item"
+						>
 							<img
 								:src="event.image"
 								:alt="event.alt || `Event Image ${i}`"
@@ -55,7 +58,7 @@
 									</p>
 								</div>
 							</div>
-						</div>
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -149,58 +152,8 @@
 		})
 	})
 
-	const basePath = window.location.href.split('//')[1].includes('/cpi-public/') ? "/cpi-public/" : "/"
-
-	const showcaseEvents = [
-		{
-			image: basePath + 'img/portfolios/1.jpg'
-		},
-		{
-			image: basePath + 'img/portfolios/2.png'
-		},
-		{
-			image: basePath + 'img/portfolios/3.png'
-		},
-		{
-			image: basePath + 'img/portfolios/4.png'
-		},
-		{
-			image: basePath + 'img/portfolios/5.png'
-		},
-		{
-			image: basePath + 'img/portfolios/6.png'
-		},
-		{
-			image: basePath + 'img/portfolios/7.png'
-		},
-		{
-			image: basePath + 'img/portfolios/8.png'
-		},
-		{
-			image: basePath + 'img/portfolios/9.png'
-		},
-		{
-			image: basePath + 'img/portfolios/10.png'
-		},
-		{
-			image: basePath + 'img/portfolios/11.png'
-		},
-		{
-			image: basePath + 'img/portfolios/12.png'
-		},
-		{
-			image: basePath + 'img/portfolios/13.png'
-		},
-		{
-			image: basePath + 'img/portfolios/14.png'
-		},
-		{
-			image: basePath + 'img/portfolios/15.png'
-		},
-		{
-			image: basePath + 'img/portfolios/1.jpg'
-		},
-	]
+	const dataStore = useDataStore()
+	const showcaseEvents = dataStore.events
 </script>
 
 <style lang="scss" scoped>
@@ -243,6 +196,8 @@
 		overflow: hidden;
 		position: relative;
 		cursor: pointer;
+		color: inherit;
+		display: block;
 
 		img.showcase-img {
 			width: 100%;

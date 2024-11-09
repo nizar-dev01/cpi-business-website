@@ -2,6 +2,7 @@
 	<header
 		class="layout-header"
 		ref="headerElement"
+		:class="[themeSelector || '']"
 	>
 		<div class="layout-box header-box">
 			<nuxt-link
@@ -126,6 +127,9 @@
 	</div>
 </template>
 <script setup>
+	const appStore = storeToRefs(useAppStore())
+	const themeSelector = appStore.pageThemeSelector
+
 	const {
 		$gsap,
 		$lenis
@@ -336,9 +340,13 @@
 	})
 </script>
 <style lang="scss">
+	header.yellow {
+		color: $yellow;
+	}
+
 	.layout-header {
 		padding-top: 30px;
-		position: fixed;
+		position: absolute;
 		left: 0;
 		right: 0;
 		top: 0;

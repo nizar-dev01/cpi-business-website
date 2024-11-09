@@ -574,7 +574,6 @@
 				end: 'slide-5-end',
 			}
 		}
-
 		// Set static values
 		tl
 			.set('#slide-2-gate', {
@@ -595,6 +594,13 @@
 				scale: 0.6
 			})
 
+		const wh = window.innerHeight
+		const ww = window.innerWidth
+
+		const responsiveValue = (vals = []) => {
+			const target = vals.find(el => el.width <= ww) || vals[0]
+			return target.value || 0
+		}
 		// Animation
 		tl.
 
@@ -602,22 +608,42 @@
 			add(label[1].start)
 			// Slide Animations
 
-			// Card 1
+			// Card 1 # Pink
 			.to('#slide-1-rotate-card-1', {
 				rotateX: 360 * 1.1,
 				rotateY: -10,
 				rotateZ: -2,
-				y: '-93vh',
-				x: 200,
+				y: responsiveValue([
+					{
+						value: '-93vh'
+					}
+				]),
+				x: responsiveValue([
+					{
+						value: '10vw'
+					}
+				]),
 			}, label[1].start)
 
-			// Card 2
+			// Card 2 # Black
 			.to('#slide-1-rotate-card-2', {
 				rotateX: 360 * 0.95,
 				rotateY: -15,
 				rotateZ: -1,
-				y: '-55vh',
-				x: -100,
+				y: responsiveValue([
+					{
+						value: '-60vh'
+					}
+				]),
+				x: responsiveValue([
+					{
+						value: '-20vw'
+					},
+					{
+						width: 755,
+						value: '-10vw'
+					}
+				]),
 			}, label[1].start)
 
 			// Card 3
@@ -625,7 +651,21 @@
 				rotateX: 360 * 0.92,
 				rotateY: 360 * 0.01,
 				rotateZ: 50,
-				y: '-40vh',
+				y: responsiveValue([
+					{
+						value: '-40vh'
+					},
+					{
+						width: 752,
+						value: '-45vh'
+					},
+				]),
+				x: responsiveValue([
+					{
+						width: 752,
+						value: '15vw'
+					}
+				])
 			}, label[1].start)
 			// Progress
 			.to(
@@ -834,6 +874,17 @@
 
 					width: 20vw;
 					height: 12vw;
+
+					@include xl {
+						width: 30vw;
+						height: 20vw;
+					}
+
+					@include md {
+						width: 35vw;
+						height: 25vw;
+					}
+
 					position: relative;
 					perspective-origin: top;
 					perspective: 1700px;

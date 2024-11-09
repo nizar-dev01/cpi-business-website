@@ -4,7 +4,10 @@
 			<div class="w-100 noverflow">
 				<div class="showcase-container">
 					<div class="flex-center">
-						<h4 class="library-showcase-title">
+						<h4
+							class="library-showcase-title"
+							v-if="showTitle"
+						>
 							<span class="lean">Ideas that are<br>
 								keeping us inspired</span><br>
 							<span class="lst-highlight">
@@ -13,7 +16,10 @@
 						</h4>
 					</div>
 					<library-list :static-items-count="3" />
-					<div class="flex-center showcase-action-row">
+					<div
+						class="flex-center showcase-action-row"
+						v-if="showViewMore"
+					>
 						<button-sq
 							text="Read More"
 							class="rounded showcase-action-bt"
@@ -25,6 +31,19 @@
 		</div>
 	</section>
 </template>
+
+<script setup>
+	const props = defineProps({
+		showTitle: {
+			type: Boolean,
+			default: true
+		},
+		showViewMore: {
+			type: Boolean,
+			default: true
+		}
+	})
+</script>
 
 <!-- Library Showcase -->
 <style lang="scss" scoped>
