@@ -3,12 +3,9 @@
 		v-if="event"
 		class="portfolio-detail-page-main clearfix"
 	>
-		<div class="layout-box">
-			<img
-				:src="event.image"
-				alt=""
-			>
-		</div>
+		<portfolio-detail-hero :image="event.image" />
+		<portfolio-detail-info />
+		<portfolio-detail-images />
 	</main>
 </template>
 <script setup>
@@ -21,8 +18,4 @@
 		console.log("The slug is : ", slug)
 	})
 </script>
-<style lang="scss">
-	.portfolio-detail-page-main {
-		margin-top: 200px;
-	}
-</style>
+<style lang="scss"></style>
