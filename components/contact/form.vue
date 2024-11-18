@@ -140,6 +140,14 @@
 	.c-form-title {
 		font-size: 83px;
 		margin: 0 0 20px;
+
+		@include md {
+			font-size: 70px
+		}
+
+		@include sm {
+			font-size: 65px;
+		}
 	}
 
 	.c-assistant-box {
@@ -152,6 +160,10 @@
 
 		&.first {
 			margin-bottom: 20px;
+		}
+
+		@include sm {
+			flex-wrap: wrap;
 		}
 	}
 
@@ -167,6 +179,10 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+		}
+
+		@include sm {
+			margin-bottom: 15px;
 		}
 	}
 
@@ -227,7 +243,7 @@
 		}
 
 		.qi-text {
-			font-size: 12px;
+			font-size: 13px;
 			color: rgba(255, 255, 255, 0.5);
 		}
 	}
@@ -249,6 +265,13 @@
 			color: white;
 			margin: 0;
 			font-weight: 500;
+		}
+	}
+
+	.qi-icon {
+		@include sm {
+			width: 30px;
+			height: 40px;
 		}
 	}
 </style>

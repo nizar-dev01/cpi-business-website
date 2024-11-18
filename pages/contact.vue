@@ -48,10 +48,27 @@
 			width: 60%;
 			margin-left: auto;
 
+
 			img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+			}
+
+
+
+			@include break(1400px) {
+				img {
+					margin-left: 50px;
+				}
+			}
+
+			@include xl {
+				display: none;
+
+				img {
+					margin: 0;
+				}
 			}
 		}
 	}
@@ -76,6 +93,13 @@
 			display: flex;
 			align-items: center;
 			padding: 150px 0;
+
+			@include xl {
+				margin: 150px auto 50px;
+				padding: 0;
+				border-radius: 15px;
+				width: auto;
+			}
 		}
 	}
 </style>
