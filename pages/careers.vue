@@ -68,7 +68,7 @@
 		margin: 0;
 		font-size: 33px;
 		font-weight: 500;
-		font-family: 'Newyork';
+		font-family: 'Denton';
 	}
 
 	:deep(.content) {

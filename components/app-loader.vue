@@ -165,7 +165,7 @@
 			}
 
 			// &.cpi {
-			// 	font-family: 'Newyork';
+			// 	font-family: 'Denton';
 			// }
 		}
 

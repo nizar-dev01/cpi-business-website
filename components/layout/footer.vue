@@ -122,7 +122,7 @@
 
 	.footer-text-title {
 		font-size: 33px;
-		font-family: 'Newyork';
+		font-family: 'Denton';
 		line-height: 48px;
 		font-weight: 400;
 		margin: 0 0 30px;

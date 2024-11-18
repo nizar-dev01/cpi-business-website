@@ -15,8 +15,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 			this.init()
 		}
 
-		init (config) {
-			this.instance = new Lenis(config)
+		init () {
+			this.instance = new Lenis()
 
 			this.instance.on('scroll', ScrollTrigger.update)
 
@@ -33,10 +33,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 			gsap.ticker.remove(this.listenLenisRAF)
 		}
 	}
+	const lenis = ref(null)
 
-	const lenis = new CustomLenis({
-		wrapper: '.layout-content'
-	})
 	// </Setup Lenis>
 
 	// <Register Plugins>
@@ -52,6 +50,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 			gsap,
 			Observer,
 			ScrollTrigger,
+			CustomLenis,
 			lenis
 		},
 	}

@@ -6,7 +6,7 @@
 				We are solution architects with multi-discipline capabilities including content creation, event design,
 				production & execution, media services and digital platforms.
 			</h3>
-			<div class="hero-call-to-actions hero-reveal-top">
+			<div class="call-to-action-btn-container hero-reveal-top">
 				<button-sq
 					text="Our Work"
 					class="btn-hero-action wide"
@@ -30,6 +30,8 @@
 		return appStore.hasInitiated ? 0 : 3.2
 	})
 
+	let _animation = [];
+
 	onMounted(() => {
 		const {
 			$gsap
@@ -45,7 +47,7 @@
 		)
 
 		const doRevealItems = () => {
-			$gsap.to(revealItems, {
+			_animation = $gsap.to(revealItems, {
 				y: 0,
 				duration: 1,
 				stagger: 0.3,
@@ -55,6 +57,12 @@
 		}
 
 		doRevealItems()
+	})
+
+	onBeforeUnmount(() => {
+		if (_animation && _animation.kill) {
+			_animation.kill()
+		}
 	})
 </script>
 
@@ -66,7 +74,7 @@
 	}
 
 	h1.hero-title {
-		font-family: 'Newyork';
+		font-family: 'Denton';
 		font-weight: 400;
 		font-size: 104px;
 		color: white;
@@ -116,18 +124,12 @@
 			margin-top: 30px;
 			margin-left: auto;
 			margin-right: auto;
-			line-height: 45px;
+			line-height: 40px;
 		}
-	}
 
-	.hero-call-to-actions {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		margin: -10px;
-
-		.btn-hero-action {
-			margin: 10px
+		@include sm {
+			font-size: 25px;
+			line-height: 35px;
 		}
 	}
 </style>

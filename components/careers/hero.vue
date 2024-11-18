@@ -98,7 +98,7 @@
 
 	.crh-bg-img {
 		width: 100%;
-		height: 100%;
+		height: auto;
 		object-fit: cover;
 		display: block;
 		position: relative;
@@ -113,7 +113,7 @@
 		.hero-intro-text {
 			font-size: 8vw;
 			text-align: center;
-			font-family: 'Newyork';
+			font-family: 'Denton';
 			margin-top: 50vh;
 			text-transform: uppercase;
 			line-height: 8vw;

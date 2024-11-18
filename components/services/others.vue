@@ -96,7 +96,7 @@
 <style lang="scss" scoped>
 	.section-title {
 		font-size: 53px;
-		font-family: 'Newyork';
+		font-family: 'Denton';
 		font-weight: 500;
 	}
 
@@ -113,6 +113,10 @@
 	.svc-col {
 		width: 50%;
 		padding: 17px;
+
+		@include xl {
+			width: 100%;
+		}
 
 		&.hidden {
 			display: none;
@@ -137,11 +141,18 @@
 		justify-content: center;
 		align-items: center;
 		padding: 30px 40px;
+		position: relative;
+		z-index: 2;
 
 		.svc-title-text {
 			font-size: 40px;
 			line-height: 48px;
 			font-weight: 500;
+
+			@include sm {
+				font-size: 35px;
+				line-height: 43px;
+			}
 		}
 	}
 
@@ -151,10 +162,23 @@
 		display: flex;
 		align-items: flex-end;
 		justify-content: flex-end;
+		position: relative;
+		z-index: 1;
+
+		@include sm {
+			display: block;
+		}
 
 		img {
 			height: 96%;
 			width: auto;
+
+			@include sm {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				transform: translate(40%, 0);
+			}
 		}
 	}
 </style>

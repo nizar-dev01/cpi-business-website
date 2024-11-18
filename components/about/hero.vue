@@ -19,7 +19,7 @@
 				</p>
 			</animation-rise>
 			<animation-rise :delay="revealDelay + 0.3">
-				<div class="flex-center">
+				<div class="call-to-action-btn-container">
 					<button-sq
 						text="Our Work"
 						class="btn-hero-action wide"
@@ -62,6 +62,26 @@
 		.bold {
 			font-weight: 600
 		}
+
+		@include xl {
+			font-size: 70px;
+			line-height: 90px;
+		}
+
+		@include lg {
+			font-size: 60px;
+			line-height: 78px;
+		}
+
+		@include md {
+			font-size: 40px;
+			line-height: 55px;
+		}
+
+		@include sm {
+			font-size: 30px;
+			line-height: 40px;
+		}
 	}
 
 	.ash-text {
@@ -71,5 +91,11 @@
 		margin: 40px auto 70px;
 		text-align: center;
 		opacity: 0.5;
+
+		@include md {
+			font-size: 18px;
+			line-height: 27px;
+			width: 90%;
+		}
 	}
 </style>

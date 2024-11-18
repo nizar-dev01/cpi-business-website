@@ -63,6 +63,10 @@
 		position: relative;
 		height: 100svh;
 		z-index: 1;
+
+		@include sm {
+			height: 70svh
+		}
 	}
 
 	.services-banner-img-container {
@@ -86,8 +90,10 @@
 			position: absolute;
 			left: 50%;
 			bottom: 0;
-			height: 90vh;
+			height: 90%;
 			width: auto;
+			max-width: 100%;
+			object-fit: cover;
 			transform: translate(-50%, 0);
 		}
 	}
@@ -96,6 +102,20 @@
 		font-size: 2vw;
 		max-width: 18vw;
 		font-weight: 400;
+
+		@include lg {
+			font-size: 42px;
+			max-width: 350px;
+		}
+
+		@include md {
+			font-size: 30px;
+		}
+
+		@include sm {
+			font-size: 28px;
+			max-width: 90%;
+		}
 	}
 
 	.services-hero-img {

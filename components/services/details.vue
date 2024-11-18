@@ -1,6 +1,6 @@
 <template>
 	<section id="services-details-section">
-		<div class="layout-box">
+		<div class="layout-box clearfix">
 			<!-- Why Us -->
 			<div class="container">
 				<div class="row">
@@ -66,7 +66,7 @@
 				end: "+=2000",
 				scrub: true,
 				pin: true,
-				anticipatePin: 1
+				// anticipatePin: 1
 			}
 		})
 	})
@@ -103,10 +103,19 @@
 
 				&.left {
 					width: 40%;
+
+					@include lg {
+						width: 100%;
+						margin-bottom: 30px;
+					}
 				}
 
 				&.right {
 					width: 60%;
+
+					@include lg {
+						width: 100%;
+					}
 				}
 			}
 		}
@@ -116,7 +125,11 @@
 		margin: 0;
 		font-size: 33px;
 		font-weight: 600;
-		font-family: 'Newyork';
+		font-family: 'Denton';
+
+		@include md {
+			font-size: 30px;
+		}
 	}
 
 	.content {
@@ -125,6 +138,11 @@
 		line-height: 54px;
 		font-weight: 400;
 		max-width: 90%;
+
+		@include md {
+			font-size: 25px;
+			line-height: 39px;
+		}
 	}
 
 	.we-offer-text {
@@ -134,5 +152,20 @@
 		font-weight: 400;
 		margin: 40vh 0 40vh;
 		color: rgba(255, 255, 255, 0.15);
+
+		@include lg {
+			font-size: 75px;
+			line-height: 90px;
+		}
+
+		@include md {
+			font-size: 67px;
+			line-height: 80px;
+		}
+
+		@include sm {
+			font-size: 34px;
+			line-height: 45px;
+		}
 	}
 </style>

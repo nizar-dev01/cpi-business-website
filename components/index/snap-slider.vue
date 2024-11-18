@@ -115,14 +115,9 @@
 						>
 						<img
 							src="@/assets/images/snap/slide_2/gate.png"
-							class="sl2-center-main"
+							class="sl2-center-main origin-bottom"
 							id="slide-2-gate"
 							alt="Gate"
-						>
-						<img
-							src="@/assets/images/snap/slide_2/nail.png"
-							class="sl2-img-nail"
-							alt="Nail"
 						>
 						<img
 							src="@/assets/images/snap/slide_2/rock.png"
@@ -375,6 +370,12 @@
 				</div>
 			</div>
 			<!-- /5 - Slide -->
+
+			<!-- 6 - Slide -->
+			<!-- /6 - Slide -->
+
+			<!-- 7 - End -->
+			<!-- /7 - End -->
 		</div>
 		<!-- /Slides -->
 
@@ -506,14 +507,14 @@
 	// Reset the slide index @ the store
 	appStore.setActiveSliderIndex(0)
 
+	// Hide the trailing spheres animation till all other animations has passed
+	const showTailSpheres = ref(false)
+
 	let tl;
 	onMounted(() => {
 		// Initial Setup
 		const {
-			$ScrollTrigger,
 			$gsap,
-			$Observer,
-			$lenis
 		} = useNuxtApp()
 
 		const first = _config_pairs[0]
@@ -533,7 +534,7 @@
 				scrub: 2,
 				pin: true,
 				pinSpacing: true,
-				anticipatePin: 1
+				anticipatePin: 0.5
 			}
 		})
 
@@ -598,7 +599,9 @@
 		const ww = window.innerWidth
 
 		const responsiveValue = (vals = []) => {
-			const target = vals.find(el => el.width <= ww) || vals[0]
+			const target = vals.find(el => {
+				return el.width >= ww
+			}) || vals[0]
 			return target.value || 0
 		}
 		// Animation
@@ -633,16 +636,20 @@
 				y: responsiveValue([
 					{
 						value: '-60vh'
+					},
+					{
+						width: 576,
+						value: '-65vh'
 					}
 				]),
 				x: responsiveValue([
 					{
-						value: '-20vw'
+						value: '-5vw'
 					},
 					{
 						width: 755,
 						value: '-10vw'
-					}
+					},
 				]),
 			}, label[1].start)
 
@@ -657,9 +664,9 @@
 					},
 					{
 						width: 752,
-						value: '-45vh'
-					},
-				]),
+						value: '-46vh'
+					}
+				], true),
 				x: responsiveValue([
 					{
 						width: 752,
@@ -693,10 +700,26 @@
 			// /Cloud
 			// Gate
 			.to('#slide-2-gate', {
-				scale: 1.3
+				scale: responsiveValue([
+					{
+						value: 1.3
+					},
+					{
+						width: 786,
+						value: 0.7
+					}
+				])
 			}, label[2].start)
 			.to('#slide-2-rock', {
-				scale: 1.3
+				scale: responsiveValue([
+					{
+						value: 1.3
+					},
+					{
+						width: 786,
+						value: 0.7
+					}
+				])
 			}, label[2].start)
 			// /Gate
 
@@ -724,7 +747,15 @@
 			.add(label[3].start)
 
 			.to('#slide-3-objects-holder', {
-				scale: 1.3,
+				scale: responsiveValue([
+					{
+						value: 1.3
+					},
+					{
+						width: 768,
+						value: 0.7
+					}
+				]),
 				y: '20%'
 			}, label[3].start)
 
@@ -828,7 +859,7 @@
 
 	.snap-content-section {
 		position: relative;
-		height: 100svh;
+		height: 100vh;
 		z-index: 1;
 	}
 
@@ -836,6 +867,7 @@
 		transform: translateY(100%);
 		transition: all 0.7s cubic-bezier(0.75, 0.03, 0.36, 1);
 		overflow: hidden;
+		z-index: 0;
 
 		&.active {
 			transform: translateY(0);
@@ -849,7 +881,7 @@
 		}
 
 		.se-ui-container {
-			height: 100svh;
+			height: 100vh;
 			width: 100svw;
 			position: relative;
 
@@ -875,16 +907,6 @@
 					width: 20vw;
 					height: 12vw;
 
-					@include xl {
-						width: 30vw;
-						height: 20vw;
-					}
-
-					@include md {
-						width: 35vw;
-						height: 25vw;
-					}
-
 					position: relative;
 					perspective-origin: top;
 					perspective: 1700px;
@@ -908,6 +930,21 @@
 						&.rtc-3 {
 							transform: translate3d(250px, 500px, -400px)
 						}
+					}
+
+					@include xl {
+						width: 30vw;
+						height: 20vw;
+					}
+
+					@include md {
+						width: 35vw;
+						height: 25vw;
+					}
+
+					@include sm {
+						width: 50vw;
+						height: 34vw;
 					}
 				}
 			}
@@ -992,6 +1029,10 @@
 							bottom: 15vh;
 							height: 60vh;
 						}
+
+						&.origin-bottom {
+							transform-origin: bottom;
+						}
 					}
 
 					&.sl2-img-nail {
@@ -1003,6 +1044,7 @@
 						top: unset;
 						bottom: -7vh;
 						left: 50%;
+						transform-origin: bottom;
 						// transform: translate(-50%, 0) rotateZ(-3deg);
 					}
 				}
@@ -1015,7 +1057,7 @@
 				right: 0;
 				top: 0;
 				bottom: 0;
-				overflow: hidden;
+				// overflow: hidden;
 
 				.sl3-img {
 					object-fit: cover;
@@ -1038,6 +1080,10 @@
 					img.tvstand {
 						width: 100%;
 						height: auto;
+
+						@include md {
+							width: 150%;
+						}
 					}
 				}
 
@@ -1153,8 +1199,6 @@
 				text-align: center;
 			}
 		}
-
-		z-index: 0;
 	}
 
 
@@ -1177,6 +1221,11 @@
 		flex-wrap: nowrap;
 		margin: 0 -13px;
 		padding: 0 100px;
+
+		@include md {
+			padding: 0 15px;
+			margin: 0 -5px;
+		}
 	}
 
 	.pb-progress-holder {
@@ -1187,6 +1236,10 @@
 		overflow: hidden;
 		flex: 1;
 		margin: 0 13px;
+
+		@include md {
+			margin: 0 5px;
+		}
 	}
 
 	.pb-progress-line {

@@ -1,8 +1,9 @@
+@use './breakpoints.scss' as *;
+
 html,
 body {
 	margin: 0;
 	padding: 0;
-	// background: #1B1B1B;
 	background: #1e1e1e;
 	font-family: 'Satoshi';
 	color: white;
@@ -88,13 +89,19 @@ $dot-radius: 2vw;
 	}
 
 	user-select: none;
-	font-size: 14vw;
-	line-height: 14vw;
+	font-size: 17vw;
+	line-height: 17vw;
 	font-weight: 600;
+
 	color: $text-color;
+	// color: inherit;
 	font-family: 'Metropolis';
 	display: flex;
 
+	@include md {
+		font-size: 20vh;
+		line-height: 20vh;
+	}
 
 	span {
 		margin: 0 2vw;
@@ -111,6 +118,8 @@ $dot-radius: 2vw;
 				transform: translate(-50%, -50%);
 				height: $dot-radius;
 				width: $dot-radius;
+				min-height: 30px;
+				min-width: 30px;
 				background: $text-color;
 				border-radius: 45%;
 			}
@@ -158,5 +167,18 @@ $dot-radius: 2vw;
 		object-fit: cover;
 		margin-right: 10px;
 		display: block;
+	}
+}
+
+
+
+.call-to-action-btn-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: -10px;
+
+	button.btn-hero-action {
+		margin: 10px
 	}
 }

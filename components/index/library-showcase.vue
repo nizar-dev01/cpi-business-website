@@ -68,12 +68,17 @@
 			}
 
 			.lst-highlight {
-				font-family: 'Newyork';
+				font-family: 'Denton';
 			}
 
 			@include md {
 				font-size: 50px;
 				line-height: 68px;
+			}
+
+			@include sm {
+				font-size: 37px;
+				line-height: 52px;
 			}
 		}
 	}

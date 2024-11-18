@@ -45,6 +45,7 @@
 							if (isSubmenuActive) {
 								toggleSubMenu(false)
 							}
+							toggleMenuVisibility = false
 						}"
 					>
 						<text-roll :text="link.text" />
@@ -141,7 +142,7 @@
 			text: "About"
 		},
 		{
-			to: "/services",
+			to: "/services/ip-creation",
 			text: "Services",
 			sub_menu: []
 		},
@@ -231,10 +232,14 @@
 		isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
 		if (isSubmenuActive.value) {
 			toggle_menu_tl.play()
-			$lenis.instance.stop()
+			if ($lenis) {
+				$lenis.instance.stop()
+			}
 		} else {
 			toggle_menu_tl.reverse()
-			$lenis.instance.start()
+			if ($lenis) {
+				$lenis.instance.start()
+			}
 		}
 	}
 
@@ -623,7 +628,7 @@
 		}
 
 		h2.submenu-title {
-			font-family: 'Newyork';
+			font-family: 'Denton';
 			font-size: 20px;
 			font-weight: 500;
 			line-height: 19.88px;

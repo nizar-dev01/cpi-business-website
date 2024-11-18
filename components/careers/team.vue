@@ -194,7 +194,7 @@
 
 	.team-title {
 		font-size: 450px;
-		font-family: 'Newyork';
+		font-family: 'Denton';
 		text-align: center;
 		margin: 0 0 20px;
 	}

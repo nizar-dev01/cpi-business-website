@@ -1,13 +1,15 @@
 <template>
-	<div class="accordion-container">
+	<div
+		class="accordion-container"
+		ref="accordionContainer"
+	>
 		<div
 			class="item-container"
 			v-for="item in items"
-			:class="{ active: item.currentHeight !== 0 }"
 		>
 			<div
 				class="title-box"
-				@mouseenter="toggleItem(item)"
+				@click="toggleItem(item)"
 			>
 				<h3 class="item-title">
 					{{ item.title }}
@@ -20,7 +22,7 @@
 			</div>
 			<div
 				class="content-box-wrapper"
-				:style="`height: ${item.currentHeight}px`"
+				:style="`--height: ${item.height}px`"
 			>
 				<div
 					class="content-box"
@@ -74,12 +76,19 @@
 		}
 	])
 
+	const accordionContainer = ref()
+
 	const contentBox = ref()
 	onMounted(() => {
 		contentBox.value.forEach((cb, i) => {
 			const height = cb.getBoundingClientRect().height
 			items.value[i].height = height
 		})
+
+		const _container = accordionContainer.value
+		const _ch = _container.clientHeight
+
+		_container.style.maxHeight = `${_ch}px`
 	})
 
 	const toggleItem = (item) => {
@@ -90,6 +99,7 @@
 			}
 		})
 
+		if (!item) return
 		// Toggle the target
 		if (item.currentHeight === item.height) {
 			item.currentHeight = 0
@@ -107,6 +117,18 @@
 		padding: 30px;
 		transition: all 0.3s ease-in;
 		border-radius: 10px;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.1);
+
+			.content-box-wrapper {
+				height: var(--height);
+			}
+
+			.accordion-toggle-icon.up {
+				opacity: 1;
+			}
+		}
 	}
 
 	.title-box {
@@ -138,25 +160,23 @@
 		}
 	}
 
-	.item-container.active {
-		background: rgba(255, 255, 255, 0.1);
-
-		.accordion-toggle-icon.up {
-			opacity: 1;
-		}
-	}
-
 	.item-title {
 		max-width: 60%;
 		font-size: 33px;
 		margin: 0;
 		user-select: none;
 		cursor: pointer;
+		font-weight: 500;
+
+		@include md {
+			font-size: 28px;
+		}
 	}
 
 	.content-box-wrapper {
 		overflow: hidden;
 		transition: all 0.3s ease-out;
+		height: 0;
 	}
 
 	.content-box {

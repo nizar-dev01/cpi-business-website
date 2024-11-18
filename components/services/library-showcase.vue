@@ -49,7 +49,7 @@
 			margin: 0 0 100px;
 
 			.lst-highlight {
-				font-family: 'Newyork';
+				font-family: 'Denton';
 			}
 
 			@include md {

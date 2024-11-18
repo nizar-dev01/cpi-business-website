@@ -19,7 +19,6 @@
 	})
 
 	const appStore = useAppStore()
-
 	onBeforeRouteLeave((to, from) => {
 		if (to.name !== "index") {
 			appStore.setPageScrollPosition('index', 0)

@@ -29,6 +29,7 @@
 				</div>
 			</div>
 
+			<!-- Testimonials -->
 			<div class="testimonials-container">
 				<div class="tst-row">
 					<div class="tst-col">
@@ -151,6 +152,16 @@
 		text-align: center;
 		max-width: 740px;
 		margin: 0 auto;
+
+		@include lg {
+			font-size: 40px;
+			line-height: 52px;
+		}
+
+		@include sm {
+			font-size: 32px;
+			line-height: 40px;
+		}
 	}
 
 	.numbers-section {
@@ -174,14 +185,30 @@
 			.num-number {
 				font-size: 107px;
 				margin: 0;
-				font-family: 'Newyork';
+				font-family: 'Denton';
 				font-weight: 600;
+
+				@include md {
+					font-size: 78px;
+				}
+
+				@include sm {
+					font-size: 45px;
+				}
 			}
 
 			.num-title {
 				font-size: 33px;
 				font-weight: 400;
 				margin: 0;
+
+				@include md {
+					font-size: 28px;
+				}
+
+				@include sm {
+					font-size: 20px;
+				}
 			}
 		}
 	}
@@ -200,11 +227,19 @@
 	.tst-row {
 		display: flex;
 		margin: 0 -20px;
+
+		@include lg {
+			flex-wrap: wrap;
+		}
 	}
 
 	.tst-col {
 		margin: 0 20px;
 		width: 50%;
+
+		@include lg {
+			width: 100%;
+		}
 	}
 
 	.tst-item {
@@ -235,6 +270,10 @@
 				text-align: center;
 				margin-top: 30px;
 			}
+
+			@include sm {
+				padding: 35px 20px;
+			}
 		}
 
 		&.right {
@@ -252,6 +291,10 @@
 						height: calc(100% - 20px);
 						border-radius: 10px;
 						overflow: hidden;
+
+						@include lg {
+							height: 100%;
+						}
 					}
 
 					&.left {
@@ -260,9 +303,14 @@
 							display: flex;
 							justify-content: center;
 							align-items: center;
+							padding: 25px;
 
 							.trci-icon {
 								width: 80%;
+							}
+
+							@include sm {
+								border-radius: 0 0 10px 10px;
 							}
 						}
 					}
@@ -274,7 +322,30 @@
 							object-fit: cover;
 							display: block;
 						}
+
+						.trc-item {
+							@include sm {
+								border-radius: 10px 10px 0 0;
+							}
+						}
 					}
+
+					@include sm {
+						width: 100%;
+						margin: 0;
+					}
+				}
+
+				@include lg {
+					min-width: 100%;
+					margin: 15px -10px;
+				}
+
+				@include sm {
+					flex-wrap: wrap;
+					flex-direction: column-reverse;
+					margin-left: 0;
+					margin-right: 0;
 				}
 			}
 
@@ -297,6 +368,11 @@
 					.tst-name {
 						margin: 0 0 10px;
 						font-size: 45px;
+
+						@include sm {
+							font-size: 35px;
+							margin: 0;
+						}
 					}
 
 					.tst-designation {
@@ -306,6 +382,19 @@
 					}
 				}
 			}
+		}
+	}
+
+	.qi-icon {
+		width: 70px;
+
+		@include lg {
+			width: 60px
+		}
+
+		@include sm {
+			width: 40px;
+			height: 80px;
 		}
 	}
 </style>

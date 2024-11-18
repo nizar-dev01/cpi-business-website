@@ -35,6 +35,8 @@
 
 	const sectionContainer = ref()
 
+	let _animation;
+
 	onMounted(() => {
 		const {
 			$gsap: gsap,
@@ -112,7 +114,7 @@
 			});
 		}
 
-		LottieScrollTrigger({
+		_animation = LottieScrollTrigger({
 			target: "#" + targetID,
 			// path: "https://lottie.host/cb2010f5-8be1-45b8-a33c-b18f3dccd8e1/GpMOdzAqTg.json",
 			path: basePath + "/animation_entry/Ball_Seq 2.json",
@@ -123,6 +125,12 @@
 			// you can pass in a "timeline" that has existing animations in it, and LottieScrollTrigger will play that alongside the Lottie animation
 			// you can pass a startFrameOffset and/or endFrameOffset to cause the playhead to start/end at a different frame.
 		});
+	})
+
+	onBeforeUnmount(() => {
+		if (_animation) {
+			Lottie.destroy(_animation)
+		}
 	})
 </script>
 <style lang="scss" scoped>

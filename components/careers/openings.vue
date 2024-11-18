@@ -117,7 +117,7 @@
 		margin: 100px auto;
 		text-align: center;
 		font-size: 10vw;
-		font-family: 'Newyork';
+		font-family: 'Denton';
 		line-height: 8vw;
 		font-weight: 600;
 
@@ -177,7 +177,7 @@
 
 		.op-title {
 			font-size: 80px;
-			font-family: 'Newyork';
+			font-family: 'Denton';
 			font-weight: 500;
 			margin-bottom: 7vw;
 		}

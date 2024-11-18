@@ -29,7 +29,7 @@
 		'stagger',
 		'start',
 		'end',
-		'duration'
+		'duration',
 	])
 
 	const chars = ref(props.text.split(" ").map(el => el.split("")))
@@ -41,6 +41,8 @@
 
 	const parentSpan = ref(null)
 	const characterSpans = ref(null)
+
+	const emitter = defineEmits(['mounted'])
 
 	onMounted(() => {
 		if (props.expose) {
@@ -75,6 +77,7 @@
 				stagger: props.stagger === undefined ? 0.01 : props.stagger
 			})
 		}
+		emitter('mounted')
 	})
 
 	defineExpose({ elements })

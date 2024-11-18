@@ -4,6 +4,7 @@
 		@mousemove="onScreenMouseMove"
 		@mouseLeave="toggleCursorView(false)"
 		@mouseEnter="toggleCursorView(true)"
+		ref="layoutWrapperContainer"
 	>
 		<slot></slot>
 		<aside class="grainy-overlay"></aside>
@@ -24,7 +25,9 @@
 </template>
 <script setup>
 	const {
-		$gsap: gsap
+		$gsap: gsap,
+		$lenis,
+		$CustomLenis
 	} = useNuxtApp()
 
 	const appStore = useAppStore()
@@ -54,7 +57,13 @@
 		} else isCursorVisible.value = value
 	}
 
+	const layoutWrapperContainer = ref()
 	onMounted(() => {
+		$lenis.value = new $CustomLenis({
+			content: layoutWrapperContainer.value,
+			wrapper: layoutWrapperContainer.value,
+		})
+
 		const _cursor = customCursor.value
 		customCursorBounds.value.height = _cursor.clientHeight
 		customCursorBounds.value.width = _cursor.clientWidth
