@@ -1,7 +1,6 @@
 <template>
 	<footer
 		class="layout-footer"
-		@mousemove="shineLight"
 		:style="`--color-theme: ${color}`"
 		:class="{ yellow: color_theme === 'yellow' }"
 	>
@@ -16,6 +15,7 @@
 			<h3
 				class="footer-text-content"
 				ref="shiningText"
+				@mousemove="shineLight"
 			>
 				<!-- <text-splitter
 					text="Our adventures have led us to expand into satellite offices across South-East Asia, but we are proud to be home-grown and call the UAE our home."
@@ -30,7 +30,6 @@
 					<button-sq
 						text="Our Work"
 						class="wide"
-						@mousemove.prevent.stop
 						@click.prevent="$router.push('/portfolio')"
 						:class="{ yellow: color_theme === 'yellow' }"
 					/>
@@ -39,8 +38,7 @@
 						text="Our Capabilities"
 						class="wide"
 						:blue="true"
-						@mousemove.prevent.stop
-						@click.prevent="$router.push('/services')"
+						@click.prevent="$router.push('/services/ip-creation')"
 						:class="{ yellow: color_theme === 'yellow' }"
 					/>
 				</div>
@@ -82,6 +80,35 @@
 				</ul>
 			</div>
 		</div>
+		<div class="layout-box relative">
+			<div
+				class="scroll-to-top-button"
+				@mouseenter="toggleArrow(0)"
+				@mouseleave="toggleArrow(1)"
+			>
+				<div class="ripple one"></div>
+				<div class="ripple two"></div>
+				<div class="content"></div>
+
+				<div
+					class="arrow-icon"
+					@click="goToTop"
+				>
+					<div
+						class="active"
+						ref="upArrowActive"
+					>
+						<font-awesome-icon :icon="['fas', 'arrow-up']" />
+					</div>
+					<div
+						class="passive"
+						ref="upArrowPassive"
+					>
+						<font-awesome-icon :icon="['fas', 'arrow-up']" />
+					</div>
+				</div>
+			</div>
+		</div>
 	</footer>
 </template>
 <script setup>
@@ -108,6 +135,52 @@
 	const appStore = storeToRefs(useAppStore())
 	const color = computed(() => appStore.pageTheme.value)
 	const color_theme = computed(() => appStore.pageThemeSelector.value)
+
+
+	const {
+		$gsap
+	} = useNuxtApp()
+
+	const upArrowActive = ref()
+	const upArrowPassive = ref()
+	let is_animation_running = false
+	const toggleArrow = () => {
+		if (is_animation_running == true) return
+		is_animation_running = true
+		const a_arrow = upArrowActive.value
+		const p_arrow = upArrowPassive.value
+
+		// Set initial values
+		$gsap.set(a_arrow, {
+			y: 0
+		})
+		$gsap.set(p_arrow, {
+			y: 50
+		})
+
+		const _duration = 0.5
+		// Run the animation
+		$gsap.to(a_arrow, {
+			y: -50,
+			duration: _duration
+		})
+		$gsap.to(p_arrow, {
+			y: 0,
+			duration: _duration,
+			onComplete () {
+				is_animation_running = false
+			}
+		})
+	}
+
+	const goToTop = () => {
+		$gsap.to(window, {
+			duration: 0,
+			scrollTo: {
+				y: 0
+			}
+		})
+	}
 </script>
 <style lang="scss">
 	// footer {
@@ -118,6 +191,7 @@
 		background: black;
 		// border-radius: 40px 40px 0 0;
 		padding: 110px 0 0;
+		position: relative;
 	}
 
 	.footer-text-title {
@@ -164,6 +238,144 @@
 
 	.footer-call-to-actions {
 		margin: 0 -10px 89px;
+	}
+
+
+	.scroll-to-top-button {
+		position: absolute;
+		bottom: 150px;
+
+		$bhw: 50px;
+		width: $bhw;
+		height: $bhw;
+		right: 0;
+		border-radius: 50%;
+		z-index: 1;
+
+		@include md {
+			bottom: 120px;
+		}
+
+		@keyframes pulse {
+			0% {
+				transform: scale(1)
+			}
+
+			25% {
+				transform: scale(1.1)
+			}
+
+			50% {
+				transform: scale(1)
+			}
+
+			75% {
+				transform: scale(0.9)
+			}
+
+			100% {
+				transform: scale(1)
+			}
+		}
+
+		$blue: #054BF9;
+
+		&:hover {
+			cursor: pointer;
+
+			.content {
+				animation: pulse 0.5s;
+
+				background: $blue;
+				color: white;
+			}
+
+			.ripple {
+
+				background: $blue;
+				color: white;
+
+				&.one,
+				&.two {
+					opacity: 0;
+					transform: scale(2);
+				}
+
+				&.one {
+					transition: all 1.2s ease-in-out 0s;
+				}
+
+				&.two {
+					transition: all 1.2s ease-in-out 0.2s;
+				}
+			}
+		}
+
+
+		.ripple,
+		.content,
+		.arrow-icon {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			width: inherit;
+			height: inherit;
+			border-radius: inherit;
+			pointer-events: none;
+			color: $blue;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: white;
+			color: $blue;
+
+			&:hover {
+				background: $blue;
+				color: white;
+			}
+		}
+
+		.arrow-icon {
+			pointer-events: all !important;
+			overflow: hidden;
+
+			.active,
+			.passive {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				height: 100%;
+				width: 100%;
+				line-height: 50px;
+				text-align: center;
+			}
+
+			.active {
+				transform: translateY(0);
+			}
+
+			.passive {
+				transform: translateY(-50px);
+			}
+		}
+
+		.ripple {
+			z-index: 1;
+			transition-property: scale, opacity;
+			opacity: 0.2;
+		}
+
+		.content {
+			z-index: 2;
+		}
+
+		.arrow-icon {
+			z-index: 3;
+		}
 	}
 
 	.footer-footer {

@@ -57,6 +57,7 @@
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
 							duration="100"
+							scale-on-hover
 							:show-nav-cursor="true"
 						>
 							<template v-slot:subtitle>
@@ -132,6 +133,7 @@
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
 							duration="100"
+							scale-on-hover
 							:show-nav-cursor="true"
 						>
 							<template v-slot:subtitle>
@@ -211,6 +213,7 @@
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
 							duration="100"
+							scale-on-hover
 							:show-nav-cursor="true"
 						>
 							<template v-slot:subtitle>
@@ -274,6 +277,7 @@
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
 							duration="100"
+							scale-on-hover
 							:show-nav-cursor="true"
 						>
 							<template v-slot:subtitle>
@@ -345,6 +349,7 @@
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
 							duration="100"
+							scale-on-hover
 							:show-nav-cursor="true"
 						>
 							<template v-slot:subtitle>
@@ -367,6 +372,7 @@
 						</horizontal-text>
 					</div>
 					<!-- /Sliding Text -->
+					<div id="slide-5-overlay"></div>
 				</div>
 			</div>
 			<!-- /5 - Slide -->
@@ -523,6 +529,17 @@
 		const fourth = _config_pairs[3]
 		const fifth = _config_pairs[4]
 
+
+		const wh = window.innerHeight
+		const ww = window.innerWidth
+
+		const responsiveValue = (vals = []) => {
+			const target = vals.find(el => {
+				return el.width >= ww
+			}) || vals[0]
+			return target.value || 0
+		}
+
 		tl = $gsap.timeline({
 			defaults: {
 				duration: 2
@@ -530,7 +547,15 @@
 			scrollTrigger: {
 				trigger: snapSliderWrapper.value,
 				start: 'top top',
-				end: '+=25000',
+				end: responsiveValue([
+					{
+						value: '+=25000'
+					},
+					{
+						width: 768,
+						value: '+=8000'
+					}
+				]),
 				scrub: 2,
 				pin: true,
 				pinSpacing: true,
@@ -595,15 +620,6 @@
 				scale: 0.6
 			})
 
-		const wh = window.innerHeight
-		const ww = window.innerWidth
-
-		const responsiveValue = (vals = []) => {
-			const target = vals.find(el => {
-				return el.width >= ww
-			}) || vals[0]
-			return target.value || 0
-		}
 		// Animation
 		tl.
 
@@ -753,10 +769,18 @@
 					},
 					{
 						width: 768,
-						value: 0.7
+						value: 1
 					}
 				]),
-				y: '20%'
+				y: responsiveValue([
+					{
+						value: '20%'
+					},
+					{
+						width: 768,
+						value: 0
+					}
+				])
 			}, label[3].start)
 
 			// Progress
@@ -809,7 +833,24 @@
 				'#slide-5-typewriter',
 				{
 					z: 888,
-					y: '15vh',
+					y: responsiveValue([
+						{
+							value: '15vh'
+						},
+						{
+							width: 768,
+							value: '7vh'
+						}
+					]),
+					scale: responsiveValue([
+						{
+							value: 1
+						},
+						{
+							width: 768,
+							value: 2
+						}
+					]),
 					delay: 0.5
 				},
 				label[5].start
@@ -821,6 +862,16 @@
 					delay: 0.5
 				},
 				label[5].start
+			)
+
+			.to(
+				'#slide-5-overlay',
+				{
+					opacity: 1,
+					duration: 0.2,
+					delay: 0
+				},
+				'-=0.7'
 			)
 
 			// Progress
@@ -959,11 +1010,8 @@
 
 
 				&:hover {
-					transform-origin: center;
-
 					span {
 						color: rgba(255, 255, 255, 0.01);
-						// backdrop-filter: blur(5px);
 					}
 
 					span.center-dot::after {
@@ -982,11 +1030,6 @@
 					opacity: 1;
 					transition: 1s all ease;
 					transform-origin: center;
-
-					&:hover {
-
-						transform: scale(1.05);
-					}
 
 					span {
 						-webkit-text-stroke: 2px white;
@@ -1028,15 +1071,17 @@
 						&.typewriter {
 							bottom: 15vh;
 							height: 60vh;
+
+							@include xl {
+								width: 80%;
+								height: auto;
+								bottom: 30vh;
+							}
 						}
 
 						&.origin-bottom {
 							transform-origin: bottom;
 						}
-					}
-
-					&.sl2-img-nail {
-						opacity: 0;
 					}
 
 					&.sl2-img-rock {
@@ -1045,6 +1090,11 @@
 						bottom: -7vh;
 						left: 50%;
 						transform-origin: bottom;
+
+						@include xl {
+							height: 45vh;
+						}
+
 						// transform: translate(-50%, 0) rotateZ(-3deg);
 					}
 				}
@@ -1083,6 +1133,7 @@
 
 						@include md {
 							width: 150%;
+							height: 40vh;
 						}
 					}
 				}
@@ -1093,6 +1144,11 @@
 					overflow: hidden;
 					position: relative;
 					transform: translate(0, 10px);
+
+					@include md {
+						width: 80%;
+						height: auto;
+					}
 
 					.sl3-tv-frame {
 						height: 100%;
@@ -1138,6 +1194,20 @@
 				transform-origin: center;
 				perspective: 1000px;
 				overflow: hidden;
+			}
+
+			#slide-5-overlay {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background: white;
+				z-index: 100;
+				opacity: 0;
+				pointer-events: none;
 			}
 
 

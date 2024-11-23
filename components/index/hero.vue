@@ -16,7 +16,7 @@
 					text="Our Capabilities"
 					class="btn-hero-action wide"
 					:blue="true"
-					@click.prevent="$router.push('/services')"
+					@click.prevent="$router.push('/services/ip-creation')"
 				/>
 			</div>
 		</div>

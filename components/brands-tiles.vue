@@ -1,5 +1,8 @@
 <template>
-	<div class="brands-container">
+	<div
+		class="brands-container"
+		:class="{ 'sm-horizontal-reveal': props.smHorizontalReveal }"
+	>
 		<div class="brands-row">
 			<icon-brand-abu-dhabi class="brands-item-icon"></icon-brand-abu-dhabi>
 
@@ -25,12 +28,37 @@
 		</div>
 	</div>
 </template>
+<script setup>
+	const props = defineProps({
+		smHorizontalReveal: {
+			type: Boolean,
+			default: false
+		}
+	})
+</script>
 <style lang="scss">
-
 	.brands-container {
 		margin: -32px auto;
 		max-width: 1524px;
 		width: 97%;
+
+		&.sm-horizontal-reveal {
+			@include md {
+				overflow: hidden;
+
+				.brands-row {
+					flex-wrap: nowrap;
+					width: auto;
+
+					svg {
+						flex-shrink: 0;
+						flex-grow: 0;
+						width: auto;
+						margin-right: 50px;
+					}
+				}
+			}
+		}
 	}
 
 	.brands-row {

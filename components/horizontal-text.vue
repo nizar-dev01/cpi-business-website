@@ -1,23 +1,36 @@
 <template>
 	<div class="rollingText-track">
 		<slot name="subtitle"></slot>
-		<div
-			class="rollingText"
-			ref="rollingText"
-			@mouseenter="setCursorStateNav"
-			@mouseleave="setCursorStateDefault"
-		>
-			<span class="text-slider-item tsi-1">
-				<slot></slot>
-			</span>
-			<span class="text-slider-item tsi-2">
-				<slot></slot>
-			</span>
+		<div :class="{ 'scale-on-hover': props.scaleOnHover }">
+			<div
+				class="rollingText"
+				ref="rollingText"
+				@mouseenter="setCursorStateNav"
+				@mouseleave="setCursorStateDefault"
+			>
+				<span class="text-slider-item tsi-1">
+					<slot></slot>
+				</span>
+				<span class="text-slider-item tsi-2">
+					<slot></slot>
+				</span>
+			</div>
 		</div>
 	</div>
 </template>
 <script setup>
-	const props = defineProps(['duration', 'showNavCursor'])
+	// const props = defineProps(['duration', 'showNavCursor', 'scaleOnHover'])
+	const props = defineProps({
+		duration: String,
+		showNavCursor: {
+			type: Boolean,
+			default: false
+		},
+		scaleOnHover: {
+			type: Boolean,
+			default: false
+		}
+	})
 	const rollingText = ref(null)
 
 	const appStore = useAppStore()
@@ -47,7 +60,16 @@
 		display: inline-block;
 		padding-left: 10px;
 		white-space: nowrap;
-		position: relative
+		position: relative;
+	}
+
+	.scale-on-hover {
+		transform-origin: center;
+		transition: transform 0.5s ease-in-out;
+
+		&:hover {
+			transform: scale(1.2);
+		}
 	}
 
 	.text-slider-item {

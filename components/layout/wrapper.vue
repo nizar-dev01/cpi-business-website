@@ -35,17 +35,21 @@
 
 	const customCursor = ref()
 
-	const customCursorBounds = ref({
-		height: 0,
-		width: 0
-	})
+	// const customCursorBounds = ref({
+	// 	height: 0,
+	// 	width: 0
+	// })
 
 
 	let xTo, yTo;
 
 	const onScreenMouseMove = (e) => {
-		const deltaX = e.x - customCursorBounds.value.width / 2
-		const deltaY = e.y - customCursorBounds.value.height / 2
+		const _cursor = customCursor.value
+		const _height = _cursor.clientHeight
+		const _width = _cursor.clientWidth
+
+		const deltaX = e.x - _width / 2
+		const deltaY = e.y - _height / 2
 		xTo(deltaX)
 		yTo(deltaY)
 	}
@@ -63,10 +67,6 @@
 			content: layoutWrapperContainer.value,
 			wrapper: layoutWrapperContainer.value,
 		})
-
-		const _cursor = customCursor.value
-		customCursorBounds.value.height = _cursor.clientHeight
-		customCursorBounds.value.width = _cursor.clientWidth
 
 		xTo = gsap.quickTo(
 			customCursor.value,
@@ -105,16 +105,18 @@
 
 	.custom-cursor {
 		position: fixed;
-		left: -10vh;
-		top: -10vh;
+		left: -10px;
+		top: -10px;
 		z-index: $cursor-z;
-		height: 10vh;
-		width: 10vh;
 		border-radius: 50%;
 		border: 1px solid white;
 		pointer-events: none;
-		opacity: 0;
-		visibility: hidden;
+
+		height: 20px;
+		width: 20px;
+
+		background: white;
+		mix-blend-mode: difference;
 
 		// Temporary styles for setting the transition
 		// transform: scale(0);
@@ -123,6 +125,8 @@
 			border-color 0.3s ease-in-out,
 			opacity 0.3s ease-in-out,
 			visibility 0.3s ease-in-out,
+			height 0.3s ease-in-out,
+			width 0.3s ease-in-out,
 			transform 0.3s ease-in-out;
 
 		.nav-icon {
@@ -134,6 +138,9 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.3s ease;
 		}
 
 		&.nav {
@@ -143,6 +150,14 @@
 			transform: scale(1);
 			opacity: 1;
 			visibility: visible;
+			mix-blend-mode: normal;
+			height: 10vh;
+			width: 10vh;
+
+			.nav-icon {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 	}
 </style>

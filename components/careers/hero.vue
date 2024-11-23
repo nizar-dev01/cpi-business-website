@@ -90,7 +90,7 @@
 			right: 0;
 			top: 0;
 			width: 100%;
-			height: 100%;
+			height: 50%;
 			background: linear-gradient(180deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.1) 50%, rgb(0, 0, 0) 100%);
 			z-index: 2;
 		}
@@ -117,6 +117,10 @@
 			margin-top: 50vh;
 			text-transform: uppercase;
 			line-height: 8vw;
+
+			@include lg {
+				color: red;
+			}
 		}
 	}
 
