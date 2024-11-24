@@ -21,8 +21,9 @@
 				/> -->
 				<icon-logo class="logo-img"></icon-logo>
 			</nuxt-link>
+
 			<ul
-				class="header-nav-ul strip-list"
+				class="header-nav-ul strip-list scroll-nav"
 				:class="{ 'toggle-header-nav': toggleMenuVisibility }"
 			>
 				<li
@@ -42,9 +43,18 @@
 							}
 						}"
 						@click="() => {
+							if(link.sub_menu) {
+								smSubmenuListtoggle = !smSubmenuListtoggle;
+								return;
+							}
+
+							// Navigate to url
+							navigateTo(link.to);
+
 							if (isSubmenuActive) {
 								toggleSubMenu(false)
 							}
+
 							toggleMenuVisibility = false
 						}"
 					>
@@ -54,6 +64,27 @@
 							v-if="!!link.sub_menu"
 						/>
 					</nuxt-link>
+
+					<ul 
+						v-if="!!link.sub_menu" 
+						class="sm-submenu-list"
+						:class="smSubmenuListtoggle ? 'toggle-header-nav' : ''"
+					>
+						<li
+							v-for="(item, index) in submenuItems"
+							class="pointer item"
+						>
+							<p 
+								@click="() => {
+									goToService(item);
+									toggleMenuVisibility = false;
+								}" 
+								class="item"
+							>
+									{{ item.text }}
+							</p>
+						</li>
+					</ul>
 				</li>
 			</ul>
 			<button
@@ -256,6 +287,8 @@
 
 	const headerElement = ref()
 	const headerHeight = ref(0)
+
+	const smSubmenuListtoggle = ref(false);
 
 	onMounted(() => {
 		headerHeight.value = headerElement.value.getBoundingClientRect().height
@@ -549,6 +582,10 @@
 		}
 	}
 
+	.submenu-parent {
+		height: 100%;
+	}
+
 	.sm-container {
 		width: 100%;
 		overflow: hidden;
@@ -638,4 +675,66 @@
 		}
 	}
 
+	.sm-submenu-list {
+		display: none;
+		padding-left: 40px;
+		flex-direction: column;
+		list-style: none;
+		overflow: hidden;
+		height: 0px;
+		transition-duration: 1s;
+		opacity: 0;
+		
+		$height :55px;
+		$count: 8;
+		&.toggle-header-nav {
+			height: calc($height * $count);
+			opacity: 1;
+		}
+
+		@include xl {
+			display: flex;
+		}
+		
+		@include xs {
+			padding-left: 10px;
+		}
+
+		p {
+			font-size: 16px;
+			line-height: 200%;
+
+			@include xs {
+				font-size: 14px;
+			}
+		}
+
+		.item {
+			padding: 0px;
+		}
+	}
+
+	.sm-submenu-hide {
+		height: 0px;
+	}
+
+	.sm-submenu-show {
+		height: auto;
+	}
+
+	.scroll-nav {
+		overflow-y: scroll;
+		scrollbar-width: none;
+  		-moz-scrollbar-width: none;
+	  	-ms-overflow-style: none;
+	  	scrollbar-width: none;
+	}
+
+	.scroll-nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	.pointer {
+		cursor: pointer;
+	}
 </style>
