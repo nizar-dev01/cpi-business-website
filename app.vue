@@ -1,6 +1,6 @@
 <template>
 	<client-only :key="appKey">
-		<!-- <app-loader /> -->
+		<app-loader />
 		<nuxt-layout>
 			<nuxt-page></nuxt-page>
 		</nuxt-layout>
@@ -16,9 +16,11 @@
 
 	const appKey = ref(0)
 
-	// window.addEventListener('resize', () => {
-	// 	appKey.value++
-	// })
+	onMounted(() => {
+		window.addEventListener('resize', () => {
+			appKey.value++
+		})
+	})
 </script>
 <style lang="scss">
 	@use './assets/style/index.scss';

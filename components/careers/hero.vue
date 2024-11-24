@@ -48,19 +48,23 @@
 			$gsap: gsap
 		} = useNuxtApp()
 
-		const astronaut = heroBgImg.value
-		gsap.to(
-			astronaut,
-			{
-				yPercent: 12,
-				scrollTrigger: {
-					trigger: astronaut,
-					start: "top top",
-					end: "bottom top",
-					scrub: 0.5,
+		// This needs to be fixed!
+		// The timeout is set because the animation was not getting initiated when the page reloads directly
+		setTimeout(() => {
+			const astronaut = heroBgImg.value
+			gsap.to(
+				astronaut,
+				{
+					yPercent: 12,
+					scrollTrigger: {
+						trigger: astronaut,
+						start: "top top",
+						end: "bottom top",
+						scrub: 0.5,
+					}
 				}
-			}
-		)
+			)
+		}, 100)
 	})
 </script>
 <style lang="scss" scoped>
@@ -91,7 +95,7 @@
 			top: 0;
 			width: 100%;
 			height: 50%;
-			background: linear-gradient(180deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.1) 50%, rgb(0, 0, 0) 100%);
+			background: linear-gradient(180deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0) 50%);
 			z-index: 2;
 		}
 	}
