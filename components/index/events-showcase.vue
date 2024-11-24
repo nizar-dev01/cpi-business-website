@@ -185,6 +185,11 @@
 		&.hidden {
 			display: none;
 		}
+
+		@include md {
+			width: 50%;
+			min-width: 0px;
+		}
 	}
 
 	$hover-duration: .5s;
@@ -199,11 +204,19 @@
 		color: inherit;
 		display: block;
 
+		@include md {
+			height: 98%;
+		}
+
 		img.showcase-img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 			z-index: 0;
+
+			@include md {
+				height: auto;
+			}
 		}
 
 		.si-hover-display {
