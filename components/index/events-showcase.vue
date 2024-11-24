@@ -283,16 +283,32 @@
 				&:hover {
 					transform: scale(1.1);
 				}
+
+				@include sm {
+					flex-direction: row;
+					width: 100%;
+					align-items: start;
+					justify-content: start;
+				}
 			}
 
 			.acr-view-button {
 				height: 35px;
 				width: 35px;
 				margin-bottom: 10px;
+				margin-left: 20px;
 			}
 
 			&:hover {
 				background: rgba(0, 0, 0, 0.55);
+			}
+
+			@include sm {
+				flex-direction: column;
+			}
+
+			@include xs {
+				display: none;
 			}
 		}
 
@@ -349,6 +365,11 @@
 		.tc-text {
 			font-size: 16px;
 			line-height: 30px;
+
+			@include sm {
+				font-size: 14px;
+				line-height: 150%;
+			}
 		}
 	}
 
@@ -358,5 +379,9 @@
 
 	.acr-view-text {
 		font-size: 13px;
+
+		@include sm {
+			display: none;
+		}
 	}
 </style>
