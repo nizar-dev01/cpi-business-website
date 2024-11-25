@@ -39,6 +39,16 @@
 		&.dim {
 			opacity: 0.2;
 		}
+
+		@include lg {
+			margin-bottom: 15vh;
+			margin-top: 15vh;
+		}
+
+		@include sm {
+			margin-bottom: 10vh;
+			margin-top: 10vh;
+		}
 	}
 
 
@@ -55,11 +65,23 @@
 
 				&.left {
 					width: 40%;
+
+					@include sm {
+						width: 100%
+					}
 				}
 
 				&.right {
 					width: 60%;
+
+					@include sm {
+						width: 100%
+					}
 				}
+			}
+
+			@include sm {
+				flex-direction: column;
 			}
 		}
 	}
@@ -69,6 +91,10 @@
 		font-size: 33px;
 		font-weight: 500;
 		font-family: 'Denton';
+
+		@include sm {
+			font-size: 25px;
+		}
 	}
 
 	:deep(.content) {
@@ -77,5 +103,15 @@
 		line-height: 54px;
 		font-weight: 400;
 		max-width: 90%;
+
+		@include md {
+			font-size: 28px;
+			line-height: 170%;
+		}
+
+		@include sm {
+			font-size: 24px;
+			line-height: 170%;
+		}
 	}
 </style>

@@ -9,12 +9,14 @@
 			/>
 		</div>
 		<div class="content-layer clearfix">
-			<h1 class="hero-intro-text">
-				Fresher <br>
-				than your <br>
-				last <br>
-				Employer
-			</h1>
+			<div class="hero-content">
+				<h1 class="hero-intro-text">
+					Fresher <br>
+					than your <br>
+					last <br>
+					Employer
+				</h1>
+			</div>
 			<hr class="section-divider">
 			<div class="layout-box">
 				<div class="container company-info-box">
@@ -24,7 +26,7 @@
 								Company
 							</h2>
 						</div>
-						<div class="col right">
+						<div class="col right sm-mt-30">
 							<p class="content">
 								Our web experiences are based on coheret concepts individually tailored to the use case.
 								Ourfocus varies: functionality,storyline, gamification, or other web experiences. Key in
@@ -71,14 +73,26 @@
 	#careers-hero-section {
 		width: 100vw;
 		height: auto;
-		min-height: 200vh;
+		min-height: 350vh;
 		overflow: hidden;
 		position: relative;
 		background: black;
+
+		@include xl {
+			min-height: 200vh;
+		}
+
+		@include lg {
+			min-height: 200vh;
+		}
+
+		@include md {
+			min-height: 100vh;
+		}
 	}
 
 	.background-layer {
-		height: 230vh;
+		height: 315vh;
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -98,6 +112,10 @@
 			background: linear-gradient(180deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0) 50%);
 			z-index: 2;
 		}
+
+		@include md {
+			height: 200vh;
+		}
 	}
 
 	.crh-bg-img {
@@ -114,6 +132,34 @@
 		position: relative;
 		z-index: 2;
 
+		.hero-content {
+			height: 180vh;
+
+			@include xxl {
+				height: 150vh;
+			}
+
+			@include xl {
+				height: 100vh;
+			}
+
+			@include lg {
+				height: 80vh;
+			}
+
+			@include xmd {
+				height: 40vh;
+			}
+
+			@include md {
+				height: 50vh;
+			}
+
+			@include sm {
+				height: 50vh;
+			}
+		}
+
 		.hero-intro-text {
 			font-size: 8vw;
 			text-align: center;
@@ -124,11 +170,23 @@
 
 			@include lg {
 				color: red;
+				margin-top: 30vh;
+				margin-bottom: 10vh;
 			}
 		}
 	}
 
 	.company-info-box {
 		margin-bottom: 400px;
+
+		@include md {
+			margin-bottom: 200px;
+		}
+	}
+
+	.sm-mt-30 {
+		@include md {
+			margin-top: 30px;
+		}
 	}
 </style>

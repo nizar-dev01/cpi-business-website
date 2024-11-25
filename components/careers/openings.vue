@@ -145,7 +145,10 @@
 	.op-row {
 		margin: -25px;
 		display: flex;
-		flex-wrap: wrap;
+		
+		@include md {
+			flex-wrap: wrap;
+		}
 	}
 
 	.op-col {
@@ -180,11 +183,25 @@
 			font-family: 'Denton';
 			font-weight: 500;
 			margin-bottom: 7vw;
+
+			@include xmd {
+				font-size: 45px;
+				margin-bottom: 5vw;
+			}
+
+			// @include sm {
+			// 	font-size: 45px;
+			// 	margin-bottom: 5vw;
+			// }
 		}
 
 		.op-level {
 			font-size: 50px;
 			font-weight: 400;
+
+			@include xmd {
+				font-size: 30px;
+			}
 		}
 
 		.op-detail-box {
