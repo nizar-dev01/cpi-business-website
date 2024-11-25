@@ -159,5 +159,9 @@
 				visibility: visible;
 			}
 		}
+
+		@include md {
+			display: none;
+		}
 	}
 </style>
