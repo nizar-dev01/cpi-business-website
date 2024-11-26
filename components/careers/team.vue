@@ -8,7 +8,7 @@
 			class="bg-layer clearfix"
 			ref="bgLayerContainer"
 		>
-			<div
+			<!-- <div
 				class="plx-img-row clearfix"
 				v-for="(src, i) in rows"
 			>
@@ -24,6 +24,23 @@
 						class="plx-img"
 					>
 				</div>
+			</div> -->
+			<div
+				class="plx-img-row clearfix"
+			>
+				<div
+					v-for="(img, i) in teamImages"
+					class="plx-img team-positioner"
+					:class="img.class"
+					:data-scroll="img.dataScroll || 0"
+				>
+					<img
+						:src="img.src"
+						width="200"
+						class="img"
+					>
+				</div>
+					
 			</div>
 		</div>
 		<!-- /BG Images -->
@@ -74,19 +91,68 @@
 	</div>
 </template>
 <script setup>
-	const teamImages = [
-		"https://images.pexels.com/photos/11404855/pexels-photo-11404855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/620337/pexels-photo-620337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		"https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-	]
+	const teamImages = ref([
+		{
+			src: "https://images.pexels.com/photos/11404855/pexels-photo-11404855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position1",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/11404855/pexels-photo-11404855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position2",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position3",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position4",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position5",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position6",
+			dataScroll: -3,
+		},
+		{
+			src: "https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position7",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position8",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position9",
+			dataScroll: -5,
+		},
+		{
+			src: "https://images.pexels.com/photos/620337/pexels-photo-620337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position10",
+			dataScroll: 2,
+		},
+		{
+			src: "https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position11",
+			dataScroll: 3,
+		},
+		{
+			src: "https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+			class: "plx-img position12",
+			dataScroll: 2,
+		}
+	])
 	const bgLayerContainer = ref()
 
 	const ic = teamImages.length
@@ -101,37 +167,27 @@
 	} = useNuxtApp()
 
 	onMounted(() => {
-		const bgContainerHeight = bgLayerContainer.value.clientHeight;
-		row_height.value = bgContainerHeight / rows
-
-		const _images = gsap.utils.toArray('.plx-img')
-		const xperc = 20
-		const yperc = 35
+		const _images = gsap.utils.toArray('.plx-img');
 
 		_images.forEach(img => {
-			// const yChange = (yperc + Math.ceil(Math.random() * (yperc / 2))) * (Math.random() >= 0.5 ? 1 : -0.5)
-			const yChange = (yperc / 2) + (Math.random() * (yperc / 2))
-			const xChange = (xperc + Math.ceil(Math.random() * xperc)) * (Math.random() >= 0.5 ? 1 : -0.5)
+			const yperc = 35;
+			const yChange = yperc * img.dataset.scroll || 1;
+
 			gsap.set(img, {
-				xPercent: xChange,
 				yPercent: yChange,
-			})
+			});
 
-		})
-
-		nextTick(() => {
-			_images.forEach(img => {
-				gsap.to(img, {
-					yPercent: -yperc,
-					scrollTrigger: {
-						trigger: img,
-						start: "top bottom",
-						end: "bottom top",
-						scrub: true,
-					}
-				})
-			})
-		})
+			gsap.to(img, {
+				yPercent: -yperc,
+				scrollTrigger: {
+					trigger: img,
+					start: "top bottom",
+					end: "bottom top",
+					scrub: 1,
+					scrubSpeed: img.dataset.scroll,
+				}
+			});
+		});
 	})
 
 </script>
@@ -190,6 +246,10 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+
+		@include sm {
+			margin: 50vh 0;
+		}
 	}
 
 	.team-title {
@@ -197,5 +257,171 @@
 		font-family: 'Denton';
 		text-align: center;
 		margin: 0 0 20px;
+
+		@include xxl {
+			font-size: 300px;
+		}
+
+		@include lg {
+			font-size: 200px;
+		}
+
+		@include md {
+			font-size: 100px;
+		}
+	}
+
+	.team-positioner {
+		position: absolute;
+	}
+
+	.position1 {
+		top: 5%;
+		right: 50%;
+		// z-index: 10;
+
+		@include sm {
+			right: 35%;
+		}
+
+		.img {
+			width: 20vw;
+
+			@include sm {
+				width: 30vw;
+			}
+		}
+	}
+
+	.position2 {
+		top: 1%;
+		right: 11%;
+		// z-index: 10;
+
+		@include sm {
+			right: 2%;
+		}
+
+		.img {
+			width: 20vw;
+
+			@include sm {
+				width: 30vw;
+			}
+		}
+	}
+
+	.position3 {
+		top: 1%;
+		left: 11%;
+		z-index: 10;
+
+		.img {
+			width: 10vw;
+			opacity: 0.5;
+
+			@include sm {
+				width: 20vw;
+			}
+		}
+	}
+
+	.position4 {
+		top: 30%;
+		right: 0%;
+
+		.img {
+			width: 30vw;
+		}
+	}
+
+	.position5 {
+		top: 18%;
+		right: 18%;
+		opacity: 0.5;
+
+		.img {
+			width: 30vw;
+		}
+	}
+
+	.position6 {
+		top: 30%;
+		left: 10%;
+
+		.img {
+			width: 20vw;
+
+			@include md {
+				width: 25vw;
+			}
+		}
+	}
+
+	.position7 {
+		top: 50%;
+		left: 10%;
+
+		.img {
+			width: 20vw;
+		}
+	}
+
+	.position8 {
+		top: 75%;
+		left: 30%;
+
+		.img {
+			width: 40vw;
+		}
+	}
+
+	.position9 {
+		top: 60%;
+		right: 1%;
+
+		.img {
+			width: 20vw;
+
+			@include sm {
+				width: 30vw;
+			}
+		}
+	}
+
+	.position10 {
+		top: 70%;
+		left: 1%;
+
+		.img {
+			width: 20vw;
+
+			@include md {
+				width: 30vw;
+			}
+		}
+	}
+
+	.position11 {
+		top: 79%;
+		right: 1%;
+
+		.img {
+			width: 20vw;
+		}
+	}
+
+	.position12 {
+		top: 90%;
+		right: 60%;
+		opacity: 0.5;
+
+		.img {
+			width: 20vw;
+
+			@include sm {
+				width: 30vw;
+			}
+		}
 	}
 </style>
