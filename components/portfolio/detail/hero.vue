@@ -76,6 +76,19 @@
 		font-weight: 600;
 		margin: 0 0 17px;
 		max-width: $title-mx;
+
+		@include lg {
+			font-size: 50px;
+		}
+
+		@include md {
+			font-size: 40px;
+			line-height: 100%;
+		}
+
+		@include sm {
+			font-size: 30px;
+		}
 	}
 
 	.pd-title {
@@ -85,5 +98,21 @@
 		font-weight: 800;
 		margin: 0 0 60vh;
 		max-width: $title-mx;
+
+		@include lg {
+			font-size: 70px;
+			line-height: 100%;
+		}
+
+		@include md {
+			font-size: 50px;
+			line-height: 125%;
+			margin: 0 0 70vh;
+		}
+
+		@include sm {
+			font-size: 40px;
+			line-height: 120%;
+		}
 	}
 </style>

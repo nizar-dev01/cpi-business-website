@@ -74,12 +74,25 @@
 				height: 100%;
 			}
 		}
+
+		@include xmd {
+			height: auto;
+			padding: 10vh 0;
+		}
+
+		// @include sm {
+		// 	padding: 10vh 0;
+		// }
 	}
 
 	.pdi-row {
 		display: flex;
 		flex-wrap: wrap;
 		height: 100%;
+
+		@include xmd {
+			flex-direction: column;
+		}
 	}
 
 	.pdi-col {
@@ -91,6 +104,11 @@
 
 		&.left {
 			width: 72%;
+
+			@include xmd {
+				width: 100%;
+				margin-bottom: 32px;
+			}
 		}
 
 		&.right {
@@ -106,12 +124,28 @@
 				width: 100vw;
 				background-color: #1e1e1e;
 				z-index: 0;
+
+				@include xmd {
+					width: 102%;
+				}
 			}
 
 			.pdi-item {
 				position: relative;
 				z-index: 1;
 				padding: 0 0 0 50px;
+
+				@include sm {
+					padding: 0 0 0 30px;
+				}
+
+				@include break(330px) {
+					padding: 0 0 0 20px;
+				}
+			}
+
+			@include xmd {
+				width: 98%;
 			}
 		}
 	}
@@ -122,6 +156,33 @@
 		line-height: 50px;
 		max-width: 80%;
 		font-weight: 600;
+
+		margin-left: 50px;
+
+		@include break(330px) {
+			margin-left: 20px;
+		}
+
+		@include lg {
+			font-size: 35px;
+			line-height: 45px;
+		}
+
+		@include xmd {
+			max-width: 90%;
+		}
+
+		@include md {
+			font-size: 30px;
+			line-height: 35px;
+			font-weight: 500;
+		}
+
+		@include sm {
+			font-size: 28px;
+			font-weight: 400;
+			margin-left: 30px;
+		}
 	}
 
 	.pdd-box {
