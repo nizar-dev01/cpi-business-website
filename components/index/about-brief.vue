@@ -107,8 +107,8 @@
 		}
 
 		@include sm {
-			font-size: 38px;
-			line-height: 53px;
+			font-size: 28px;
+			line-height: 150%;
 		}
 	}
 
@@ -132,8 +132,8 @@
 		}
 
 		@include sm {
-			font-size: 30px;
-			line-height: 45px;
+			font-size: 28px;
+			line-height: 150%;
 		}
 	}
 
