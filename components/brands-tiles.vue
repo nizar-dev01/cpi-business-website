@@ -3,7 +3,7 @@
 		class="brands-container"
 		:class="{ 'sm-horizontal-reveal': props.smHorizontalReveal }"
 	>
-		<div class="brands-row">
+		<div class="brands-row" ref="brandsRow">
 			<icon-brand-abu-dhabi class="brands-item-icon"></icon-brand-abu-dhabi>
 
 			<icon-brand-etisalt class="brands-item-icon"></icon-brand-etisalt>
@@ -13,8 +13,6 @@
 			<icon-brand-adgm class="brands-item-icon"></icon-brand-adgm>
 
 			<icon-brand-savi class="brands-item-icon"></icon-brand-savi>
-			<!-- </div>
-		<div class="brands-row"> -->
 
 			<icon-brand-justice class="brands-item-icon"></icon-brand-justice>
 
@@ -35,6 +33,19 @@
 			default: false
 		}
 	})
+
+	const brandsRow = ref(null);
+
+	onMounted(() => {
+		const containerEl = brandsRow.value;
+
+		const children = Array.from(containerEl.children);
+		
+		children.forEach((child) => {
+			const clone = child.cloneNode(true);
+			containerEl.appendChild(clone);
+		});
+	});
 </script>
 <style lang="scss">
 	.brands-container {
@@ -48,7 +59,9 @@
 
 				.brands-row {
 					flex-wrap: nowrap;
-					width: auto;
+					// width: auto;
+					width: fit-content;
+					animation: scroll 20s linear infinite;
 
 					svg {
 						flex-shrink: 0;
@@ -58,6 +71,18 @@
 					}
 				}
 			}
+		}
+
+		@include md {
+			max-width: 100vw;
+		}
+	}
+
+	.added {
+		display: none;
+
+		@include md {
+			display: block;
 		}
 	}
 
@@ -94,6 +119,12 @@
 			width: 100%;
 			max-height: 50px;
 			margin: 10px auto;
+		}
+	}
+
+	@keyframes scroll {
+		to {
+			transform: translate(-50%);
 		}
 	}
 </style>
