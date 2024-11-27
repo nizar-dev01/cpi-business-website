@@ -16,11 +16,11 @@
 
 	const appKey = ref(0)
 
-	onMounted(() => {
-		window.addEventListener('resize', () => {
-			appKey.value++
-		})
-	})
+	// onMounted(() => {
+	// 	window.addEventListener('resize', () => {
+	// 		appKey.value++
+	// 	})
+	// })
 </script>
 <style lang="scss">
 	@use './assets/style/index.scss';
