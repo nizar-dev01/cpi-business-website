@@ -69,7 +69,9 @@
 		<div class="container company-info-box">
 			<div class="row">
 				<div class="col left">
-					<h2 class="subtitle">
+					<h2 class="subtitle sm-mb-20 {
+					@include sm {
+					margin-bottom: 20px;}} ">
 						Company
 					</h2>
 				</div>
@@ -424,4 +426,10 @@
 			}
 		}
 	}
+
+	.sm-mb-20 {
+		@include sm {
+			margin-bottom: 20px !important;
+		}
+	} 
 </style>

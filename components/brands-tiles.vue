@@ -43,6 +43,7 @@
 		
 		children.forEach((child) => {
 			const clone = child.cloneNode(true);
+			clone.classList.add('hide-in-larger');
 			containerEl.appendChild(clone);
 		});
 	});
@@ -119,6 +120,14 @@
 			width: 100%;
 			max-height: 50px;
 			margin: 10px auto;
+		}
+	}
+
+	.hide-in-larger {
+		display: none;
+		
+		@include md {
+			display: block;
 		}
 	}
 

@@ -104,7 +104,7 @@
 		font-weight: 400;
 		max-width: 90%;
 
-		@include md {
+		@include lg {
 			font-size: 28px;
 			line-height: 170%;
 		}
