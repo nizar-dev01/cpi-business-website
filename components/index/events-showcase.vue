@@ -19,6 +19,7 @@
 								:src="event.image"
 								:alt="event.alt || `Event Image ${i}`"
 								class="showcase-img"
+								@load="updateImageLoad"
 							/>
 							<div class="si-hover-display">
 								<div class="actions-container">
@@ -78,10 +79,13 @@
 <script setup>
 	const props = defineProps(['showViewMore'])
 
+	const dataStore = useDataStore()
+	const showcaseEvents = dataStore.events
+
 	const showcaseRow = ref()
 	const showcaseItems = ref()
 
-	onMounted(() => {
+	const initScrollReveal = () => {
 		const {
 			$gsap: gsap
 		} = useNuxtApp()
@@ -150,10 +154,16 @@
 				},
 			})
 		})
-	})
+	}
 
-	const dataStore = useDataStore()
-	const showcaseEvents = dataStore.events
+	// Make sure the scroll reveal animation is initiated after all images are loaded
+	let loaded_images = 0;
+	const updateImageLoad = () => {
+		loaded_images++
+		if (loaded_images === showcaseEvents.length) {
+			initScrollReveal()
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -195,7 +205,7 @@
 	$hover-duration: .5s;
 
 	.showcase-item {
-		height: 567px;
+		height: auto;
 		width: 100%;
 		border-radius: 9px;
 		overflow: hidden;
@@ -210,8 +220,8 @@
 
 		img.showcase-img {
 			width: 100%;
-			height: 100%;
-			object-fit: cover;
+			height: auto;
+			// object-fit: cover;
 			z-index: 0;
 
 			@include md {

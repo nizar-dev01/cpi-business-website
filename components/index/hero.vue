@@ -95,6 +95,11 @@
 			font-size: 80px;
 			line-height: 90px;
 		}
+
+		@include sm {
+			font-size: 60px;
+			line-height: 78px;
+		}
 	}
 
 	.hero-subtitle {
@@ -120,16 +125,15 @@
 
 		@include md {
 			font-size: 30px;
-			max-width: 80%;
-			margin-top: 30px;
+			margin-top: 20px;
 			margin-left: auto;
 			margin-right: auto;
 			line-height: 40px;
 		}
 
 		@include sm {
-			font-size: 25px;
-			line-height: 35px;
+			font-size: 20px;
+			line-height: 30px;
 		}
 	}
 </style>

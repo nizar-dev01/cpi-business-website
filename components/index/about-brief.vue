@@ -99,6 +99,7 @@
 		@include md {
 			font-size: 45px;
 			line-height: 62px;
+			margin: 50px 0 0;
 		}
 
 		@include break(690px) {
@@ -107,8 +108,8 @@
 		}
 
 		@include sm {
-			font-size: 28px;
-			line-height: 150%;
+			font-size: 25px;
+			line-height: 130%;
 		}
 	}
 
@@ -131,9 +132,14 @@
 			margin: 130px 0 180px;
 		}
 
+		@include md {
+			margin: 50px 0 150px 0;
+		}
+
 		@include sm {
-			font-size: 28px;
-			line-height: 150%;
+			font-size: 20px;
+			line-height: 130%;
+			opacity: 0.9;
 		}
 	}
 
@@ -154,13 +160,23 @@
 
 		@include md {
 			font-size: 32px;
-			line-height: 52px;
+			line-height: 130%;
+			font-weight: 500;
+
+			br {
+				display: none;
+			}
+
+			span {
+				display: inline;
+			}
 		}
 
 		@include sm {
-			font-size: 28px;
-			line-height: 45px;
-			margin: 170px 5px;
+			font-size: 25px;
+			line-height: 130%;
+			margin: 150px 0px 0;
+			text-align: left;
 		}
 	}
 
@@ -170,5 +186,10 @@
 		// padding-top: 200px;
 		color: black;
 		padding-bottom: 200px;
+		margin-top: -2px;
+
+		@include md {
+			padding-bottom: 100px;
+		}
 	}
 </style>

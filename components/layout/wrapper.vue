@@ -10,7 +10,7 @@
 		<aside class="grainy-overlay"></aside>
 		<aside
 			class="custom-cursor"
-			:class="appStore.cursorState"
+			:class="[appStore.cursorState, { idle: isMouseIdle }]"
 			ref="customCursor"
 		>
 			<div class="nav-icon">
@@ -43,7 +43,11 @@
 
 	let xTo, yTo;
 
+	const isMouseIdle = ref(false)
+	let idleTimeout;
+
 	const onScreenMouseMove = (e) => {
+		clearTimeout(idleTimeout)
 		const _cursor = customCursor.value
 		const _height = _cursor.clientHeight
 		const _width = _cursor.clientWidth
@@ -52,6 +56,11 @@
 		const deltaY = e.y - _height / 2
 		xTo(deltaX)
 		yTo(deltaY)
+
+		isMouseIdle.value = false
+		idleTimeout = setTimeout(() => {
+			isMouseIdle.value = true
+		}, 200)
 	}
 
 	const isCursorVisible = ref(false)
@@ -105,8 +114,8 @@
 
 	.custom-cursor {
 		position: fixed;
-		left: -10px;
-		top: -10px;
+		left: -200px;
+		top: -200px;
 		z-index: $cursor-z;
 		border-radius: 50%;
 		border: 1px solid white;
@@ -120,14 +129,18 @@
 
 		// Temporary styles for setting the transition
 		// transform: scale(0);
-		transition:
-			background 0.3s ease-in-out,
-			border-color 0.3s ease-in-out,
-			opacity 0.3s ease-in-out,
-			visibility 0.3s ease-in-out,
-			height 0.3s ease-in-out,
-			width 0.3s ease-in-out,
-			transform 0.3s ease-in-out;
+
+		&.idle {
+			background: red;
+		}
+
+		transition: background 0.3s ease-in-out,
+		border-color 0.3s ease-in-out,
+		opacity 0.3s ease-in-out,
+		visibility 0.3s ease-in-out,
+		height 0.3s ease-in-out,
+		width 0.3s ease-in-out,
+		transform 0.3s ease-in-out;
 
 		.nav-icon {
 			position: absolute;
@@ -161,7 +174,7 @@
 		}
 
 		@include md {
-			display: none;
+			display: none !important;
 		}
 	}
 </style>
