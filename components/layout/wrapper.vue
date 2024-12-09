@@ -8,6 +8,8 @@
 	>
 		<slot></slot>
 		<aside class="grainy-overlay"></aside>
+
+
 		<aside
 			class="custom-cursor"
 			:class="[appStore.cursorState, { idle: isMouseIdle }]"
@@ -19,6 +21,17 @@
 					width="20"
 					color="black"
 				></icon-arrow-up>
+			</div>
+			<div
+				class="go-top-box"
+				@click="goToTop"
+			>
+				<span
+					class="go-top-text"
+					@click="goToTop"
+				>
+					GO TO TOP
+				</span>
 			</div>
 		</aside>
 	</div>
@@ -44,6 +57,7 @@
 	let xTo, yTo;
 
 	const isMouseIdle = ref(false)
+	const idleWaitTime = 1000 * 2
 	let idleTimeout;
 
 	const onScreenMouseMove = (e) => {
@@ -52,15 +66,16 @@
 		const _height = _cursor.clientHeight
 		const _width = _cursor.clientWidth
 
-		const deltaX = e.x - _width / 2
-		const deltaY = e.y - _height / 2
+		const deltaX = e.x //- _width / 2
+		const deltaY = e.y //- _height / 2
 		xTo(deltaX)
 		yTo(deltaY)
 
 		isMouseIdle.value = false
 		idleTimeout = setTimeout(() => {
-			isMouseIdle.value = true
-		}, 200)
+			if (window.scrollY > window.innerHeight)
+				isMouseIdle.value = true
+		}, idleWaitTime)
 	}
 
 	const isCursorVisible = ref(false)
@@ -94,6 +109,18 @@
 			}
 		);
 	})
+
+
+
+	const goToTop = () => {
+		isMouseIdle.value = false
+		gsap.to(window, {
+			duration: 0,
+			scrollTo: {
+				y: 0
+			}
+		})
+	}
 </script>
 <style lang="scss">
 	$grain-z: 2147483647;
@@ -118,20 +145,66 @@
 		top: -200px;
 		z-index: $cursor-z;
 		border-radius: 50%;
-		border: 1px solid white;
+		// border: 1px solid white;
 		pointer-events: none;
-
 		height: 20px;
 		width: 20px;
+		transform: translate(-50%, -50%);
 
 		background: white;
 		mix-blend-mode: difference;
 
-		// Temporary styles for setting the transition
-		// transform: scale(0);
+		.go-top-box {
+			opacity: 0;
+			visibility: hidden;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-		&.idle {
-			background: red;
+			.go-top-text {
+				color: white;
+				font-size: 12px;
+				font-weight: 900;
+				user-select: none;
+			}
+		}
+
+		&.idle:not(.nav) {
+			pointer-events: unset;
+			mix-blend-mode: unset;
+			height: 100px;
+			width: 100px;
+			background-color: #054BF9;
+			cursor: pointer;
+
+			.go-top-box {
+				opacity: 1;
+				visibility: visible;
+				transition-delay: 0.2s;
+				transition: all 0.5s ease;
+				pointer-events: all;
+				background: inherit;
+				border-radius: inherit;
+			}
+		}
+
+		&.nav {
+			display: block;
+			background: white;
+			// border-color: black;
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 1;
+			visibility: visible;
+			mix-blend-mode: normal;
+			height: 10vh;
+			width: 10vh;
+
+			.nav-icon {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 
 		transition: background 0.3s ease-in-out,
@@ -154,23 +227,6 @@
 			opacity: 0;
 			visibility: hidden;
 			transition: all 0.3s ease;
-		}
-
-		&.nav {
-			display: block;
-			background: white;
-			// border-color: black;
-			transform: scale(1);
-			opacity: 1;
-			visibility: visible;
-			mix-blend-mode: normal;
-			height: 10vh;
-			width: 10vh;
-
-			.nav-icon {
-				opacity: 1;
-				visibility: visible;
-			}
 		}
 
 		@include md {

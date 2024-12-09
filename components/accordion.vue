@@ -129,6 +129,10 @@
 				opacity: 1;
 			}
 		}
+
+		@include sm {
+			padding-bottom: 15px;
+		}
 	}
 
 	.title-box {
@@ -171,6 +175,10 @@
 		@include md {
 			font-size: 28px;
 		}
+
+		@include sm {
+			font-size: 25px;
+		}
 	}
 
 	.content-box-wrapper {
@@ -186,8 +194,12 @@
 	.item-content {
 		max-width: 80%;
 		font-size: 23px;
-		line-height: 32px;
+		line-height: 140%;
 		margin: 0;
 		user-select: none;
+
+		@include sm {
+			font-size: 20px;
+		}
 	}
 </style>

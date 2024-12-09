@@ -91,6 +91,10 @@
 
 		&.what-we-offer {
 			margin-top: 140px;
+
+			@include sm {
+				margin-top: 50px;
+			}
 		}
 
 		.row {
@@ -107,6 +111,10 @@
 					@include lg {
 						width: 100%;
 						margin-bottom: 30px;
+					}
+
+					@include sm {
+						margin-bottom: 0;
 					}
 				}
 
@@ -135,13 +143,16 @@
 	.content {
 		margin: 0;
 		font-size: 33px;
-		line-height: 54px;
+		line-height: 150%;
 		font-weight: 400;
 		max-width: 90%;
 
 		@include md {
 			font-size: 25px;
-			line-height: 39px;
+		}
+
+		@include sm {
+			font-size: 20px;
 		}
 	}
 
@@ -161,6 +172,7 @@
 		@include md {
 			font-size: 67px;
 			line-height: 80px;
+			margin: 130px 0 130px;
 		}
 
 		@include sm {
