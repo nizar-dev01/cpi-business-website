@@ -94,8 +94,6 @@
 		const row = showcaseRow.value
 
 		// $ScrollTrigger.refresh()
-
-
 		const rowWidth = row.clientWidth
 		const firstElementWidth = items[0].clientWidth
 		const finalElemetWidth = items[items.length - 1].clientWidth
@@ -156,12 +154,23 @@
 		})
 	}
 
+	let has_mounted = false
+	const mount_calls = []
+	onMounted(() => {
+		has_mounted = true
+		mount_calls.forEach(fn => fn())
+	})
+
 	// Make sure the scroll reveal animation is initiated after all images are loaded
 	let loaded_images = 0;
 	const updateImageLoad = () => {
 		loaded_images++
 		if (loaded_images === showcaseEvents.length) {
-			initScrollReveal()
+			if (has_mounted) {
+				initScrollReveal()
+			} else {
+				mount_calls.push(initScrollReveal)
+			}
 		}
 	}
 </script>

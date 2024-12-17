@@ -43,7 +43,7 @@
 							}
 						}"
 						@click="() => {
-							if(link.sub_menu) {
+							if (link.sub_menu) {
 								smSubmenuListtoggle = !smSubmenuListtoggle;
 								return;
 							}
@@ -65,8 +65,8 @@
 						/>
 					</nuxt-link>
 
-					<ul 
-						v-if="!!link.sub_menu" 
+					<ul
+						v-if="!!link.sub_menu"
 						class="sm-submenu-list"
 						:class="smSubmenuListtoggle ? 'toggle-header-nav' : ''"
 					>
@@ -74,14 +74,14 @@
 							v-for="(item, index) in submenuItems"
 							class="pointer item"
 						>
-							<p 
+							<p
 								@click="() => {
 									goToService(item);
 									toggleMenuVisibility = false;
-								}" 
+								}"
 								class="item"
 							>
-									{{ item.text }}
+								{{ item.text }}
 							</p>
 						</li>
 					</ul>
@@ -204,7 +204,6 @@
 	const toggleNavMenu = (value) => {
 		toggleMenuVisibility.value = (value !== undefined)
 			? value : !toggleMenuVisibility.value
-		console.log(value)
 	}
 
 	const submenuItems = ref([
@@ -264,12 +263,12 @@
 		if (isSubmenuActive.value) {
 			toggle_menu_tl.play()
 			if ($lenis) {
-				$lenis.instance.stop()
+				$lenis.value.instance.stop()
 			}
 		} else {
 			toggle_menu_tl.reverse()
 			if ($lenis) {
-				$lenis.instance.start()
+				$lenis.value.instance.start()
 			}
 		}
 	}
@@ -684,9 +683,10 @@
 		height: 0px;
 		transition-duration: 1s;
 		opacity: 0;
-		
-		$height :55px;
+
+		$height : 55px;
 		$count: 8;
+
 		&.toggle-header-nav {
 			height: calc($height * $count);
 			opacity: 1;
@@ -695,7 +695,7 @@
 		@include xl {
 			display: flex;
 		}
-		
+
 		@include xs {
 			padding-left: 10px;
 		}
@@ -725,9 +725,9 @@
 	.scroll-nav {
 		overflow-y: scroll;
 		scrollbar-width: none;
-  		-moz-scrollbar-width: none;
-	  	-ms-overflow-style: none;
-	  	scrollbar-width: none;
+		-moz-scrollbar-width: none;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 	}
 
 	.scroll-nav::-webkit-scrollbar {

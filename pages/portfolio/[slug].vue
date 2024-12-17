@@ -14,8 +14,5 @@
 
 	const dataStore = useDataStore()
 	const event = dataStore.getEvent(slug)
-	onMounted(() => {
-		console.log("The slug is : ", slug)
-	})
 </script>
 <style lang="scss"></style>

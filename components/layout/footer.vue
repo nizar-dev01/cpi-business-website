@@ -104,7 +104,6 @@
 		const { layerX, layerY } = e
 		const bp = `${layerX - 225}px ${layerY - 225}px`
 		shiningText.value.style.backgroundPosition = bp
-		// console.log(bp)
 	}
 
 	// Color Theme

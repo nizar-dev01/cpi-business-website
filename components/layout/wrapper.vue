@@ -87,10 +87,7 @@
 
 	const layoutWrapperContainer = ref()
 	onMounted(() => {
-		$lenis.value = new $CustomLenis({
-			content: layoutWrapperContainer.value,
-			wrapper: layoutWrapperContainer.value,
-		})
+		$lenis.value = new $CustomLenis()
 
 		xTo = gsap.quickTo(
 			customCursor.value,
