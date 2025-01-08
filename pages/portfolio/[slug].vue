@@ -14,5 +14,17 @@
 
 	const dataStore = useDataStore()
 	const event = dataStore.getEvent(slug)
+
+	const next = dataStore.getNextEvent(slug)
+	const prev = dataStore.getPrevEvent(slug)
+
+
+	onMounted(() => {
+
+
+		console.log({next, prev})
+
+
+	})
 </script>
 <style lang="scss"></style>

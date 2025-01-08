@@ -8,10 +8,10 @@
 							class="library-showcase-title"
 							v-if="showTitle"
 						>
-							<span class="lean">Ideas that are<br>
-								keeping us inspired</span><br>
+							<span class="lean">Big, bold ideas <br class="lst-break">
+								keep our minds soaring</span><br>
 							<span class="lst-highlight">
-								Explore Our Ideas
+								Explore our innovation dashboard
 							</span>
 						</h4>
 					</div>
@@ -65,21 +65,43 @@
 
 			.lean {
 				font-weight: 400;
+				@include md {
+					opacity: 0.5;
+					font-size: 40px;
+					line-height: 108%;
+					display: inline-block;
+				}
+
+				@include sm {
+					font-size: 30px;
+				}
 			}
 
 			.lst-highlight {
 				font-family: 'Denton';
+
+				@include md {
+					font-size: 45px;
+					line-height: 130%;
+					display: inline-block;
+					margin-top: 10px;
+				}
+
+				@include sm {
+					font-size: 30px;
+				}
 			}
 
-			@include md {
-				font-size: 50px;
-				line-height: 68px;
+			.lst-break {
+				@include sm {
+					display: none;
+				}
 			}
 
-			@include sm {
-				font-size: 37px;
-				line-height: 52px;
-			}
+			// @include sm {
+			// 	font-size: 37px;
+			// 	line-height: 52px;
+			// }
 		}
 	}
 

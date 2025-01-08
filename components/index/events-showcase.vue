@@ -183,6 +183,10 @@
 	.showcase-container {
 		overflow: hidden;
 		padding-top: 100px;
+
+		@include md {
+			padding-top: 50px;
+		}
 	}
 
 	.showcase-row {

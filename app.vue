@@ -1,6 +1,6 @@
 <template>
 	<client-only :key="appKey">
-		<!-- <app-loader-new /> -->
+		<app-loader />
 		<nuxt-layout>
 			<nuxt-page></nuxt-page>
 		</nuxt-layout>

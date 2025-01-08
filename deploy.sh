@@ -19,7 +19,7 @@ git commit -m 'deploy'
 
 git branch -m main
 
-git push -f git@personal:nizar-dev01/cpi-public.git main:gh-pages
+git push -f git@github.com:nizar-dev01/cpi-public.git main:gh-pages
 
 cd ../../
 

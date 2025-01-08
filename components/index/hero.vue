@@ -3,8 +3,8 @@
 		<div class="layout-box">
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
-				We are solution architects with multi-discipline capabilities including content creation, event design,
-				production & execution, media services and digital platforms.
+				Going beyond a typical creative events agency, we are solution architects, creative thinkers and
+ambitious storytellers. We strategise, consult and dream pushing the limits of what’s possible.
 			</h3>
 			<div class="call-to-action-btn-container hero-reveal-top">
 				<button-sq

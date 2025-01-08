@@ -13,7 +13,7 @@
 			<div class="flex-col">
 				<h4 class="about-h4">
 					<text-splitter
-						text="We are an ambitious, optimistic and creative bunch of people."
+						text="Our journey isn’t marked by chasing the next big breakthrough, but rather by powerful collaborations with partners, people and projects who share our passion for bringing extraordinary visions to life."
 						:scroll-reveal="false"
 						:stagger="false"
 						:duration="1"
@@ -27,14 +27,14 @@
 				</h4>
 				<h4 class="origin-h4">
 					<text-splitter
-						text="Since 2016, we have created meaningful impact through our physical, virtual & hybrid events, activations and brand engagements."
+						text="Since 2016, we have been on a mission to create meaningful impact and unforgettable experiences through our work. We are storytellers at heart and love crafting content narratives across the mediums of events, digital, brand activations and beyond."
 						:scroll-reveal="false"
 						:stagger="false"
 						:duration="1"
 					/>
 					<br><br>
 					<text-splitter
-						text="We have proudly been a part of the growth journey of the following key clients:"
+						text="We are proud to have collaborated with the following partners:"
 						:scroll-reveal="false"
 						:stagger="false"
 						:duration="1"
@@ -47,13 +47,14 @@
 
 				<h4 class="impact-h4">
 					<text-splitter
-						text="We unite brand, tech and"
+						text="We believe in continuously and simultaneously enhancing existing creative models while creating new
+capabilities to respond to future opportunities using technology, design and content."
 						:scroll-reveal="false"
 						:stagger="false"
 						:duration="1"
 					/>
 					<br>
-					<text-splitter
+					<!-- <text-splitter
 						text="experience to turnaround projects "
 						:scroll-reveal="false"
 						:stagger="false"
@@ -65,7 +66,7 @@
 						:scroll-reveal="false"
 						:stagger="false"
 						:duration="1"
-					/>
+					/> -->
 				</h4>
 			</div>
 		</div>
@@ -150,7 +151,8 @@
 		line-height: 71.55px;
 		text-align: center;
 		// margin: 276px 0 190px 0;
-		margin: 276px 0 0 0;
+		margin: 276px auto 0;
+		max-width: 1300px;
 
 		@include xmd {
 			font-size: 45px;

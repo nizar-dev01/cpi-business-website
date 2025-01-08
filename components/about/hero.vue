@@ -3,12 +3,10 @@
 		<div class="layout-box noverflow">
 			<animation-rise :delay="revealDelay">
 				<h1 class="ash-title">
-					We are
-					<span class="bold">
-						CPI Business®
-					</span> -
-					Product
-					&amp; brand Design Agency based in Somewhereland
+					We love creating <strong>magic</strong> -
+					The primary reason we do what we do is because bringing a concept to life to us is like creating magic.
+We love the idea of taking people out of their normal day-to-day lives, and for a few hours giving them
+something that is emotional, spectacular and makes them say "wow".
 				</h1>
 			</animation-rise>
 			<animation-rise :delay="revealDelay + 0.2">
@@ -53,11 +51,11 @@
 
 	.ash-title {
 		text-align: center;
-		font-size: 88px;
+		font-size: 40px;
+		line-height: 130%;
 		font-weight: 400;
 		text-transform: uppercase;
 		margin: 100px auto 0;
-		line-height: 119px;
 
 		.bold {
 			font-weight: 600

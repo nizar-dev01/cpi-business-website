@@ -72,18 +72,30 @@
 	.portfolio-header-divider {
 		border-top: 0;
 		border-bottom: 1px solid #363636;
-		margin-top: 100px;
+		margin-top: 50px;
+		@include md {
+			margin: 10px 0 0;
+		}
 	}
 
 	.pgt-portfolio {
 		font-size: 81px;
-		margin: 80px 0 50px;
+		margin: 20px 0 40px;
+
+		@include md {
+			font-size: 40px;
+			margin: 0;
+		}
 	}
 
 	.tags-container {
 		width: 100%;
 		max-width: 800px;
 		overflow: hidden;
+
+		@include md {
+			display: none;
+		}
 	}
 
 	.tags-row {

@@ -10,7 +10,7 @@
 					text="Talk to us, or ask us anything."
 					:scroll-reveal="true"
 				/> -->
-				Talk to us, or ask us anything.
+				How to reach us
 			</h2>
 			<h3
 				class="footer-text-content"
@@ -21,8 +21,8 @@
 					text="Our adventures have led us to expand into satellite offices across South-East Asia, but we are proud to be home-grown and call the UAE our home."
 					:scroll-reveal="true"
 				/> -->
-				Our adventures have led us to expand into satellite offices across South-East Asia, but we are proud to
-				be home-grown and call the UAE our home.
+				Our journey has taken us across South-East Asia, establishing satellite offices and new horizons, yet
+our roots remain firmly planted in the UAE—a home-grown legacy we’re deeply proud to call our own.
 			</h3>
 			<div class="w-100 noverflow">
 				<div class="footer-call-to-actions">

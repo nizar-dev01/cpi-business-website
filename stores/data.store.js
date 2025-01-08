@@ -95,6 +95,26 @@ export const useDataStore = defineStore('data', {
 			const event = this.event_list.find(ev => ev.slug === slug)
 			return event || null
 		},
+		getNextEvent (slug) {
+			const event = this.getEvent(slug)
+			const index = this.event_list.indexOf(event) + 1
+
+			if (index >= this.event_list.length) {
+				return null
+			} else {
+				return this.event_list[index]
+			}
+		},
+		getPrevEvent (slug) {
+			const event = this.getEvent(slug)
+			const index = this.event_list.indexOf(event) - 1
+
+			if (index < 0) {
+				return null
+			} else {
+				return this.event_list[index]
+			}
+		},
 		getBlog (slug) {
 			const blog = this.blog_list.find(bl => bl.slug === slug)
 			return blog || null
