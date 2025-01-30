@@ -2,9 +2,21 @@ import {
 	defineStore
 } from 'pinia'
 
-const basePath = "/cpi-public/"
-const blog_list = []
+import sphere_images from "@/assets/images"
 
+const service_images = [
+	"/cpi-public/img/services/bespoke.png",
+	"/cpi-public/img/services/consultancy-full.png",
+	"/cpi-public/img/services/content.png",
+	"/cpi-public/img/services/design.png",
+	"/cpi-public/img/services/digital.png",
+	"/cpi-public/img/services/events.png",
+]
+
+const basePath = "/cpi-public/"
+
+
+const blog_list = []
 // Randomly fill blogs list
 for (let i = 0; i < 10; i++) {
 	blog_list.push({
@@ -88,7 +100,94 @@ export const useDataStore = defineStore('data', {
 				slug: "hello-business-1"
 			},
 		],
-		blog_list
+		blog_list,
+		pages: {
+			index: {
+				images: [
+					...sphere_images,
+					...service_images
+				]
+			},
+			contact: {
+				images: [
+					"/cpi-public/img/contact-img.png",
+					...service_images
+				]
+			},
+			portfolio: {
+				images: [
+					...service_images,
+					"/cpi-public/img/portfolios/10.png",
+					"/cpi-public/img/portfolios/11.png",
+					"/cpi-public/img/portfolios/12.png",
+					"/cpi-public/img/portfolios/13.png",
+					"/cpi-public/img/portfolios/14.png",
+					"/cpi-public/img/portfolios/15.png",
+					"/cpi-public/img/portfolios/1.jpg",
+					"/cpi-public/img/portfolios/2.png",
+					"/cpi-public/img/portfolios/3.png",
+					"/cpi-public/img/portfolios/4.png",
+					"/cpi-public/img/portfolios/5.png",
+					"/cpi-public/img/portfolios/6.png",
+					"/cpi-public/img/portfolios/7.png",
+					"/cpi-public/img/portfolios/8.png",
+					"/cpi-public/img/portfolios/9.png",
+				]
+			},
+			careers: {
+				images: [
+					...service_images,
+					'/cpi-public/img/astro.png'
+				]
+			},
+			about: {
+				images: [
+					...service_images,
+				]
+			},
+			blog: {
+				images: [
+					...service_images,
+				]
+			},
+			'services-service': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-ip-creation': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-event-production': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-concept-development': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-content-creation': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-design-n-branding': {
+				images: [
+					...service_images,
+				]
+			},
+			'services-digital-solutions': {
+				images: [
+					...service_images,
+				]
+			},
+		},
+		isDataLoading: false,
+		pageLoading: null
 	}),
 	actions: {
 		getEvent (slug) {
@@ -118,10 +217,22 @@ export const useDataStore = defineStore('data', {
 		getBlog (slug) {
 			const blog = this.blog_list.find(bl => bl.slug === slug)
 			return blog || null
+		},
+		loadPage (_page) {
+			const page = this.pages[_page]
+			if (page) {
+				this.isDataLoading = true
+				this.pageLoading = _page
+			}
+			else {
+				this.isDataLoading = false
+				this.pageLoading = null
+			}
 		}
 	},
 	getters: {
 		events: s => s.event_list,
-		blogs: s => s.blog_list
+		blogs: s => s.blog_list,
+		isPageLoading: s => s.isDataLoading
 	}
 })

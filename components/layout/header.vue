@@ -159,502 +159,471 @@
 	</div>
 </template>
 <script setup>
-	const appStore = storeToRefs(useAppStore())
-	const themeSelector = appStore.pageThemeSelector
+const appStore = storeToRefs(useAppStore())
+const themeSelector = appStore.pageThemeSelector
 
-	const {
-		$gsap,
-		$lenis
-	} = useNuxtApp()
+const {
+	$gsap,
+	$lenis
+} = useNuxtApp()
 
-	const headerLinks = [
-		{
-			to: "/about",
-			text: "About"
-		},
-		{
-			to: "/services/ip-creation",
-			text: "Services",
-			sub_menu: []
-		},
-		{
-			to: "/portfolio",
-			text: "Our Portfolio"
-		},
-		{
-			to: "/blog",
-			text: "Blog"
-		},
-		{
-			to: "/contact",
-			text: "Contact Us"
-		},
-		{
-			to: "/careers",
-			text: "Careers"
-		}
-	]
-
-	const fallInElements = ref()
-
-	const fallInLogo = ref()
-
-	const toggleMenuVisibility = ref(false)
-
-	const toggleNavMenu = (value) => {
-		toggleMenuVisibility.value = (value !== undefined)
-			? value : !toggleMenuVisibility.value
+const headerLinks = [
+	{
+		to: "/about",
+		text: "About"
+	},
+	{
+		// to: "/services/ip-creation",
+		text: "Services",
+		sub_menu: []
+	},
+	{
+		to: "/portfolio",
+		text: "Our Portfolio"
+	},
+	{
+		to: "/blog",
+		text: "Blog"
+	},
+	{
+		to: "/contact",
+		text: "Contact Us"
+	},
+	{
+		to: "/careers",
+		text: "Careers"
 	}
+]
 
-	const submenuItems = ref([
-		{
-			is_active: true,
-			uid: "ip-creation",
-			image: "/cpi-public/img/services/bespoke.png",
-			text: 'IP Creation & Strategic Thinking'
-		},
-		{
-			is_active: false,
-			uid: "event-production",
-			image: "/cpi-public/img/services/events.png",
-			text: 'Event Production'
-		},
-		{
-			is_active: false,
-			uid: "concept-development",
-			image: "/cpi-public/img/services/consultancy.png",
-			text: 'Concept Development & Management'
-		},
-		{
-			is_active: false,
-			uid: "content-creation",
-			image: "/cpi-public/img/services/content.png",
-			text: 'Content Creation'
-		},
-		{
-			is_active: false,
-			uid: "design-n-branding",
-			image: "/cpi-public/img/services/design.png",
-			text: 'Design & Branding'
-		},
-		{
-			is_active: false,
-			uid: "digital-solutions",
-			image: "/cpi-public/img/services/digital.png",
-			text: 'Digital Solutions'
-		}
-	])
-	const isSubmenuActive = ref(false)
+const fallInElements = ref()
 
-	let toggle_menu_tl;
-	const submenuBoxHeight = ref(0)
-	const activateSubmenuItem = (index) => {
-		submenuItems.value.forEach((item, i) => {
-			if (i === index) {
-				item.is_active = true
-			} else {
-				item.is_active = false
-			}
-		})
+const fallInLogo = ref()
+
+const toggleMenuVisibility = ref(false)
+
+const toggleNavMenu = (value) => {
+	toggleMenuVisibility.value = (value !== undefined)
+		? value : !toggleMenuVisibility.value
+}
+
+const submenuItems = ref([
+	{
+		is_active: true,
+		uid: "ip-creation",
+		image: "/cpi-public/img/services/bespoke.png",
+		text: 'IP Creation & Strategic Thinking'
+	},
+	{
+		is_active: false,
+		uid: "event-production",
+		image: "/cpi-public/img/services/events.png",
+		text: 'Event Production'
+	},
+	{
+		is_active: false,
+		uid: "concept-development",
+		image: "/cpi-public/img/services/consultancy.png",
+		text: 'Concept Development & Management'
+	},
+	{
+		is_active: false,
+		uid: "content-creation",
+		image: "/cpi-public/img/services/content.png",
+		text: 'Content Creation'
+	},
+	{
+		is_active: false,
+		uid: "design-n-branding",
+		image: "/cpi-public/img/services/design.png",
+		text: 'Design & Branding'
+	},
+	{
+		is_active: false,
+		uid: "digital-solutions",
+		image: "/cpi-public/img/services/digital.png",
+		text: 'Digital Solutions'
 	}
-	const toggleSubMenu = (value) => {
-		if (window.innerWidth < 1151) return
-		isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
-		if (isSubmenuActive.value) {
-			toggle_menu_tl.play()
-			if ($lenis) {
-				$lenis.value.instance.stop()
-			}
+])
+const isSubmenuActive = ref(false)
+
+let toggle_menu_tl;
+const submenuBoxHeight = ref(0)
+const activateSubmenuItem = (index) => {
+	submenuItems.value.forEach((item, i) => {
+		if (i === index) {
+			item.is_active = true
 		} else {
-			toggle_menu_tl.reverse()
-			if ($lenis) {
-				$lenis.value.instance.start()
-			}
+			item.is_active = false
+		}
+	})
+}
+const toggleSubMenu = (value) => {
+	if (window.innerWidth < 1151) return
+	isSubmenuActive.value = value === undefined ? !isSubmenuActive.value : value
+	if (isSubmenuActive.value) {
+		toggle_menu_tl.play()
+		if ($lenis) {
+			$lenis.value.instance.stop()
+		}
+	} else {
+		toggle_menu_tl.reverse()
+		if ($lenis) {
+			$lenis.value.instance.start()
 		}
 	}
+}
 
-	const router = useRouter()
-	const goToService = (service) => {
-		router.push('/services/' + service.uid)
-		toggleSubMenu(false)
-	}
+const router = useRouter()
+const goToService = (service) => {
+	router.push('/services/' + service.uid)
+	toggleSubMenu(false)
+}
 
-	const submenuBox = ref()
-	const submenuElements = ref()
-	const submenuServicesHeader = ref()
-	const submenuImageBox = ref()
+const submenuBox = ref()
+const submenuElements = ref()
+const submenuServicesHeader = ref()
+const submenuImageBox = ref()
 
-	const headerElement = ref()
-	const headerHeight = ref(0)
+const headerElement = ref()
+const headerHeight = ref(0)
 
-	const smSubmenuListtoggle = ref(false);
+const smSubmenuListtoggle = ref(false);
 
-	onMounted(() => {
-		headerHeight.value = headerElement.value.getBoundingClientRect().height
+onMounted(() => {
+	headerHeight.value = headerElement.value.getBoundingClientRect().height
 
-		$gsap.set(fallInElements.value, {
-			y: -40,
-			opacity: 0
-		})
+	// $gsap.set(fallInElements.value, {
+	// 	y: -40,
+	// 	opacity: 0
+	// })
 
-		$gsap.set(fallInLogo.value, {
-			opacity: 0,
-			y: -40
-		})
+	// $gsap.set(fallInLogo.value, {
+	// 	opacity: 0,
+	// 	y: -40
+	// })
 
-		$gsap.to(fallInElements.value, {
+	// $gsap.to(fallInElements.value, {
+	// 	y: 0,
+	// 	opacity: 1,
+	// 	duration: 0.4,
+	// 	stagger: 0.08,
+	// 	delay: 0
+	// })
+	// // logo
+	// $gsap.to(fallInLogo.value, {
+	// 	y: 0,
+	// 	opacity: 1,
+	// 	duration: 0.4,
+	// 	// stagger: 0.08,
+	// 	delay: 0
+	// })
+
+	// Toggle Menu
+
+	const _smels = submenuElements.value
+	const _smh = submenuServicesHeader.value
+	const _smb = submenuBox.value
+	const _smib = submenuImageBox.value
+
+	toggle_menu_tl = $gsap.timeline({
+		paused: true,
+		defaults: {
+			duration: 0.5
+		}
+	})
+	const _smbh = _smb.clientHeight
+	submenuBoxHeight.value = _smbh
+
+	const label_s = "begin"
+	toggle_menu_tl
+		.add(label_s)
+		.to(_smb, {
+			height: _smbh
+		}, label_s)
+		.to(_smels, {
 			y: 0,
-			opacity: 1,
-			duration: 0.4,
-			stagger: 0.08,
-			delay: 3.7
-		})
-		// logo
-		$gsap.to(fallInLogo.value, {
-			y: 0,
-			opacity: 1,
-			duration: 0.4,
-			// stagger: 0.08,
-			delay: 3.7
-		})
+			stagger: 0.03
+		}, label_s)
+		.to(_smh, {
+			y: 0
+		}, label_s)
+		.to(_smib, {
+			y: 0
+		}, label_s)
 
-		// Toggle Menu
+	$gsap.set(
+		_smb,
+		{
+			height: 0
+		}
+	)
 
-		const _smels = submenuElements.value
-		const _smh = submenuServicesHeader.value
-		const _smb = submenuBox.value
-		const _smib = submenuImageBox.value
-
-		toggle_menu_tl = $gsap.timeline({
-			paused: true,
-			defaults: {
-				duration: 0.5
-			}
-		})
-		const _smbh = _smb.clientHeight
-		submenuBoxHeight.value = _smbh
-
-		const label_s = "begin"
-		toggle_menu_tl
-			.add(label_s)
-			.to(_smb, {
-				height: _smbh
-			}, label_s)
-			.to(_smels, {
-				y: 0,
-				stagger: 0.03
-			}, label_s)
-			.to(_smh, {
-				y: 0
-			}, label_s)
-			.to(_smib, {
-				y: 0
-			}, label_s)
-
-		$gsap.set(
-			_smb,
-			{
-				height: 0
-			}
-		)
-
-		$gsap.set(_smels, {
-			y: 100
-		})
-
-		$gsap.set(_smh, {
-			y: 100
-		})
-
-		$gsap.set(_smib, {
-			y: 100
-		})
-
+	$gsap.set(_smels, {
+		y: 100
 	})
 
-	defineExpose({
-		headerHeight
+	$gsap.set(_smh, {
+		y: 100
 	})
+
+	$gsap.set(_smib, {
+		y: 100
+	})
+
+})
+
+defineExpose({
+	headerHeight
+})
 </script>
 <style lang="scss">
-	header.yellow {
-		color: $yellow;
-	}
+header.yellow {
+	color: $yellow;
+}
 
-	.layout-header {
-		padding-top: 30px;
+.layout-header {
+	padding-top: 30px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 10;
+}
+
+.logo-link {
+	height: 48px;
+	width: auto;
+	display: inline-block;
+	position: relative;
+
+	.logo-img {
+		height: 100%;
+		width: auto;
+	}
+}
+
+.header-box {
+	display: flex;
+	justify-content: space-between;
+}
+
+$li-height: 80px;
+$li-count: 6;
+
+.header-nav-ul {
+	display: flex;
+	justify-content: space-between;
+
+	@include xl {
 		position: absolute;
 		left: 0;
 		right: 0;
-		top: 0;
-		z-index: 10;
+		top: 100%;
+		flex-direction: column;
+		background: #1B1B1B;
+		transition: opacity 0.4s ease-in-out, height 0.5s ease-in-out;
+		border-radius: 10px;
+		box-shadow: 0 20px 30px -10px #000;
+		overflow: hidden;
+		height: 0px;
+		opacity: 0;
+		z-index: 1;
 	}
 
-	.logo-link {
-		height: 48px;
-		width: auto;
-		display: inline-block;
-		position: relative;
+	&.toggle-header-nav {
+		height: calc($li-height * $li-count);
+		opacity: 1;
+	}
+}
 
-		.logo-img {
-			height: 100%;
-			width: auto;
+.header-nav-li {
+	margin: 0 25px;
+
+	&:first-of-type {
+		margin-left: 0;
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+
+		@include xl {
+			border-bottom: 0;
 		}
 	}
 
-	.header-box {
-		display: flex;
-		justify-content: space-between;
+	@include xl {
+		margin: 0;
+		height: $li-height;
+		line-height: $li-height;
+		z-index: 2;
+		padding: 0 20px;
+		border-bottom: 1px solid #ffffff09;
+		box-sizing: border-box;
 	}
+}
 
-	$li-height: 80px;
-	$li-count: 6;
+.header-nav-a {
+	font-size: 15px;
+	font-family: 'Satoshi';
+	font-weight: 500;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	line-height: 25px;
 
-	.header-nav-ul {
-		display: flex;
-		justify-content: space-between;
+	@include xl {
+		line-height: inherit;
+	}
+}
 
-		@include xl {
+.header-nav-icon {
+	margin-left: 15px;
+}
+
+.nav-toggler {
+	display: none;
+	cursor: pointer;
+	padding: 0;
+
+	@include xl {
+		display: block;
+		background: none;
+		border: none;
+		color: transparent;
+		height: 30px;
+		width: 30px;
+		position: relative;
+		margin: auto 0;
+
+		&::after,
+		&::before {
+			content: '';
 			position: absolute;
 			left: 0;
 			right: 0;
-			top: 100%;
-			flex-direction: column;
-			background: #1B1B1B;
-			transition: opacity 0.4s ease-in-out, height 0.5s ease-in-out;
-			border-radius: 10px;
-			box-shadow: 0 20px 30px -10px #000;
-			overflow: hidden;
-			height: 0px;
-			opacity: 0;
-			z-index: 1;
-		}
-
-		&.toggle-header-nav {
-			height: calc($li-height * $li-count);
-			opacity: 1;
-		}
-	}
-
-	.header-nav-li {
-		margin: 0 25px;
-
-		&:first-of-type {
-			margin-left: 0;
-		}
-
-		&:last-of-type {
-			margin-right: 0;
-
-			@include xl {
-				border-bottom: 0;
-			}
-		}
-
-		@include xl {
-			margin: 0;
-			height: $li-height;
-			line-height: $li-height;
-			z-index: 2;
-			padding: 0 20px;
-			border-bottom: 1px solid #ffffff09;
-			box-sizing: border-box;
-		}
-	}
-
-	.header-nav-a {
-		font-size: 15px;
-		font-family: 'Satoshi';
-		font-weight: 500;
-		text-transform: uppercase;
-		display: flex;
-		align-items: center;
-		line-height: 25px;
-
-		@include xl {
-			line-height: inherit;
-		}
-	}
-
-	.header-nav-icon {
-		margin-left: 15px;
-	}
-
-	.nav-toggler {
-		display: none;
-		cursor: pointer;
-		padding: 0;
-
-		@include xl {
+			height: 2px;
+			width: 100%;
 			display: block;
-			background: none;
-			border: none;
-			color: transparent;
-			height: 30px;
-			width: 30px;
-			position: relative;
-			margin: auto 0;
+			background: white;
+			border-radius: 1px;
+			transition: all 0.3s ease-in-out;
+			transform-origin: center;
+		}
 
-			&::after,
-			&::before {
-				content: '';
-				position: absolute;
-				left: 0;
-				right: 0;
-				height: 2px;
-				width: 100%;
-				display: block;
-				background: white;
-				border-radius: 1px;
-				transition: all 0.3s ease-in-out;
-				transform-origin: center;
-			}
+		&::before {
+			top: 50%;
+			transform: translate(0, -5px);
+		}
 
+		&::after {
+			bottom: 50%;
+			transform: translate(0, 5px);
+		}
+
+		&.toggle {
 			&::before {
 				top: 50%;
-				transform: translate(0, -5px);
+				transform: translate(0, -50%) rotateZ(45deg);
 			}
 
 			&::after {
 				bottom: 50%;
-				transform: translate(0, 5px);
+				transform: translate(0, 50%) rotateZ(-45deg);
 			}
-
-			&.toggle {
-				&::before {
-					top: 50%;
-					transform: translate(0, -50%) rotateZ(45deg);
-				}
-
-				&::after {
-					bottom: 50%;
-					transform: translate(0, 50%) rotateZ(-45deg);
-				}
-			}
-
 		}
-	}
 
-	.submenu-container {
-		position: fixed;
+	}
+}
+
+.submenu-container {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: 9;
+	pointer-events: none;
+
+	.submenu-bg {
+		position: absolute;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		top: 0;
-		z-index: 9;
-		pointer-events: none;
+		background: #0000007b;
+		z-index: 1;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s ease-in-out;
+	}
+
+	.submenu-box {
+		background: #141414;
+		z-index: 2;
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 10px 30px -10px black;
+
+		.smb-spacer {
+			padding: 100px 0 0;
+			margin-bottom: 55px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+		}
+	}
+
+	&.active {
+		pointer-events: all;
 
 		.submenu-bg {
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			top: 0;
-			background: #0000007b;
-			z-index: 1;
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.5s ease-in-out;
-		}
-
-		.submenu-box {
-			background: #141414;
-			z-index: 2;
-			position: relative;
-			overflow: hidden;
-			box-shadow: 0 10px 30px -10px black;
-
-			.smb-spacer {
-				padding: 100px 0 0;
-				margin-bottom: 55px;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.065);
-			}
-		}
-
-		&.active {
-			pointer-events: all;
-
-			.submenu-bg {
-				opacity: 1;
-				visibility: visible;
-			}
+			opacity: 1;
+			visibility: visible;
 		}
 	}
+}
 
-	.submenu-parent {
-		height: 100%;
-	}
+.submenu-parent {
+	height: 100%;
+}
 
-	.sm-container {
-		width: 100%;
-		overflow: hidden;
+.sm-container {
+	width: 100%;
+	overflow: hidden;
 
-		.sm-row {
-			margin: 0 -10px;
-			display: flex;
+	.sm-row {
+		margin: 0 -10px;
+		display: flex;
 
-			.sm-col {
-				margin: 0 10px;
+		.sm-col {
+			margin: 0 10px;
 
-				.sm-item {
-					position: relative;
-					height: 100%;
+			.sm-item {
+				position: relative;
+				height: 100%;
+				width: 100%;
+			}
+
+			&.title {
+				width: 20%;
+			}
+
+			&.list {
+				width: 40%;
+			}
+
+			&.display {
+				width: 40%;
+
+				.smimg {
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					transform: translate(-50%, 0);
 					width: 100%;
-				}
-
-				&.title {
-					width: 20%;
-				}
-
-				&.list {
-					width: 40%;
-				}
-
-				&.display {
-					width: 40%;
-
-					.smimg {
-						position: absolute;
-						bottom: 0;
-						left: 50%;
-						transform: translate(-50%, 0);
-						width: 100%;
-						height: auto;
-						max-height: 100%;
-						object-fit: contain;
-						opacity: 0;
-						transition: all 0.5s ease-in-out;
-
-						&.active {
-							opacity: 1;
-						}
-					}
-				}
-			}
-		}
-
-		.sm-list {
-			margin: 0;
-			padding-bottom: 45px;
-
-			.smli {
-				margin: 0 0 15px;
-				font-size: 30px;
-				font-weight: 700;
-				cursor: pointer;
-				user-select: none;
-				transition: opacity 0.4s ease-in-out;
-				line-height: 45px;
-				max-width: 430px;
-
-				&.active {
-					opacity: 1;
-				}
-			}
-
-			&:hover {
-				.smli {
-					opacity: 0.2;
+					height: auto;
+					max-height: 100%;
+					object-fit: contain;
+					opacity: 0;
+					transition: all 0.5s ease-in-out;
 
 					&.active {
 						opacity: 1;
@@ -662,79 +631,110 @@
 				}
 			}
 		}
-
-		h2.submenu-title {
-			font-family: 'Denton';
-			font-size: 20px;
-			font-weight: 500;
-			line-height: 19.88px;
-			letter-spacing: 0.05em;
-			text-align: left;
-			margin: 0;
-		}
 	}
 
-	.sm-submenu-list {
-		display: none;
-		padding-left: 40px;
-		flex-direction: column;
-		list-style: none;
-		overflow: hidden;
-		height: 0px;
-		transition-duration: 1s;
-		opacity: 0;
+	.sm-list {
+		margin: 0;
+		padding-bottom: 45px;
 
-		$height : 55px;
-		$count: 8;
+		.smli {
+			margin: 0 0 15px;
+			font-size: 30px;
+			font-weight: 700;
+			cursor: pointer;
+			user-select: none;
+			transition: opacity 0.4s ease-in-out;
+			line-height: 45px;
+			max-width: 430px;
 
-		&.toggle-header-nav {
-			height: calc($height * $count);
-			opacity: 1;
-		}
-
-		@include xl {
-			display: flex;
-		}
-
-		@include xs {
-			padding-left: 10px;
-		}
-
-		p {
-			font-size: 16px;
-			line-height: 200%;
-
-			@include xs {
-				font-size: 14px;
+			&.active {
+				opacity: 1;
 			}
 		}
 
-		.item {
-			padding: 0px;
+		&:hover {
+			.smli {
+				opacity: 0.2;
+
+				&.active {
+					opacity: 1;
+				}
+			}
 		}
 	}
 
-	.sm-submenu-hide {
-		height: 0px;
+	h2.submenu-title {
+		font-family: 'Denton';
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 19.88px;
+		letter-spacing: 0.05em;
+		text-align: left;
+		margin: 0;
+	}
+}
+
+.sm-submenu-list {
+	display: none;
+	padding-left: 40px;
+	flex-direction: column;
+	list-style: none;
+	overflow: hidden;
+	height: 0px;
+	transition-duration: 1s;
+	opacity: 0;
+
+	$height : 55px;
+	$count: 8;
+
+	&.toggle-header-nav {
+		height: calc($height * $count);
+		opacity: 1;
 	}
 
-	.sm-submenu-show {
-		height: auto;
+	@include xl {
+		display: flex;
 	}
 
-	.scroll-nav {
-		overflow-y: scroll;
-		scrollbar-width: none;
-		-moz-scrollbar-width: none;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
+	@include xs {
+		padding-left: 10px;
 	}
 
-	.scroll-nav::-webkit-scrollbar {
-		display: none;
+	p {
+		font-size: 16px;
+		line-height: 200%;
+
+		@include xs {
+			font-size: 14px;
+		}
 	}
 
-	.pointer {
-		cursor: pointer;
+	.item {
+		padding: 0px;
 	}
+}
+
+.sm-submenu-hide {
+	height: 0px;
+}
+
+.sm-submenu-show {
+	height: auto;
+}
+
+.scroll-nav {
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-moz-scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.scroll-nav::-webkit-scrollbar {
+	display: none;
+}
+
+.pointer {
+	cursor: pointer;
+}
 </style>

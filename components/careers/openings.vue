@@ -33,7 +33,7 @@
 				<div class="op-container">
 					<div class="op-row">
 						<div class="op-col">
-							<div class="op-item yellow">
+							<a class="op-item yellow" href="mailto::managment@cpibusiness.net">
 								<div class="op-title-box">
 									<h3 class="op-title">
 										Graphic <br> Designer
@@ -45,10 +45,10 @@
 									</h4>
 									<icon-arrow-right />
 								</div>
-							</div>
+							</a>
 						</div>
 						<div class="op-col">
-							<div class="op-item">
+							<a class="op-item" href="mailto::managment@cpibusiness.net">
 								<div class="op-title-box">
 									<h3 class="op-title">
 										Project <br> Manager
@@ -60,7 +60,7 @@
 									</h4>
 									<icon-arrow-right yellow />
 								</div>
-							</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -162,6 +162,8 @@
 		overflow: hidden;
 		padding: 45px;
 		border: 1px solid rgba(255, 255, 255, 0.5);
+		display: block;
+		text-decoration: none;
 
 		&.yellow {
 			background: $yellow;

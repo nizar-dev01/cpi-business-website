@@ -4,7 +4,7 @@
 			<h1 class="hero-title hero-reveal-top">cpi business</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
 				Going beyond a typical creative events agency, we are solution architects, creative thinkers and
-ambitious storytellers. We strategise, consult and dream pushing the limits of what’s possible.
+				ambitious storytellers. We strategise, consult and dream pushing the limits of what’s possible.
 			</h3>
 			<div class="call-to-action-btn-container hero-reveal-top">
 				<button-sq
@@ -24,116 +24,112 @@ ambitious storytellers. We strategise, consult and dream pushing the limits of w
 </template>
 
 <script setup>
-	const appStore = useAppStore()
+const appStore = useAppStore()
 
-	const revealDelay = computed(() => {
-		return appStore.hasInitiated ? 0 : 3.2
-	})
+let _animation = [];
 
-	let _animation = [];
+onMounted(() => {
+	// const {
+	// 	$gsap
+	// } = useNuxtApp()
 
-	onMounted(() => {
-		const {
-			$gsap
-		} = useNuxtApp()
+	// const revealItems = $gsap.utils.toArray('.hero-reveal-top')
+	// $gsap.set(
+	// 	revealItems,
+	// 	{
+	// 		y: 150,
+	// 		opacity: 0
+	// 	}
+	// )
 
-		const revealItems = $gsap.utils.toArray('.hero-reveal-top')
-		$gsap.set(
-			revealItems,
-			{
-				y: 150,
-				opacity: 0
-			}
-		)
+	// const doRevealItems = () => {
+	// 	_animation = $gsap.to(revealItems, {
+	// 		y: 0,
+	// 		duration: 1,
+	// 		stagger: 0.3,
+	// 		delay: 0,
+	// 		opacity: 1
+	// 	})
+	// }
 
-		const doRevealItems = () => {
-			_animation = $gsap.to(revealItems, {
-				y: 0,
-				duration: 1,
-				stagger: 0.3,
-				delay: revealDelay.value,
-				opacity: 1
-			})
-		}
+	// doRevealItems()
+})
 
-		doRevealItems()
-	})
-
-	onBeforeUnmount(() => {
-		if (_animation && _animation.kill) {
-			_animation.kill()
-		}
-	})
+onBeforeUnmount(() => {
+	if (_animation && _animation.kill) {
+		_animation.kill()
+	}
+})
 </script>
 
 <style lang="scss" scoped>
-	section#index-section-hero {
-		padding-top: 12vh;
-		padding-bottom: 30px;
-		border-top: 1px solid transparent;
+section#index-section-hero {
+	padding-top: 12vh;
+	padding-bottom: 30px;
+	border-top: 1px solid transparent;
+}
+
+h1.hero-title {
+	font-family: 'Denton';
+	font-weight: 400;
+	font-size: 104px;
+	color: white;
+	text-align: center;
+	margin: 100px 0 0;
+	line-height: 130px;
+
+	@include lg {
+		font-size: 140px;
 	}
 
-	h1.hero-title {
-		font-family: 'Denton';
-		font-weight: 400;
-		font-size: 104px;
-		color: white;
-		text-align: center;
-		margin: 100px 0 0;
-		line-height: 130px;
-
-		@include lg {
-			font-size: 140px;
-		}
-
-		@include xmd {
-			font-size: 120px;
-			margin-top: 100px;
-		}
-
-		@include md {
-			font-size: 80px;
-			line-height: 90px;
-		}
-
-		@include sm {
-			font-size: 60px;
-			line-height: 78px;
-		}
+	@include xmd {
+		font-size: 120px;
+		margin-top: 100px;
 	}
 
-	.hero-subtitle {
-		font-family: Satoshi;
-		font-size: 33px;
-		font-weight: 400;
-		line-height: 48px;
-		text-align: center;
-		color: white;
-		margin: 30px auto 44px;
-		max-width: 976px;
-
-		// @include lg {
-		// 	font-size: 40px;
-		// 	margin-top: 10px;
-		// 	line-height: 60px;
-		// }
-
-		// @include xmd {
-		// 	font-size: 38px;
-		// 	margin-top: 0;
-		// }
-
-		@include md {
-			font-size: 30px;
-			margin-top: 20px;
-			margin-left: auto;
-			margin-right: auto;
-			line-height: 40px;
-		}
-
-		@include sm {
-			font-size: 20px;
-			line-height: 30px;
-		}
+	@include md {
+		font-size: 80px;
+		line-height: 90px;
 	}
+
+	@include sm {
+		font-size: 60px;
+		line-height: 78px;
+	}
+}
+
+.hero-subtitle {
+	font-family: Satoshi;
+	font-size: 33px;
+	font-weight: 400;
+	line-height: 48px;
+	text-align: center;
+	color: white;
+	margin: 30px auto 44px;
+	max-width: 976px;
+
+	// @include lg {
+	// 	font-size: 40px;
+	// 	margin-top: 10px;
+	// 	line-height: 60px;
+	// }
+
+	// @include xmd {
+	// 	font-size: 38px;
+	// 	margin-top: 0;
+	// }
+
+	@include md {
+		font-size: 30px;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		line-height: 40px;
+	}
+
+	@include sm {
+		font-size: 20px;
+		line-height: 30px;
+	}
+}
 </style>

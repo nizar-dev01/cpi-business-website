@@ -12,10 +12,11 @@
 					class="svc-row"
 					v-if="props.services"
 				>
-					<div
+					<nuxt-link
 						v-for="service in props.services"
 						class="svc-col"
 						:class="{ hidden: service.uid === currentPage.uid }"
+						:to="`/services/${service.uid}`"
 					>
 						<div
 							class="svc-item"
@@ -33,7 +34,7 @@
 								/>
 							</div>
 						</div>
-					</div>
+					</nuxt-link>
 				</div>
 			</div>
 		</div>
@@ -113,6 +114,8 @@
 	.svc-col {
 		width: 50%;
 		padding: 17px;
+		text-decoration: none;
+		color: inherit;
 
 		@include xl {
 			width: 100%;
