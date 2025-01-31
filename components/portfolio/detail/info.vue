@@ -5,205 +5,194 @@
 				<div class="pdi-row">
 					<div class="pdi-col left">
 						<div class="pdi-item">
-							<h2 class="pdi-main-text">
-								An ominous phenomenon is spreading in Switzerland: workers are disappearing everywhere.
-								Denner decides to become innovative in the fight against this. In our agency, Denner has
-								found a partner for personnel marketing who will provide strategic, conceptual and
-								creative support.
-							</h2>
+							<p
+								class="pdi-main-text"
+								v-for="para in props.paragraphs"
+							>
+								{{ para }}
+							</p>
 						</div>
 					</div>
-					<div class="pdi-col right">
+					<!-- <div class="pdi-col right">
 						<div class="pdi-item">
 							<div
 								class="pdd-box"
-								v-for="pdd in [
-									{
-										title: 'Some Title',
-										items: [
-											'Internal communication for a progressive employer',
-											'Hero story for employees',
-											'Trilingual communication campaign'
-										]
-									},
-									{
-										title: 'Another Title',
-										items: [
-											'Internal communication for a progressive employer',
-										]
-									},
-									{
-										title: 'Title Again',
-										items: [
-											'Internal communication for a progressive employer',
-											'Hero story for employees',
-											'Trilingual communication campaign'
-										]
-									}
-								]"
+								v-if="props.keyHighlights"
 							>
 								<h3 class="pdd-title">
-									{{ pdd.title }}
+									Key Highlights
 								</h3>
 								<ul class="pdd-list">
-									<li v-for="item in pdd.items">
-										{{ item }}
+									<li v-for="hl in props.keyHighlights">
+										{{ hl }}
 									</li>
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
+
+				<div class="pdi-row"></div>
 			</div>
 		</div>
 	</section>
 </template>
 <script setup>
+const props = defineProps([
+	'paragraphs',
+	'keyHighlights'
+])
 </script>
 <style lang="scss">
-	#portfolio-detail-info-section {
-		width: 100%;
-		height: 100vh;
-		background: black;
-		overflow: hidden;
+#portfolio-detail-info-section {
+	width: 100%;
+	min-height: 100vh;
+	height: auto;
+	background: black;
+	overflow: hidden;
 
-		.layout-box {
+	.layout-box {
+		height: 100%;
+
+		.container {
 			height: 100%;
-
-			.container {
-				height: 100%;
-			}
-		}
-
-		@include xmd {
-			height: auto;
-			padding: 10vh 0;
-		}
-
-		// @include sm {
-		// 	padding: 10vh 0;
-		// }
-	}
-
-	.pdi-row {
-		display: flex;
-		flex-wrap: wrap;
-		height: 100%;
-
-		@include xmd {
-			flex-direction: column;
 		}
 	}
 
-	.pdi-col {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		height: 100%;
-		position: relative;
+	@include xmd {
+		height: auto;
+		padding: 10vh 0;
+	}
 
-		&.left {
-			width: 72%;
+	// @include sm {
+	// 	padding: 10vh 0;
+	// }
+}
+
+.pdi-row {
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+
+	@include xmd {
+		flex-direction: column;
+	}
+}
+
+.pdi-col {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	position: relative;
+
+	&.left {
+		// width: 72%;
+
+		@include xmd {
+			width: 100%;
+			margin-bottom: 32px;
+		}
+
+		.pdi-item {
+			padding-top: 150px;
+			padding-bottom: 150px;
+		}
+	}
+
+	&.right {
+		width: 28%;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 100vw;
+			background-color: #1e1e1e;
+			z-index: 0;
 
 			@include xmd {
-				width: 100%;
-				margin-bottom: 32px;
+				width: 102%;
 			}
 		}
 
-		&.right {
-			width: 28%;
+		.pdi-item {
+			position: relative;
+			z-index: 1;
+			padding: 0 0 0 50px;
 
-			&::after {
-				content: '';
-				display: block;
-				position: absolute;
-				left: 0;
-				top: 0;
-				bottom: 0;
-				width: 100vw;
-				background-color: #1e1e1e;
-				z-index: 0;
-
-				@include xmd {
-					width: 102%;
-				}
+			@include sm {
+				padding: 0 0 0 30px;
 			}
 
-			.pdi-item {
-				position: relative;
-				z-index: 1;
-				padding: 0 0 0 50px;
-
-				@include sm {
-					padding: 0 0 0 30px;
-				}
-
-				@include break(330px) {
-					padding: 0 0 0 20px;
-				}
+			@include break(330px) {
+				padding: 0 0 0 20px;
 			}
-
-			@include xmd {
-				width: 98%;
-			}
-		}
-	}
-
-	.pdi-main-text {
-		color: white;
-		font-size: 45px;
-		line-height: 50px;
-		max-width: 80%;
-		font-weight: 600;
-
-		margin-left: 50px;
-
-		@include break(330px) {
-			margin-left: 20px;
-		}
-
-		@include lg {
-			font-size: 35px;
-			line-height: 45px;
 		}
 
 		@include xmd {
-			max-width: 90%;
-		}
-
-		@include md {
-			font-size: 30px;
-			line-height: 35px;
-			font-weight: 500;
-		}
-
-		@include sm {
-			font-size: 28px;
-			font-weight: 400;
-			margin-left: 30px;
+			width: 98%;
 		}
 	}
+}
 
-	.pdd-box {
-		margin: 35px 0;
+.pdi-main-text {
+	color: white;
+	font-size: 35px;
+	line-height: 50px;
+	// max-width: 80%;
+	font-weight: 600;
+
+	margin-left: 50px;
+
+	@include break(330px) {
+		margin-left: 20px;
 	}
 
-	.pdd-title {
+	@include lg {
+		font-size: 35px;
+		line-height: 45px;
+	}
+
+	@include xmd {
+		max-width: 90%;
+	}
+
+	@include md {
+		font-size: 30px;
+		line-height: 35px;
+		font-weight: 500;
+	}
+
+	@include sm {
 		font-size: 28px;
+		font-weight: 400;
+		margin-left: 30px;
+	}
+}
+
+.pdd-box {
+	margin: 35px 0;
+}
+
+.pdd-title {
+	font-size: 28px;
+	margin: 0 0 10px;
+}
+
+.pdd-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		font-size: 16px;
+		line-height: 20px;
 		margin: 0 0 10px;
+		opacity: 0.63;
 	}
-
-	.pdd-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-
-		li {
-			font-size: 16px;
-			line-height: 20px;
-			margin: 0 0 10px;
-			opacity: 0.63;
-		}
-	}
+}
 </style>

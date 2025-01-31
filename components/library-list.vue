@@ -8,52 +8,54 @@
 			v-for="blog in blogs"
 		>
 			<blog-card
-				tag="Blog Subject"
-				title="Rapid Prototyping in Event Visualisation"
-				:image="blog.image"
+				:tag="blog.subject"
+				:title="blog.title"
+				:image="blog.thumbnail"
 				:slug="blog.slug"
-				author="John Doe"
-				duration="2 Min"
+				:author="blog.author"
+				:duration="blog.duration"
 			/>
 		</div>
 	</div>
 </template>
 <script setup>
-	const props = defineProps([
-		'staticItemsCount'
-	])
-	const dataStore = useDataStore()
-	const _blogs = dataStore.blogs
-	let blogs;
+const props = defineProps([
+	'staticItemsCount'
+])
+const dataStore = useDataStore()
+const _blogs = computed(() => dataStore.blogs)
+let blogs = [];
+if (_blogs.value) {
 	if (props.staticItemsCount) {
-		blogs = _blogs.slice(0, props.staticItemsCount)
+		blogs = _blogs.value.slice(0, props.staticItemsCount)
 	} else {
-		blogs = _blogs
+		blogs = _blogs.value
 	}
+}
 </script>
 <style lang="scss" scoped>
-	$rowspace: 5px;
+$rowspace: 5px;
 
-	.library-row {
-		display: flex;
-		flex-wrap: wrap;
-		// justify-content: center;
-		margin: -$rowspace;
-	}
+.library-row {
+	display: flex;
+	flex-wrap: wrap;
+	// justify-content: center;
+	margin: -$rowspace;
+}
 
-	.library-col {
-		padding: $rowspace;
-		box-sizing: border-box;
-		width: 33.333%;
-		// flex-grow: 1;
+.library-col {
+	padding: $rowspace;
+	box-sizing: border-box;
+	width: 33.333%;
+	// flex-grow: 1;
 
-		@include md {
-			width: 100%;
-			margin-bottom: 50px;
+	@include md {
+		width: 100%;
+		margin-bottom: 50px;
 
-			&:last-of-type {
-				margin-bottom: 0;
-			}
+		&:last-of-type {
+			margin-bottom: 0;
 		}
 	}
+}
 </style>

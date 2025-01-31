@@ -2,6 +2,7 @@ import glsl from 'vite-plugin-glsl'
 
 export default defineNuxtConfig({
 	compatibilityDate: '2024-10-24',
+	ssr: false,
 
 	devtools: { enabled: true },
 

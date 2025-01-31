@@ -117,7 +117,7 @@ onMounted(() => {
 	_animation = LottieScrollTrigger({
 		target: "#" + targetID,
 		// path: "https://lottie.host/cb2010f5-8be1-45b8-a33c-b18f3dccd8e1/GpMOdzAqTg.json",
-		path: "/cpi-public/img/animation_entry/Ball_Seq 2.json",
+		path: "cpi-public/img/animation_entry/Ball_Seq 2.json",
 		speed: "slow",
 		scrub: true, // seconds it takes for the playhead to "catch up",
 		direction: props.direction || null

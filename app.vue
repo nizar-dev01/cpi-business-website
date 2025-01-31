@@ -1,13 +1,10 @@
 <template>
-	<client-only :key="appKey">
-		<Transition>
-			<app-loader-new v-if="dataStore.isDataLoading" />
-		</Transition>
-		<!-- <app-loader /> -->
-		<nuxt-layout>
-			<nuxt-page></nuxt-page>
-		</nuxt-layout>
-	</client-only>
+	<Transition>
+		<app-loader-new v-if="dataStore.isDataLoading" />
+	</Transition>
+	<nuxt-layout>
+		<nuxt-page></nuxt-page>
+	</nuxt-layout>
 </template>
 <script setup>
 useHead({
@@ -20,6 +17,7 @@ useHead({
 const appKey = ref(0)
 const dataStore = useDataStore()
 const route = useRoute()
+dataStore.fetchData()
 dataStore.loadPage(route.name)
 onMounted(() => {
 	// window.addEventListener('resize', () => {

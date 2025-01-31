@@ -4,7 +4,7 @@
 		ref="loaderContainer"
 		v-if="isLoading"
 	>
-		{{ loadingPercent }}
+		{{ loadingPercent }}%
 	</div>
 </template>
 <script setup>

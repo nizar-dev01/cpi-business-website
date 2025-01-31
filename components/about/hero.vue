@@ -53,7 +53,7 @@ const revealDelay = computed(() => {
 
 .ash-title {
 	text-align: center;
-	font-size: 40px;
+	font-size: 60px;
 	line-height: 130%;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -63,24 +63,28 @@ const revealDelay = computed(() => {
 		font-weight: 600
 	}
 
+	@include break(2150px) {
+		font-size: 50px;
+	}
+
+	@include break(1920px) {
+		font-size: 40px;
+	}
+
 	@include xl {
-		font-size: 70px;
-		line-height: 90px;
+		font-size: 35px;
 	}
 
 	@include lg {
-		font-size: 60px;
-		line-height: 78px;
+		font-size: 30px;
 	}
 
 	@include md {
-		font-size: 40px;
-		line-height: 55px;
+		font-size: 25px;
 	}
 
 	@include sm {
-		font-size: 30px;
-		line-height: 40px;
+		font-size: 20px;
 	}
 }
 
@@ -91,6 +95,10 @@ const revealDelay = computed(() => {
 	margin: 40px auto 70px;
 	text-align: center;
 	opacity: 0.5;
+
+	@include lg {
+		font-size: 23px;
+	}
 
 	@include md {
 		font-size: 18px;

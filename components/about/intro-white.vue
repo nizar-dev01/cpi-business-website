@@ -46,46 +46,46 @@
 </script>
 
 <style lang="scss" scoped>
-	section#about-intro-white {
-		background: white;
-	}
+section#about-intro-white {
+	background: white;
+}
 
-	.hightlight-text-container {
-		margin: 130px 0;
+.hightlight-text-container {
+	margin: 130px 0;
 
-		.hightlight-text {
-			color: black;
-			font-family: Satoshi;
-			font-size: 62px;
-			font-weight: 400;
-			line-height: 93px;
-			text-align: center;
-			max-width: 1100px;
-			width: 100%;
-			margin: 0 auto;
-
-			@include lg {
-				font-size: 40px;
-				line-height: 52px;
-			}
-
-			@include sm {
-				font-size: 32px;
-				line-height: 40px;
-			}
-		}
-	}
-
-	.team-image-container {
+	.hightlight-text {
+		color: black;
+		font-family: Satoshi;
+		font-size: 62px;
+		font-weight: 400;
+		line-height: 93px;
+		text-align: center;
+		max-width: 1100px;
 		width: 100%;
-		overflow: hidden;
+		margin: 0 auto;
 
-		.team-image {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-			display: block;
-			max-height: 1670px;
+		@include lg {
+			font-size: 40px;
+			line-height: 52px;
+		}
+
+		@include sm {
+			font-size: 32px;
+			line-height: 40px;
 		}
 	}
+}
+
+.team-image-container {
+	width: 100%;
+	overflow: hidden;
+
+	.team-image {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		display: block;
+		max-height: 1670px;
+	}
+}
 </style>

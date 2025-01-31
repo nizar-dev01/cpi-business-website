@@ -372,7 +372,14 @@
 						</horizontal-text>
 					</div>
 					<!-- /Sliding Text -->
-					<div id="slide-5-overlay"></div>
+					<div id="slide-5-overlay">
+						<text-splitter
+							id="slide-5-reveal-text"
+							text="Beyond Limits."
+							:expose="true"
+							ref="slide5RevealText"
+						/>
+					</div>
 				</div>
 			</div>
 			<!-- /5 - Slide -->
@@ -438,884 +445,920 @@
 	</section>
 </template>
 <script setup>
-	const config_pairs = ref([
-		{
-			slide: '#snap-slider-slide-1',
-			progress: '#snap-slider-slide-progress-1',
-			is_active: true,
-			is_past: false
-		},
-		{
-			slide: '#snap-slider-slide-2',
-			progress: '#snap-slider-slide-progress-2',
-			is_active: false,
-			is_past: false
-		},
-		{
-			slide: '#snap-slider-slide-3',
-			progress: '#snap-slider-slide-progress-3',
-			is_active: false,
-			is_past: false
-		},
-		{
-			slide: '#snap-slider-slide-4',
-			progress: '#snap-slider-slide-progress-4',
-			is_active: false,
-			is_past: false
-		},
-		{
-			slide: '#snap-slider-slide-5',
-			progress: '#snap-slider-slide-progress-5',
-			is_active: false,
-			is_past: false
-		}
-	])
-	// slidingText[3].subtitle 
+const config_pairs = ref([
+	{
+		slide: '#snap-slider-slide-1',
+		progress: '#snap-slider-slide-progress-1',
+		is_active: true,
+		is_past: false
+	},
+	{
+		slide: '#snap-slider-slide-2',
+		progress: '#snap-slider-slide-progress-2',
+		is_active: false,
+		is_past: false
+	},
+	{
+		slide: '#snap-slider-slide-3',
+		progress: '#snap-slider-slide-progress-3',
+		is_active: false,
+		is_past: false
+	},
+	{
+		slide: '#snap-slider-slide-4',
+		progress: '#snap-slider-slide-progress-4',
+		is_active: false,
+		is_past: false
+	},
+	{
+		slide: '#snap-slider-slide-5',
+		progress: '#snap-slider-slide-progress-5',
+		is_active: false,
+		is_past: false
+	}
+])
+// slidingText[3].subtitle 
 
-	const slidingText = [
-		{
-			subtitle: "Design & Branding",
-		},
-		{
-			subtitle: "Bespoke Solutions",
-		},
-		{
-			subtitle: "Consultancy Services",
-		},
-		{
-			subtitle: "Event Management",
-		},
-		{
-			subtitle: "Content Creation",
-		},
-	]
+const slidingText = [
+	{
+		subtitle: "Design & Branding",
+	},
+	{
+		subtitle: "Bespoke Solutions",
+	},
+	{
+		subtitle: "Consultancy Services",
+	},
+	{
+		subtitle: "Event Management",
+	},
+	{
+		subtitle: "Content Creation",
+	},
+]
 
-	const router = useRouter()
-	const appStore = useAppStore()
-	const goToDetail = (to) => {
-		const active_slide = _config_pairs.find(el => el.is_active === true)
-		appStore.setActiveSliderIndex(_config_pairs.indexOf(active_slide))
-		// appStore.setPageScrollPosition('home', window.scrollY)
-		router.push("/services/" + to)
+const router = useRouter()
+const appStore = useAppStore()
+const goToDetail = (to) => {
+	const active_slide = _config_pairs.find(el => el.is_active === true)
+	appStore.setActiveSliderIndex(_config_pairs.indexOf(active_slide))
+	// appStore.setPageScrollPosition('home', window.scrollY)
+	router.push("/services/" + to)
+}
+
+const snapSliderWrapper = ref()
+
+// Set the previous sliders as past when the user is coming back from the detail page
+const si = appStore.activeSliderIndex
+const _config_pairs = config_pairs.value
+for (let i = 0; i < si; i++) {
+	_config_pairs[i].is_active = false
+	_config_pairs[i].is_past = true
+}
+_config_pairs[si].is_past = false
+_config_pairs[si].is_active = true
+// Reset the slide index @ the store
+appStore.setActiveSliderIndex(0)
+
+// Hide the trailing spheres animation till all other animations has passed
+// const showTailSpheres = ref(false)
+
+const slide5RevealText = ref()
+
+let tl;
+onMounted(() => {
+	// Initial Setup
+	const {
+		$gsap,
+	} = useNuxtApp()
+
+	const first = _config_pairs[0]
+	const second = _config_pairs[1]
+	const third = _config_pairs[2]
+	const fourth = _config_pairs[3]
+	const fifth = _config_pairs[4]
+
+	const { characters: slide5RevealTextChars } = slide5RevealText.value.elements
+
+	const wh = window.innerHeight
+	const ww = window.innerWidth
+
+	const responsiveValue = (vals = []) => {
+		const target = vals.find(el => {
+			return el.width >= ww
+		}) || vals[0]
+		return target.value || 0
 	}
 
-	const snapSliderWrapper = ref()
-
-	// Set the previous sliders as past when the user is coming back from the detail page
-	const si = appStore.activeSliderIndex
-	const _config_pairs = config_pairs.value
-	for (let i = 0; i < si; i++) {
-		_config_pairs[i].is_active = false
-		_config_pairs[i].is_past = true
-	}
-	_config_pairs[si].is_past = false
-	_config_pairs[si].is_active = true
-	// Reset the slide index @ the store
-	appStore.setActiveSliderIndex(0)
-
-	// Hide the trailing spheres animation till all other animations has passed
-	const showTailSpheres = ref(false)
-
-	let tl;
-	onMounted(() => {
-		// Initial Setup
-		const {
-			$gsap,
-		} = useNuxtApp()
-
-		const first = _config_pairs[0]
-		const second = _config_pairs[1]
-		const third = _config_pairs[2]
-		const fourth = _config_pairs[3]
-		const fifth = _config_pairs[4]
-
-
-		const wh = window.innerHeight
-		const ww = window.innerWidth
-
-		const responsiveValue = (vals = []) => {
-			const target = vals.find(el => {
-				return el.width >= ww
-			}) || vals[0]
-			return target.value || 0
+	tl = $gsap.timeline({
+		defaults: {
+			duration: 2
+		},
+		scrollTrigger: {
+			trigger: snapSliderWrapper.value,
+			start: 'top top',
+			end: responsiveValue([
+				{
+					value: '+=25000'
+				},
+				{
+					width: 768,
+					value: '+=8000'
+				}
+			]),
+			scrub: 2,
+			pin: true,
+			pinSpacing: true,
+			anticipatePin: 0.5
 		}
+	})
 
-		tl = $gsap.timeline({
-			defaults: {
-				duration: 2
-			},
-			scrollTrigger: {
-				trigger: snapSliderWrapper.value,
-				start: 'top top',
-				end: responsiveValue([
-					{
-						value: '+=25000'
-					},
-					{
-						width: 768,
-						value: '+=8000'
-					}
-				]),
-				scrub: 2,
-				pin: true,
-				pinSpacing: true,
-				anticipatePin: 0.5
-			}
+	const runSlideTransition = (s1, s2) => {
+		const is_going_back = tl.scrollTrigger.direction === -1
+		if (is_going_back) {
+			// Backwards
+			s1.is_past = false
+			s2.is_active = false
+			s1.is_active = true
+		} else {
+			// Forwards
+			s1.is_active = false
+			s1.is_past = true
+			s2.is_active = true
+		}
+	}
+
+	const label = {
+		1: {
+			start: 'slide-1-start',
+			end: 'slide-1-end',
+		},
+		2: {
+			start: 'slide-2-start',
+			end: 'slide-2-end',
+		},
+		3: {
+			start: 'slide-3-start',
+			end: 'slide-3-end',
+		},
+		4: {
+			start: 'slide-4-start',
+			end: 'slide-4-end',
+		},
+		5: {
+			start: 'slide-5-start',
+			end: 'slide-5-end',
+		}
+	}
+	// Set static values
+	tl
+		.set('#slide-2-gate', {
+			xPercent: -50
+		})
+		.set('#slide-2-rock', {
+			xPercent: -50
+		})
+		.set('#slide-5-typewriter', {
+			xPercent: -50
+		})
+		.set('#slide-5-rock', {
+			xPercent: -50
+		}).
+		set('#slide-4-banner', {
+			xPercent: -50,
+			yPercent: -30,
+			scale: 0.6
+		})
+		.set(slide5RevealTextChars, {
+			visibility: 'hidden'
 		})
 
-		const runSlideTransition = (s1, s2) => {
-			const is_going_back = tl.scrollTrigger.direction === -1
-			if (is_going_back) {
-				// Backwards
-				s1.is_past = false
-				s2.is_active = false
-				s1.is_active = true
-			} else {
-				// Forwards
-				s1.is_active = false
-				s1.is_past = true
-				s2.is_active = true
-			}
-		}
+	// Animation
+	tl.
 
-		const label = {
-			1: {
-				start: 'slide-1-start',
-				end: 'slide-1-end',
-			},
-			2: {
-				start: 'slide-2-start',
-				end: 'slide-2-end',
-			},
-			3: {
-				start: 'slide-3-start',
-				end: 'slide-3-end',
-			},
-			4: {
-				start: 'slide-4-start',
-				end: 'slide-4-end',
-			},
-			5: {
-				start: 'slide-5-start',
-				end: 'slide-5-end',
-			}
-		}
-		// Set static values
-		tl
-			.set('#slide-2-gate', {
-				xPercent: -50
-			})
-			.set('#slide-2-rock', {
-				xPercent: -50
-			})
-			.set('#slide-5-typewriter', {
-				xPercent: -50
-			})
-			.set('#slide-5-rock', {
-				xPercent: -50
-			}).
-			set('#slide-4-banner', {
-				xPercent: -50,
-				yPercent: -30,
-				scale: 0.6
-			})
+		// First Slide
+		add(label[1].start)
+		// Slide Animations
 
-		// Animation
-		tl.
-
-			// First Slide
-			add(label[1].start)
-			// Slide Animations
-
-			// Card 1 # Pink
-			.to('#slide-1-rotate-card-1', {
-				rotateX: 360 * 1.1,
-				rotateY: -10,
-				rotateZ: -2,
-				y: responsiveValue([
-					{
-						value: '-93vh'
-					}
-				]),
-				x: responsiveValue([
-					{
-						value: '10vw'
-					}
-				]),
-			}, label[1].start)
-
-			// Card 2 # Black
-			.to('#slide-1-rotate-card-2', {
-				rotateX: 360 * 0.95,
-				rotateY: -15,
-				rotateZ: -1,
-				y: responsiveValue([
-					{
-						value: '-60vh'
-					},
-					{
-						width: 576,
-						value: '-65vh'
-					}
-				]),
-				x: responsiveValue([
-					{
-						value: '-5vw'
-					},
-					{
-						width: 755,
-						value: '-10vw'
-					},
-				]),
-			}, label[1].start)
-
-			// Card 3
-			.to('#slide-1-rotate-card-3', {
-				rotateX: 360 * 0.92,
-				rotateY: 360 * 0.01,
-				rotateZ: 50,
-				y: responsiveValue([
-					{
-						value: '-40vh'
-					},
-					{
-						width: 752,
-						value: '-46vh'
-					}
-				], true),
-				x: responsiveValue([
-					{
-						width: 752,
-						value: '15vw'
-					}
-				])
-			}, label[1].start)
-			// Progress
-			.to(
-				first.progress,
+		// Card 1 # Pink
+		.to('#slide-1-rotate-card-1', {
+			rotateX: 360 * 1.1,
+			rotateY: -10,
+			rotateZ: -2,
+			y: responsiveValue([
 				{
-					width: '100%',
-				},
-				label[1].start
-			)
-			// Transition
-			.add(() => {
-				runSlideTransition(
-					first,
-					second
-				)
-			})
-
-			// Second Slide
-			.add(label[2].start)
-
-			// Cloud
-			.to('#slide-2-cloud', {
-				left: '30%'
-			}, label[2].start)
-			// /Cloud
-			// Gate
-			.to('#slide-2-gate', {
-				scale: responsiveValue([
-					{
-						value: 1.3
-					},
-					{
-						width: 786,
-						value: 0.7
-					}
-				])
-			}, label[2].start)
-			.to('#slide-2-rock', {
-				scale: responsiveValue([
-					{
-						value: 1.3
-					},
-					{
-						width: 786,
-						value: 0.7
-					}
-				])
-			}, label[2].start)
-			// /Gate
-
-			.to('#slide-2-cloud', {
-				x: '25vw'
-			}, label[2].start)
-
-			// Progress
-			.to(
-				second.progress,
+					value: '-93vh'
+				}
+			]),
+			x: responsiveValue([
 				{
-					width: '100%',
+					value: '10vw'
+				}
+			]),
+		}, label[1].start)
+
+		// Card 2 # Black
+		.to('#slide-1-rotate-card-2', {
+			rotateX: 360 * 0.95,
+			rotateY: -15,
+			rotateZ: -1,
+			y: responsiveValue([
+				{
+					value: '-60vh'
 				},
-				label[2].start
+				{
+					width: 576,
+					value: '-65vh'
+				}
+			]),
+			x: responsiveValue([
+				{
+					value: '-5vw'
+				},
+				{
+					width: 755,
+					value: '-10vw'
+				},
+			]),
+		}, label[1].start)
+
+		// Card 3
+		.to('#slide-1-rotate-card-3', {
+			rotateX: 360 * 0.92,
+			rotateY: 360 * 0.01,
+			rotateZ: 50,
+			y: responsiveValue([
+				{
+					value: '-40vh'
+				},
+				{
+					width: 752,
+					value: '-46vh'
+				}
+			], true),
+			x: responsiveValue([
+				{
+					width: 752,
+					value: '15vw'
+				}
+			])
+		}, label[1].start)
+		// Progress
+		.to(
+			first.progress,
+			{
+				width: '100%',
+			},
+			label[1].start
+		)
+		// Transition
+		.add(() => {
+			runSlideTransition(
+				first,
+				second
 			)
-			// Transition
-			.add(() => {
-				runSlideTransition(
-					second,
-					third
-				)
-			})
+		})
 
-			// Third Slide
-			.add(label[3].start)
+		// Second Slide
+		.add(label[2].start)
 
-			.to('#slide-3-objects-holder', {
-				scale: responsiveValue([
+		// Cloud
+		.to('#slide-2-cloud', {
+			left: '30%'
+		}, label[2].start)
+		// /Cloud
+		// Gate
+		.to('#slide-2-gate', {
+			scale: responsiveValue([
+				{
+					value: 1.3
+				},
+				{
+					width: 786,
+					value: 0.7
+				}
+			])
+		}, label[2].start)
+		.to('#slide-2-rock', {
+			scale: responsiveValue([
+				{
+					value: 1.3
+				},
+				{
+					width: 786,
+					value: 0.7
+				}
+			])
+		}, label[2].start)
+		// /Gate
+
+		.to('#slide-2-cloud', {
+			x: '25vw'
+		}, label[2].start)
+
+		// Progress
+		.to(
+			second.progress,
+			{
+				width: '100%',
+			},
+			label[2].start
+		)
+		// Transition
+		.add(() => {
+			runSlideTransition(
+				second,
+				third
+			)
+		})
+
+		// Third Slide
+		.add(label[3].start)
+
+		.to('#slide-3-objects-holder', {
+			scale: responsiveValue([
+				{
+					value: 1.3
+				},
+				{
+					width: 768,
+					value: 1
+				}
+			]),
+			y: responsiveValue([
+				{
+					value: '20%'
+				},
+				{
+					width: 768,
+					value: 0
+				}
+			])
+		}, label[3].start)
+
+		// Progress
+		.to(
+			third.progress,
+			{
+				width: '100%',
+			},
+			label[3].start
+		)
+		// Transition
+		.add(() => {
+			runSlideTransition(
+				third,
+				fourth
+			)
+		})
+
+		// Fourth Slide
+		.add(label[4].start)
+		.to('#slide-4-banner', {
+			yPercent: 0,
+			scale: 1
+		}, label[4].start)
+		.to('#slide-4-wall', {
+			yPercent: 10
+		}, label[4].start)
+
+		// Progress
+		.to(
+			fourth.progress,
+			{
+				width: '100%',
+			},
+			label[4].start
+		)
+		// Transition
+		.add(() => {
+			runSlideTransition(
+				fourth,
+				fifth
+			)
+		})
+
+		// Fifth Slide
+		.add(label[5].start)
+
+		// Animations
+		.to(
+			'#slide-5-typewriter',
+			{
+				z: 888,
+				y: responsiveValue([
 					{
-						value: 1.3
+						value: '15vh'
 					},
 					{
 						width: 768,
+						value: '7vh'
+					}
+				]),
+				scale: responsiveValue([
+					{
 						value: 1
-					}
-				]),
-				y: responsiveValue([
-					{
-						value: '20%'
 					},
 					{
 						width: 768,
-						value: 0
+						value: 2
 					}
-				])
-			}, label[3].start)
+				]),
+				delay: 0.5
+			},
+			label[5].start
+		)
+		.to(
+			'#slide-5-rock',
+			{
+				yPercent: 150,
+				delay: 0.5
+			},
+			label[5].start
+		)
 
-			// Progress
-			.to(
-				third.progress,
-				{
-					width: '100%',
-				},
-				label[3].start
-			)
-			// Transition
-			.add(() => {
-				runSlideTransition(
-					third,
-					fourth
-				)
-			})
+		.to(
+			'#slide-5-overlay',
+			{
+				opacity: 1,
+				duration: 0.2,
+				delay: 0
+			},
+			'-=0.7'
+		)
 
-			// Fourth Slide
-			.add(label[4].start)
-			.to('#slide-4-banner', {
-				yPercent: 0,
-				scale: 1
-			}, label[4].start)
-			.to('#slide-4-wall', {
-				yPercent: 10
-			}, label[4].start)
+		// Progress
+		.to(
+			fifth.progress,
+			{
+				width: '100%',
+			},
+			label[5].start
+		)
 
-			// Progress
-			.to(
-				fourth.progress,
-				{
-					width: '100%',
-				},
-				label[4].start
-			)
-			// Transition
-			.add(() => {
-				runSlideTransition(
-					fourth,
-					fifth
-				)
-			})
+		.to(slide5RevealTextChars, {
+			visibility: 'visible',
+			duration: 0.2,
+			stagger: 0.2
+		})
+		.to(slide5RevealTextChars, {
+			opacity: 0.95,
+			duration: 0.2,
+			stagger: 0.1
+		})
 
-			// Fifth Slide
-			.add(label[5].start)
+})
 
-			// Animations
-			.to(
-				'#slide-5-typewriter',
-				{
-					z: 888,
-					y: responsiveValue([
-						{
-							value: '15vh'
-						},
-						{
-							width: 768,
-							value: '7vh'
-						}
-					]),
-					scale: responsiveValue([
-						{
-							value: 1
-						},
-						{
-							width: 768,
-							value: 2
-						}
-					]),
-					delay: 0.5
-				},
-				label[5].start
-			)
-			.to(
-				'#slide-5-rock',
-				{
-					yPercent: 150,
-					delay: 0.5
-				},
-				label[5].start
-			)
-
-			.to(
-				'#slide-5-overlay',
-				{
-					opacity: 1,
-					duration: 0.2,
-					delay: 0
-				},
-				'-=0.7'
-			)
-
-			// Progress
-			.to(
-				fifth.progress,
-				{
-					width: '100%',
-				},
-				label[5].start
-			)
-
-	})
-
-	onBeforeUnmount(() => {
-		if (tl) {
-			tl.kill()
-		}
-	})
+onBeforeUnmount(() => {
+	if (tl) {
+		tl.kill()
+	}
+})
 </script>
 
 <style lang="scss" scoped>
-	#snap-slider-wrapper-section {
-		position: relative;
+#snap-slider-wrapper-section {
+	position: relative;
+}
+
+
+.abs-full {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.snap-content-section {
+	position: relative;
+	height: 100vh;
+	z-index: 1;
+}
+
+.snap-element {
+	transform: translateY(100%);
+	transition: all 0.7s cubic-bezier(0.75, 0.03, 0.36, 1);
+	overflow: hidden;
+	z-index: 0;
+
+	&.active {
+		transform: translateY(0);
 	}
 
-
-	.abs-full {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		height: 100%;
-		width: 100%;
-	}
-
-	.snap-content-section {
-		position: relative;
-		height: 100vh;
-		z-index: 1;
-	}
-
-	.snap-element {
-		transform: translateY(100%);
-		transition: all 0.7s cubic-bezier(0.75, 0.03, 0.36, 1);
+	&.past {
+		opacity: 0;
+		transform: translateY(-20%) scale(1.1);
+		border-radius: 50px;
 		overflow: hidden;
-		z-index: 0;
+	}
 
-		&.active {
-			transform: translateY(0);
+	.se-ui-container {
+		height: 100vh;
+		width: 100svw;
+		position: relative;
+
+		// 3D in the first slide
+		.cards-container-3d {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+
+			// flex
+			// display: flex;
+			// justify-content: center;
+			// align-items: flex-end;
+
+			.cards-cage {
+				position: absolute;
+				left: 50%;
+				top: 100%;
+				transform: translate(-50%, -50%);
+
+				width: 20vw;
+				height: 12vw;
+
+				position: relative;
+				perspective-origin: top;
+				perspective: 1700px;
+				transform-style: preserve-3d;
+
+				.rotate-card {
+					display: block;
+					margin: 0;
+					backface-visibility: visible;
+
+					object-fit: cover;
+
+					&.rtc-1 {
+						transform: translate3d(100px, 0, -200px)
+					}
+
+					&.rtc-2 {
+						transform: translate3d(-100px, 300px, 0);
+					}
+
+					&.rtc-3 {
+						transform: translate3d(250px, 500px, -400px)
+					}
+				}
+
+				@include xl {
+					width: 30vw;
+					height: 20vw;
+				}
+
+				@include md {
+					width: 35vw;
+					height: 25vw;
+				}
+
+				@include sm {
+					width: 50vw;
+					height: 34vw;
+				}
+			}
 		}
 
-		&.past {
-			opacity: 0;
-			transform: translateY(-20%) scale(1.1);
-			border-radius: 50px;
+		.seui-sliding-text-container {
+			position: absolute;
+			bottom: 70px;
+			left: 0;
+			right: 0;
+			color: white;
+			transition: all 0.5s ease-in-out;
+
+
+			&:hover {
+				span {
+					color: rgba(255, 255, 255, 0.01);
+				}
+
+				span.center-dot::after {
+					background: rgba(255, 255, 255, 0.01);
+					border: 2px solid white;
+				}
+			}
+
+			.hs-subtitle {
+				font-size: 4.5vh;
+				font-weight: 400;
+				margin: 0 0 2vh;
+			}
+
+			.h-slide-text {
+				opacity: 1;
+				transition: 1s all ease;
+				transform-origin: center;
+
+				span {
+					-webkit-text-stroke: 2px white;
+					transition: all 0.5s ease-in-out;
+
+					&::after {
+						transition: all 0.5s ease-in-out;
+					}
+				}
+			}
+		}
+
+		// Slide 2
+		.se-ui-plx-sky-container {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			height: 100%;
+			width: 100%;
+
+			img {
+				position: absolute;
+				left: 0;
+				// top: 0;
+
+				&.sl2-img-cloud {
+					height: 60vh;
+					top: 10vh;
+				}
+
+				&.sl2-center-main {
+					height: 85vh;
+					top: unset;
+					bottom: 0;
+					left: 50%;
+					// transform: translate(-50%, 0);
+
+					&.typewriter {
+						bottom: 15vh;
+						height: 60vh;
+
+						@include md {
+							width: 80%;
+							height: auto;
+							bottom: 30vh;
+						}
+					}
+
+					&.origin-bottom {
+						transform-origin: bottom;
+					}
+				}
+
+				&.sl2-img-rock {
+					height: 30vh;
+					top: unset;
+					bottom: -7vh;
+					left: 50%;
+					transform-origin: bottom;
+
+					@include xl {
+						height: 45vh;
+					}
+
+					// transform: translate(-50%, 0) rotateZ(-3deg);
+				}
+			}
+		}
+
+		// Slide 3
+		.se-ui-glitch-container {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			// overflow: hidden;
+
+			.sl3-img {
+				object-fit: cover;
+
+				&.screen {
+					transform: scale(1.01)
+				}
+			}
+
+			.tv-set-box {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+
+				img.tvstand {
+					width: 100%;
+					height: auto;
+
+					@include md {
+						width: 150%;
+						height: 40vh;
+					}
+				}
+			}
+
+			.tv-box {
+				height: 60vh;
+				width: 55vh;
+				overflow: hidden;
+				position: relative;
+				transform: translate(0, 10px);
+
+				@include md {
+					width: 80%;
+					height: auto;
+				}
+
+				.sl3-tv-frame {
+					height: 100%;
+					width: 100%;
+					position: relative;
+				}
+
+				.sl3-tv-screen {
+					position: absolute;
+					left: 7%;
+					top: 5%;
+					object-fit: cover;
+					width: 88%;
+					height: 69%;
+				}
+			}
+
+			.glitch-layer {
+				background-image: url(@/assets/images/snap/slide_3/glitch.webp);
+				background-size: 700px;
+				opacity: 0.4;
+				mix-blend-mode: color;
+
+				position: absolute;
+				left: 20px;
+				right: 20px;
+				top: 20px;
+				bottom: 20px;
+			}
+		}
+
+		// Slide 4
+		.sl4-banner {
+			position: absolute;
+			left: 50%;
+			top: 0;
+			height: 80vh;
+		}
+
+		// Side 5
+		.typewriter-container {
+			transform-style: preserve-3d;
+			transform-origin: center;
+			perspective: 1000px;
 			overflow: hidden;
 		}
 
-		.se-ui-container {
-			height: 100vh;
-			width: 100svw;
-			position: relative;
+		#slide-5-overlay {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			background: white;
+			z-index: 100;
+			opacity: 0;
+			pointer-events: none;
 
-			// 3D in the first slide
-			.cards-container-3d {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-				// flex
-				// display: flex;
-				// justify-content: center;
-				// align-items: flex-end;
-
-				.cards-cage {
-					position: absolute;
-					left: 50%;
-					top: 100%;
-					transform: translate(-50%, -50%);
-
-					width: 20vw;
-					height: 12vw;
-
-					position: relative;
-					perspective-origin: top;
-					perspective: 1700px;
-					transform-style: preserve-3d;
-
-					.rotate-card {
-						display: block;
-						margin: 0;
-						backface-visibility: visible;
-
-						object-fit: cover;
-
-						&.rtc-1 {
-							transform: translate3d(100px, 0, -200px)
-						}
-
-						&.rtc-2 {
-							transform: translate3d(-100px, 300px, 0);
-						}
-
-						&.rtc-3 {
-							transform: translate3d(250px, 500px, -400px)
-						}
-					}
-
-					@include xl {
-						width: 30vw;
-						height: 20vw;
-					}
-
-					@include md {
-						width: 35vw;
-						height: 25vw;
-					}
-
-					@include sm {
-						width: 50vw;
-						height: 34vw;
-					}
-				}
-			}
-
-			.seui-sliding-text-container {
-				position: absolute;
-				bottom: 70px;
-				left: 0;
-				right: 0;
-				color: white;
-				transition: all 0.5s ease-in-out;
-
-
-				&:hover {
-					span {
-						color: rgba(255, 255, 255, 0.01);
-					}
-
-					span.center-dot::after {
-						background: rgba(255, 255, 255, 0.01);
-						border: 2px solid white;
-					}
-				}
-
-				.hs-subtitle {
-					font-size: 4.5vh;
-					font-weight: 400;
-					margin: 0 0 2vh;
-				}
-
-				.h-slide-text {
-					opacity: 1;
-					transition: 1s all ease;
-					transform-origin: center;
-
-					span {
-						-webkit-text-stroke: 2px white;
-						transition: all 0.5s ease-in-out;
-
-						&::after {
-							transition: all 0.5s ease-in-out;
-						}
-					}
-				}
-			}
-
-			// Slide 2
-			.se-ui-plx-sky-container {
-				position: absolute;
-				left: 0;
-				top: 0;
-				z-index: 2;
-				height: 100%;
-				width: 100%;
-
-				img {
-					position: absolute;
-					left: 0;
-					// top: 0;
-
-					&.sl2-img-cloud {
-						height: 60vh;
-						top: 10vh;
-					}
-
-					&.sl2-center-main {
-						height: 85vh;
-						top: unset;
-						bottom: 0;
-						left: 50%;
-						// transform: translate(-50%, 0);
-
-						&.typewriter {
-							bottom: 15vh;
-							height: 60vh;
-
-							@include xl {
-								width: 80%;
-								height: auto;
-								bottom: 30vh;
-							}
-						}
-
-						&.origin-bottom {
-							transform-origin: bottom;
-						}
-					}
-
-					&.sl2-img-rock {
-						height: 30vh;
-						top: unset;
-						bottom: -7vh;
-						left: 50%;
-						transform-origin: bottom;
-
-						@include xl {
-							height: 45vh;
-						}
-
-						// transform: translate(-50%, 0) rotateZ(-3deg);
-					}
-				}
-			}
-
-			// Slide 3
-			.se-ui-glitch-container {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				// overflow: hidden;
-
-				.sl3-img {
-					object-fit: cover;
-
-					&.screen {
-						transform: scale(1.01)
-					}
-				}
-
-				.tv-set-box {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-
-					position: absolute;
-					left: 0;
-					right: 0;
-					bottom: 0;
-
-					img.tvstand {
-						width: 100%;
-						height: auto;
-
-						@include md {
-							width: 150%;
-							height: 40vh;
-						}
-					}
-				}
-
-				.tv-box {
-					height: 60vh;
-					width: 55vh;
-					overflow: hidden;
-					position: relative;
-					transform: translate(0, 10px);
-
-					@include md {
-						width: 80%;
-						height: auto;
-					}
-
-					.sl3-tv-frame {
-						height: 100%;
-						width: 100%;
-						position: relative;
-					}
-
-					.sl3-tv-screen {
-						position: absolute;
-						left: 7%;
-						top: 5%;
-						object-fit: cover;
-						width: 88%;
-						height: 69%;
-					}
-				}
-
-				.glitch-layer {
-					background-image: url(@/assets/images/snap/slide_3/glitch.webp);
-					background-size: 700px;
-					opacity: 0.4;
-					mix-blend-mode: color;
-
-					position: absolute;
-					left: 20px;
-					right: 20px;
-					top: 20px;
-					bottom: 20px;
-				}
-			}
-
-			// Slide 4
-			.sl4-banner {
-				position: absolute;
-				left: 50%;
-				top: 0;
-				height: 80vh;
-			}
-
-			// Side 5
-			.typewriter-container {
-				transform-style: preserve-3d;
-				transform-origin: center;
-				perspective: 1000px;
-				overflow: hidden;
-			}
-
-			#slide-5-overlay {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 100%;
-				height: 100%;
-				background: white;
-				z-index: 100;
-				opacity: 0;
-				pointer-events: none;
-			}
-
-
-			.layer-1 {
-				z-index: 1;
-			}
-
-			.layer-2 {
-				z-index: 2;
-			}
-
-			.layer-3 {
-				z-index: 3;
-			}
-
-			.layer-4 {
-				z-index: 4;
-			}
-
-			.slide-img {
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
-
-				&.mv-card {
-					left: 50%;
-					bottom: 0;
-					height: 200px;
-					width: 300px;
-
-					// &.mvc-1 {
-					// 	// transform:
-					// 	// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
-					// }
-
-					// &.mvc-2 {
-					// 	// transform:
-					// 	// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
-					// }
-
-					// &.mvc-3 {
-					// 	// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
-					// }
-				}
-			}
-
-			h1 {
-				font-size: 45vw;
-				color: #ffffff24;
+			#slide-5-reveal-text {
+				color: black;
+				font-size: 120px;
 				text-align: center;
 				margin: 0;
-				line-height: calc(100vh - 115px);
-				text-transform: uppercase;
-				font-weight: 900;
-				text-align: center;
+
+				@include md {
+					font-size: 80px;
+				}
+
+				@include sm {
+					font-size: 50px;
+				}
 			}
 		}
-	}
 
 
-	// Progress
+		.layer-1 {
+			z-index: 1;
+		}
 
-	.progress-bars-section {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		width: 100%;
-		padding-bottom: 50px;
-		z-index: 2;
-		overflow: hidden;
-	}
+		.layer-2 {
+			z-index: 2;
+		}
 
-	.progress-bars-container {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: nowrap;
-		margin: 0 -13px;
-		padding: 0 100px;
+		.layer-3 {
+			z-index: 3;
+		}
 
-		@include md {
-			padding: 0 15px;
-			margin: 0 -5px;
+		.layer-4 {
+			z-index: 4;
+		}
+
+		.slide-img {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+
+			&.mv-card {
+				left: 50%;
+				bottom: 0;
+				height: 200px;
+				width: 300px;
+
+				// &.mvc-1 {
+				// 	// transform:
+				// 	// 	translate(-38px, -324px) rotateX(48deg) rotateY(10deg)
+				// }
+
+				// &.mvc-2 {
+				// 	// transform:
+				// 	// 	translate(-300px, -462px) rotateX(18deg) rotateY(-20deg);
+				// }
+
+				// &.mvc-3 {
+				// 	// transform: translate(-409px, -225px) rotateX(34deg) rotateY(-24deg)
+				// }
+			}
+		}
+
+		h1 {
+			font-size: 45vw;
+			color: #ffffff24;
+			text-align: center;
+			margin: 0;
+			line-height: calc(100vh - 115px);
+			text-transform: uppercase;
+			font-weight: 900;
+			text-align: center;
 		}
 	}
+}
 
-	.pb-progress-holder {
-		height: 2px;
-		box-sizing: border-box;
-		border-radius: 2px;
-		background: #ffffff33;
-		overflow: hidden;
-		flex: 1;
-		margin: 0 13px;
 
-		@include md {
-			margin: 0 5px;
-		}
+// Progress
+
+.progress-bars-section {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 50px;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.progress-bars-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	margin: 0 -13px;
+	padding: 0 100px;
+
+	@include md {
+		padding: 0 15px;
+		margin: 0 -5px;
 	}
+}
 
-	.pb-progress-line {
-		height: 100%;
-		width: 0%;
-		box-sizing: border-box;
-		background: white;
+.pb-progress-holder {
+	height: 2px;
+	box-sizing: border-box;
+	border-radius: 2px;
+	background: #ffffff33;
+	overflow: hidden;
+	flex: 1;
+	margin: 0 13px;
+
+	@include md {
+		margin: 0 5px;
 	}
+}
+
+.pb-progress-line {
+	height: 100%;
+	width: 0%;
+	box-sizing: border-box;
+	background: white;
+}
 </style>

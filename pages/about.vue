@@ -9,8 +9,10 @@
 	</main>
 </template>
 <script setup>
-	useHead({
-		title: "CPI Business | About Us"
-	})
+useHead({
+	title: "CPI Business | About Us"
+})
+
+const updateKey = ref(0)
 </script>
 <style lang="scss"></style>

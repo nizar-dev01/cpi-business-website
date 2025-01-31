@@ -1,10 +1,9 @@
 <template>
 	<section id="index-section-hero">
 		<div class="layout-box">
-			<h1 class="hero-title hero-reveal-top">cpi business</h1>
+			<h1 class="hero-title hero-reveal-top">creativity <br> set in motion</h1>
 			<h3 class="hero-subtitle hero-reveal-top">
-				Going beyond a typical creative events agency, we are solution architects, creative thinkers and
-				ambitious storytellers. We strategise, consult and dream pushing the limits of what’s possible.
+				Welcome to the home of purpose-driven thinkers, ambition-led doers and imagination-fuelled dreamers.
 			</h3>
 			<div class="call-to-action-btn-container hero-reveal-top">
 				<button-sq
@@ -71,30 +70,36 @@ section#index-section-hero {
 
 h1.hero-title {
 	font-family: 'Denton';
-	font-weight: 400;
-	font-size: 104px;
+	font-weight: 500;
+	font-size: 180px;
 	color: white;
 	text-align: center;
 	margin: 100px 0 0;
-	line-height: 130px;
+	line-height: 100%;
 
-	@include lg {
-		font-size: 140px;
+	@include break(1250px) {
+		font-size: 150px;
 	}
 
-	@include xmd {
+	@include break(1050px) {
 		font-size: 120px;
 		margin-top: 100px;
 	}
 
-	@include md {
-		font-size: 80px;
-		line-height: 90px;
+	@include break(830px) {
+		font-size: 100px;
 	}
 
-	@include sm {
+	@include break(700px) {
+		font-size: 80px;
+	}
+
+	@include break(570px) {
 		font-size: 60px;
-		line-height: 78px;
+	}
+
+	@include break(430px) {
+		font-size: 50px;
 	}
 }
 
@@ -105,7 +110,7 @@ h1.hero-title {
 	line-height: 48px;
 	text-align: center;
 	color: white;
-	margin: 30px auto 44px;
+	margin: 20px auto 80px;
 	max-width: 976px;
 
 	// @include lg {
@@ -119,7 +124,7 @@ h1.hero-title {
 	// 	margin-top: 0;
 	// }
 
-	@include md {
+	@include break(1050px) {
 		font-size: 30px;
 		margin-top: 20px;
 		margin-left: auto;

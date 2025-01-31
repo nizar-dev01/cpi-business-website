@@ -31,17 +31,17 @@
 	</main>
 </template>
 <script setup>
-	useHead({
-		title: "CPI Business | Home"
-	})
+useHead({
+	title: "CPI Business | Home"
+})
 
-	onBeforeRouteLeave(() => {
-		const {
-			$ScrollTrigger
-		} = useNuxtApp()
+onBeforeRouteLeave(() => {
+	const {
+		$ScrollTrigger
+	} = useNuxtApp()
 
-		$ScrollTrigger.getAll().forEach(t => {
-			t.kill()
-		})
+	$ScrollTrigger.getAll().forEach(t => {
+		t.kill()
 	})
+})
 </script>
