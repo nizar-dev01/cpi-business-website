@@ -33,7 +33,10 @@ onMounted(() => {
 		__images__.forEach(im => {
 			const img = document.createElement('img')
 			img.src = `${window.location.origin}/${im}`
-			img.onload = () => {
+
+			const staticDelay = 1.5
+
+			const progressTracker = () => {
 				loaded.value++
 				loadingPercent.value = Math.ceil((loaded.value / length) * 90)
 				const hasLoadingFinished = loaded.value === length
@@ -41,7 +44,7 @@ onMounted(() => {
 					const proxy = { value: loadingPercent.value };
 					const tween = $gsap.to(proxy, {
 						value: 100,          // Target value
-						duration: 1,         // Animation duration in seconds
+						duration: staticDelay,         // Animation duration in seconds
 						onUpdate: () => {
 							// Update the reactive value with the animated value
 							// Use Math.round() if you only want whole numbers
@@ -51,9 +54,11 @@ onMounted(() => {
 					setTimeout(() => {
 						tween.kill()
 						dataStore.loadPage()
-					}, 1000)
+					}, staticDelay * 1000)
 				}
 			}
+			img.onload = progressTracker
+			img.onerror = progressTracker
 		})
 	}
 })

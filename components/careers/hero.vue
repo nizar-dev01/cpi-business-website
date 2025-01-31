@@ -6,6 +6,7 @@
 				alt="Image of an astronaut floating in space"
 				class="crh-bg-img"
 				ref="heroBgImg"
+				@load="initAnimation"
 			/>
 		</div>
 		<div class="content-layer clearfix">
@@ -45,19 +46,17 @@
 </template>
 <script setup>
 const heroBgImg = ref()
-onMounted(() => {
-	const {
-		$gsap: gsap
-	} = useNuxtApp()
+const {
+	$gsap: gsap
+} = useNuxtApp()
 
-	// This needs to be fixed!
-	// The timeout is set because the animation was not getting initiated when the page reloads directly
+const initAnimation = () => {
 	setTimeout(() => {
 		const astronaut = heroBgImg.value
 		gsap.to(
 			astronaut,
 			{
-				yPercent: 12,
+				yPercent: -15,
 				scrollTrigger: {
 					trigger: astronaut,
 					start: "top top",
@@ -67,6 +66,11 @@ onMounted(() => {
 			}
 		)
 	}, 100)
+}
+onMounted(() => {
+
+	// This needs to be fixed!
+	// The timeout is set because the animation was not getting initiated when the page reloads directly
 })
 </script>
 <style lang="scss" scoped>

@@ -11,5 +11,4 @@
 			fill="#0F0F0F"
 		/>
 	</svg>
-
 </template>
