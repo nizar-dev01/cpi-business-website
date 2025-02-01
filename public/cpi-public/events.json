@@ -2,6 +2,9 @@
 	{
 		"id": 1,
 		"client": "",
+		"tags": [
+			"content-creation"
+		],
 		"image": "/cpi-public/img/portfolios/1.jpg",
 		"title": "Abu Dhabi Finance Week 2024",
 		"slug": "abu-dhabi-finance-week-2024",
@@ -25,6 +28,9 @@
 	{
 		"id": 2,
 		"client": "",
+		"tags": [
+			"content-creation"
+		],
 		"image": "/cpi-public/img/portfolios/2.png",
 		"title": "etisalat by e& Hello Business Pitch 3",
 		"slug": "etisalat-by-e-hello-business-pitch-3",
@@ -42,6 +48,9 @@
 	{
 		"id": 3,
 		"client": "",
+		"tags": [
+			"content-creation"
+		],
 		"image": "/cpi-public/img/portfolios/3.png",
 		"title": "Smart & Autonomous Vehicle Industries (SAVI)",
 		"slug": "smart-autonomous-vehicle-industries-savi",
@@ -59,6 +68,9 @@
 	{
 		"id": 4,
 		"client": "",
+		"tags": [
+			"content-creation"
+		],
 		"image": "/cpi-public/img/portfolios/4.png",
 		"title": "Hub71 Impact Summit",
 		"slug": "hub71-impact-summit",
@@ -82,6 +94,9 @@
 	{
 		"id": 5,
 		"client": "",
+		"tags": [
+			"content-creation"
+		],
 		"image": "/cpi-public/img/portfolios/5.png",
 		"title": "One Miral",
 		"slug": "one-miral",
@@ -98,6 +113,7 @@
 	{
 		"id": 6,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/6.png",
 		"title": "A Conversation with Sam Altman, CEO of OpenAl",
 		"slug": "a-conversation-with-sam-altman-ceo-of-openai",
@@ -118,6 +134,7 @@
 	{
 		"id": 7,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/7.png",
 		"title": "RESOLVE",
 		"slug": "resolve",
@@ -137,6 +154,7 @@
 	{
 		"id": 8,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/8.png",
 		"title": "Ahlan Modi",
 		"slug": "ahlan-modi",
@@ -157,6 +175,7 @@
 	{
 		"id": 9,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/9.png",
 		"title": "Abu Dhabi Finance Week 2022",
 		"slug": "abu-dhabi-finance-week-2022",
@@ -181,6 +200,7 @@
 	{
 		"id": 10,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/10.png",
 		"title": "SMB Awards 2024",
 		"slug": "smb-awards-2024",
@@ -198,6 +218,7 @@
 	{
 		"id": 11,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/11.png",
 		"title": "I2U2 Business Forum",
 		"slug": "i2u2-business-forum",
@@ -218,6 +239,7 @@
 	{
 		"id": 12,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/12.png",
 		"title": "Abu Dhabi Business Week 2023",
 		"slug": "abu-dhabi-business-week-2023",
@@ -241,6 +263,7 @@
 	{
 		"id": 13,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/13.png",
 		"title": "AGWA",
 		"slug": "agwa",
@@ -261,6 +284,7 @@
 	{
 		"id": 14,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/14.png",
 		"title": "e& Suhoor",
 		"slug": "e-suhoor",
@@ -280,6 +304,7 @@
 	{
 		"id": 15,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/15.png",
 		"title": "CBUAE",
 		"slug": "cbuae",
@@ -296,6 +321,7 @@
 	{
 		"id": 16,
 		"client": "",
+		"tags": [],
 		"image": "/cpi-public/img/portfolios/1.jpg",
 		"title": "SIFF",
 		"slug": "siff",

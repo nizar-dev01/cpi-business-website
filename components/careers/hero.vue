@@ -115,6 +115,12 @@ onMounted(() => {
 		height: 50%;
 		background: linear-gradient(180deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0) 50%);
 		z-index: 2;
+
+		@include xl {
+			// display: none;
+			background: rgba(0, 0, 0, 0.5);
+			height: 100%;
+		}
 	}
 
 	@include md {
@@ -128,6 +134,10 @@ onMounted(() => {
 	object-fit: cover;
 	display: block;
 	position: relative;
+
+	@include md {
+		height: 100%;
+	}
 }
 
 .content-layer {
@@ -156,21 +166,17 @@ onMounted(() => {
 		}
 
 		@include md {
-			height: 50vh;
-		}
-
-		@include sm {
-			height: 50vh;
+			height: auto;
 		}
 	}
 
 	.hero-intro-text {
-		font-size: 8vw;
+		font-size: max(8vw, 8vh);
 		text-align: center;
 		font-family: 'Denton';
 		margin-top: 50vh;
 		text-transform: uppercase;
-		line-height: 8vw;
+		line-height: 100%;
 
 		@include lg {
 			color: red;

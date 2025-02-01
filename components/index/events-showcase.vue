@@ -1,7 +1,10 @@
 <template>
 	<section class="events-showcase">
 		<div class="layout-box clearfix">
-			<div class="showcase-container">
+			<div
+				class="showcase-container"
+				:key="updateKey"
+			>
 				<div
 					class="showcase-row"
 					ref="showcaseRow"
@@ -10,6 +13,7 @@
 					<div
 						v-for="(event, i) in showcaseEvents"
 						class="showcase-col"
+						:class="{ hidden: isEventHidden(event) }"
 						ref="showcaseItems"
 					>
 						<router-link
@@ -85,6 +89,11 @@
 	</section>
 </template>
 <script setup>
+const {
+	$gsap: gsap,
+	$ScrollTrigger
+} = useNuxtApp()
+
 const props = defineProps(['showViewMore'])
 
 const dataStore = useDataStore()
@@ -93,11 +102,8 @@ const showcaseEvents = computed(() => dataStore.events)
 const showcaseRow = ref()
 const showcaseItems = ref()
 
+const scrollRevealTweens = [];
 const initScrollReveal = () => {
-	const {
-		$gsap: gsap
-	} = useNuxtApp()
-
 	const items = showcaseItems.value
 	const row = showcaseRow.value
 
@@ -121,7 +127,7 @@ const initScrollReveal = () => {
 			duration: 0.5,
 			delay
 		}
-		gsap.to(item, {
+		const twn = gsap.to(item, {
 			scrollTrigger: {
 				// markers: true,
 				trigger: item,
@@ -129,7 +135,8 @@ const initScrollReveal = () => {
 				end: "bottom top",
 				onEnter ({ trigger }) {
 					gsap.fromTo(trigger, {
-						y: _yfall
+						y: _yfall,
+						opacity: 0
 					}, {
 						..._config,
 						y: 0,
@@ -159,6 +166,7 @@ const initScrollReveal = () => {
 				},
 			},
 		})
+		scrollRevealTweens.push(twn)
 	})
 }
 
@@ -195,6 +203,37 @@ const getTwoTags = (event) => {
 
 	return tags
 }
+
+
+// Filtering
+const tags = inject('tags', [])
+const filterCallBacks = inject('filter-callbacks', null)
+
+const isEventHidden = (event) => {
+	const selectedTags = tags.value
+
+	if (selectedTags.find(st => st.selected && st.value === 'show-all')) {
+		return false
+	}
+
+	const eventTags = event.tags
+	const doesTagExist = selectedTags.some(el => !!eventTags.find(et => el.selected && el.value === et))
+	// debugger
+	return !doesTagExist
+}
+const updateKey = ref(0)
+const runFilter = (filters) => {
+	// scrollRevealTweens.forEach(t => t.kill())
+	// $ScrollTrigger.killAll()
+	updateKey.value++
+	// setTimeout(initScrollReveal(), 1000)
+}
+
+if (tags.value.length) {
+	if (filterCallBacks) {
+		filterCallBacks.push(runFilter)
+	}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -222,7 +261,7 @@ const getTwoTags = (event) => {
 	padding: 9px;
 	box-sizing: border-box;
 	width: 25%;
-	flex-grow: 1;
+	// flex-grow: 1;
 
 	opacity: 0;
 

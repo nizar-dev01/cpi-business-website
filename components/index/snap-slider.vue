@@ -919,6 +919,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 #snap-slider-wrapper-section {
 	position: relative;
+	overflow: hidden;
 }
 
 
