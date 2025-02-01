@@ -206,10 +206,11 @@ const getTwoTags = (event) => {
 
 
 // Filtering
-const tags = inject('tags', [])
+const tags = inject('tags', ref([]))
 const filterCallBacks = inject('filter-callbacks', null)
 
 const isEventHidden = (event) => {
+	if (filterCallBacks === null || tags.value.length === 0) return false
 	const selectedTags = tags.value
 
 	if (selectedTags.find(st => st.selected && st.value === 'show-all')) {
