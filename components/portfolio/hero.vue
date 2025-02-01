@@ -53,6 +53,9 @@ const selectTag = (tag) => {
 		const showAllTag = tags.value.find(t => t.value === 'show-all')
 		showAllTag.selected = false
 		tag.selected = !tag.selected
+		if (!tags.value.some(t => t.selected)) {
+			showAllTag.selected = true
+		}
 	}
 
 	// Run the filter callback
