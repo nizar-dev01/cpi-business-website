@@ -96,8 +96,16 @@ const {
 
 const props = defineProps(['showViewMore'])
 
+const filterFunction = inject('event-list-filter-function', null)
+
 const dataStore = useDataStore()
-const showcaseEvents = computed(() => dataStore.events)
+const showcaseEvents = computed(() => {
+	if (filterFunction === null) {
+		return dataStore.events
+	} else {
+		return filterFunction(dataStore.events)
+	}
+})
 
 const showcaseRow = ref()
 const showcaseItems = ref()
@@ -217,7 +225,7 @@ const isEventHidden = (event) => {
 		return false
 	}
 
-	const eventTags = event.tags
+	const eventTags = event.tags || []
 	const doesTagExist = selectedTags.some(el => !!eventTags.find(et => el.selected && el.value === et))
 	// debugger
 	return !doesTagExist

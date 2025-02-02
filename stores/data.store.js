@@ -33,21 +33,22 @@ export const useDataStore = defineStore('data', {
 			portfolio: {
 				images: [
 					...service_images,
-					"/cpi-public/img/portfolios/10.png",
-					"/cpi-public/img/portfolios/11.png",
-					"/cpi-public/img/portfolios/12.png",
-					"/cpi-public/img/portfolios/13.png",
-					"/cpi-public/img/portfolios/14.png",
-					"/cpi-public/img/portfolios/15.png",
-					"/cpi-public/img/portfolios/1.jpg",
-					"/cpi-public/img/portfolios/2.png",
-					"/cpi-public/img/portfolios/3.png",
-					"/cpi-public/img/portfolios/4.png",
-					"/cpi-public/img/portfolios/5.png",
-					"/cpi-public/img/portfolios/6.png",
-					"/cpi-public/img/portfolios/7.png",
-					"/cpi-public/img/portfolios/8.png",
-					"/cpi-public/img/portfolios/9.png",
+					"/cpi-public/img/portfolios/ADFW23.png",
+					"/cpi-public/img/portfolios/ADFW24.png",
+					"/cpi-public/img/portfolios/ADGM.png",
+					"/cpi-public/img/portfolios/AGWA.png",
+					"/cpi-public/img/portfolios/ahlan modi.png",
+					"/cpi-public/img/portfolios/CBUAE.png",
+					"/cpi-public/img/portfolios/e& Suhoor.png",
+					"/cpi-public/img/portfolios/hub71.png",
+					"/cpi-public/img/portfolios/i2u2.png",
+					"/cpi-public/img/portfolios/One miral.png",
+					"/cpi-public/img/portfolios/resolve.png",
+					"/cpi-public/img/portfolios/sam altman.png",
+					"/cpi-public/img/portfolios/SAVI.png",
+					"/cpi-public/img/portfolios/SIFF.png",
+					"/cpi-public/img/portfolios/SMB Awards 2024.png",
+					"/cpi-public/img/portfolios/etisalat.jpg",
 				]
 			},
 			careers: {
@@ -67,6 +68,11 @@ export const useDataStore = defineStore('data', {
 				]
 			},
 			'blog-slug': {
+				images: [
+					...service_images,
+				]
+			},
+			'portfolio-slug': {
 				images: [
 					...service_images,
 				]
@@ -92,7 +98,7 @@ export const useDataStore = defineStore('data', {
 			const index = this.event_list.indexOf(event) + 1
 
 			if (index >= this.event_list.length) {
-				return null
+				return this.event_list[0]
 			} else {
 				return this.event_list[index]
 			}
@@ -102,7 +108,7 @@ export const useDataStore = defineStore('data', {
 			const index = this.event_list.indexOf(event) - 1
 
 			if (index < 0) {
-				return null
+				return this.event_list[this.event_list.length - 1]
 			} else {
 				return this.event_list[index]
 			}

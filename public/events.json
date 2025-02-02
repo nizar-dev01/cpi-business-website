@@ -2,7 +2,12 @@
 	{
 		"id": 1,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/ADFW24.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/ADFW24.png",
 		"title": "Abu Dhabi Finance Week 2024",
 		"slug": "abu-dhabi-finance-week-2024",
 		"subtitle": "Curating a global financial experience in Abu Dhabi",
@@ -24,7 +29,12 @@
 	{
 		"id": 2,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/etisalat.jpg",
+		"bg_image": "/cpi-public/img/portfolios/sqr/etisalat.png",
 		"title": "etisalat by e& Hello Business Pitch 3",
 		"slug": "etisalat-by-e-hello-business-pitch-3",
 		"subtitle": "Celebrating the UAE's ambitious startups and ideators in style",
@@ -40,7 +50,12 @@
 	{
 		"id": 3,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/SAVI.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/SAVI.png",
 		"title": "Smart & Autonomous Vehicle Industries (SAVI)",
 		"slug": "smart-autonomous-vehicle-industries-savi",
 		"subtitle": "Introducing the future of autonomous mobility in the UAE",
@@ -56,7 +71,12 @@
 	{
 		"id": 4,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/hub71.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/hub71.png",
 		"title": "Hub71 Impact Summit",
 		"slug": "hub71-impact-summit",
 		"subtitle": "A 2-day summit showcasing Hub71's innovation and impact",
@@ -78,7 +98,12 @@
 	{
 		"id": 5,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/One miral.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/One miral.png",
 		"title": "One Miral",
 		"slug": "one-miral",
 		"subtitle": "Revealing Miral's new brand identity with interactive activations",
@@ -93,7 +118,12 @@
 	{
 		"id": 6,
 		"client": "",
-		"image": "/cpi-public/img/portfolios/One miral.png",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
+		"image": "/cpi-public/img/portfolios/sam altman.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/sam altman.png",
 		"title": "A Conversation with Sam Altman, CEO of OpenAl",
 		"slug": "a-conversation-with-sam-altman-ceo-of-openai",
 		"subtitle": "Exploring everything Al in an open forum discussion with Sam Altman",
@@ -112,7 +142,12 @@
 	{
 		"id": 7,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/resolve.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/resolve.png",
 		"title": "RESOLVE",
 		"slug": "resolve",
 		"subtitle": "Hillary Clinton discussed Abu Dhabi's rising 'Falcon Economy'",
@@ -130,7 +165,12 @@
 	{
 		"id": 8,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/ahlan modi.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/ahlan modi.png",
 		"title": "Ahlan Modi",
 		"slug": "ahlan-modi",
 		"subtitle": "A celebration to honor Narendra Modi, Prime Minister of India",
@@ -149,7 +189,12 @@
 	{
 		"id": 9,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/ADGM.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/ADGM.png",
 		"title": "Abu Dhabi Finance Week 2022",
 		"slug": "abu-dhabi-finance-week-2022",
 		"subtitle": "Launching Abu Dhabi Finance Week: The beginning of a financial legacy",
@@ -172,7 +217,12 @@
 	{
 		"id": 10,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/SMB Awards 2024.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/SMB.png",
 		"title": "SMB Awards 2024",
 		"slug": "smb-awards-2024",
 		"subtitle": "Celebrating the UAE's top SMBs with innovation and creativity",
@@ -188,7 +238,12 @@
 	{
 		"id": 11,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/i2u2.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/i2u2.png",
 		"title": "I2U2 Business Forum",
 		"slug": "i2u2-business-forum",
 		"subtitle": "Driving partnership and meaningful dialogue across four nations",
@@ -207,7 +262,12 @@
 	{
 		"id": 12,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/ADFW23.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/ADFW24.png",
 		"title": "Abu Dhabi Business Week 2023",
 		"slug": "abu-dhabi-business-week-2023",
 		"subtitle": "The second edition of MENA's largest financial event",
@@ -229,7 +289,12 @@
 	{
 		"id": 13,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/AGWA.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/AGWA.png",
 		"title": "AGWA",
 		"slug": "agwa",
 		"subtitle": "Launching AGWA: Pioneering sustainable food solutions in Abu Dhabi",
@@ -248,7 +313,12 @@
 	{
 		"id": 14,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/e& Suhoor.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/e& Suhoor.png",
 		"title": "e& Suhoor",
 		"slug": "e-suhoor",
 		"subtitle": "Celebrating Ramadan with a memorable evening of connection",
@@ -266,7 +336,12 @@
 	{
 		"id": 15,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/CBUAE.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/CBUAE.png",
 		"title": "CBUAE",
 		"slug": "cbuae",
 		"subtitle": "Exploring the future of finance at Expo 2020",
@@ -281,7 +356,12 @@
 	{
 		"id": 16,
 		"client": "",
+		"video": "",
+		"tags": [
+			"event-management"
+		],
 		"image": "/cpi-public/img/portfolios/SIFF.png",
+		"bg_image": "/cpi-public/img/portfolios/sqr/SIFF.png",
 		"title": "SIFF",
 		"slug": "siff",
 		"subtitle": "Celebrating storytelling at Sharjah International Film Festival 2022",

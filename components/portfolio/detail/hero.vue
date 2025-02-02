@@ -43,6 +43,18 @@ onMounted(() => {
 	position: relative;
 	height: 150vh;
 	overflow: hidden;
+
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 50%);
+		z-index: 2;
+	}
 }
 
 .portfolio-detail-bg {

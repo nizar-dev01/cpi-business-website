@@ -22,7 +22,7 @@
 
 		<div class="team-image-container">
 			<img
-				src="@/assets/images/team.jpeg"
+				src="/cpi-public/img/team.jpeg"
 				alt="CPI Team"
 				class="team-image"
 			/>

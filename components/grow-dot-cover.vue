@@ -16,6 +16,7 @@ const props = defineProps(['theme'])
 const containerBox = ref()
 const growDot = ref()
 
+let tl;
 onMounted(() => {
 	const {
 		$gsap
@@ -32,7 +33,7 @@ onMounted(() => {
 
 	const _opp = Math.sqrt(_v_w ** 2 + _v_h ** 2)
 	setTimeout(() => {
-		$gsap.to(_dot, {
+		tl = $gsap.to(_dot, {
 			width: _opp,
 			height: _opp,
 			scrollTrigger: {
@@ -43,6 +44,14 @@ onMounted(() => {
 			}
 		})
 	}, 500)
+})
+
+onBeforeUnmount(() => {
+	if (tl && tl.kill) {
+		console.log("Killing tl")
+		tl.kill()
+		console.log("Done Killing tl")
+	}
 })
 </script>
 <style lang="scss">

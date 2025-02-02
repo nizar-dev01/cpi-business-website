@@ -3,7 +3,7 @@
 		<div class="layout-box">
 			<div class="container">
 				<div class="pdi-row">
-					<div class="pdi-col left">
+					<div class="pdi-col">
 						<div class="pdi-item">
 							<p
 								class="pdi-main-text"
@@ -32,7 +32,21 @@
 					</div> -->
 				</div>
 
-				<div class="pdi-row"></div>
+				<div
+					class="pdi-row"
+					v-if="props.keyHighlights && props.keyHighlights.length"
+				>
+					<div class="pdi-col">
+						<div class="khl-container">
+							<div
+								class="khl-item"
+								v-for="kh in props.keyHighlights"
+							>
+								{{ kh }}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -46,7 +60,6 @@ const props = defineProps([
 <style lang="scss">
 #portfolio-detail-info-section {
 	width: 100%;
-	min-height: 100vh;
 	height: auto;
 	background: black;
 	overflow: hidden;
@@ -56,6 +69,11 @@ const props = defineProps([
 
 		.container {
 			height: 100%;
+			padding: 200px 0;
+
+			@include lg {
+				padding: 0;
+			}
 		}
 	}
 
@@ -85,76 +103,38 @@ const props = defineProps([
 	align-items: center;
 	height: 100%;
 	position: relative;
+}
 
-	&.left {
-		// width: 72%;
+.khl-container {
+	margin: 0 -10px;
+	display: flex;
+	flex-wrap: wrap;
+}
 
-		@include xmd {
-			width: 100%;
-			margin-bottom: 32px;
-		}
-
-		.pdi-item {
-			padding-top: 150px;
-			padding-bottom: 150px;
-		}
-	}
-
-	&.right {
-		width: 28%;
-
-		&::after {
-			content: '';
-			display: block;
-			position: absolute;
-			left: 0;
-			top: 0;
-			bottom: 0;
-			width: 100vw;
-			background-color: #1e1e1e;
-			z-index: 0;
-
-			@include xmd {
-				width: 102%;
-			}
-		}
-
-		.pdi-item {
-			position: relative;
-			z-index: 1;
-			padding: 0 0 0 50px;
-
-			@include sm {
-				padding: 0 0 0 30px;
-			}
-
-			@include break(330px) {
-				padding: 0 0 0 20px;
-			}
-		}
-
-		@include xmd {
-			width: 98%;
-		}
-	}
+.khl-item {
+	background: #282828;
+	margin: 10px;
+	line-height: 60px;
+	padding: 0 30px;
+	border-radius: 20px;
+	font-size: 20px;
+	font-weight: 500;
 }
 
 .pdi-main-text {
 	color: white;
 	font-size: 35px;
-	line-height: 50px;
-	// max-width: 80%;
-	font-weight: 600;
-
-	margin-left: 50px;
+	line-height: 130%;
+	max-width: 1300px;
+	font-weight: 500;
+	margin: 25px 0;
 
 	@include break(330px) {
-		margin-left: 20px;
+		// margin-left: 20px;
 	}
 
 	@include lg {
 		font-size: 35px;
-		line-height: 45px;
 	}
 
 	@include xmd {
@@ -163,14 +143,12 @@ const props = defineProps([
 
 	@include md {
 		font-size: 30px;
-		line-height: 35px;
-		font-weight: 500;
 	}
 
 	@include sm {
-		font-size: 28px;
+		font-size: 23px;
 		font-weight: 400;
-		margin-left: 30px;
+		// margin-left: 30px;
 	}
 }
 

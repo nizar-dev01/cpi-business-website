@@ -4,7 +4,7 @@
 		class="portfolio-detail-page-main clearfix"
 	>
 		<portfolio-detail-hero
-			:image="event?.detail?.hero_image"
+			:image="event?.bg_image"
 			:title="event.title"
 			:subtitle="event.subtitle"
 		/>
@@ -12,7 +12,8 @@
 			:paragraphs="event.detail.paragraphs"
 			:key-highlights="event.detail.key_highlights"
 		/>
-		<portfolio-detail-images />
+		<portfolio-detail-video />
+		<portfolio-detail-others />
 	</main>
 </template>
 <script setup>
@@ -22,7 +23,13 @@ const slug = route.params.slug
 const dataStore = useDataStore()
 const event = dataStore.getEvent(slug)
 
-const next = dataStore.getNextEvent(slug)
-const prev = dataStore.getPrevEvent(slug)
+// Show the next and previous 2 items in the "Other Events" section
+const eventFilter = () => {
+	const next1 = dataStore.getNextEvent(slug)
+	const next2 = dataStore.getNextEvent(next1.slug)
+	const prev1 = dataStore.getPrevEvent(slug)
+	const prev2 = dataStore.getPrevEvent(prev1.slug)
+	return [prev2, prev1, next1, next2]
+}
+provide('event-list-filter-function', eventFilter)
 </script>
-<style lang="scss"></style>

@@ -110,8 +110,8 @@ onMounted(() => {
 
 	.loader-percentage {
 		z-index: 2;
-		font-size: 25px;
-		font-weight: 500;
+		font-size: 20px;
+		font-weight: 400;
 	}
 
 }
