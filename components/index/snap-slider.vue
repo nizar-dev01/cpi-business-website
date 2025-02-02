@@ -1356,6 +1356,7 @@ onBeforeUnmount(() => {
 
 			#slide-5-reveal-text {
 				color: black;
+				font-family: 'parslay';
 				font-size: 120px;
 				text-align: center;
 				margin: 0;

@@ -6,7 +6,7 @@
 	>
 		<div class="video-frame-container">
 			<iframe
-				src="https://player.vimeo.com/video/1045605283?h=64457d8173"
+				:src="props.url"
 				frameborder="0"
 				allow="autoplay; fullscreen; picture-in-picture"
 				allowfullscreen
@@ -16,6 +16,7 @@
 	</section>
 </template>
 <script setup>
+const props = defineProps(['url'])
 
 onMounted(() => {
 	const { $ScrollTrigger } = useNuxtApp()

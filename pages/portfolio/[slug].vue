@@ -12,7 +12,10 @@
 			:paragraphs="event.detail.paragraphs"
 			:key-highlights="event.detail.key_highlights"
 		/>
-		<portfolio-detail-video />
+		<portfolio-detail-video
+			v-if="event.video"
+			:url="event.video"
+		/>
 		<portfolio-detail-others />
 	</main>
 </template>
