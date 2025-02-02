@@ -34,11 +34,11 @@
 useHead({
 	title: "CPI Business | Home"
 })
+const {
+	$ScrollTrigger
+} = useNuxtApp()
 
-onBeforeRouteLeave(() => {
-	const {
-		$ScrollTrigger
-	} = useNuxtApp()
+onBeforeUnmount(() => {
 
 	$ScrollTrigger.getAll().forEach(t => {
 		t.kill()

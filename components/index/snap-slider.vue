@@ -318,33 +318,18 @@
 				]"
 			>
 				<div class="se-ui-container">
-					<!-- Background -->
 					<img
 						src="@/assets/images/snap/bg.jpg"
 						alt="Background Image"
 						class="slide-img layer-1"
 					/>
-					<!-- /Background -->
 
-					<!-- Animation Objects -->
-					<div class="se-ui-plx-sky-container layer-2">
-						<div class="typewriter-container abs-full">
-							<img
-								src="@/assets/images/snap/slide_5/typewriter.png"
-								class="sl2-center-main typewriter"
-								id="slide-5-typewriter"
-								alt="Typewriter"
-							>
-						</div>
-						<img
-							src="@/assets/images/snap/slide_2/rock.png"
-							class="sl2-img-rock"
-							id="slide-5-rock"
-							alt="Rock"
-						>
-					</div>
-					<!-- /Animation Objects -->
-
+					<img
+						src="/cpi-public/img/services/digital.png"
+						alt="Digital Solutions Image"
+						class="sl5-main-img layer-2"
+						id="slide-5-image"
+					/>
 					<!-- Sliding Text -->
 					<div class="seui-sliding-text-container layer-4">
 						<horizontal-text
@@ -361,7 +346,79 @@
 							</template>
 							<div
 								class="h-slide-text white"
-								@click="goToDetail('content-creation', 4)"
+								@click="goToDetail('digital-solutions', 4)"
+							>
+								<span>EVENTS</span> <span class="center-dot"></span>
+								<span>CONTENT</span> <span class="center-dot"></span>
+								<span>DIGITAL</span> <span class="center-dot"></span>
+								<span>MEDIA</span> <span class="center-dot"></span>
+								<span>EXPERIENCES</span> <span class="center-dot"></span>
+							</div>
+						</horizontal-text>
+					</div>
+					<!-- /Sliding Text -->
+				</div>
+			</div>
+			<!-- /5 - Slide -->
+
+			<!-- 6 - Slide -->
+			<div
+				class="snap-element abs-full"
+				id="snap-slider-slide-6"
+				:class="[
+					{
+						active: _config_pairs[5].is_active
+					},
+					{
+						past: _config_pairs[5].is_past
+					}
+				]"
+			>
+				<div class="se-ui-container">
+					<!-- Background -->
+					<img
+						src="@/assets/images/snap/bg.jpg"
+						alt="Background Image"
+						class="slide-img layer-1"
+					/>
+					<!-- /Background -->
+
+					<!-- Animation Objects -->
+					<div class="se-ui-plx-sky-container layer-2">
+						<div class="typewriter-container abs-full">
+							<img
+								src="@/assets/images/snap/slide_5/typewriter.png"
+								class="sl2-center-main typewriter"
+								id="slide-6-typewriter"
+								alt="Typewriter"
+							>
+						</div>
+						<img
+							src="@/assets/images/snap/slide_2/rock.png"
+							class="sl2-img-rock"
+							id="slide-6-rock"
+							alt="Rock"
+						>
+					</div>
+					<!-- /Animation Objects -->
+
+					<!-- Sliding Text -->
+					<div class="seui-sliding-text-container layer-4">
+						<horizontal-text
+							duration="100"
+							scale-on-hover
+							:show-nav-cursor="true"
+						>
+							<template v-slot:subtitle>
+								<div class="layout-box">
+									<h2 class="hs-subtitle">
+										{{ slidingText[5].subtitle }}
+									</h2>
+								</div>
+							</template>
+							<div
+								class="h-slide-text white"
+								@click="goToDetail('content-creation', 5)"
 							>
 								<span>EVENTS</span> <span class="center-dot"></span>
 								<span>CONTENT</span> <span class="center-dot"></span>
@@ -382,13 +439,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- /5 - Slide -->
-
-			<!-- 6 - Slide -->
 			<!-- /6 - Slide -->
-
-			<!-- 7 - End -->
-			<!-- /7 - End -->
 		</div>
 		<!-- /Slides -->
 
@@ -439,6 +490,15 @@
 					></div>
 				</div>
 				<!-- / 5 - Progress -->
+
+				<!-- 6 - Progress -->
+				<div class="pb-progress-holder">
+					<div
+						class="pb-progress-line"
+						id="snap-slider-slide-progress-6"
+					></div>
+				</div>
+				<!-- / 6 - Progress -->
 			</div>
 		</div>
 		<!-- /Progress -->
@@ -475,6 +535,12 @@ const config_pairs = ref([
 		progress: '#snap-slider-slide-progress-5',
 		is_active: false,
 		is_past: false
+	},
+	{
+		slide: '#snap-slider-slide-6',
+		progress: '#snap-slider-slide-progress-6',
+		is_active: false,
+		is_past: false
 	}
 ])
 // slidingText[3].subtitle 
@@ -493,6 +559,9 @@ const slidingText = [
 		subtitle: "Event Management",
 	},
 	{
+		subtitle: "Digital Solutions",
+	},
+	{
 		subtitle: "Content Creation",
 	},
 ]
@@ -500,8 +569,8 @@ const slidingText = [
 const router = useRouter()
 const appStore = useAppStore()
 const goToDetail = (to) => {
-	const active_slide = _config_pairs.find(el => el.is_active === true)
-	appStore.setActiveSliderIndex(_config_pairs.indexOf(active_slide))
+	// const active_slide = _config_pairs.find(el => el.is_active === true)
+	// appStore.setActiveSliderIndex(_config_pairs.indexOf(active_slide))
 	// appStore.setPageScrollPosition('home', window.scrollY)
 	router.push("/services/" + to)
 }
@@ -518,7 +587,7 @@ for (let i = 0; i < si; i++) {
 _config_pairs[si].is_past = false
 _config_pairs[si].is_active = true
 // Reset the slide index @ the store
-appStore.setActiveSliderIndex(0)
+// appStore.setActiveSliderIndex(0)
 
 // Hide the trailing spheres animation till all other animations has passed
 // const showTailSpheres = ref(false)
@@ -537,6 +606,7 @@ onMounted(() => {
 	const third = _config_pairs[2]
 	const fourth = _config_pairs[3]
 	const fifth = _config_pairs[4]
+	const sixth = _config_pairs[5]
 
 	const { characters: slide5RevealTextChars } = slide5RevealText.value.elements
 
@@ -608,6 +678,10 @@ onMounted(() => {
 		5: {
 			start: 'slide-5-start',
 			end: 'slide-5-end',
+		},
+		6: {
+			start: 'slide-6-start',
+			end: 'slide-6-end'
 		}
 	}
 	// Set static values
@@ -618,10 +692,10 @@ onMounted(() => {
 		.set('#slide-2-rock', {
 			xPercent: -50
 		})
-		.set('#slide-5-typewriter', {
+		.set('#slide-6-typewriter', {
 			xPercent: -50
 		})
-		.set('#slide-5-rock', {
+		.set('#slide-6-rock', {
 			xPercent: -50
 		}).
 		set('#slide-4-banner', {
@@ -841,9 +915,34 @@ onMounted(() => {
 		// Fifth Slide
 		.add(label[5].start)
 
+		.to('#slide-5-image', {
+			scale: 0.7,
+			transformOrigin: "bottom",
+		}, label[5].start)
+
+		// Progress
+		.to(
+			fifth.progress,
+			{
+				width: '100%',
+			},
+			label[5].start
+		)
+		// Transition
+		.add(() => {
+			runSlideTransition(
+				fifth,
+				sixth
+			)
+		})
+
+
+		// sixth Slide
+		.add(label[6].start)
+
 		// Animations
 		.to(
-			'#slide-5-typewriter',
+			'#slide-6-typewriter',
 			{
 				z: 888,
 				y: responsiveValue([
@@ -866,15 +965,15 @@ onMounted(() => {
 				]),
 				delay: 0.5
 			},
-			label[5].start
+			label[6].start
 		)
 		.to(
-			'#slide-5-rock',
+			'#slide-6-rock',
 			{
 				yPercent: 150,
 				delay: 0.5
 			},
-			label[5].start
+			label[6].start
 		)
 
 		.to(
@@ -889,11 +988,11 @@ onMounted(() => {
 
 		// Progress
 		.to(
-			fifth.progress,
+			sixth.progress,
 			{
 				width: '100%',
 			},
-			label[5].start
+			label[6].start
 		)
 
 		.to(slide5RevealTextChars, {
@@ -942,6 +1041,7 @@ onBeforeUnmount(() => {
 .snap-element {
 	transform: translateY(100%);
 	transition: all 0.7s cubic-bezier(0.75, 0.03, 0.36, 1);
+	transform-origin: bottom;
 	overflow: hidden;
 	z-index: 0;
 
@@ -1213,7 +1313,23 @@ onBeforeUnmount(() => {
 			height: 80vh;
 		}
 
-		// Side 5
+		// Slide 5
+		.sl5-main-img {
+			position: absolute;
+			max-width: 95%;
+			max-height: 95%;
+			width: auto;
+			height: auto;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 0) scale(1);
+
+			@include lg {
+				max-width: unset;
+			}
+		}
+
+		// Side 6
 		.typewriter-container {
 			transform-style: preserve-3d;
 			transform-origin: center;
