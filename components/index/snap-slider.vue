@@ -325,7 +325,7 @@
 					/>
 
 					<img
-						src="/cpi-public/img/services/digital.png"
+						src="/img/services/digital.png"
 						alt="Digital Solutions Image"
 						class="sl5-main-img layer-2"
 						id="slide-5-image"
@@ -692,6 +692,9 @@ onMounted(() => {
 		.set('#slide-2-rock', {
 			xPercent: -50
 		})
+		// .set('#slide-5-image', {
+		// 	xPercent: -50
+		// })
 		.set('#slide-6-typewriter', {
 			xPercent: -50
 		})

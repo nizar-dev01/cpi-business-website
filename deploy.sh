@@ -1,26 +1,39 @@
 #!/usr/bin/env sh
 
-# abort on errors
+# abort on unuexpected errors
 set -e
 
-# build
-NUXT_APP_BASE_URL=/cpi-public/ npx nuxt build --preset github_pages
+# Remove the .output directory if it exists
+rm -rf .output || true
 
-# navigate into the build output directory
+# Generate static site
+npx nuxi generate
+
+# Navigate into the build output directory
 cd .output/public
 
-# if you are deploying to a custom domain
-#echo 'myapp.com' > CNAME
+# Remove all previous files from the server
+for file in $(ls -a)
+do
+	echo "Deleting $file on the server..."
+	ssh cpi rm -rf /home/developer/public_html/$file || true
+	echo "Done deleting $file on the server."
+	echo ""
+done
 
-# creating a git repo in the build folder
-git init
-git add -A
-git commit -m 'deploy'
+# Push the new build to the server
+scp -r . cpi:/home/developer/public_html/
 
-git branch -m main
-
-git push -f git@github.com:nizar-dev01/cpi-public.git main:gh-pages
-
+# Go back to root of the project
 cd ../../
 
+# Remove the newly built .output directory
 rm -rf .output
+
+echo "Valhalla baby!!! You're up there!"
+
+#######################################################################################
+########## The script anticiptates the presence of 'cpi' in the ssh config   ##########
+########## Any error related to permissions on the server needs to be taken  ##########
+########## care of, prior to running the script. The script exits on errors. ##########
+#######################################################################################

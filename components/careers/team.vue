@@ -25,9 +25,7 @@
 					>
 				</div>
 			</div> -->
-			<div
-				class="plx-img-row clearfix"
-			>
+			<div class="plx-img-row clearfix">
 				<div
 					v-for="(img, i) in teamImages"
 					class="plx-img team-positioner"
@@ -40,7 +38,7 @@
 						class="img"
 					>
 				</div>
-					
+
 			</div>
 		</div>
 		<!-- /BG Images -->
@@ -93,343 +91,343 @@
 	</div>
 </template>
 <script setup>
-	const teamImages = ref([
-		{
-			src: "https://images.pexels.com/photos/11404855/pexels-photo-11404855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position1",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/11404855/pexels-photo-11404855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position2",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position3",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position4",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position5",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position6",
-			dataScroll: -3,
-		},
-		{
-			src: "https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position7",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position8",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position9",
-			dataScroll: -5,
-		},
-		{
-			src: "https://images.pexels.com/photos/620337/pexels-photo-620337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position10",
-			dataScroll: 2,
-		},
-		{
-			src: "https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position11",
-			dataScroll: 3,
-		},
-		{
-			src: "https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			class: "plx-img position12",
-			dataScroll: 2,
-		}
-	])
-	const bgLayerContainer = ref()
+const teamImages = ref([
+	{
+		src: "/img/careers/1.jpg",
+		class: "plx-img position1",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/2.jpg",
+		class: "plx-img position2",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position3",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position4",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position5",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position6",
+		dataScroll: -3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position7",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position8",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position9",
+		dataScroll: -5,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position10",
+		dataScroll: 2,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position11",
+		dataScroll: 3,
+	},
+	{
+		src: "/img/careers/",
+		class: "plx-img position12",
+		dataScroll: 2,
+	}
+])
+const bgLayerContainer = ref()
 
-	const ic = teamImages.length
-	const ipr = 3
-	const odd_rc = ic % ipr
-	const rows = Math.ceil(ic / ipr)
-	const row_height = ref(0)
+const ic = teamImages.length
+const ipr = 3
+const odd_rc = ic % ipr
+const rows = Math.ceil(ic / ipr)
+const row_height = ref(0)
 
 
-	const {
-		$gsap: gsap
-	} = useNuxtApp()
+const {
+	$gsap: gsap
+} = useNuxtApp()
 
-	onMounted(() => {
-		const _images = gsap.utils.toArray('.plx-img');
+onMounted(() => {
+	const _images = gsap.utils.toArray('.plx-img');
 
-		_images.forEach(img => {
-			const yperc = 35;
-			const yChange = yperc * img.dataset.scroll || 1;
+	_images.forEach(img => {
+		const yperc = 35;
+		const yChange = yperc * img.dataset.scroll || 1;
 
-			gsap.set(img, {
-				yPercent: yChange,
-			});
-
-			gsap.to(img, {
-				yPercent: -yperc,
-				scrollTrigger: {
-					trigger: img,
-					start: "top bottom",
-					end: "bottom top",
-					scrub: 1,
-					scrubSpeed: img.dataset.scroll,
-				}
-			});
+		gsap.set(img, {
+			yPercent: yChange,
 		});
-	})
+
+		gsap.to(img, {
+			yPercent: -yperc,
+			scrollTrigger: {
+				trigger: img,
+				start: "top bottom",
+				end: "bottom top",
+				scrub: 1,
+				scrubSpeed: img.dataset.scroll,
+			}
+		});
+	});
+})
 
 </script>
 <style lang="scss">
-	#careers-team-section {
-		position: relative;
-		z-index: 2;
+#careers-team-section {
+	position: relative;
+	z-index: 2;
 
-		.bg-layer {
-			position: absolute;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			width: 100%;
-			height: 100%;
+	.bg-layer {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
 
-			.plx-img-row {
-				background: transparent;
-				flex-grow: 0;
+		.plx-img-row {
+			background: transparent;
+			flex-grow: 0;
 
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
 
-				// border-bottom: 1px solid red;
+			// border-bottom: 1px solid red;
 
-				.plx-img-col {
-					height: var(--height);
-					width: var(--width);
-					position: relative;
+			.plx-img-col {
+				height: var(--height);
+				width: var(--width);
+				position: relative;
 
-					&.nogrow {
-						flex-grow: 0;
-						flex-shrink: 0;
-					}
+				&.nogrow {
+					flex-grow: 0;
+					flex-shrink: 0;
+				}
 
-					.plx-img {
-						display: block;
-						width: 80%;
-						height: auto;
-						max-width: 100%;
-						max-height: 100%;
-						object-fit: contain;
-						position: absolute;
-						opacity: 1
-					}
+				.plx-img {
+					display: block;
+					width: 80%;
+					height: auto;
+					max-width: 100%;
+					max-height: 100%;
+					object-fit: contain;
+					position: absolute;
+					opacity: 1
 				}
 			}
 		}
 	}
+}
 
-	.team-content-box {
-		margin: 70vh 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
+.team-content-box {
+	margin: 70vh 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 
-		@include sm {
-			margin: 50vh 0;
-		}
+	@include sm {
+		margin: 50vh 0;
+	}
+}
+
+.team-title {
+	font-size: 450px;
+	font-family: 'Denton';
+	text-align: center;
+	margin: 0 0 20px;
+
+	@include xxl {
+		font-size: 300px;
 	}
 
-	.team-title {
-		font-size: 450px;
-		font-family: 'Denton';
-		text-align: center;
-		margin: 0 0 20px;
+	@include lg {
+		font-size: 200px;
+	}
 
-		@include xxl {
-			font-size: 300px;
-		}
+	@include md {
+		font-size: 100px;
+	}
+}
 
-		@include lg {
-			font-size: 200px;
+.team-positioner {
+	position: absolute;
+}
+
+.position1 {
+	top: 5%;
+	right: 50%;
+	// z-index: 10;
+
+	@include sm {
+		right: 35%;
+	}
+
+	.img {
+		width: 20vw;
+
+		@include sm {
+			width: 30vw;
 		}
+	}
+}
+
+.position2 {
+	top: 1%;
+	right: 11%;
+	// z-index: 10;
+
+	@include sm {
+		right: 2%;
+	}
+
+	.img {
+		width: 20vw;
+
+		@include sm {
+			width: 30vw;
+		}
+	}
+}
+
+.position3 {
+	top: 1%;
+	left: 11%;
+	z-index: 10;
+
+	.img {
+		width: 10vw;
+		opacity: 0.5;
+
+		@include sm {
+			width: 20vw;
+		}
+	}
+}
+
+.position4 {
+	top: 30%;
+	right: 0%;
+
+	.img {
+		width: 30vw;
+	}
+}
+
+.position5 {
+	top: 18%;
+	right: 18%;
+	opacity: 0.5;
+
+	.img {
+		width: 30vw;
+	}
+}
+
+.position6 {
+	top: 30%;
+	left: 10%;
+
+	.img {
+		width: 20vw;
 
 		@include md {
-			font-size: 100px;
+			width: 25vw;
 		}
 	}
+}
 
-	.team-positioner {
-		position: absolute;
+.position7 {
+	top: 50%;
+	left: 10%;
+
+	.img {
+		width: 20vw;
 	}
+}
 
-	.position1 {
-		top: 5%;
-		right: 50%;
-		// z-index: 10;
+.position8 {
+	top: 75%;
+	left: 30%;
+
+	.img {
+		width: 40vw;
+	}
+}
+
+.position9 {
+	top: 60%;
+	right: 1%;
+
+	.img {
+		width: 20vw;
 
 		@include sm {
-			right: 35%;
-		}
-
-		.img {
-			width: 20vw;
-
-			@include sm {
-				width: 30vw;
-			}
-		}
-	}
-
-	.position2 {
-		top: 1%;
-		right: 11%;
-		// z-index: 10;
-
-		@include sm {
-			right: 2%;
-		}
-
-		.img {
-			width: 20vw;
-
-			@include sm {
-				width: 30vw;
-			}
-		}
-	}
-
-	.position3 {
-		top: 1%;
-		left: 11%;
-		z-index: 10;
-
-		.img {
-			width: 10vw;
-			opacity: 0.5;
-
-			@include sm {
-				width: 20vw;
-			}
-		}
-	}
-
-	.position4 {
-		top: 30%;
-		right: 0%;
-
-		.img {
 			width: 30vw;
 		}
 	}
+}
 
-	.position5 {
-		top: 18%;
-		right: 18%;
-		opacity: 0.5;
+.position10 {
+	top: 70%;
+	left: 1%;
 
-		.img {
+	.img {
+		width: 20vw;
+
+		@include md {
 			width: 30vw;
 		}
 	}
+}
 
-	.position6 {
-		top: 30%;
-		left: 10%;
+.position11 {
+	top: 79%;
+	right: 1%;
 
-		.img {
-			width: 20vw;
-
-			@include md {
-				width: 25vw;
-			}
-		}
+	.img {
+		width: 20vw;
 	}
+}
 
-	.position7 {
-		top: 50%;
-		left: 10%;
+.position12 {
+	top: 90%;
+	right: 60%;
+	opacity: 0.5;
 
-		.img {
-			width: 20vw;
-		}
-	}
+	.img {
+		width: 20vw;
 
-	.position8 {
-		top: 75%;
-		left: 30%;
-
-		.img {
-			width: 40vw;
-		}
-	}
-
-	.position9 {
-		top: 60%;
-		right: 1%;
-
-		.img {
-			width: 20vw;
-
-			@include sm {
-				width: 30vw;
-			}
-		}
-	}
-
-	.position10 {
-		top: 70%;
-		left: 1%;
-
-		.img {
-			width: 20vw;
-
-			@include md {
-				width: 30vw;
-			}
-		}
-	}
-
-	.position11 {
-		top: 79%;
-		right: 1%;
-
-		.img {
-			width: 20vw;
-		}
-	}
-
-	.position12 {
-		top: 90%;
-		right: 60%;
-		opacity: 0.5;
-
-		.img {
-			width: 20vw;
-
-			@include sm {
-				width: 30vw;
-			}
-		}
-	}
-
-	.sm-mb-20 {
 		@include sm {
-			margin-bottom: 20px !important;
+			width: 30vw;
 		}
-	} 
+	}
+}
+
+.sm-mb-20 {
+	@include sm {
+		margin-bottom: 20px !important;
+	}
+}
 </style>

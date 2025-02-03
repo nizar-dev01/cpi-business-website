@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 				{
 					rel: 'icon',
 					type: 'image/x-icon',
-					href: "/cpi-public/favicon.ico"
+					href: "/favicon.ico"
 				}
 			]
 		}

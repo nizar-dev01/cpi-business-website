@@ -2,8 +2,11 @@
 	<main>
 		<about-hero />
 		<grow-dot-cover theme="light" />
-		<about-intro-white />
-		<grow-dot-cover theme="dark" />
+		<about-intro-white @img-ready="setShowDarkDot" />
+		<grow-dot-cover
+			v-if="showDarkDot"
+			theme="dark"
+		/>
 		<about-achievements />
 		<about-library-showcase />
 	</main>
@@ -13,6 +16,12 @@ useHead({
 	title: "CPI Business | About Us"
 })
 
-const updateKey = ref(0)
+const showDarkDot = ref(false)
+
+const setShowDarkDot = () => {
+	setTimeout(() => {
+		showDarkDot.value = true
+	}, 800)
+}
 </script>
 <style lang="scss"></style>

@@ -29,32 +29,32 @@ useHead({
 const services = [
 	{
 		uid: "ip-creation",
-		image: "/cpi-public/img/services/bespoke.png",
+		image: "/img/services/bespoke.png",
 		text: 'IP Creation & Strategic Thinking'
 	},
 	{
 		uid: "event-production",
-		image: "/cpi-public/img/services/events.png",
+		image: "/img/services/events.png",
 		text: 'Event Production'
 	},
 	{
 		uid: "concept-development",
-		image: "/cpi-public/img/services/consultancy.png",
+		image: "/img/services/consultancy.png",
 		text: 'Concept Development & Management'
 	},
 	{
 		uid: "content-creation",
-		image: "/cpi-public/img/services/content.png",
+		image: "/img/services/content.png",
 		text: 'Content Creation'
 	},
 	{
 		uid: "design-n-branding",
-		image: "/cpi-public/img/services/design.png",
+		image: "/img/services/design.png",
 		text: 'Design & Branding'
 	},
 	{
 		uid: "digital-solutions",
-		image: "/cpi-public/img/services/digital.png",
+		image: "/img/services/digital.png",
 		text: 'Digital Solutions'
 	}
 ]

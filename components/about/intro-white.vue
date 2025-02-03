@@ -22,9 +22,11 @@
 
 		<div class="team-image-container">
 			<img
-				src="/cpi-public/img/team.jpeg"
+				src="/img/team.jpeg"
 				alt="CPI Team"
 				class="team-image"
+				@load="emits('img-ready')"
+				@error="emits('img-ready')"
 			/>
 		</div>
 
@@ -43,6 +45,7 @@
 </template>
 
 <script setup>
+const emits = defineEmits(['img-ready'])
 </script>
 
 <style lang="scss" scoped>

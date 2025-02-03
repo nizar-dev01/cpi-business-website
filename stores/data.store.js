@@ -5,12 +5,12 @@ import {
 import sphere_images from "@/assets/images"
 
 const service_images = [
-	"/cpi-public/img/services/bespoke.png",
-	"/cpi-public/img/services/consultancy-full.png",
-	"/cpi-public/img/services/content.png",
-	"/cpi-public/img/services/design.png",
-	"/cpi-public/img/services/digital.png",
-	"/cpi-public/img/services/events.png",
+	"/img/services/bespoke.png",
+	"/img/services/consultancy-full.png",
+	"/img/services/content.png",
+	"/img/services/design.png",
+	"/img/services/digital.png",
+	"/img/services/events.png",
 ]
 
 export const useDataStore = defineStore('data', {
@@ -26,40 +26,44 @@ export const useDataStore = defineStore('data', {
 			},
 			contact: {
 				images: [
-					"/cpi-public/img/contact-img.png",
+					"/img/contact-img.png",
 					...service_images
 				]
 			},
 			portfolio: {
 				images: [
 					...service_images,
-					"/cpi-public/img/portfolios/ADFW23.png",
-					"/cpi-public/img/portfolios/ADFW24.png",
-					"/cpi-public/img/portfolios/ADGM.png",
-					"/cpi-public/img/portfolios/AGWA.png",
-					"/cpi-public/img/portfolios/ahlan modi.png",
-					"/cpi-public/img/portfolios/CBUAE.png",
-					"/cpi-public/img/portfolios/e& Suhoor.png",
-					"/cpi-public/img/portfolios/hub71.png",
-					"/cpi-public/img/portfolios/i2u2.png",
-					"/cpi-public/img/portfolios/One miral.png",
-					"/cpi-public/img/portfolios/resolve.png",
-					"/cpi-public/img/portfolios/sam altman.png",
-					"/cpi-public/img/portfolios/SAVI.png",
-					"/cpi-public/img/portfolios/SIFF.png",
-					"/cpi-public/img/portfolios/SMB Awards 2024.png",
-					"/cpi-public/img/portfolios/etisalat.jpg",
+					"/img/portfolios/ADFW23.png",
+					"/img/portfolios/ADFW24.png",
+					"/img/portfolios/ADGM.png",
+					"/img/portfolios/AGWA.png",
+					"/img/portfolios/ahlan modi.png",
+					"/img/portfolios/CBUAE.png",
+					"/img/portfolios/e& Suhoor.png",
+					"/img/portfolios/hub71.png",
+					"/img/portfolios/i2u2.png",
+					"/img/portfolios/One miral.png",
+					"/img/portfolios/resolve.png",
+					"/img/portfolios/sam altman.png",
+					"/img/portfolios/SAVI.png",
+					"/img/portfolios/SIFF.png",
+					"/img/portfolios/SMB Awards 2024.png",
+					"/img/portfolios/etisalat.jpg",
 				]
 			},
 			careers: {
 				images: [
 					...service_images,
-					'/cpi-public/img/astro.png'
+					'/img/astro.png'
 				]
 			},
 			about: {
 				images: [
 					...service_images,
+					"/img/testimonials/Hub71.jpg",
+					"/img/testimonials/e&.jpg",
+					"/img/testimonials/ADGM.jpg",
+					"/img/team.jpeg"
 				]
 			},
 			blog: {
@@ -133,7 +137,7 @@ export const useDataStore = defineStore('data', {
 			this.eventsLoading = true
 
 			// Load blog
-			useFetch("/cpi-public/blog.json")
+			useFetch("/blog.json")
 				.then(res => res.data.value)
 				.then(data => {
 					this.blog_list = data
@@ -141,7 +145,7 @@ export const useDataStore = defineStore('data', {
 				.finally(() => this.blogLoading = false)
 
 			// Load events
-			useFetch("/cpi-public/events.json")
+			useFetch("/events.json")
 				.then(res => res.data.value)
 				.then(data => {
 					this.event_list = data

@@ -2,7 +2,7 @@
 	<section id="careers-hero-section">
 		<div class="background-layer">
 			<img
-				src="/cpi-public/img/astro.png"
+				src="/img/astro.png"
 				alt="Image of an astronaut floating in space"
 				class="crh-bg-img"
 				ref="heroBgImg"

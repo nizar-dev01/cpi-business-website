@@ -33,7 +33,10 @@
 			<div class="testimonials-container">
 				<div class="tst-row">
 					<div class="tst-col">
-						<div class="tst-item left">
+						<div
+							class="tst-item left content-holder"
+							:style="has_calc_done ? `height: ${tmnl_height}px` : ''"
+						>
 							<!-- Icon -->
 							<div class="quote-icon">
 								<div
@@ -49,11 +52,9 @@
 
 							<!-- Text -->
 							<div class="quote-text">
-								"Our event with CPI Business was exceptional. From concept to execution, they
-								transformed our corporate gathering into an unforgettable experience.
-								Their attention to detail and creativity left a
-								lasting impression on our guests.
-								We look forward to collaborating with them again!"
+								{{
+									activeTestimonial.text
+								}}
 							</div>
 						</div>
 					</div>
@@ -61,12 +62,12 @@
 						<div class="tst-item right">
 							<div class="top-row">
 								<div class="trc left">
-									<div class="trc-item">
+									<div class="trc-item trc-img-holder">
 										<img
-											src="/cpi-public/img/team.jpeg"
-											alt=""
+											:src="activeTestimonial.image"
+											alt="Testimonial Client Image"
 											class="trc-icon-img"
-										>
+										/>
 									</div>
 								</div>
 								<!-- <div class="trc right">
@@ -83,10 +84,10 @@
 							<div class="bottom-row">
 								<div class="br-item">
 									<h2 class="tst-name">
-										Regi Magdy
+										{{ activeTestimonial.client_name }}
 									</h2>
 									<h3 class="tst-designation">
-										COO, e& enterprise
+										{{ activeTestimonial.client_post }}
 									</h3>
 								</div>
 							</div>
@@ -113,6 +114,55 @@ const numbers = [
 		title: "Events"
 	},
 ]
+
+const testimonials = [
+	{
+		text: "Thank you team for the great work. We absolutely love working with you guys and couldn't have done it without you!",
+		image: "/img/testimonials/Hub71.jpg",
+		client_name: "Mohammed Alkhoor",
+		client_post: "Head of Marketing and Communications, Hub71"
+	},
+	{
+		text: "Thank you for all your efforts put into today’s event. It was a tremendous support you provided. Keep up the good work!",
+		image: "/img/testimonials/e&.jpg",
+		client_name: "Omar Al Khamiri",
+		client_post: "Manager, e&"
+	},
+	{
+		text: "CPI has been a true partner to us in every sense of the word. Your team's dedication, creativity, and passion have elevated ADFW to completely new heights. It's evident that you poured your hearts into every single detail-from meticulously addressing last year's challenges to delivering flawlessly on your promises across every aspect of this event.",
+		image: "/img/testimonials/ADGM.jpg",
+		client_name: "Qais Aloul",
+		client_post: "Associate Director, Events, ADGM"
+	},
+]
+
+const activeTestimonial = ref(testimonials[0])
+let testimonialOffset = 0
+
+const tmnl_height = ref(0)
+const has_calc_done = ref(false)
+const iterateTestimonial = () => {
+	const i = testimonialOffset % testimonials.length
+	activeTestimonial.value = testimonials[i]
+	testimonialOffset++
+}
+const slideIntervalPeriod = 3000
+
+const calcInterval = setInterval(() => {
+	iterateTestimonial()
+	if (!has_calc_done.value) {
+		const el = document.querySelector('.tst-item.left.content-holder')
+		const height = el.getBoundingClientRect().height
+		if (height > tmnl_height.value) {
+			tmnl_height.value = Math.ceil(height)
+		}
+		if (testimonialOffset > testimonials.length) {
+			has_calc_done.value = true
+			clearInterval(calcInterval)
+			setInterval(iterateTestimonial, slideIntervalPeriod)
+		}
+	}
+}, 500)
 
 onMounted(() => {
 	const {
@@ -294,6 +344,7 @@ section#about-achievements {
 					height: calc(100% - 20px);
 					border-radius: 10px;
 					overflow: hidden;
+					position: relative;
 
 					@include lg {
 						height: 100%;
@@ -301,6 +352,11 @@ section#about-achievements {
 				}
 
 				.trc-icon-img {
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
