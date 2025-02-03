@@ -692,9 +692,9 @@ onMounted(() => {
 		.set('#slide-2-rock', {
 			xPercent: -50
 		})
-		// .set('#slide-5-image', {
-		// 	xPercent: -50
-		// })
+		.set('#slide-5-image', {
+			xPercent: -50
+		})
 		.set('#slide-6-typewriter', {
 			xPercent: -50
 		})
@@ -1325,7 +1325,7 @@ onBeforeUnmount(() => {
 			height: auto;
 			bottom: 0;
 			left: 50%;
-			transform: translate(-50%, 0) scale(1);
+			// transform: translate(-50%, 0) scale(1);
 
 			@include lg {
 				max-width: unset;
