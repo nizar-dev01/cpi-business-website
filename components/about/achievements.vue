@@ -182,7 +182,8 @@ onMounted(() => {
 				once: false,
 				duration: 5,
 				delay: 0.5,
-				toggleActions: "restart none none none"
+				toggleActions: "restart none none none",
+				// markers: true
 			}
 		})
 	})

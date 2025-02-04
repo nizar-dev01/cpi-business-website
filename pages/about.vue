@@ -7,7 +7,7 @@
 			v-if="showDarkDot"
 			theme="dark"
 		/>
-		<about-achievements />
+		<about-achievements :key="showAchievements" />
 		<about-library-showcase />
 	</main>
 </template>
@@ -17,11 +17,15 @@ useHead({
 })
 
 const showDarkDot = ref(false)
+const showAchievements = ref(0)
 
 const setShowDarkDot = () => {
 	setTimeout(() => {
 		showDarkDot.value = true
 	}, 800)
+	setTimeout(() => {
+		showAchievements.value += 1
+	}, 800 * 2)
 }
 </script>
 <style lang="scss"></style>
