@@ -24,14 +24,26 @@ const props = defineProps([
 ])
 const dataStore = useDataStore()
 const _blogs = computed(() => dataStore.blogs)
-let blogs = [];
-if (_blogs.value) {
-	if (props.staticItemsCount) {
-		blogs = _blogs.value.slice(0, props.staticItemsCount)
-	} else {
-		blogs = _blogs.value
+let blogs = ref(null);
+watch(
+	_blogs,
+	(newVal) => {
+		if (newVal) {
+			console.log("New value")
+			if (props.staticItemsCount) {
+				blogs.value = _blogs.value.slice(0, props.staticItemsCount)
+			} else {
+				blogs.value = _blogs.value
+			}
+		} else {
+			console.log("Value is not set")
+		}
+	},
+	{
+		once: false,
+		immediate: true
 	}
-}
+)
 </script>
 <style lang="scss" scoped>
 $rowspace: 5px;
