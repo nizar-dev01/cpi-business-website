@@ -1,6 +1,6 @@
 <template>
 	<main
-		v-if="event"
+		v-if="event && isEventReady"
 		class="portfolio-detail-page-main clearfix"
 	>
 		<portfolio-detail-hero
@@ -24,7 +24,17 @@ const route = useRoute()
 const slug = route.params.slug
 
 const dataStore = useDataStore()
-const event = dataStore.getEvent(slug)
+
+
+const isEventReady = ref(false)
+const event = ref(null)
+dataStore.getEvent(slug)
+	.then(data => {
+		event.value = data
+		isEventReady.value = true
+	}).catch(e => {
+		console.error(e)
+	})
 
 // Show the next and previous 2 items in the "Other Events" section
 const eventFilter = () => {

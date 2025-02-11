@@ -38,7 +38,7 @@ onMounted(() => {
 
 		__images__.forEach(im => {
 			const img = document.createElement('img')
-			img.src = `${window.location.origin}/${im}`
+			img.src = `${window.location.origin}/${im}`.replace(/\/\//g, "/")
 
 			const staticDelay = 1.5
 

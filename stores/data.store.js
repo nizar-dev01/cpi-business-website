@@ -89,16 +89,21 @@ export const useDataStore = defineStore('data', {
 		},
 		isDataLoading: false,
 		pageLoading: null,
-		blogLoading: false,
-		eventsLoading: false,
+		blogLoading: true,
+		eventsLoading: true,
+		promiseHandlers: {
+			blog: null,
+			event: null
+		}
 	}),
 	actions: {
-		getEvent (slug) {
+		findEvent (slug) {
 			const event = this.event_list.find(ev => ev.slug === slug)
 			return event || null
 		},
 		getNextEvent (slug) {
-			const event = this.getEvent(slug)
+			// This function assumes the event_list has already been loaded
+			const event = this.findEvent(slug)
 			const index = this.event_list.indexOf(event) + 1
 
 			if (index >= this.event_list.length) {
@@ -107,8 +112,18 @@ export const useDataStore = defineStore('data', {
 				return this.event_list[index]
 			}
 		},
+		getEvent (slug) {
+			return new Promise((resolve, reject) => {
+				if (this.eventsLoading) {
+					this.promiseHandlers.event = { resolve, reject, slug }
+				} else {
+					const event = this.findEvent(slug)
+					resolve(event || null)
+				}
+			})
+		},
 		getPrevEvent (slug) {
-			const event = this.getEvent(slug)
+			const event = this.findEvent(slug)
 			const index = this.event_list.indexOf(event) - 1
 
 			if (index < 0) {
@@ -117,9 +132,18 @@ export const useDataStore = defineStore('data', {
 				return this.event_list[index]
 			}
 		},
+		findBlog (slug) {
+			return this.blog_list.find(bl => bl.slug === slug)
+		},
 		getBlog (slug) {
-			const blog = this.blog_list.find(bl => bl.slug === slug)
-			return blog || null
+			return new Promise((resolve, reject) => {
+				if (this.blogLoading) {
+					this.promiseHandlers.blog = { resolve, reject, slug }
+				} else {
+					const blog = this.findBlog(slug)
+					resolve(blog || null)
+				}
+			})
 		},
 		loadPage (_page) {
 			const page = this.pages[_page]
@@ -139,8 +163,15 @@ export const useDataStore = defineStore('data', {
 			// Load blog
 			useFetch("/blog.json")
 				.then(res => res.data.value)
-				.then(data => {
+				.then(async (data) => {
 					this.blog_list = data
+					const blogHandler = this.promiseHandlers.blog
+					if (blogHandler) {
+						const resolver = blogHandler.resolve
+						const slug = blogHandler.slug
+						const blog = this.findBlog(slug)
+						resolver(blog)
+					}
 				})
 				.finally(() => this.blogLoading = false)
 
@@ -149,7 +180,18 @@ export const useDataStore = defineStore('data', {
 				.then(res => res.data.value)
 				.then(data => {
 					this.event_list = data
-				}).finally(() => this.eventsLoading = false)
+
+					const eventHandler = this.promiseHandlers.event
+					if (eventHandler) {
+						const resolver = eventHandler.resolve
+						const slug = eventHandler.slug
+						const event = this.findEvent(slug)
+						resolver(event)
+					}
+					this.eventsLoading = false
+
+				})
+				.finally(() => this.eventsLoading = false)
 		}
 	},
 	getters: {

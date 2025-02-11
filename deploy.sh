@@ -24,6 +24,9 @@ done
 # Push the new build to the server
 scp -r . cpi:/home/developer/public_html/
 
+# Change the permission on the server to make the newly published files accessible
+ssh cpi chmod -R a+rx /home/developer/public_html
+
 # Go back to root of the project
 cd ../../
 

@@ -1,7 +1,7 @@
 <template>
 	<main
 		id="blog-detail-page-main"
-		v-if="blog"
+		v-if="blog && isBlogReady"
 	>
 		<div class="hero-image-container">
 			<img
@@ -64,9 +64,17 @@
 <script setup>
 const route = useRoute()
 const slug = route.params.slug
-
 const dataStore = useDataStore()
-const blog = dataStore.getBlog(slug)
+
+const isBlogReady = ref(false)
+const blog = ref(null)
+dataStore.getBlog(slug)
+	.then(data => {
+		blog.value = data
+		isBlogReady.value = true
+	}).catch(e => {
+		console.error(e)
+	})
 </script>
 <style lang="scss">
 #blog-detail-page-main {

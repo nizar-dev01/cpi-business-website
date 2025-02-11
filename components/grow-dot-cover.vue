@@ -48,9 +48,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
 	if (tl && tl.kill) {
-		console.log("Killing tl")
 		tl.kill()
-		console.log("Done Killing tl")
 	}
 })
 </script>
