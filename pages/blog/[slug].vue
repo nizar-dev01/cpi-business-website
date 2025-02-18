@@ -56,7 +56,7 @@
 			<!-- /Blog Content -->
 		</div>
 
-		<div class="layout-box clearfix">
+		<div class="clearfix">
 			<index-library-showcase :show-title="false" />
 		</div>
 	</main>

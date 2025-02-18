@@ -29,14 +29,11 @@ watch(
 	_blogs,
 	(newVal) => {
 		if (newVal) {
-			console.log("New value")
 			if (props.staticItemsCount) {
 				blogs.value = _blogs.value.slice(0, props.staticItemsCount)
 			} else {
 				blogs.value = _blogs.value
 			}
-		} else {
-			console.log("Value is not set")
 		}
 	},
 	{

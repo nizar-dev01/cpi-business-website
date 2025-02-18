@@ -29,7 +29,7 @@ onMounted(() => {
 })
 
 const _title = "CPI Businesss"
-const _image = "https://dev.cpibusiness.net/img/contact-img.png"
+const _image = "https://dev.cpibusiness.net/img/contact-img.webp"
 const _description = "CPI Business is one of the leading event management firms in the middle east"
 const _url = "cpibusiness.net"
 useSeoMeta({

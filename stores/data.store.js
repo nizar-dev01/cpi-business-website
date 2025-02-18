@@ -5,12 +5,12 @@ import {
 import sphere_images from "@/assets/images"
 
 const service_images = [
-	"/img/services/bespoke.png",
-	"/img/services/consultancy-full.png",
-	"/img/services/content.png",
-	"/img/services/design.png",
-	"/img/services/digital.png",
-	"/img/services/events.png",
+	"/img/services/bespoke.webp",
+	"/img/services/consultancy-full.webp",
+	"/img/services/content.webp",
+	"/img/services/design.webp",
+	"/img/services/digital.webp",
+	"/img/services/events.webp",
 ]
 
 export const useDataStore = defineStore('data', {
@@ -26,44 +26,44 @@ export const useDataStore = defineStore('data', {
 			},
 			contact: {
 				images: [
-					"/img/contact-img.png",
+					"/img/contact-img.webp",
 					...service_images
 				]
 			},
 			portfolio: {
 				images: [
 					...service_images,
-					"/img/portfolios/ADFW23.png",
-					"/img/portfolios/ADFW24.png",
-					"/img/portfolios/ADGM.png",
-					"/img/portfolios/AGWA.png",
-					"/img/portfolios/ahlan modi.png",
-					"/img/portfolios/CBUAE.png",
-					"/img/portfolios/e& Suhoor.png",
-					"/img/portfolios/hub71.png",
-					"/img/portfolios/i2u2.png",
-					"/img/portfolios/One miral.png",
-					"/img/portfolios/resolve.png",
-					"/img/portfolios/sam altman.png",
-					"/img/portfolios/SAVI.png",
-					"/img/portfolios/SIFF.png",
-					"/img/portfolios/SMB Awards 2024.png",
-					"/img/portfolios/etisalat.jpg",
+					"/img/portfolios/ADFW23.webp",
+					"/img/portfolios/ADFW24.webp",
+					"/img/portfolios/ADGM.webp",
+					"/img/portfolios/AGWA.webp",
+					"/img/portfolios/ahlan modi.webp",
+					"/img/portfolios/CBUAE.webp",
+					"/img/portfolios/e& Suhoor.webp",
+					"/img/portfolios/hub71.webp",
+					"/img/portfolios/i2u2.webp",
+					"/img/portfolios/One miral.webp",
+					"/img/portfolios/resolve.webp",
+					"/img/portfolios/sam altman.webp",
+					"/img/portfolios/SAVI.webp",
+					"/img/portfolios/SIFF.webp",
+					"/img/portfolios/SMB Awards 2024.webp",
+					"/img/portfolios/etisalat.webp",
 				]
 			},
 			careers: {
 				images: [
 					...service_images,
-					'/img/astro.png'
+					'/img/astro.webp'
 				]
 			},
 			about: {
 				images: [
 					...service_images,
-					"/img/testimonials/Hub71.jpg",
-					"/img/testimonials/e&.jpg",
-					"/img/testimonials/ADGM.jpg",
-					"/img/team.jpeg"
+					"/img/testimonials/Hub71.webp",
+					"/img/testimonials/e&.webp",
+					"/img/testimonials/ADGM.webp",
+					"/img/team.webp"
 				]
 			},
 			blog: {

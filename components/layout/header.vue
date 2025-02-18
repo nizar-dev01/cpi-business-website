@@ -14,7 +14,7 @@
 				}"
 			>
 				<!-- <img
-					src="@/assets/images/logo.png"
+					src="@/assets/images/logo.webp"
 					alt="Logo Image"
 					class="logo-img"
 					ref="fallInLogo"
@@ -210,37 +210,37 @@ const submenuItems = ref([
 	{
 		is_active: true,
 		uid: "ip-creation",
-		image: "/img/services/bespoke.png",
+		image: "/img/services/bespoke.webp",
 		text: 'IP Creation & Strategic Thinking'
 	},
 	{
 		is_active: false,
 		uid: "event-production",
-		image: "/img/services/events.png",
+		image: "/img/services/events.webp",
 		text: 'Event Production'
 	},
 	{
 		is_active: false,
 		uid: "concept-development",
-		image: "/img/services/consultancy.png",
+		image: "/img/services/consultancy.webp",
 		text: 'Concept Development & Management'
 	},
 	{
 		is_active: false,
 		uid: "content-creation",
-		image: "/img/services/content.png",
+		image: "/img/services/content.webp",
 		text: 'Content Creation'
 	},
 	{
 		is_active: false,
 		uid: "design-n-branding",
-		image: "/img/services/design.png",
+		image: "/img/services/design.webp",
 		text: 'Design & Branding'
 	},
 	{
 		is_active: false,
 		uid: "digital-solutions",
-		image: "/img/services/digital.png",
+		image: "/img/services/digital.webp",
 		text: 'Digital Solutions'
 	}
 ])

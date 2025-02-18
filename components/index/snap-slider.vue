@@ -325,7 +325,7 @@
 					/>
 
 					<img
-						src="/img/services/digital.png"
+						src="/img/services/digital.webp"
 						alt="Digital Solutions Image"
 						class="sl5-main-img layer-2"
 						id="slide-5-image"

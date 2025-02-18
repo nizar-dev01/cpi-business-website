@@ -118,19 +118,19 @@ const numbers = [
 const testimonials = [
 	{
 		text: "Thank you team for the great work. We absolutely love working with you guys and couldn't have done it without you!",
-		image: "/img/testimonials/Hub71.jpg",
+		image: "/img/testimonials/Hub71.webp",
 		client_name: "Mohammed Alkhoor",
 		client_post: "Head of Marketing and Communications, Hub71"
 	},
 	{
 		text: "Thank you for all your efforts put into today’s event. It was a tremendous support you provided. Keep up the good work!",
-		image: "/img/testimonials/e&.jpg",
+		image: "/img/testimonials/e&.webp",
 		client_name: "Omar Al Khamiri",
 		client_post: "Manager, e&"
 	},
 	{
 		text: "CPI has been a true partner to us in every sense of the word. Your team's dedication, creativity, and passion have elevated ADFW to completely new heights. It's evident that you poured your hearts into every single detail-from meticulously addressing last year's challenges to delivering flawlessly on your promises across every aspect of this event.",
-		image: "/img/testimonials/ADGM.jpg",
+		image: "/img/testimonials/ADGM.webp",
 		client_name: "Qais Aloul",
 		client_post: "Associate Director, Events, ADGM"
 	},

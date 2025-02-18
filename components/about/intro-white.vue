@@ -22,7 +22,7 @@
 
 		<div class="team-image-container">
 			<img
-				src="/img/team.jpeg"
+				src="/img/team.webp"
 				alt="CPI Team"
 				class="team-image"
 				@load="emits('img-ready')"

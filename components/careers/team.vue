@@ -93,62 +93,62 @@
 <script setup>
 const teamImages = ref([
 	{
-		src: "/img/careers/1.jpg",
+		src: "/img/careers/careers1.webp",
 		class: "plx-img position1",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/2.jpg",
+		src: "/img/careers/careers2.webp",
 		class: "plx-img position2",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers3.webp",
 		class: "plx-img position3",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers4.webp",
 		class: "plx-img position4",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers5.webp",
 		class: "plx-img position5",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers6.webp",
 		class: "plx-img position6",
 		dataScroll: -3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers7.webp",
 		class: "plx-img position7",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers8.webp",
 		class: "plx-img position8",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers9.webp",
 		class: "plx-img position9",
 		dataScroll: -5,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers10.webp",
 		class: "plx-img position10",
 		dataScroll: 2,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers11.webp",
 		class: "plx-img position11",
 		dataScroll: 3,
 	},
 	{
-		src: "/img/careers/",
+		src: "/img/careers/careers13.webp",
 		class: "plx-img position12",
 		dataScroll: 2,
 	}
